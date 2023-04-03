@@ -1,0 +1,1 @@
+export const breedsValue = state => state.breeds.value;
