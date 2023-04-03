@@ -64,5 +64,20 @@
     "husky": "^4.3.8",
     "lint-staged": "^13.2.0",
     "prettier": "^2.8.4"
+  },
+  "description": "The continue of project for the **React.Js and Node.Js** course of Full Stack\r Developer students.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StudentVlad5/animal-welfare-network.git"
+  },
+  "keywords": [
+    "volunteer",
+    "project"
+  ],
+  "author": "Vlad Popov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StudentVlad5/animal-welfare-network/issues"
   }
 }

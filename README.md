@@ -1,7 +1,7 @@
 # Project Pet Support
 
-The final project for the **React.Js and Node.Js** course of Full Stack
-Developer students (IT school **GoIT**).
+The continue of project for the **React.Js and Node.Js** course of Full Stack
+Developer students.
 
 ## Developers
 
