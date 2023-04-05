@@ -7,7 +7,8 @@ import { persistor, store } from "redux/store";
 import { App } from "components/App/App";
 import { GlobalStyle } from "components/baseStyles/GlobalStyle";
 
-window.global = { BASE_URL: "https://petsapi.cyclic.app/api" };
+// window.global = { BASE_URL: "https://petsapi.cyclic.app/api" };
+window.global = { BASE_URL: "http://localhost:3030/api" };
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -19,5 +20,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </BrowserRouter>
       </PersistGate>
     </Provider>
-  </React.StrictMode> 
+  </React.StrictMode>
 );
