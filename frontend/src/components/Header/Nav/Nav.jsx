@@ -24,7 +24,7 @@ export const MobileNav = ({ toggleMenu }) => {
 
 export const Nav = () => {
   const [searchParams] = useSearchParams();
-  searchParams.set('perPage', 10);
+  searchParams.set('perPage', 12);
   searchParams.set('page', 1);
 
   return (

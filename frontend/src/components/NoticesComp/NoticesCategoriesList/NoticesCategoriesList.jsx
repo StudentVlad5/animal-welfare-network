@@ -63,7 +63,7 @@ export const NoticesCategoriesList = () => {
   };
 
   useEffect(() => {
-    if (!page && !perPage) {
+    if (!page || !perPage) {
       const params = { page: 1, perPage };
       setSearchParams(params);
     }

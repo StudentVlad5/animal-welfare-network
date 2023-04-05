@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom'; //Navigate
 import { RestrictedRoute } from 'routes/RestrictedRoute';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
-import { ApiDocs } from '../ApiDocs/ApiDocs';
+// import { ApiDocs } from '../ApiDocs/ApiDocs';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { selectIsRefreshing } from 'redux/auth/selectors';
@@ -78,7 +78,7 @@ export const App = () => {
 
             <Route path="friends" element={<OurFriendsPage />} />
 
-            <Route
+            {/* <Route
               path="api-docs"
               element={
                 <RestrictedRoute
@@ -86,7 +86,7 @@ export const App = () => {
                   component={<ApiDocs />}
                 />
               }
-            />
+            /> */}
 
             <Route
               path="user"
