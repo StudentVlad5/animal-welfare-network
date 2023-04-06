@@ -13,6 +13,7 @@ export const UserDataWrapper = styled.div`
 `;
 
 export const UserDataContainer = styled.div`
+  position: 'relative';
   background-color: ${baseColor.colors.white};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
