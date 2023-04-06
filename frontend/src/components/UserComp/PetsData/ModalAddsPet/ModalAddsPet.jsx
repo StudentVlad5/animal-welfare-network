@@ -1,9 +1,18 @@
-import { closeModalWindow } from 'hooks/modalWindow';
+import ReactDOM from 'react-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { MdClose } from 'react-icons/md';
+import { Formik, useFormik } from 'formik';
+import { fetchPetsUser } from 'services/APIservice';
+import { breedsValue } from 'redux/breeds/selectors';
+import { addReload } from 'redux/reload/slice';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
-import ReactDOM from 'react-dom';
+import { closeModalWindow } from 'hooks/modalWindow';
+import schemas from 'components/Schemas/schemas';
+import { setImage } from 'utils/setimage';
+import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
+import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import {
   ButtonBackText,
   ButtonBox,
@@ -30,16 +39,6 @@ import {
   Option,
   OptionFirst,
 } from './ModalAddsPet.styled';
-import { MdClose } from 'react-icons/md';
-import { Formik, useFormik } from 'formik';
-import schemas from 'components/Schemas/schemas';
-import { setImage } from 'utils/setimage';
-import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
-import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import { fetchPetsUser } from 'services/APIservice';
-import { breedsValue } from 'redux/breeds/selectors';
-import React from 'react';
-import { addReload } from 'redux/reload/slice';
 
 export const ModalAddsPet = () => {
   const dispatch = useDispatch();

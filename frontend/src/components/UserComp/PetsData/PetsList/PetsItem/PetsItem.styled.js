@@ -11,10 +11,7 @@ export const PetsItemWrapper = styled.li`
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 40px;
-
-  &:not(:last-child) {
-    margin-bottom: 20px;
-  }
+  width: 100%;
 
   @media screen and (min-width: 768px) {
     display: flex;
@@ -24,16 +21,6 @@ export const PetsItemWrapper = styled.li`
 
   @media screen and (min-width: 1280px) {
     padding-right: 28px;
-
-    &:not(:last-child) {
-      margin-bottom: 22px;
-    }
-  }
-
-  @media screen and (min-width: 1600px) {
-    &:not(:last-child) {
-      margin-bottom: 0px;
-    }
   }
 `;
 export const PetsItemImg = styled.img`
@@ -57,12 +44,8 @@ export const PetsItemImg = styled.img`
 export const PetsItemInfoBlock = styled.div`
   width: 100%;
 
-  @media screen and (min-width: 768px) {
-    min-width: 471px;
-  }
-
   @media screen and (min-width: 1280px) {
-    min-width: 580px;
+    width: 580px;
   }
 `;
 

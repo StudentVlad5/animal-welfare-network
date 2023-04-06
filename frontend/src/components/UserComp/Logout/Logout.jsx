@@ -6,6 +6,7 @@ import {
   Modal,
 } from './Logout.styled';
 import { ModalLogout } from './ModalLogout/ModalLogout';
+
 export const Logout = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(state => !state);
