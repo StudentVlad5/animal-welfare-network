@@ -1,6 +1,6 @@
 import { baseColor } from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
-import { ReactComponent as Plus } from '../../../../images/svg/addPetBtn/plus.svg';
+import { ReactComponent as Plus } from 'images/svg/addPetBtn/plus.svg';
 
 export const AddPetWrapper = styled.div`
   display: flex;
@@ -35,13 +35,13 @@ export const AddPetDesc = styled.p`
   font-weight: 500;
   line-height: 1.37;
   margin-right: 12px;
-  transform: translateX(-100%);
-  opacity: 0;
+  transform: translateX(0);
+  opacity: 1;
   transition: all 150ms linear;
 
   ${AddPetWrapper}:hover & {
-    opacity: 1;
-    transform: translateX(0);
+    opacity: 0;
+    transform: translateX(-100%);
   }
 
   @media (max-width: 767px) {
