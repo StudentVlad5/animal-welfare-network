@@ -14,7 +14,7 @@ const storage = new CloudinaryStorage({
   allowedFormats: ['jpg', 'png'],
   filename: (req, file, cb) => {
     console.log('uploadMiddleWare req.body', req.body);
-    console.log('uploadMiddleWare req.query', req.qurry);
+    console.log('uploadMiddleWare req.query', req.query);
     cb(null, file.originalname);
   },
 });

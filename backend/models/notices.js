@@ -87,8 +87,9 @@ const noticesSchema = new Schema(
       type: String,
       unique: true,
     },
-    createAt: {
+    createdAt: {
       type: Date,
+      default: Date.now,
     },
   },
   {
