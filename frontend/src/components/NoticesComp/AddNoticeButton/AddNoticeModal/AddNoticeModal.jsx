@@ -29,6 +29,11 @@ import {
   Li,
   Option,
   OptionFirst,
+  IconCat,
+  IconDog,
+  FieldRadioType,
+  LabelRadioType,
+  FieldsRadioType,
 } from './AddNoticeModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalWindow, closeByEsc } from 'hooks/modalWindow';
@@ -145,14 +150,22 @@ export const AddNoticeModal = () => {
             <Formik
               initialValues={{
                 category: '',
+                typeofpet: '',
                 title: '',
                 name: '',
                 birthday: '',
                 breed: '',
                 sex: '',
+                size: '',
+                growth: '',
+                weight: '',
                 location: '',
                 price: '',
+                currency: '',
                 imageUrl: '',
+                passport: '',
+                sterilization: '',
+                lives: '',
                 comments: '',
               }}
               onSubmit={values => {
@@ -205,11 +218,14 @@ export const AddNoticeModal = () => {
                         dolor sit amet, consectetur
                       </Paragraph>
                       <FieldsRadio role="group" id="category">
-                        {errors.category && touched.category ? (
-                          <Error style={{ top: '-20px' }}>
-                            {errors.category}
-                          </Error>
-                        ) : null}
+                        <p>
+                          Category
+                          {errors.category && touched.category ? (
+                            <Error style={{ top: '-20px' }}>
+                              {errors.category}
+                            </Error>
+                          ) : null}
+                        </p>
                         <FieldRadio
                           type="radio"
                           id="radioOne"
@@ -236,7 +252,49 @@ export const AddNoticeModal = () => {
                           checked={values.category === 'sell'}
                         />
                         <LabelRadio htmlFor="radioThree">sell</LabelRadio>
+
+                        <FieldRadio
+                          type="radio"
+                          id="radioFour"
+                          name="category"
+                          value="without"
+                          checked={values.category === 'without'}
+                        />
+                        <LabelRadio htmlFor="radioFour">without</LabelRadio>
                       </FieldsRadio>
+
+                      <FieldsRadioType role="group" id="typeofpet">
+                        <p>
+                          Type of pet
+                          {errors.type && touched.type ? (
+                            <Error>{errors.type}</Error>
+                          ) : null}
+                        </p>
+                        <FieldRadioType
+                          type="radio"
+                          id="radioOneType"
+                          name="typeofpet"
+                          value="cat"
+                          checked={values.typeofpet === 'cat'}
+                        />
+                        <LabelRadioType htmlFor="radioOneType">
+                          <IconCat />
+                          <span>Cat</span>
+                        </LabelRadioType>
+
+                        <FieldRadioType
+                          type="radio"
+                          id="radioTwoType"
+                          name="typeofpet"
+                          value="dog"
+                          checked={values.typeofpet === 'dog'}
+                        />
+                        <LabelRadioType htmlFor="radioTwoType">
+                          <IconDog />
+                          <span>Dog</span>
+                        </LabelRadioType>
+                      </FieldsRadioType>
+
                       <FieldList>
                         <LabelItem htmlFor="title">
                           <span>Title of ad</span>
@@ -353,6 +411,63 @@ export const AddNoticeModal = () => {
                         </LabelRadioSex>
                       </FieldsRadioSex>
                       <FieldList>
+                        <LabelItem htmlFor="size">
+                          <span>Size</span>
+                          {errors.size && touched.size ? (
+                            <Error>{errors.size}</Error>
+                          ) : null}
+                        </LabelItem>
+
+                        <FieldItem
+                          as="select"
+                          type="text"
+                          id="size"
+                          name="size"
+                          placeholder="Pet size"
+                          defaultValue={values.size}
+                        >
+                          {
+                            <OptionFirst first value="unselected">
+                              Select size type
+                            </OptionFirst>
+                          }
+                          {['Big', 'Average', 'Small'].map(s => (
+                            <Option key={s} value={s.toLowerCase()}>
+                              {s}
+                            </Option>
+                          ))}
+                        </FieldItem>
+
+                        <LabelItem htmlFor="growth">
+                          <span>Growth</span>
+                          {errors.growth && touched.growth ? (
+                            <Error>{errors.growth}</Error>
+                          ) : null}
+                        </LabelItem>
+
+                        <FieldItem
+                          type="number"
+                          id="growth"
+                          name="growth"
+                          placeholder="Type growth in cm"
+                          value={values.growth}
+                        />
+
+                        <LabelItem htmlFor="weight">
+                          <span>Weight</span>
+                          {errors.weight && touched.weight ? (
+                            <Error>{errors.weight}</Error>
+                          ) : null}
+                        </LabelItem>
+
+                        <FieldItem
+                          type="number"
+                          id="weight"
+                          name="weight"
+                          placeholder="Type weight in kg"
+                          value={values.weight}
+                        />
+
                         <LabelItem htmlFor="location">
                           <span>Location</span>
                           {errors.location && touched.location ? (
@@ -401,6 +516,33 @@ export const AddNoticeModal = () => {
                               placeholder="Type price"
                               value={values.price}
                             />
+
+                            <LabelItem htmlFor="currency">
+                              <span>Currency</span>
+                              {errors.currency && touched.currency ? (
+                                <Error>{errors.currency}</Error>
+                              ) : null}
+                            </LabelItem>
+
+                            <FieldItem
+                              as="select"
+                              type="text"
+                              id="currency"
+                              name="currency"
+                              placeholder="Select currency"
+                              defaultValue={values.currency}
+                            >
+                              {
+                                <OptionFirst first value="unselected">
+                                  Select currency
+                                </OptionFirst>
+                              }
+                              {['$', '€', '£', '₴', '¥', 'zł'].map(s => (
+                                <Option key={s} value={s.toLowerCase()}>
+                                  {s}
+                                </Option>
+                              ))}
+                            </FieldItem>
                           </div>
                         ) : (
                           ''
@@ -423,6 +565,76 @@ export const AddNoticeModal = () => {
                             setImage(e);
                           }}
                         />
+
+                        <LabelItem htmlFor="passport">
+                          <span>Passport</span>
+                          {errors.passport && touched.passport ? (
+                            <Error>{errors.passport}</Error>
+                          ) : null}
+                        </LabelItem>
+
+                        <FieldItem
+                          type="text"
+                          id="passport"
+                          name="passport"
+                          placeholder="Type passport data"
+                          value={values.passport}
+                        />
+
+                        <LabelItem htmlFor="sterilization">
+                          <span>Sterilization</span>
+                          {errors.sterilization && touched.sterilization ? (
+                            <Error>{errors.sterilization}</Error>
+                          ) : null}
+                        </LabelItem>
+
+                        <FieldItem
+                          as="select"
+                          type="text"
+                          id="sterilization"
+                          name="sterilization"
+                          placeholder="Is sterilized"
+                          defaultValue={values.sterilization}
+                        >
+                          {
+                            <OptionFirst first value="unselected">
+                              Select option...
+                            </OptionFirst>
+                          }
+                          {['Yes', 'No'].map(s => (
+                            <Option key={s} value={s.toLowerCase()}>
+                              {s}
+                            </Option>
+                          ))}
+                        </FieldItem>
+
+                        <LabelItem htmlFor="lives">
+                          <span>Lives</span>
+                          {errors.lives && touched.lives ? (
+                            <Error>{errors.lives}</Error>
+                          ) : null}
+                        </LabelItem>
+
+                        <FieldItem
+                          as="select"
+                          type="text"
+                          id="lives"
+                          name="lives"
+                          placeholder="Select place"
+                          defaultValue={values.lives}
+                        >
+                          {
+                            <OptionFirst first value="unselected">
+                              Select option...
+                            </OptionFirst>
+                          }
+                          {['In street', 'Shelter', 'At volunteers'].map(s => (
+                            <Option key={s} value={s.toLowerCase()}>
+                              {s}
+                            </Option>
+                          ))}
+                        </FieldItem>
+
                         <LabelItemTextArea htmlFor="comments">
                           <span>Comments</span>
                           {errors.comments && touched.comments ? (
