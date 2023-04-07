@@ -11,15 +11,25 @@ async function fetchData(pathParams) {
   return await axiosInstance.get();
 }
 
-async function fetchNotice(pathParams, body, file) {
+async function fetchNotice(pathParams, body, file1, file2, file3) {
   const formData = new FormData();
   formData.append('birthday', body.birthday);
+  formData.append('typeofpet', body.typeofpet);
   formData.append('breed', body.breed);
+  formData.append('size', body.size);
+  formData.append('height', body.height);
+  formData.append('weight', body.weight);
+  formData.append('passport', body.passport);
+  formData.append('sterilization', body.sterilization);
+  formData.append('lives', body.lives);
   formData.append('comments', body.comments);
-  formData.append('imageURL', file);
+  formData.append('imageUrl', file1);
+  file2 && formData.append('imageUrl_1', file2);
+  file3 && formData.append('imageUrl_2', file3);
   formData.append('location', body.location);
   formData.append('name', body.name);
   body.price !== '' && formData.append('price', body.price);
+  body.currency !== '' && formData.append('currency', body.currency);
   formData.append('sex', body.sex);
   formData.append('title', body.title);
 

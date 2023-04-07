@@ -428,8 +428,8 @@ export const FieldList = styled.div`
 
 export const FieldItemFile = styled(Field)`
   all: unset;
-  height: 116px;
-  width: 116px;
+  height: 78px;
+  width: 78px;
 
   margin-bottom: 28px;
   background-color: ${baseColor.colors.mainBg};

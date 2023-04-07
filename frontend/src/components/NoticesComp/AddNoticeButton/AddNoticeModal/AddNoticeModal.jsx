@@ -77,13 +77,17 @@ export const AddNoticeModal = () => {
   }
 
   async function postNotice(values) {
-    const file = document.querySelector('.file').files[0];
+    const file1 = document.querySelector('#imageUrl')?.files[0];
+    const file2 = document.querySelector('#imageUrl_1')?.files[0];
+    const file3 = document.querySelector('#imageUrl_2')?.files[0];
     setIsLoading(true);
     try {
       const { code } = await fetchNotice(
         `/notices/${values.category}`,
         values,
-        file,
+        file1,
+        file2,
+        file3,
       );
       if (code && code !== 201) {
         return onFetchError('Whoops, something went wrong');
@@ -157,12 +161,14 @@ export const AddNoticeModal = () => {
                 breed: '',
                 sex: '',
                 size: '',
-                growth: '',
+                height: '',
                 weight: '',
                 location: '',
                 price: '',
                 currency: '',
                 imageUrl: '',
+                imageUrl_1: '',
+                imageUrl_2: '',
                 passport: '',
                 sterilization: '',
                 lives: '',
@@ -257,8 +263,8 @@ export const AddNoticeModal = () => {
                           type="radio"
                           id="radioFour"
                           name="category"
-                          value="without"
-                          checked={values.category === 'without'}
+                          value="none"
+                          checked={values.category === 'none'}
                         />
                         <LabelRadio htmlFor="radioFour">without</LabelRadio>
                       </FieldsRadio>
@@ -390,24 +396,24 @@ export const AddNoticeModal = () => {
                           type="radio"
                           id="radioOneSex"
                           name="sex"
-                          value="male"
-                          checked={values.sex === 'male'}
+                          value="boy"
+                          checked={values.sex === 'boy'}
                         />
                         <LabelRadioSex htmlFor="radioOneSex">
                           <IconMale />
-                          <span>Male</span>
+                          <span>Boy</span>
                         </LabelRadioSex>
 
                         <FieldRadioSex
                           type="radio"
                           id="radioTwoSex"
                           name="sex"
-                          value="female"
-                          checked={values.sex === 'female'}
+                          value="girl"
+                          checked={values.sex === 'girl'}
                         />
                         <LabelRadioSex htmlFor="radioTwoSex">
                           <IconFemale />
-                          <span>Female</span>
+                          <span>Girl</span>
                         </LabelRadioSex>
                       </FieldsRadioSex>
                       <FieldList>
@@ -438,19 +444,19 @@ export const AddNoticeModal = () => {
                           ))}
                         </FieldItem>
 
-                        <LabelItem htmlFor="growth">
-                          <span>Growth</span>
-                          {errors.growth && touched.growth ? (
-                            <Error>{errors.growth}</Error>
+                        <LabelItem htmlFor="height">
+                          <span>Height</span>
+                          {errors.height && touched.height ? (
+                            <Error>{errors.height}</Error>
                           ) : null}
                         </LabelItem>
 
                         <FieldItem
                           type="number"
-                          id="growth"
-                          name="growth"
-                          placeholder="Type growth in cm"
-                          value={values.growth}
+                          id="height"
+                          name="height"
+                          placeholder="Type height in cm"
+                          value={values.height}
                         />
 
                         <LabelItem htmlFor="weight">
@@ -500,7 +506,7 @@ export const AddNoticeModal = () => {
                             </ul>
                           )}
                         </div>
-                        {values.category === 'sell' ? (
+                        {values.category === 'sell' && (
                           <div>
                             <LabelItem htmlFor="price">
                               <span>Price</span>
@@ -544,8 +550,6 @@ export const AddNoticeModal = () => {
                               ))}
                             </FieldItem>
                           </div>
-                        ) : (
-                          ''
                         )}
                         <LabelItem htmlFor="imageUrl">
                           <span>Load the pet’s image</span>
@@ -553,19 +557,54 @@ export const AddNoticeModal = () => {
                             <Error>{errors.imageUrl}</Error>
                           ) : null}
                         </LabelItem>
-
-                        <FieldItemFile
-                          className="file"
-                          type="file"
-                          id="imageUrl"
-                          name="imageUrl"
-                          accept=".jpeg,.jpg,.png,.gif"
-                          onChange={e => {
-                            handleChange(e);
-                            setImage(e);
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'flex-start',
+                            gap: '4px',
                           }}
-                        />
+                        >
+                          <FieldItemFile
+                            className="file"
+                            type="file"
+                            id="imageUrl"
+                            name="imageUrl"
+                            accept=".jpeg,.jpg,.png,.gif"
+                            onChange={e => {
+                              handleChange(e);
+                              setImage(e);
+                            }}
+                          />
 
+                          {values.imageUrl !== '' && (
+                            <FieldItemFile
+                              className="file"
+                              type="file"
+                              id="imageUrl_1"
+                              name="imageUrl_1"
+                              accept=".jpeg,.jpg,.png,.gif"
+                              onChange={e => {
+                                handleChange(e);
+                                setImage(e);
+                              }}
+                            />
+                          )}
+
+                          {values.imageUrl_1 !== '' && (
+                            <FieldItemFile
+                              className="file"
+                              type="file"
+                              id="imageUrl_2"
+                              name="imageUrl_2"
+                              accept=".jpeg,.jpg,.png,.gif"
+                              onChange={e => {
+                                handleChange(e);
+                                setImage(e);
+                              }}
+                            />
+                          )}
+                        </div>
                         <LabelItem htmlFor="passport">
                           <span>Passport</span>
                           {errors.passport && touched.passport ? (
