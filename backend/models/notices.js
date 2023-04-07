@@ -7,6 +7,7 @@ const noticesSchema = new Schema(
       type: String,
       enum: ["sell", "lost-found", "for-free", "none"],
       required: [true, "Category is required"],
+      default: "none",
     },
     typeofpet: {
       type: String,
@@ -30,7 +31,7 @@ const noticesSchema = new Schema(
     },
     sex: {
       type: String,
-      enum: ["male", "female"],
+      enum: ["boy", "girl"],
       required: true,
     },
     size: {
@@ -38,7 +39,7 @@ const noticesSchema = new Schema(
       enum: ["big", "average", "small"],
       required: true,
     },
-    growth: {
+    height: {
       type: Number,
       required: true,
     },
@@ -62,7 +63,7 @@ const noticesSchema = new Schema(
     },
     sterilization: {
       type: String,
-      enum: ["yes", "now"],
+      enum: ["yes", "no"],
       required: true,
     },
     lives: {
