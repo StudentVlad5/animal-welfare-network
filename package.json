@@ -19,5 +19,8 @@
   "homepage": "https://github.com/StudentVlad5/animal-welfare-network#readme",
   "dependencies": {
     "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
