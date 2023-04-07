@@ -8,7 +8,7 @@ const FooterSection = styled.footer`
   backdrop-filter: blur(10px);
 `;
 
-const FooterContainer = styled.footer`
+const FooterContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;

@@ -5,8 +5,6 @@ const BackDrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Manrope';
-  font-style: normal;
   width: 100%;
   height: 100%;
 `;
@@ -14,34 +12,54 @@ const BackDrop = styled.div`
 const Modal = styled.div`
   position: relative;
   display: block;
-  width: 280px;
-  padding: 17px 20px 43px 20px;
+  z-index: 60;
+
+  max-width: calc(100vw - 40px);
+  padding: 16px 10px;
+
   background-color: ${baseColor.colors.white};
   border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.11) 7px 4px 14px;
+
+  transform: scale(1);
 
   @media screen and (min-width: 768px) {
-    width: 704px;
-    padding: 32px 20px 32px 20px;
+    max-width: 600px;
+    padding: 32px 20px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 1280px;
+  }
+
+  #popup-root.is-hidden > & {
+    transform: scale(0);
   }
 `;
 
 const CloseIconBtn = styled.button`
+  position: absolute;
+  top: 12px;
+  right: 10px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  width: 30px;
+  height: 30px;
+
   border-radius: 50%;
-  width: 34px;
-  height: 34px;
-  background: #fdf7f2;
+  border-color: transparent;
+  background-color: ${baseColor.colors.mainBg};
   backdrop-filter: blur(2px);
-  margin-bottom: 6px;
-  z-index: 99;
-  cursor: pointer;
+  z-index: 50;
 
   @media screen and (min-width: 768px) {
-    position: absolute;
-    top: 12px;
+    top: 32px;
     right: 20px;
+    width: 34px;
+    height: 34px;
   }
 `;
 
