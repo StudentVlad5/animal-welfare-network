@@ -4,7 +4,7 @@ export function Pagination({ totalPage, changePage, page }) {
   const handlePageClick = event => {
     changePage(event.selected + 1);
   };
-  
+
   return (
     <ReactPaginate
       breakLabel="..."
@@ -14,7 +14,7 @@ export function Pagination({ totalPage, changePage, page }) {
       pageCount={totalPage}
       previousLabel="<"
       renderOnZeroPageCount={null}
-      initialPage={page - 1}
+      // initialPage={page - 1}
       // forcePage={page}
       containerClassName="paginate__container"
       pageClassName="paginate__page"

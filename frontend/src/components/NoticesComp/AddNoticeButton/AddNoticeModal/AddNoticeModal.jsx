@@ -29,6 +29,11 @@ import {
   Li,
   Option,
   OptionFirst,
+  IconCat,
+  IconDog,
+  FieldRadioType,
+  LabelRadioType,
+  FieldsRadioType,
 } from './AddNoticeModal.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalWindow, closeByEsc } from 'hooks/modalWindow';
@@ -72,13 +77,17 @@ export const AddNoticeModal = () => {
   }
 
   async function postNotice(values) {
-    const file = document.querySelector('.file').files[0];
+    const file1 = document.querySelector('#imageUrl')?.files[0];
+    const file2 = document.querySelector('#imageUrl_1')?.files[0];
+    const file3 = document.querySelector('#imageUrl_2')?.files[0];
     setIsLoading(true);
     try {
       const { code } = await fetchNotice(
         `/notices/${values.category}`,
         values,
-        file,
+        file1,
+        file2,
+        file3,
       );
       if (code && code !== 201) {
         return onFetchError('Whoops, something went wrong');
@@ -145,14 +154,24 @@ export const AddNoticeModal = () => {
             <Formik
               initialValues={{
                 category: '',
+                typeofpet: '',
                 title: '',
                 name: '',
                 birthday: '',
                 breed: '',
                 sex: '',
+                size: '',
+                height: '',
+                weight: '',
                 location: '',
                 price: '',
+                currency: '',
                 imageUrl: '',
+                imageUrl_1: '',
+                imageUrl_2: '',
+                passport: '',
+                sterilization: '',
+                lives: '',
                 comments: '',
               }}
               onSubmit={values => {
@@ -205,11 +224,14 @@ export const AddNoticeModal = () => {
                         dolor sit amet, consectetur
                       </Paragraph>
                       <FieldsRadio role="group" id="category">
-                        {errors.category && touched.category ? (
-                          <Error style={{ top: '-20px' }}>
-                            {errors.category}
-                          </Error>
-                        ) : null}
+                        <p>
+                          Category
+                          {errors.category && touched.category ? (
+                            <Error style={{ top: '-20px' }}>
+                              {errors.category}
+                            </Error>
+                          ) : null}
+                        </p>
                         <FieldRadio
                           type="radio"
                           id="radioOne"
@@ -236,7 +258,49 @@ export const AddNoticeModal = () => {
                           checked={values.category === 'sell'}
                         />
                         <LabelRadio htmlFor="radioThree">sell</LabelRadio>
+
+                        <FieldRadio
+                          type="radio"
+                          id="radioFour"
+                          name="category"
+                          value="none"
+                          checked={values.category === 'none'}
+                        />
+                        <LabelRadio htmlFor="radioFour">without</LabelRadio>
                       </FieldsRadio>
+
+                      <FieldsRadioType role="group" id="typeofpet">
+                        <p>
+                          Type of pet
+                          {errors.type && touched.type ? (
+                            <Error>{errors.type}</Error>
+                          ) : null}
+                        </p>
+                        <FieldRadioType
+                          type="radio"
+                          id="radioOneType"
+                          name="typeofpet"
+                          value="cat"
+                          checked={values.typeofpet === 'cat'}
+                        />
+                        <LabelRadioType htmlFor="radioOneType">
+                          <IconCat />
+                          <span>Cat</span>
+                        </LabelRadioType>
+
+                        <FieldRadioType
+                          type="radio"
+                          id="radioTwoType"
+                          name="typeofpet"
+                          value="dog"
+                          checked={values.typeofpet === 'dog'}
+                        />
+                        <LabelRadioType htmlFor="radioTwoType">
+                          <IconDog />
+                          <span>Dog</span>
+                        </LabelRadioType>
+                      </FieldsRadioType>
+
                       <FieldList>
                         <LabelItem htmlFor="title">
                           <span>Title of ad</span>
@@ -332,27 +396,84 @@ export const AddNoticeModal = () => {
                           type="radio"
                           id="radioOneSex"
                           name="sex"
-                          value="male"
-                          checked={values.sex === 'male'}
+                          value="boy"
+                          checked={values.sex === 'boy'}
                         />
                         <LabelRadioSex htmlFor="radioOneSex">
                           <IconMale />
-                          <span>Male</span>
+                          <span>Boy</span>
                         </LabelRadioSex>
 
                         <FieldRadioSex
                           type="radio"
                           id="radioTwoSex"
                           name="sex"
-                          value="female"
-                          checked={values.sex === 'female'}
+                          value="girl"
+                          checked={values.sex === 'girl'}
                         />
                         <LabelRadioSex htmlFor="radioTwoSex">
                           <IconFemale />
-                          <span>Female</span>
+                          <span>Girl</span>
                         </LabelRadioSex>
                       </FieldsRadioSex>
                       <FieldList>
+                        <LabelItem htmlFor="size">
+                          <span>Size</span>
+                          {errors.size && touched.size ? (
+                            <Error>{errors.size}</Error>
+                          ) : null}
+                        </LabelItem>
+
+                        <FieldItem
+                          as="select"
+                          type="text"
+                          id="size"
+                          name="size"
+                          placeholder="Pet size"
+                          defaultValue={values.size}
+                        >
+                          {
+                            <OptionFirst first value="unselected">
+                              Select size type
+                            </OptionFirst>
+                          }
+                          {['Big', 'Average', 'Small'].map(s => (
+                            <Option key={s} value={s.toLowerCase()}>
+                              {s}
+                            </Option>
+                          ))}
+                        </FieldItem>
+
+                        <LabelItem htmlFor="height">
+                          <span>Height</span>
+                          {errors.height && touched.height ? (
+                            <Error>{errors.height}</Error>
+                          ) : null}
+                        </LabelItem>
+
+                        <FieldItem
+                          type="number"
+                          id="height"
+                          name="height"
+                          placeholder="Type height in cm"
+                          value={values.height}
+                        />
+
+                        <LabelItem htmlFor="weight">
+                          <span>Weight</span>
+                          {errors.weight && touched.weight ? (
+                            <Error>{errors.weight}</Error>
+                          ) : null}
+                        </LabelItem>
+
+                        <FieldItem
+                          type="number"
+                          id="weight"
+                          name="weight"
+                          placeholder="Type weight in kg"
+                          value={values.weight}
+                        />
+
                         <LabelItem htmlFor="location">
                           <span>Location</span>
                           {errors.location && touched.location ? (
@@ -385,7 +506,7 @@ export const AddNoticeModal = () => {
                             </ul>
                           )}
                         </div>
-                        {values.category === 'sell' ? (
+                        {values.category === 'sell' && (
                           <div>
                             <LabelItem htmlFor="price">
                               <span>Price</span>
@@ -401,9 +522,34 @@ export const AddNoticeModal = () => {
                               placeholder="Type price"
                               value={values.price}
                             />
+
+                            <LabelItem htmlFor="currency">
+                              <span>Currency</span>
+                              {errors.currency && touched.currency ? (
+                                <Error>{errors.currency}</Error>
+                              ) : null}
+                            </LabelItem>
+
+                            <FieldItem
+                              as="select"
+                              type="text"
+                              id="currency"
+                              name="currency"
+                              placeholder="Select currency"
+                              defaultValue={values.currency}
+                            >
+                              {
+                                <OptionFirst first value="unselected">
+                                  Select currency
+                                </OptionFirst>
+                              }
+                              {['$', '€', '£', '₴', '¥', 'zł'].map(s => (
+                                <Option key={s} value={s.toLowerCase()}>
+                                  {s}
+                                </Option>
+                              ))}
+                            </FieldItem>
                           </div>
-                        ) : (
-                          ''
                         )}
                         <LabelItem htmlFor="imageUrl">
                           <span>Load the pet’s image</span>
@@ -411,18 +557,123 @@ export const AddNoticeModal = () => {
                             <Error>{errors.imageUrl}</Error>
                           ) : null}
                         </LabelItem>
-
-                        <FieldItemFile
-                          className="file"
-                          type="file"
-                          id="imageUrl"
-                          name="imageUrl"
-                          accept=".jpeg,.jpg,.png,.gif"
-                          onChange={e => {
-                            handleChange(e);
-                            setImage(e);
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'flex-start',
+                            gap: '4px',
                           }}
+                        >
+                          <FieldItemFile
+                            className="file"
+                            type="file"
+                            id="imageUrl"
+                            name="imageUrl"
+                            accept=".jpeg,.jpg,.png,.gif"
+                            onChange={e => {
+                              handleChange(e);
+                              setImage(e);
+                            }}
+                          />
+
+                          {values.imageUrl !== '' && (
+                            <FieldItemFile
+                              className="file"
+                              type="file"
+                              id="imageUrl_1"
+                              name="imageUrl_1"
+                              accept=".jpeg,.jpg,.png,.gif"
+                              onChange={e => {
+                                handleChange(e);
+                                setImage(e);
+                              }}
+                            />
+                          )}
+
+                          {values.imageUrl_1 !== '' && (
+                            <FieldItemFile
+                              className="file"
+                              type="file"
+                              id="imageUrl_2"
+                              name="imageUrl_2"
+                              accept=".jpeg,.jpg,.png,.gif"
+                              onChange={e => {
+                                handleChange(e);
+                                setImage(e);
+                              }}
+                            />
+                          )}
+                        </div>
+                        <LabelItem htmlFor="passport">
+                          <span>Passport</span>
+                          {errors.passport && touched.passport ? (
+                            <Error>{errors.passport}</Error>
+                          ) : null}
+                        </LabelItem>
+
+                        <FieldItem
+                          type="text"
+                          id="passport"
+                          name="passport"
+                          placeholder="Type passport data"
+                          value={values.passport}
                         />
+
+                        <LabelItem htmlFor="sterilization">
+                          <span>Sterilization</span>
+                          {errors.sterilization && touched.sterilization ? (
+                            <Error>{errors.sterilization}</Error>
+                          ) : null}
+                        </LabelItem>
+
+                        <FieldItem
+                          as="select"
+                          type="text"
+                          id="sterilization"
+                          name="sterilization"
+                          placeholder="Is sterilized"
+                          defaultValue={values.sterilization}
+                        >
+                          {
+                            <OptionFirst first value="unselected">
+                              Select option...
+                            </OptionFirst>
+                          }
+                          {['Yes', 'No'].map(s => (
+                            <Option key={s} value={s.toLowerCase()}>
+                              {s}
+                            </Option>
+                          ))}
+                        </FieldItem>
+
+                        <LabelItem htmlFor="lives">
+                          <span>Lives</span>
+                          {errors.lives && touched.lives ? (
+                            <Error>{errors.lives}</Error>
+                          ) : null}
+                        </LabelItem>
+
+                        <FieldItem
+                          as="select"
+                          type="text"
+                          id="lives"
+                          name="lives"
+                          placeholder="Select place"
+                          defaultValue={values.lives}
+                        >
+                          {
+                            <OptionFirst first value="unselected">
+                              Select option...
+                            </OptionFirst>
+                          }
+                          {['In street', 'Shelter', 'At volunteers'].map(s => (
+                            <Option key={s} value={s.toLowerCase()}>
+                              {s}
+                            </Option>
+                          ))}
+                        </FieldItem>
+
                         <LabelItemTextArea htmlFor="comments">
                           <span>Comments</span>
                           {errors.comments && touched.comments ? (

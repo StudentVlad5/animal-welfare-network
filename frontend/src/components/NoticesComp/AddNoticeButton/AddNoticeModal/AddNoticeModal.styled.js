@@ -3,6 +3,8 @@ import { Field, Form } from 'formik';
 import { ReactComponent as icon } from 'images/svg/icon_close.svg';
 import { ReactComponent as iconMale } from 'images/svg/icon_male.svg';
 import { ReactComponent as iconFemale } from 'images/svg/icon_female.svg';
+import { ReactComponent as iconCat } from 'images/svg/icon_cat.svg';
+import { ReactComponent as iconDog } from 'images/svg/icon_dog.svg';
 
 import styled from 'styled-components';
 
@@ -126,6 +128,7 @@ export const ButtonClose = styled.button`
   &:hover,
   &:focus {
     outline: 2px solid ${baseColor.colors.orangeLight};
+    border: none;
   }
 
   @media screen and (min-width: 768px) {
@@ -258,8 +261,30 @@ export const FieldsRadio = styled.div`
   letter-spacing: 0.04em;
   color: ${baseColor.colors.inpText};
 
+  & p {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+
+    font-family: 'Manrope', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.375;
+    letter-spacing: 0.04em;
+    text-align: left;
+
+    color: ${baseColor.colors.inpText};
+  }
+
   @media screen and (min-width: 768px) {
     font-size: 20px;
+
+    & p {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
   }
 `;
 
@@ -403,8 +428,8 @@ export const FieldList = styled.div`
 
 export const FieldItemFile = styled(Field)`
   all: unset;
-  height: 116px;
-  width: 116px;
+  height: 78px;
+  width: 78px;
 
   margin-bottom: 28px;
   background-color: ${baseColor.colors.mainBg};
@@ -732,5 +757,115 @@ export const OptionFirst = styled.option`
 
   @media screen and (min-width: 768px) {
     font-size: 12px;
+  }
+`;
+
+export const IconCat = styled(iconCat)`
+  height: 40px;
+  width: 40px;
+  margin-top: 16px;
+  margin-bottom: 12px;
+
+  @media screen and (min-width: 768px) {
+    height: 60px;
+    width: 60px;
+    margin-top: 28px;
+    margin-bottom: 20px;
+  }
+`;
+export const IconDog = styled(iconDog)`
+  height: 40px;
+  width: 40px;
+  margin-top: 16px;
+  margin-bottom: 12px;
+  @media screen and (min-width: 768px) {
+    height: 60px;
+    width: 60px;
+    margin-top: 28px;
+    margin-bottom: 20px;
+  }
+`;
+
+export const LabelRadioType = styled.label`
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  fill: ${baseColor.colors.blackText};
+
+  &:not(:last-child) {
+    margin-right: 40px;
+  }
+  transition: all 0.25s ease-in;
+  &:hover,
+  &:focus {
+    color: ${baseColor.colors.orangeLight};
+    fill: ${baseColor.colors.orangeLight};
+  }
+
+  @media screen and (min-width: 768px) {
+    &:not(:last-child) {
+      margin-right: 80px;
+    }
+  }
+`;
+
+export const FieldRadioType = styled(Field)`
+  opacity: 0;
+  width: 0px;
+  height: 0px;
+
+  &:checked + ${LabelRadioType} {
+    fill: ${baseColor.colors.orangeLight};
+    & span {
+      color: ${baseColor.colors.orangeLight};
+    }
+  }
+`;
+
+export const FieldsRadioType = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  width: 100%;
+  margin-bottom: 32px;
+
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  color: ${baseColor.colors.inpText};
+
+  & p {
+    position: relative;
+    display: block;
+    width: 100%;
+
+    font-family: 'Manrope', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.375;
+    letter-spacing: 0.04em;
+    text-align: left;
+
+    color: ${baseColor.colors.inpText};
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 40px;
+
+    font-size: 24px;
+
+    & p {
+      font-size: 24px;
+    }
   }
 `;

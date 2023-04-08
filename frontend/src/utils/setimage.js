@@ -1,7 +1,7 @@
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 
 export function setImage(e) {
-  const input = document.querySelector('.file');
+  const input = document.querySelector(`#${e.target.id}`);
   if (input.files[0] && input.files[0].size >= 2048000) {
     input.value = '';
     e.target.style = '';
