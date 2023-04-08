@@ -43,9 +43,13 @@ export const ModalTeam = () => {
   };
 
   return createPortal(
-    <BackDrop>
+    <BackDrop
+      onClick={e => {
+        if (e.currentTarget === e.target) closeModalTeam(e);
+      }}
+    >
       <Modal>
-        <CloseIconBtn onClick={() => closeModalTeam()} aria-label="Close modal">
+        <CloseIconBtn onClick={e => closeModalTeam(e)} aria-label="Close modal">
           <MdClose size={15} />
         </CloseIconBtn>
         <Title as="h2" size="20px">
