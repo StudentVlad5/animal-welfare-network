@@ -1,14 +1,12 @@
-import React from 'react';
-import { LoginBTN } from '../Elements/loginBTN/LoginBTN';
-import { RegistrationBTN } from '../Elements/registrationBTN/RegistrationBTN';
-
+import PropTypes from 'prop-types';
+import { ButtonAuth } from '../Elements/button/ButtonAuth';
 import { MobileContainer, Container } from './AuthNav.styled';
 
 export const MobileAuthNav = ({ toggleMenu }) => {
   return (
     <MobileContainer>
-      <LoginBTN toggleMenu={toggleMenu} />
-      <RegistrationBTN toggleMenu={toggleMenu} />
+      <ButtonAuth title="Login" path="/login" onClick={toggleMenu} />
+      <ButtonAuth title="Registration" path="/register" onClick={toggleMenu} />
     </MobileContainer>
   );
 };
@@ -16,8 +14,16 @@ export const MobileAuthNav = ({ toggleMenu }) => {
 export const AuthNav = ({ toggleMenu }) => {
   return (
     <Container>
-      <LoginBTN />
-      <RegistrationBTN />
+      <ButtonAuth title="Login" path="/login" onClick={toggleMenu} />
+      <ButtonAuth title="Registration" path="/register" onClick={toggleMenu} />
     </Container>
   );
+};
+
+MobileAuthNav.propTypes = {
+  toggleMenu: PropTypes.func,
+};
+
+AuthNav.propTypes = {
+  toggleMenu: PropTypes.func,
 };

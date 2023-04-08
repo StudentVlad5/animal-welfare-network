@@ -4,6 +4,7 @@ const MobileContainer = styled.nav`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 12px;
   margin-top: 46px;
 
   @media screen and (min-width: 768px) {
@@ -16,8 +17,11 @@ const Container = styled(MobileContainer)`
 
   @media screen and (min-width: 768px) {
     display: flex;
-    // justify-content: center;
-    // align-items: center;
+    gap: 12px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    gap: 20px;
   }
 `;
 

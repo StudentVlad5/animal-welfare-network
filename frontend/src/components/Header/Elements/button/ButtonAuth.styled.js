@@ -2,29 +2,39 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
-const LoginButton = styled(NavLink)`
+const AuthLink = styled(NavLink)`
   padding: 8px 28px;
   display: flex;
   justify-content: center;
   align-items: center;
+
   height: 35px;
   border-radius: 40px;
   text-decoration: none;
-  background-color: ${baseColor.colors.white};
+  color: ${props =>
+    props.$active
+      ? `${baseColor.colors.white}`
+      : `${baseColor.colors.blackText}`};
+  background-color: ${props =>
+    props.$active
+      ? `${baseColor.colors.orangeLight}`
+      : `${baseColor.colors.white}`};
   border: 2px solid ${baseColor.colors.orangeLight};
-  color: ${baseColor.colors.blackText};
 
   font-family: 'Manrope';
   font-style: normal;
+  font-weight: 500;
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
   transition: all 0.25s ease-in;
+
   :hover,
   :focus {
     background-color: ${baseColor.colors.orangeLight};
     color: ${baseColor.colors.white};
   }
+
   &.active {
     background-color: ${baseColor.colors.orangeLight};
     color: ${baseColor.colors.white};
@@ -44,4 +54,4 @@ const LoginButton = styled(NavLink)`
   }
 `;
 
-export { LoginButton };
+export { AuthLink };
