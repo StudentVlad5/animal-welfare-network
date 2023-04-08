@@ -10,7 +10,7 @@ import {
   FormContainer,
   Input,
   Button,
-  Title,
+  TitleRegister,
   BackButton,
   ShowPassword,
   StyledLink,
@@ -133,7 +133,7 @@ const RegisterForm = () => {
       <FormContainer>
         <Formik validationSchema={schemas.registerSchema}>
           <FormRegister onSubmit={formik.handleSubmit} autoComplete="off">
-            <Title>Register</Title>
+            <TitleRegister>Register</TitleRegister>
             {isShown && (
               <Div>
                 <Input

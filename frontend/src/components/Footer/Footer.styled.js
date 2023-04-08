@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const FooterSection = styled.footer`
-  position: fixed;
-  bottom: 0;
   width: 100vw;
   backdrop-filter: blur(10px);
 `;

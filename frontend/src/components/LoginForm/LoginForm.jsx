@@ -19,6 +19,7 @@ import {
   IconInValid,
   ErrorBox,
   Div,
+  TitleLogin,
 } from './LoginForm.styled';
 import { logIn } from 'redux/auth/operations';
 
@@ -69,7 +70,7 @@ export const LoginForm = () => {
       <FormContainer>
         <Formik validationSchema={schemas.schemasLogin}>
           <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
-            <Title>Login</Title>
+            <TitleLogin>Login</TitleLogin>
             {isShown && (
               <Div>
                 <Input

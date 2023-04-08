@@ -1,17 +1,19 @@
 import styled from 'styled-components';
 import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import { FaCheck, FaTimes } from 'react-icons/fa';
+import { baseColor } from 'components/baseStyles/Variables.styled';
+import { Title } from 'components/baseStyles/CommonStyle.styled';
+
 import BackgroundImage from 'images/register/bgForm.webp';
 import waveMobile from 'images/hero/waveMobileFull.webp';
 import waveTab from 'images/register/BGFornTab.webp';
 
 export const FormSection = styled.section`
-  height: 100%;
+  height: calc(100vh - 140px);
 
   @media screen and (max-width: 767.9px) {
-    min-height: 540px;
+    /* min-height: 540px; */
     background-image: url(${waveMobile});
     background-repeat: no-repeat;
     background-size: 620px auto;
@@ -19,7 +21,7 @@ export const FormSection = styled.section`
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
-    min-height: 720px;
+    /* min-height: 720px; */
     background: url(${waveTab});
     background-repeat: no-repeat;
     background-size: 1396px auto;
@@ -43,9 +45,7 @@ export const FormContainer = styled.div`
     background-position: bottom 0 left 50%;
   }
 `;
-export const Title = styled.h1`
-  font-size: 24px;
-  font-weight: 700;
+export const TitleRegister = styled(Title)`
   margin-bottom: 40px;
   margin-top: 0;
   @media screen and (min-width: 768px) {
