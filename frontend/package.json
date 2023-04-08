@@ -79,6 +79,6 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/StudentVlad5/animal-welfare-network/issues"
-  }, 
+  },
   "proxy": "http://localhost:3030"
 }
