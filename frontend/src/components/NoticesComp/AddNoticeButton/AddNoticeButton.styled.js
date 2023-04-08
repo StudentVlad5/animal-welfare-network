@@ -43,7 +43,6 @@ export const ButtonStyled = styled.button`
   stroke: ${baseColor.colors.white};
   fill: ${baseColor.colors.white};
   transition: all 0.25s ease-in;
-
   &:hover {
     transition: all 500ms ease;
 

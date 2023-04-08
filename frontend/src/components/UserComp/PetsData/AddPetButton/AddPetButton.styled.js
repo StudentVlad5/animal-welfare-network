@@ -31,6 +31,7 @@ export const AddPetBtn = styled.button`
 export const AddPetDesc = styled.p`
   color: ${baseColor.colors.blackText};
   font-size: 20px;
+  color: ${baseColor.colors.blackText};
   font-weight: 500;
   line-height: 1.37;
   margin-right: 12px;

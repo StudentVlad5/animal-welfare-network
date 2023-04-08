@@ -10,7 +10,6 @@ const BackDrop = styled.div`
   width: 100%;
   height: 100%;
 `;
-
 const NoticesContainerItem = styled.div`
   position: relative;
   display: block;

@@ -6,7 +6,7 @@ export const WrapperNav = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-beyween;
   }
 
   @media screen and (min-width: 1280px) {
