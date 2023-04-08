@@ -204,4 +204,5 @@ const HeroTitle = styled(Title)`
     max-width: 630px;
   }
 `;
+
 export { HeroSection, HeroContainer, HeroTitle, Heart, Ball };
