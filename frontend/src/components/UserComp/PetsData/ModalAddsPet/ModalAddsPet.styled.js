@@ -56,7 +56,7 @@ const ContainerCloseModal = styled.div`
   border-radius: 50%;
   width: 34px;
   height: 34px;
-  background: #fdf7f2;
+  background: ${baseColor.colors.mainBg};
   backdrop-filter: blur(2px);
   margin-bottom: 6px;
   z-index: 99;
@@ -230,7 +230,7 @@ export const ImgTitle = styled.p`
 `;
 
 const InfoListTextArea = styled.textarea`
-  background: #fdf7f2;
+  background: ${baseColor.colors.mainBg};
   border: 1px solid ${baseColor.colors.orangeLight};
   border-radius: 20px;
   padding: 12px 0 0 14px;
