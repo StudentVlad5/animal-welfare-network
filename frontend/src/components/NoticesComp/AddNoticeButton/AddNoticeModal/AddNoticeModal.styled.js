@@ -803,6 +803,7 @@ export const LabelRadioType = styled.label`
   &:hover,
   &:focus {
     color: ${baseColor.colors.orangeLight};
+    fill: ${baseColor.colors.orangeLight};
   }
 
   @media screen and (min-width: 768px) {

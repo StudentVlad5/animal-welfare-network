@@ -8,7 +8,11 @@ const router = express.Router();
 
 router.get('/:category',ctrlWrapper(tokenValidation), ctrlWrapper(get));
 router.get('/byid/:id',validateId, ctrlWrapper(getId));
-router.post('/:category', ctrlWrapper(authMiddleware), uploadCloud.single('imageUrl'), createValidation, ctrlWrapper(createNotices));
+router.post('/:category', ctrlWrapper(authMiddleware), uploadCloud.fields([
+        {name: 'imageUrl', maxCount: 1},
+        {name: 'imageUrl_1', maxCount: 1},
+        {name: 'imageUrl_2', maxCount: 1}
+    ]), createValidation, ctrlWrapper(createNotices));
 router.post('/favorites/:id',validateId, ctrlWrapper(authMiddleware), ctrlWrapper(addFavorit));
 router.delete('/favorites/:id',validateId, ctrlWrapper(authMiddleware), ctrlWrapper(daletFavorit));
 router.delete('/:id', ctrlWrapper(authMiddleware), ctrlWrapper(deleteNotices));

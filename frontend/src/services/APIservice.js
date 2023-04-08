@@ -32,7 +32,7 @@ async function fetchNotice(pathParams, body, file1, file2, file3) {
   body.currency !== '' && formData.append('currency', body.currency);
   formData.append('sex', body.sex);
   formData.append('title', body.title);
-
+  console.log(formData);
   return axios.post(`${BASE_URL}${pathParams}`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',

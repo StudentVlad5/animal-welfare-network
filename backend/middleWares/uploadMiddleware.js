@@ -11,12 +11,14 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   folder: 'userPetsPhoto',
-  allowedFormats: ['jpg', 'png'],
-  filename: (req, file, cb) => {
+resource_type: 'auto',
+  allowedFormats: ['jpg', 'png', 'jpeg', 'webp', 'gif'],
+  filename: (req, res, cb) => {
     console.log('uploadMiddleWare req.body', req.body);
     console.log('uploadMiddleWare req.query', req.query);
-    cb(null, file.originalname);
+    cb(null, res.originalname);
   },
+transformation: [{ width: 500, height: 500, crop: "limit" }],
 });
 
 const uploadCloud = multer({ storage });
