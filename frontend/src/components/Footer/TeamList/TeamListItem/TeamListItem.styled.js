@@ -46,6 +46,7 @@ const InfoMember = styled.p`
   color: ${baseColor.colors.blackText};
 
   @media screen and (min-width: 768px) {
+    margin-bottom: 12px;
     font-size: 16px;
   }
 `;
