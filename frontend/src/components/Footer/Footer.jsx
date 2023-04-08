@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { SiDatadog } from 'react-icons/si';
 import { useDispatch } from 'react-redux';
 import { openModalWindow } from 'hooks/modalWindow';
