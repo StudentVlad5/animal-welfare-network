@@ -12,7 +12,6 @@ const BackDrop = styled.div`
 const Modal = styled.div`
   position: relative;
   display: block;
-  z-index: 60;
 
   max-width: calc(100vw - 40px);
   padding: 16px 10px;
@@ -21,8 +20,6 @@ const Modal = styled.div`
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.11) 7px 4px 14px;
 
-  transform: scale(1);
-
   @media screen and (min-width: 768px) {
     max-width: 600px;
     padding: 32px 20px;
@@ -30,10 +27,6 @@ const Modal = styled.div`
 
   @media screen and (min-width: 1280px) {
     max-width: 1280px;
-  }
-
-  #popup-root.is-hidden > & {
-    transform: scale(0);
   }
 `;
 

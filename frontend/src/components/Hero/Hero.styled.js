@@ -29,12 +29,13 @@ const HeroContainer = styled(Container)`
 
   height: 100%;
   width: 100%;
+  min-height: calc(100vh - 140px);
 
   justify-content: start;
   align-items: start;
 
   @media screen and (max-width: 767.9px) {
-    min-height: 550px;
+    /* min-height: 550px; */
 
     /* background-image: url(${DogMobile}), url(${waveMobile});
     background-image: -webkit-image-set(url(${DogMobile}) 1x),
@@ -59,7 +60,7 @@ const HeroContainer = styled(Container)`
     background-position: bottom 0px left 70%, bottom -20px left 25%;
   }
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
-    min-height: 1193px;
+    /* min-height: 1193px; */
 
     /* background-image: url(${DogTab}), url(${waveTabFull});
     background-image: -webkit-image-set(url(${DogTab}) 1x),
@@ -85,8 +86,8 @@ const HeroContainer = styled(Container)`
   }
 
   @media screen and (min-width: 1280px) {
-    min-height: 768px;
-    overflow: hidden;
+    /* min-height: 768px; */
+    /* overflow: hidden; */
 
     background-image: url(${DogDesk}), url(${waveRightDesk}),
       url(${waveLeftDesk});

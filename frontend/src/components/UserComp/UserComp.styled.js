@@ -1,6 +1,29 @@
 import styled from 'styled-components';
 import { baseColor } from 'components/baseStyles/Variables.styled';
-import { Title } from 'components/baseStyles/CommonStyle.styled';
+import {
+  Container,
+  Section,
+  Title,
+} from 'components/baseStyles/CommonStyle.styled';
+
+export const UserSection = styled(Section)`
+  min-height: calc(100vh - 140px);
+  padding-top: 60px;
+  padding-bottom: 80px;
+
+  @media screen and (min-width: 1280px) {
+    min-height: calc(100vh - 120px);
+    padding-bottom: 40px;
+  }
+`;
+export const UserContainer = styled(Container)`
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+`;
 
 export const UserDataWrapper = styled.div`
   @media screen and (min-width: 768px) {

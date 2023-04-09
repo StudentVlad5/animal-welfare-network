@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react';
 import { addReload } from 'redux/reload/slice';
 import { reloadValue } from 'redux/reload/selectors';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { PetsData } from 'components/UserComp/PetsData/PetsData';
 import { UserData } from 'components/UserComp/UserData/UserData';
 import { Logout } from 'components/UserComp/Logout/Logout';
 import { AddPetButton } from 'components/UserComp/PetsData/AddPetButton/AddPetButton';
 import {
+  UserSection,
+  UserContainer,
   TopContainer,
   UserAboutWrapper,
   UserDataContainer,
@@ -51,24 +52,26 @@ export const UserComp = () => {
   }, [dispatch, reload]);
 
   return (
-    <>
-      <Title as="h1" hidden>
-        Profile
-      </Title>
-      <UserDataWrapper>
-        <UserTitle as="h2">My information:</UserTitle>
-        <UserDataContainer>
-          <UserData />
-          <Logout />
-        </UserDataContainer>
-      </UserDataWrapper>
-      <UserAboutWrapper>
-        <TopContainer>
-          <UserTitle as="h2">My pets:</UserTitle>
-          <AddPetButton />
-        </TopContainer>
-        <PetsData petsList={petsList} removePetList={removePetList} />
-      </UserAboutWrapper>
-    </>
+    <UserSection>
+      <UserContainer>
+        <Title as="h1" hidden>
+          Profile
+        </Title>
+        <UserDataWrapper>
+          <UserTitle as="h2">My information:</UserTitle>
+          <UserDataContainer>
+            <UserData />
+            <Logout />
+          </UserDataContainer>
+        </UserDataWrapper>
+        <UserAboutWrapper>
+          <TopContainer>
+            <UserTitle as="h2">My pets:</UserTitle>
+            <AddPetButton />
+          </TopContainer>
+          <PetsData petsList={petsList} removePetList={removePetList} />
+        </UserAboutWrapper>
+      </UserContainer>
+    </UserSection>
   );
 };

@@ -11,15 +11,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   background-color: ${baseColor.colors.mainBg};
-
-    &.scroll {
+  
+  &.scroll {
       max-height: 100vh;
       overflow: hidden;
     }
  }
 
 #root {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
