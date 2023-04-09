@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ReactComponent as Pencil } from '../../../../images/svg/userData/pencil.svg';
-import { ReactComponent as CheckMark } from '../../../../images/svg/userData/checkMark.svg';
+import { ReactComponent as Pencil } from 'images/svg/userData/pencil.svg';
+import { ReactComponent as CheckMark } from 'images/svg/userData/checkMark.svg';
 import { baseColor } from 'components/baseStyles/Variables.styled';
 
 export const UserDataItemWrapper = styled.li`
@@ -27,7 +27,7 @@ export const UserDataItemInputBtnWrapper = styled.div`
 
 export const UserDataItemLabel = styled.label`
   display: block;
-  font-family: Manrope, sans-serif;
+  font-family: 'Manrope, sans-serif';
   font-size: 12px;
   font-weight: 500;
   line-height: 1.33;

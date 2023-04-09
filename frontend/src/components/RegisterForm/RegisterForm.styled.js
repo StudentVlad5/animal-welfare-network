@@ -10,8 +10,6 @@ import waveMobile from 'images/hero/waveMobileFull.webp';
 import waveTab from 'images/register/BGFornTab.webp';
 
 export const FormSection = styled.section`
-  height: calc(100vh - 140px);
-
   @media screen and (max-width: 767.9px) {
     /* min-height: 540px; */
     background-image: url(${waveMobile});

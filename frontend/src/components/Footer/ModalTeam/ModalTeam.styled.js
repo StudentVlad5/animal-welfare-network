@@ -48,6 +48,8 @@ const CloseIconBtn = styled.button`
   backdrop-filter: blur(2px);
   z-index: 50;
 
+  cursor: pointer;
+
   @media screen and (min-width: 768px) {
     top: 32px;
     right: 20px;
