@@ -1,6 +1,6 @@
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const multer = require('multer');
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const multer = require("multer");
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -10,15 +10,15 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  folder: 'userPetsPhoto',
-resource_type: 'auto',
-  allowedFormats: ['jpg', 'png', 'jpeg', 'webp', 'gif'],
+  folder: "userPetsPhoto",
+  resource_type: "auto",
+  allowedFormats: ["jpg", "png", "jpeg", "webp", "gif"],
   filename: (req, res, cb) => {
-    console.log('uploadMiddleWare req.body', req.body);
-    console.log('uploadMiddleWare req.query', req.query);
+    console.log("uploadMiddleWare req.body", req.body);
+    console.log("uploadMiddleWare req.query", req.query);
     cb(null, res.originalname);
   },
-transformation: [{ width: 500, height: 500, crop: "limit" }],
+  transformation: [{ width: 500, height: 500, crop: "limit" }],
 });
 
 const uploadCloud = multer({ storage });

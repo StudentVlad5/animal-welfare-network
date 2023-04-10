@@ -8,7 +8,7 @@ import { baseColor } from 'components/baseStyles/Variables.styled';
 import {
   FormSection,
   FormContainer,
-  Title,
+  // Title,
   FormLogin,
   ShowPassword,
   Input,

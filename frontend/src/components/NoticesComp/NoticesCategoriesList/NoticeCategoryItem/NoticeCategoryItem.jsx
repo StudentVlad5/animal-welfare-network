@@ -84,6 +84,11 @@ export const NoticesCategoriesItem = ({
                 ? no_Photo
                 : data.imageUrl
             }
+            onError={(e) =>{
+              if (e.target.onerror == null) {e.target.src =
+                  "https://res.cloudinary.com/dfqhj2far/image/upload/v1681063506/No-image-available_tdyrjx.jpg"
+              }}
+              }
             loading="lazy"
           />
           <NoticeItemTitle>{data.title}</NoticeItemTitle>
