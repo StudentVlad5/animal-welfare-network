@@ -52,7 +52,7 @@ import { useSearchParams } from 'react-router-dom';
 import { addReload } from 'redux/reload/slice';
 
 export const AddNoticeModal = () => {
-  const [formQueue, setFormQueue] = useState(true);
+  const [formQueue, setFormQueue] = useState('first');
   const [fieldPrice, setFieldPrice] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -65,16 +65,14 @@ export const AddNoticeModal = () => {
   searchParams.set('page', 1);
 
   const onClickBackdrop = e => {
-    setFormQueue(true);
+    setFieldPrice(false);
+
+    setFormQueue('first');
     e.preventDefault();
     e.stopPropagation();
     dispatch(cleanModal());
     closeModalWindow();
   };
-
-  function toggleForm() {
-    setFormQueue(!formQueue);
-  }
 
   async function postNotice(values) {
     const file1 = document.querySelector('#imageUrl')?.files[0];
@@ -140,6 +138,16 @@ export const AddNoticeModal = () => {
       );
     });
 
+  function changeBack(e) {
+    if (formQueue === 'first') {
+      onClickBackdrop(e);
+    } else if (formQueue === 'second') {
+      setFormQueue('first');
+    } else if (formQueue === 'third') {
+      setFormQueue('second');
+    }
+  }
+
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formSell' && (
       <Overlay onClick={e => onClickBackdrop(e)}>
@@ -175,25 +183,30 @@ export const AddNoticeModal = () => {
                 comments: '',
               }}
               onSubmit={values => {
-                if (!formQueue) {
+                if (formQueue === 'third') {
                   postNotice(values);
                   closeModalWindow();
                   dispatch(cleanModal());
-                  setFormQueue(true);
+                  setFormQueue('first');
+                  setFieldPrice(false);
                   window.removeEventListener('keydown', closeByEsc);
                   navigate(`/notices/own?${searchParams}`);
                   dispatch(addReload(false));
-                } else {
-                  toggleForm();
+                } else if (formQueue === 'first') {
+                  setFormQueue('second');
+                } else if (formQueue === 'second') {
+                  setFormQueue('third');
                 }
               }}
               enableReinitialize={true}
               validationSchema={
-                formQueue
+                formQueue === 'first'
                   ? schemas.noticeSchemaFirst
-                  : !fieldPrice
-                  ? schemas.noticeSchemaSecond
-                  : schemas.noticeSchemaSecondPrice
+                  : formQueue === 'second'
+                  ? !fieldPrice
+                    ? schemas.noticeSchemaSecond
+                    : schemas.noticeSchemaSecondPrice
+                  : schemas.noticeSchemaThird
               }
             >
               {({
@@ -209,14 +222,18 @@ export const AddNoticeModal = () => {
                   onSubmit={handleSubmit}
                   onChange={e => {
                     handleChange(e);
-                    values.category === 'sell' && setFieldPrice(true);
+                    values.category === 'sell'
+                      ? setFieldPrice(true)
+                      : setFieldPrice(false);
                   }}
                 >
                   <>
                     <div
                       className="formFirst"
                       style={
-                        formQueue ? { display: 'block' } : { display: 'none' }
+                        formQueue === 'first'
+                          ? { display: 'block' }
+                          : { display: 'none' }
                       }
                     >
                       <Paragraph>
@@ -370,11 +387,15 @@ export const AddNoticeModal = () => {
                               Select breed type
                             </OptionFirst>
                           }
-                          {breeds.map(breed => (
-                            <Option key={breed._id} value={breed['name-en']}>
-                              {breed['name-en']}
-                            </Option>
-                          ))}
+                          {breeds
+                            .filter(
+                              breed => breed.typeofpet === values.typeofpet,
+                            )
+                            .map(breed => (
+                              <Option key={breed._id} value={breed['name-en']}>
+                                {breed['name-en']}
+                              </Option>
+                            ))}
                         </FieldItem>
                       </FieldList>
                     </div>
@@ -382,7 +403,9 @@ export const AddNoticeModal = () => {
                       ref={ref}
                       className="formSecond"
                       style={
-                        !formQueue ? { display: 'block' } : { display: 'none' }
+                        formQueue === 'second'
+                          ? { display: 'block' }
+                          : { display: 'none' }
                       }
                     >
                       <FieldsRadioSex role="group" id="sex">
@@ -445,7 +468,7 @@ export const AddNoticeModal = () => {
                         </FieldItem>
 
                         <LabelItem htmlFor="height">
-                          <span>Height</span>
+                          <span>Height in cm</span>
                           {errors.height && touched.height ? (
                             <Error>{errors.height}</Error>
                           ) : null}
@@ -460,7 +483,7 @@ export const AddNoticeModal = () => {
                         />
 
                         <LabelItem htmlFor="weight">
-                          <span>Weight</span>
+                          <span>Weight in kg</span>
                           {errors.weight && touched.weight ? (
                             <Error>{errors.weight}</Error>
                           ) : null}
@@ -506,7 +529,7 @@ export const AddNoticeModal = () => {
                             </ul>
                           )}
                         </div>
-                        {values.category === 'sell' && (
+                        {fieldPrice && (
                           <div>
                             <LabelItem htmlFor="price">
                               <span>Price</span>
@@ -551,6 +574,17 @@ export const AddNoticeModal = () => {
                             </FieldItem>
                           </div>
                         )}
+                      </FieldList>
+                    </div>
+                    <div
+                      className="formThird"
+                      style={
+                        formQueue === 'third'
+                          ? { display: 'block' }
+                          : { display: 'none' }
+                      }
+                    >
+                      <FieldList>
                         <LabelItem htmlFor="imageUrl">
                           <span>Load the pet’s image</span>
                           {errors.imageUrl && touched.imageUrl ? (
@@ -697,15 +731,10 @@ export const AddNoticeModal = () => {
                     </div>
                     <div className="btns">
                       <ButtonFirst className="btn__submit" type="submit">
-                        {formQueue ? 'Next' : 'Done'}
+                        {formQueue !== 'third' ? 'Next' : 'Done'}
                       </ButtonFirst>
-                      <ButtonSecond
-                        type="button"
-                        onClick={
-                          formQueue ? e => onClickBackdrop(e) : toggleForm
-                        }
-                      >
-                        {formQueue ? 'Cancel' : 'Back'}
+                      <ButtonSecond type="button" onClick={e => changeBack(e)}>
+                        {formQueue === 'first' ? 'Cancel' : 'Back'}
                       </ButtonSecond>
                     </div>
                   </>
