@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { FaEnvelope, FaGithub, FaLinkedin, FaTelegram } from 'react-icons/fa';
 import {
   Item,
@@ -48,4 +48,18 @@ export const TeamListItem = ({ developer }) => {
       </LinkWrapper>
     </Item>
   );
+};
+
+TeamListItem.propTypes = {
+  developer: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string,
+      email: PropTypes.string,
+      telegram: PropTypes.string,
+      linkedin: PropTypes.string,
+      github: PropTypes.string,
+    }),
+  ),
 };
