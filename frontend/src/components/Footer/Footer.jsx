@@ -7,7 +7,7 @@ import {
   FooterSection,
   FooterContainer,
   Copyright,
-  Developers,
+  Team,
   Description,
   TeamModalBtn,
 } from './Footer.styled';
@@ -34,7 +34,7 @@ export const Footer = () => {
       <FooterSection id="footer">
         <FooterContainer>
           <Copyright>&#169; 2023 | All Rights Reserved |</Copyright>
-          <Developers>
+          <Team>
             <Description>Developed by</Description>
             <TeamModalBtn
               onClick={e => {
@@ -44,7 +44,7 @@ export const Footer = () => {
             >
               <SiDatadog size={16} />
             </TeamModalBtn>
-          </Developers>
+          </Team>
         </FooterContainer>
       </FooterSection>
       {isOpenModal && <ModalTeam />}

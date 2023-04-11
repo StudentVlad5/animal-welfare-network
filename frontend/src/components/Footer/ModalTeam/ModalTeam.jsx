@@ -4,16 +4,15 @@ import { createPortal } from 'react-dom';
 import { MdClose } from 'react-icons/md';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
+import { fetchData } from 'services/APIservice';
 import { TeamList } from '../TeamList/TeamList';
-// import { fetchData } from 'services/APIservice';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { BackDrop, Modal, CloseIconBtn } from './ModalTeam.styled';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
-import developers from '../TeamList/developers';
 
 export const ModalTeam = () => {
-  const [team, setTeam] = useState(developers);
+  const [developers, setDevelopers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -21,9 +20,9 @@ export const ModalTeam = () => {
     (async function getData() {
       setIsLoading(true);
       try {
-        // const { data } = await fetchData('/developers');
-        setTeam(developers); // without backend
-        if (!team) {
+        const { data } = await fetchData('/developers');
+        setDevelopers(data);
+        if (!data) {
           return onFetchError('Whoops, something went wrong');
         }
       } catch (error) {
@@ -32,12 +31,12 @@ export const ModalTeam = () => {
         setIsLoading(false);
       }
     })();
-  }, [team]);
+  }, [developers]);
 
   //close modal window
   const dispatch = useDispatch();
   const closeModalTeam = e => {
-    // e.preventDefault();
+    e.preventDefault();
     dispatch(cleanModal());
     closeModalWindow(e);
   };
@@ -57,7 +56,9 @@ export const ModalTeam = () => {
         </Title>
         {isLoading ? onLoading() : onLoaded()}
         {error && onFetchError('Whoops, something went wrong')}
-        {team.length > 0 && !error && <TeamList developers={team} />}
+        {developers.length > 0 && !error && (
+          <TeamList developers={developers} />
+        )}
       </Modal>
     </BackDrop>,
     document.querySelector('#popup-root'),
