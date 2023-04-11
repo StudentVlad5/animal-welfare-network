@@ -31,7 +31,7 @@ export const ModalTeam = () => {
         setIsLoading(false);
       }
     })();
-  }, [developers]);
+  }, []);
 
   //close modal window
   const dispatch = useDispatch();
@@ -51,7 +51,13 @@ export const ModalTeam = () => {
         <CloseIconBtn onClick={e => closeModalTeam(e)} aria-label="Close modal">
           <MdClose size={15} />
         </CloseIconBtn>
-        <Title as="h2" size="20px">
+        <Title
+          as="h2"
+          size="20px"
+          sizeTablet="26px"
+          margin="0 0 20px 0"
+          marginTablet="0 0 20px 0"
+        >
           Development team
         </Title>
         {isLoading ? onLoading() : onLoaded()}

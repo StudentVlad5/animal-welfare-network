@@ -4,11 +4,11 @@ const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 10px;
 
   @media screen and (min-width: 768px) {
-    gap: 32px;
+    gap: 30px;
   }
 
   @media screen and (min-width: 1280px) {

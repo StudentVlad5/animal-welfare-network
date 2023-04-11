@@ -18,8 +18,8 @@ export const TeamListItem = ({ developer }) => {
         <ImageMember
           src={imageUrl}
           alt={name}
-          width="100"
-          height="100"
+          width="150"
+          height="150"
           loading="lazy"
         />
       ) : (
@@ -51,15 +51,5 @@ export const TeamListItem = ({ developer }) => {
 };
 
 TeamListItem.propTypes = {
-  developer: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string,
-      email: PropTypes.string,
-      telegram: PropTypes.string,
-      linkedin: PropTypes.string,
-      github: PropTypes.string,
-    }),
-  ),
+  developer: PropTypes.object.isRequired,
 };
