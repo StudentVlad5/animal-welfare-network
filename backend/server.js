@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const dataConvert = require("./convertNewsDate");
 //******** */
 
-const { PORT, DB_HOST, MONGO_URI } = process.env;
+const { PORT = 3000, DB_HOST, MONGO_URI } = process.env;
 // console.log('DB_HOST:\t', DB_HOST);
 // console.log('DB_TEST_HOST:\t', DB_TEST_HOST);
 
