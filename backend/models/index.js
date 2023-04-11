@@ -8,6 +8,7 @@ const {
   userUpdateValidationSchema,
 } = require('./users');
 const Notices = require('./notices');
+const Developers = require('./developers');
 
 module.exports = {
   Breed,
@@ -18,4 +19,5 @@ module.exports = {
   Notices,
   userValidationSchema,
   userUpdateValidationSchema,
+  Developers,
 };
