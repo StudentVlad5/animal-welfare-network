@@ -1,4 +1,4 @@
-const { News } = require('./models');
+const { News } = require('../models');
 
 const dataConvert = async () => {
   const inData = await News.aggregate([
