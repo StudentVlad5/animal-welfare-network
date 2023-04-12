@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const initAxios = () => {
-  axios.defaults.baseURL = `http://localhost:3030/api/`;
+  const { BASE_URL } = window.global;
+  axios.defaults.baseURL = `${BASE_URL}`;
 };
 
 export default initAxios;
