@@ -40,7 +40,7 @@ import { closeModalWindow, closeByEsc } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
 import schemas from 'components/Schemas/schemas';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { fetchNotice } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
@@ -50,9 +50,10 @@ import { breedsValue } from 'redux/breeds/selectors';
 import { setImage } from 'utils/setimage';
 import { useSearchParams } from 'react-router-dom';
 import { addReload } from 'redux/reload/slice';
+import CreatableSelect from 'react-select/creatable';
 
 export const AddNoticeModal = () => {
-  const [formQueue, setFormQueue] = useState(true);
+  const [formQueue, setFormQueue] = useState('first');
   const [fieldPrice, setFieldPrice] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -65,16 +66,13 @@ export const AddNoticeModal = () => {
   searchParams.set('page', 1);
 
   const onClickBackdrop = e => {
-    setFormQueue(true);
+    setFieldPrice(false);
+    setFormQueue('first');
     e.preventDefault();
     e.stopPropagation();
     dispatch(cleanModal());
     closeModalWindow();
   };
-
-  function toggleForm() {
-    setFormQueue(!formQueue);
-  }
 
   async function postNotice(values) {
     const file1 = document.querySelector('#imageUrl')?.files[0];
@@ -140,6 +138,29 @@ export const AddNoticeModal = () => {
       );
     });
 
+  function changeBack(e) {
+    if (formQueue === 'first') {
+      onClickBackdrop(e);
+    } else if (formQueue === 'second') {
+      setFormQueue('first');
+    } else if (formQueue === 'third') {
+      setFormQueue('second');
+    }
+  }
+
+  function options(typeofpet) {
+    const options = [];
+    breeds
+      .filter(breed => breed.typeofpet === typeofpet)
+      .forEach(breed => {
+        const obj = {};
+        obj.value = breed['name-en'].toLowerCase();
+        obj.label = breed['name-en'];
+        options.push(obj);
+      });
+    return options;
+  }
+
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'formSell' && (
       <Overlay onClick={e => onClickBackdrop(e)}>
@@ -175,25 +196,30 @@ export const AddNoticeModal = () => {
                 comments: '',
               }}
               onSubmit={values => {
-                if (!formQueue) {
+                if (formQueue === 'third') {
                   postNotice(values);
                   closeModalWindow();
                   dispatch(cleanModal());
-                  setFormQueue(true);
+                  setFormQueue('first');
+                  setFieldPrice(false);
                   window.removeEventListener('keydown', closeByEsc);
                   navigate(`/notices/own?${searchParams}`);
                   dispatch(addReload(false));
-                } else {
-                  toggleForm();
+                } else if (formQueue === 'first') {
+                  setFormQueue('second');
+                } else if (formQueue === 'second') {
+                  setFormQueue('third');
                 }
               }}
               enableReinitialize={true}
               validationSchema={
-                formQueue
+                formQueue === 'first'
                   ? schemas.noticeSchemaFirst
-                  : !fieldPrice
-                  ? schemas.noticeSchemaSecond
-                  : schemas.noticeSchemaSecondPrice
+                  : formQueue === 'second'
+                  ? !fieldPrice
+                    ? schemas.noticeSchemaSecond
+                    : schemas.noticeSchemaSecondPrice
+                  : schemas.noticeSchemaThird
               }
             >
               {({
@@ -209,14 +235,18 @@ export const AddNoticeModal = () => {
                   onSubmit={handleSubmit}
                   onChange={e => {
                     handleChange(e);
-                    values.category === 'sell' && setFieldPrice(true);
+                    values.category === 'sell'
+                      ? setFieldPrice(true)
+                      : setFieldPrice(false);
                   }}
                 >
                   <>
                     <div
                       className="formFirst"
                       style={
-                        formQueue ? { display: 'block' } : { display: 'none' }
+                        formQueue === 'first'
+                          ? { display: 'block' }
+                          : { display: 'none' }
                       }
                     >
                       <Paragraph>
@@ -341,12 +371,14 @@ export const AddNoticeModal = () => {
                           onFocus={e => {
                             e.target.setAttribute('type', 'date');
                           }}
-                          // onBlur={e => {
-                          //   e.target.setAttribute('type', 'text');
-                          // }}
+                          onBlur={e => {
+                            e.target.setAttribute('type', 'text');
+                          }}
                           type="text"
                           id="birthday"
                           name="birthday"
+                          min={'2000-01-01'}
+                          max={`${new Date().toISOString().split('T')[0]}`}
                           placeholder="Type day of birth"
                           value={values.birthday}
                         />
@@ -357,32 +389,30 @@ export const AddNoticeModal = () => {
                           ) : null}
                         </LabelItem>
 
-                        <FieldItem
-                          as="select"
+                        <CreatableSelect
+                          isClearable
+                          isDisabled={values.typeofpet === '' ? true : false}
                           type="text"
-                          id="breed"
-                          name="breed"
-                          placeholder="Type breed"
                           defaultValue={values.breed}
-                        >
-                          {
-                            <OptionFirst first value="unselected">
-                              Select breed type
-                            </OptionFirst>
+                          options={options(values.typeofpet)}
+                          className="react-select-container"
+                          classNamePrefix="react-select"
+                          placeholder={
+                            values.typeofpet === ''
+                              ? 'Select type of pet firstly...'
+                              : 'Select breed...'
                           }
-                          {breeds.map(breed => (
-                            <Option key={breed._id} value={breed['name-en']}>
-                              {breed['name-en']}
-                            </Option>
-                          ))}
-                        </FieldItem>
+                          onChange={e => setFieldValue('breed', e?.value)}
+                        />
                       </FieldList>
                     </div>
                     <div
                       ref={ref}
                       className="formSecond"
                       style={
-                        !formQueue ? { display: 'block' } : { display: 'none' }
+                        formQueue === 'second'
+                          ? { display: 'block' }
+                          : { display: 'none' }
                       }
                     >
                       <FieldsRadioSex role="group" id="sex">
@@ -445,7 +475,7 @@ export const AddNoticeModal = () => {
                         </FieldItem>
 
                         <LabelItem htmlFor="height">
-                          <span>Height</span>
+                          <span>Height in cm</span>
                           {errors.height && touched.height ? (
                             <Error>{errors.height}</Error>
                           ) : null}
@@ -460,7 +490,7 @@ export const AddNoticeModal = () => {
                         />
 
                         <LabelItem htmlFor="weight">
-                          <span>Weight</span>
+                          <span>Weight in kg</span>
                           {errors.weight && touched.weight ? (
                             <Error>{errors.weight}</Error>
                           ) : null}
@@ -506,7 +536,7 @@ export const AddNoticeModal = () => {
                             </ul>
                           )}
                         </div>
-                        {values.category === 'sell' && (
+                        {fieldPrice && (
                           <div>
                             <LabelItem htmlFor="price">
                               <span>Price</span>
@@ -551,6 +581,17 @@ export const AddNoticeModal = () => {
                             </FieldItem>
                           </div>
                         )}
+                      </FieldList>
+                    </div>
+                    <div
+                      className="formThird"
+                      style={
+                        formQueue === 'third'
+                          ? { display: 'block' }
+                          : { display: 'none' }
+                      }
+                    >
+                      <FieldList>
                         <LabelItem htmlFor="imageUrl">
                           <span>Load the pet’s image</span>
                           {errors.imageUrl && touched.imageUrl ? (
@@ -697,15 +738,10 @@ export const AddNoticeModal = () => {
                     </div>
                     <div className="btns">
                       <ButtonFirst className="btn__submit" type="submit">
-                        {formQueue ? 'Next' : 'Done'}
+                        {formQueue !== 'third' ? 'Next' : 'Done'}
                       </ButtonFirst>
-                      <ButtonSecond
-                        type="button"
-                        onClick={
-                          formQueue ? e => onClickBackdrop(e) : toggleForm
-                        }
-                      >
-                        {formQueue ? 'Cancel' : 'Back'}
+                      <ButtonSecond type="button" onClick={e => changeBack(e)}>
+                        {formQueue === 'first' ? 'Cancel' : 'Back'}
                       </ButtonSecond>
                     </div>
                   </>

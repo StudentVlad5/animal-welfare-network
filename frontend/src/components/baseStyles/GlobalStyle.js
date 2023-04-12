@@ -105,7 +105,6 @@ img {
 }
 
 .paginate__page, .paginate__page--prev, .paginate__page--next, .paginate__page--break {
-  display: block;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,4 +142,112 @@ img {
   border: 3px solid ${baseColor.colors.mainBg};
   color: ${baseColor.colors.white};
 }
+
+
+//-----react-select-----//
+
+.react-select-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 15px 10px 15px;
+
+
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.375;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: ${baseColor.colors.inpText};
+
+  &::placeholder {
+    color: rgba(27, 27, 27, 0.6);
+  }
+  height: 40px;
+  width: 100%;
+
+  margin-bottom: 16px;
+
+  background: ${baseColor.colors.mainBg};
+  border: 1px solid ${baseColor.colors.orangeLight};
+  border-radius: 40px;
+  outline: none;
+  transition: all 0.25s ease-in;
+  &:hover {
+    outline: 2px solid ${baseColor.colors.orangeLight};
+  }
+
+  &:focus {
+    outline: 3px solid ${baseColor.colors.orangeLight};
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    display: none;
+  }
+
+
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    height: 48px;
+    margin-bottom: 28px;
+  }
+}
+
+.react-select__control, .react-select__control--is-focused, react-select__control--menu-is-open {
+width: 100%;
+padding: 0!important;
+margin: 0!important;
+border: none!important;
+box-shadow: none!important;
+
+background-color: transparent!important;
+}
+
+.react-select__input-container {
+padding: 0!important;
+margin: 0!important;
+}
+
+.react-select__placeholder {
+padding: 0!important;
+margin: 0!important;
+
+color: ${baseColor.colors.inpText}!important;
+}
+
+.react-select__indicators {
+padding: 0!important;
+margin: 0!important;
+}
+
+.react-select__menu {
+}
+
+.react-select__menu-list {
+}
+
+.react-select__option--is-focused {
+background-color: ${baseColor.colors.mainBg}!important;
+}
+
+.react-select__option--is-selected {
+background-color: ${baseColor.colors.orangeLight}!important;
+}
+
+
+.react-select__input-container {
+padding: 0!important;
+margin: 0!important;
+}
+
+.react-select__value-container {
+padding: 0!important;
+margin: 0!important;
+}
+
 `;
