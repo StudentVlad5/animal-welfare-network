@@ -15,6 +15,7 @@ async function fetchData(pathParams) {
 
 async function fetchNotice(pathParams, body, file1, file2, file3) {
   const formData = new FormData();
+
   formData.append("birthday", body.birthday);
   formData.append("typeofpet", body.typeofpet);
   formData.append("breed", body.breed);
@@ -35,6 +36,7 @@ async function fetchNotice(pathParams, body, file1, file2, file3) {
   formData.append("sex", body.sex);
   formData.append("title", body.title);
   console.log(formData);
+
   return axios.post(`${BASE_URL}${pathParams}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
