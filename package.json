@@ -2,7 +2,8 @@
   "dependencies": {
     "global": "^4.4.0"
   },
+  "main": "./backend/server.js",
   "scripts": {
-    "start":  "node ./server"
+    "start":  "node ./backend/server.js"
   }
 }
