@@ -5,7 +5,10 @@
   "main": "./backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./backend/server.js"
+    "start": "node ./backend/server.js",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "lint:js": "eslint ./frontend/src/**/*.{js,jsx}"
   },
   "repository": {
     "type": "git",
