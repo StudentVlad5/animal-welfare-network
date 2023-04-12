@@ -40,7 +40,7 @@ import { closeModalWindow, closeByEsc } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
 import schemas from 'components/Schemas/schemas';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { fetchNotice } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
@@ -50,7 +50,7 @@ import { breedsValue } from 'redux/breeds/selectors';
 import { setImage } from 'utils/setimage';
 import { useSearchParams } from 'react-router-dom';
 import { addReload } from 'redux/reload/slice';
-import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
 
 export const AddNoticeModal = () => {
   const [formQueue, setFormQueue] = useState('first');
@@ -389,7 +389,9 @@ export const AddNoticeModal = () => {
                           ) : null}
                         </LabelItem>
 
-                        <Select
+                        <CreatableSelect
+                          isClearable
+                          isDisabled={values.typeofpet === '' ? true : false}
                           type="text"
                           defaultValue={values.breed}
                           options={options(values.typeofpet)}
@@ -400,7 +402,7 @@ export const AddNoticeModal = () => {
                               ? 'Select type of pet firstly...'
                               : 'Select breed...'
                           }
-                          onChange={e => setFieldValue('breed', e.value)}
+                          onChange={e => setFieldValue('breed', e?.value)}
                         />
                       </FieldList>
                     </div>
