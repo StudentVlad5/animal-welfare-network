@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const initAxios = () => {
-  const { BASE_URL } = window.global;
-  axios.defaults.baseURL = `${BASE_URL}`;
+
+  axios.defaults.baseURL = "https://animal-welfare-network.cyclic.app/api";
 };
 
 export default initAxios;

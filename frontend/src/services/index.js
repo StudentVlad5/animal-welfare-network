@@ -2,8 +2,7 @@ import axios from "axios";
 import { refreshUser } from "redux/auth/operations";
 import { store } from "redux/store";
 
-const { BASE_URL } = window.global;
-axios.defaults.baseURL = `${BASE_URL}`;
+axios.defaults.baseURL = "https://animal-welfare-network.cyclic.app";
 
 export * from "./auth";
 
