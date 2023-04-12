@@ -1,31 +1,31 @@
 [
   {
-    "_id": 1,
     "name": "Vlad Popov",
+    "imageUrl": null,
     "email": "vlad_np@ukr.net",
     "telegram": "https://www.t.me/Vinforam",
     "linkedin": "https://www.linkedin.com/in/vladyslav-popov-a491232a/",
     "github": "https://github.com/StudentVlad5"
   },
   {
-    "_id": 2,
     "name": "Sergey Rudenko",
+    "imageUrl": null,
     "email": "rudenko.sergey@ukr.net",
     "telegram": "https://www.t.me/RudenkoSergeyV",
     "linkedin": "https://www.linkedin.com/in/serhii-rudenko-559a0215b/",
     "github": "https://github.com/rudenkoserhii"
   },
   {
-    "_id": 3,
     "name": "Julia Golban",
+    "imageUrl": null,
     "email": "julia.j.shcherban@gmail.com",
     "telegram": "https://www.t.me/JuliaGolban",
     "linkedin": "https://www.linkedin.com/in/julia-golban/",
     "github": "https://github.com/JuliaGolban"
   },
   {
-    "_id": 4,
     "name": "Heorgii Rushchak",
+    "imageUrl": null,
     "email": "rushchakheorgii@gmail.com",
     "telegram": "https://www.t.me/HeorgiiRushchak",
     "linkedin": "https://www.linkedin.com/in/heorgii-rushchak-19884a245/",

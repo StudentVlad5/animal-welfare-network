@@ -9,6 +9,7 @@ const {
   pets,
   routerAuth,
   routerUser,
+  routerDevelopers,
 } = require('./routes/api');
 
 const app = express();
@@ -27,6 +28,7 @@ app.use('/api/friends', routerFriends);
 app.use('/api/news', routerNews);
 app.use('/api/pets', pets);
 app.use('/api/breeds', routerBreeds);
+app.use('/api/developers', routerDevelopers);
 
 // app.use('/api/location', ctrl.location);
 

@@ -55,9 +55,9 @@ const Title = styled.h1`
   color: ${baseColor.colors.black};
 
   @media screen and (min-width: 768px) {
-    margin: ${props => props.margin || '0 0 40px 0'};
-    text-align: ${props => props.position || 'center'};
-    font-size: ${props => props.size || '48px'};
+    margin: ${props => props.marginTablet || '0 0 40px 0'};
+    text-align: ${props => props.positionTablet || 'center'};
+    font-size: ${props => props.sizeTablet || '48px'};
   }
 `;
 

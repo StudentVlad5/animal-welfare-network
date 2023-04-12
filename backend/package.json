@@ -1,10 +1,10 @@
 {
-  "name": "project-nodejs_55-5_backend",
+  "name": "animal-welfare-network",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./backend/server.js",
   "scripts": {
-    "start": "node ./server",
+    "start": "node ./backend/server.js",
     "start:dev": "nodemon ./server"
   },
   "repository": {

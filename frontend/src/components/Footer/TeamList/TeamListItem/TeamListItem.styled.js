@@ -7,32 +7,31 @@ const Item = styled.li`
   display: flex;
   flex-direction: column;
   align-content: center;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 
   width: 120px;
   height: auto;
-  padding: 8px;
+  padding: 10px;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.11) 7px 4px 14px;
 
   @media screen and (min-width: 768px) {
-    width: 250px;
+    width: 200px;
   }
 `;
 
 const ImageMember = styled.img`
   width: 100px;
-  height: 100px;
+  height: auto;
 
   margin-bottom: 10px;
-  border-radius: 40px;
+  border-radius: 10px;
   background-color: ${baseColor.colors.mainBg};
   object-fit: cover;
 
   @media screen and (min-width: 768px) {
-    width: 150px;
-    height: 150px;
+    width: 120px;
   }
 `;
 
@@ -53,6 +52,7 @@ const InfoMember = styled.p`
 
 const LinkWrapper = styled.div`
   display: flex;
+  justify-content: center;
   gap: 5px;
 `;
 

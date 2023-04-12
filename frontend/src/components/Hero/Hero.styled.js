@@ -86,6 +86,7 @@ const HeroContainer = styled(Container)`
   }
 
   @media screen and (min-width: 1280px) {
+    min-height: calc(100vh - 120px);
     /* min-height: 768px; */
     /* overflow: hidden; */
 

@@ -1,10 +1,10 @@
-const path = require("path");
-require("dotenv").config();
-const app = require("./app");
+const path = require('path');
+require('dotenv').config();
+const app = require('./app');
 
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 //******** */
-const dataConvert = require("./convertNewsDate");
+const dataConvert = require('./helpers/convertNewsDate');
 //******** */
 
 const { PORT = 3000, DB_HOST, MONGO_URI } = process.env;
@@ -16,12 +16,12 @@ mongoose
   .then(() => {
     app.listen(PORT, () => {
       // createFolderIsNotExist(TEMP_DIR);
-      console.log("Database connection successful");
+      console.log('Database connection successful');
       console.log(`Server running. Use our API on port: ${PORT}`);
       // dataConvert(); // convert date from string to Date
     });
   })
-  .catch((error) => {
+  .catch(error => {
     console.log(error.message);
     process.exit(1);
   });

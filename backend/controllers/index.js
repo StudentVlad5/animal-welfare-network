@@ -7,7 +7,8 @@ const {
 } = require('./petsController');
 const auth = require('./auth');
 const user = require('./user');
-const notices = require('./notices')
+const notices = require('./notices');
+const developers = require('./developers');
 
 module.exports = {
   breeds,
@@ -18,4 +19,5 @@ module.exports = {
   auth,
   user,
   notices,
+  developers,
 };

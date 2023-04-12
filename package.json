@@ -1,26 +1,8 @@
 {
-  "name": "animal-welfare-network",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/StudentVlad5/animal-welfare-network.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/StudentVlad5/animal-welfare-network/issues"
-  },
-  "homepage": "https://github.com/StudentVlad5/animal-welfare-network#readme",
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "global": "^4.4.0"
   },
-  "devDependencies": {
-    "cross-env": "^7.0.3"
+  "scripts": {
+    "start":  "node ./server"
   }
 }

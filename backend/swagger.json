@@ -41,14 +41,15 @@
     },
     {
       "name": "breeds"
+    },
+    {
+      "name": "developers"
     }
   ],
   "paths": {
     "/auth/signup": {
       "post": {
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "operationId": "UserRegister",
         "summary": "User registration",
         "parameters": [],
@@ -87,9 +88,7 @@
     "/auth/signin": {
       "post": {
         "operationId": "UserLogin",
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "summary": "User authentication",
         "parameters": [],
         "description": "description",
@@ -140,9 +139,7 @@
     },
     "/auth/logout": {
       "post": {
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "summary": "Logout user",
         "parameters": [],
         "operationId": "UserLogOut",
@@ -179,9 +176,7 @@
     },
     "/auth": {
       "post": {
-        "tags": [
-          "auth"
-        ],
+        "tags": ["auth"],
         "operationId": "UserVerifyAuthToken",
         "summary": "User verify Authtoken",
         "parameters": [],
@@ -217,9 +212,7 @@
     },
     "/user": {
       "patch": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "operationId": "UserUpdate",
         "summary": "User update profile",
         "parameters": [],
@@ -274,9 +267,7 @@
         }
       },
       "get": {
-        "tags": [
-          "user"
-        ],
+        "tags": ["user"],
         "operationId": "UserGetProfile",
         "summary": "User get profile information",
         "parameters": [],
@@ -310,11 +301,30 @@
         }
       }
     },
+    "/developers": {
+      "get": {
+        "tags": ["developers"],
+        "operationId": "developers",
+        "description": "description",
+        "summary": "Get all services and developers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DevelopersResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/friends": {
       "get": {
-        "tags": [
-          "friends"
-        ],
+        "tags": ["friends"],
         "operationId": "friends",
         "description": "description",
         "summary": "Get all services and friends",
@@ -335,9 +345,7 @@
     },
     "/news": {
       "get": {
-        "tags": [
-          "news"
-        ],
+        "tags": ["news"],
         "operationId": "NewsGetAll",
         "description": "description",
         "summary": "Get all news",
@@ -367,9 +375,7 @@
     },
     "/pets": {
       "post": {
-        "tags": [
-          "pets"
-        ],
+        "tags": ["pets"],
         "operationId": "PetsAdd",
         "description": "description",
         "summary": "Add new pets",
@@ -423,9 +429,7 @@
         }
       },
       "get": {
-        "tags": [
-          "pets"
-        ],
+        "tags": ["pets"],
         "operationId": "PetsGetAll",
         "description": "description",
         "summary": "Get all pets",
@@ -460,9 +464,7 @@
     },
     "/pets/{id}": {
       "delete": {
-        "tags": [
-          "pets"
-        ],
+        "tags": ["pets"],
         "operationId": "PetDelete",
         "description": "description",
         "summary": "Delete pet",
@@ -500,9 +502,7 @@
     },
     "/notices/{category}": {
       "get": {
-        "tags": [
-          "notices"
-        ],
+        "tags": ["notices"],
         "operationId": "NoticesByCategories",
         "description": "description",
         "summary": "Get by Categories and find Notices title",
@@ -519,11 +519,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "sell",
-                "lost-found",
-                "for-free"
-              ]
+              "enum": ["sell", "lost-found", "for-free"]
             }
           },
           {
@@ -587,9 +583,7 @@
         }
       },
       "post": {
-        "tags": [
-          "notices"
-        ],
+        "tags": ["notices"],
         "operationId": "NoticesAddInCategory",
         "description": "description",
         "summary": "Add Notices in category",
@@ -606,11 +600,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "sell",
-                "lost-found",
-                "for-free"
-              ]
+              "enum": ["sell", "lost-found", "for-free"]
             }
           }
         ],
@@ -671,9 +661,7 @@
     },
     "/notices/byid/{id}": {
       "get": {
-        "tags": [
-          "notices"
-        ],
+        "tags": ["notices"],
         "operationId": "NoticesFind",
         "description": "description",
         "summary": "Get Notices by ID",
@@ -739,9 +727,7 @@
     },
     "/notices/favorites/{id}": {
       "post": {
-        "tags": [
-          "notices"
-        ],
+        "tags": ["notices"],
         "operationId": "NoticesAddFavorites",
         "description": "description",
         "summary": "Added notice to Favorites",
@@ -805,9 +791,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "notices"
-        ],
+        "tags": ["notices"],
         "operationId": "NoticesDelFavorites",
         "description": "description",
         "summary": "Del Notices from favorites",
@@ -873,9 +857,7 @@
     },
     "/breeds": {
       "get": {
-        "tags": [
-          "breeds"
-        ],
+        "tags": ["breeds"],
         "operationId": "BreedsGetAll",
         "description": "description",
         "summary": "Get all breeds pets",
@@ -913,13 +895,7 @@
     "schemas": {
       "UserRegisterRequest": {
         "type": "object",
-        "required": [
-          "userName",
-          "email",
-          "password",
-          "phone",
-          "location"
-        ],
+        "required": ["userName", "email", "password", "phone", "location"],
         "properties": {
           "userName": {
             "type": "string",
@@ -981,10 +957,7 @@
       },
       "UserLoginRequest": {
         "type": "object",
-        "required": [
-          "email",
-          "password"
-        ],
+        "required": ["email", "password"],
         "properties": {
           "email": {
             "type": "string",
@@ -1175,11 +1148,45 @@
           "birthday": "1909-01-01",
           "location": "Lviv",
           "avatar": "",
-          "favorites": [
-            "641a3ac5b825deb246a53f08",
-            "641a3ac5b825deb246a53f08"
-          ],
+          "favorites": ["641a3ac5b825deb246a53f08", "641a3ac5b825deb246a53f08"],
           "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MWEzYWM1YjgyNWRlYjI0NmE1M2YwOCIsImlhdCI6MTY3OTQ3Njk0NCwiZXhwIjoxNjgwNjg2NTQ0fQ.qmLBQQyEAhpD57fdxHrGW4v4umjogQ7LVo3V2gCR-S0"
+        }
+      },
+      "DevelopersResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "example": "3"
+            },
+            "name": {
+              "type": "string",
+              "example": "Julia Golban"
+            },
+            "imageUrl": {
+              "type": "string",
+              "example": "https://storage.googleapis.com/kidslikev2_bucket/pets-support/images/friends/frame_287.png"
+            },
+
+            "email": {
+              "type": "string",
+              "example": "julia.j.shcherban@gmail.com"
+            },
+            "telegram": {
+              "type": "string",
+              "example": "https://www.t.me/JuliaGolban"
+            },
+            "linkedin": {
+              "type": "string",
+              "example": "https://www.linkedin.com/in/julia-golban/"
+            },
+            "github": {
+              "type": "string",
+              "example": "https://github.com/JuliaGolban"
+            }
+          }
         }
       },
       "FriendsResponse": {
@@ -1286,12 +1293,7 @@
       },
       "PetsAddRequest": {
         "type": "object",
-        "required": [
-          "name",
-          "date",
-          "breed",
-          "comments"
-        ],
+        "required": ["name", "date", "breed", "comments"],
         "properties": {
           "name": {
             "type": "string"
@@ -1436,21 +1438,14 @@
           },
           "sex": {
             "type": "string",
-            "enum": [
-              "male",
-              "female"
-            ]
+            "enum": ["male", "female"]
           },
           "price": {
             "type": "number"
           },
           "currency": {
             "type": "string",
-            "enum": [
-              "₴",
-              "$",
-              "€"
-            ]
+            "enum": ["₴", "$", "€"]
           },
           "comments": {
             "type": "string"
@@ -1484,11 +1479,7 @@
           },
           "category": {
             "type": "string",
-            "enum": [
-              "sell",
-              "lost-found",
-              "for-free"
-            ]
+            "enum": ["sell", "lost-found", "for-free"]
           },
           "title": {
             "type": "string"
@@ -1505,10 +1496,7 @@
           },
           "sex": {
             "type": "string",
-            "enum": [
-              "male",
-              "female"
-            ]
+            "enum": ["male", "female"]
           },
           "location": {
             "type": "string"
@@ -1518,11 +1506,7 @@
           },
           "currency": {
             "type": "string",
-            "enum": [
-              "₴",
-              "$",
-              "€"
-            ]
+            "enum": ["₴", "$", "€"]
           },
           "comments": {
             "type": "string"
@@ -1557,11 +1541,7 @@
             },
             "category": {
               "type": "string",
-              "enum": [
-                "sell",
-                "lost-found",
-                "for-free"
-              ]
+              "enum": ["sell", "lost-found", "for-free"]
             },
             "title": {
               "type": "string"
@@ -1581,11 +1561,7 @@
             },
             "currency": {
               "type": "string",
-              "enum": [
-                "₴",
-                "$",
-                "€"
-              ]
+              "enum": ["₴", "$", "€"]
             },
             "imageUrl": {
               "type": "string"
@@ -1617,11 +1593,7 @@
           },
           "category": {
             "type": "string",
-            "enum": [
-              "sell",
-              "lost-found",
-              "for-free"
-            ]
+            "enum": ["sell", "lost-found", "for-free"]
           },
           "title": {
             "type": "string"
@@ -1638,10 +1610,7 @@
           },
           "sex": {
             "type": "string",
-            "enum": [
-              "male",
-              "female"
-            ]
+            "enum": ["male", "female"]
           },
           "location": {
             "type": "string"
@@ -1658,11 +1627,7 @@
           },
           "currency": {
             "type": "string",
-            "enum": [
-              "₴",
-              "$",
-              "€"
-            ]
+            "enum": ["₴", "$", "€"]
           },
           "comments": {
             "type": "string"

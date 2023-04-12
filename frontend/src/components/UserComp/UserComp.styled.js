@@ -7,12 +7,10 @@ import {
 } from 'components/baseStyles/CommonStyle.styled';
 
 export const UserSection = styled(Section)`
-  min-height: calc(100vh - 140px);
   padding-top: 60px;
   padding-bottom: 80px;
 
   @media screen and (min-width: 1280px) {
-    min-height: calc(100vh - 120px);
     padding-bottom: 40px;
   }
 `;

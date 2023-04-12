@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { FaEnvelope, FaGithub, FaLinkedin, FaTelegram } from 'react-icons/fa';
 import {
   Item,
@@ -18,8 +18,8 @@ export const TeamListItem = ({ developer }) => {
         <ImageMember
           src={imageUrl}
           alt={name}
-          width="100"
-          height="100"
+          width="150"
+          height="150"
           loading="lazy"
         />
       ) : (
@@ -48,4 +48,8 @@ export const TeamListItem = ({ developer }) => {
       </LinkWrapper>
     </Item>
   );
+};
+
+TeamListItem.propTypes = {
+  developer: PropTypes.object.isRequired,
 };
