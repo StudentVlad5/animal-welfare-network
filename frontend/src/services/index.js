@@ -2,7 +2,7 @@ import axios from "axios";
 import { refreshUser } from "redux/auth/operations";
 import { store } from "redux/store";
 
-axios.defaults.baseURL = `http://localhost:3030/api`;
+axios.defaults.baseURL = "https://animal-welfare-network.cyclic.app";
 
 export * from "./auth";
 
