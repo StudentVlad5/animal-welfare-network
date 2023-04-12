@@ -50,6 +50,7 @@ import { breedsValue } from 'redux/breeds/selectors';
 import { setImage } from 'utils/setimage';
 import { useSearchParams } from 'react-router-dom';
 import { addReload } from 'redux/reload/slice';
+import Select from 'react-select';
 
 export const AddNoticeModal = () => {
   const [formQueue, setFormQueue] = useState('first');
@@ -66,7 +67,6 @@ export const AddNoticeModal = () => {
 
   const onClickBackdrop = e => {
     setFieldPrice(false);
-
     setFormQueue('first');
     e.preventDefault();
     e.stopPropagation();
@@ -146,6 +146,19 @@ export const AddNoticeModal = () => {
     } else if (formQueue === 'third') {
       setFormQueue('second');
     }
+  }
+
+  function options(typeofpet) {
+    const options = [];
+    breeds
+      .filter(breed => breed.typeofpet === typeofpet)
+      .forEach(breed => {
+        const obj = {};
+        obj.value = breed['name-en'].toLowerCase();
+        obj.label = breed['name-en'];
+        options.push(obj);
+      });
+    return options;
   }
 
   return ReactDOM.createPortal(
@@ -358,12 +371,14 @@ export const AddNoticeModal = () => {
                           onFocus={e => {
                             e.target.setAttribute('type', 'date');
                           }}
-                          // onBlur={e => {
-                          //   e.target.setAttribute('type', 'text');
-                          // }}
+                          onBlur={e => {
+                            e.target.setAttribute('type', 'text');
+                          }}
                           type="text"
                           id="birthday"
                           name="birthday"
+                          min={'2000-01-01'}
+                          max={`${new Date().toISOString().split('T')[0]}`}
                           placeholder="Type day of birth"
                           value={values.birthday}
                         />
@@ -374,29 +389,19 @@ export const AddNoticeModal = () => {
                           ) : null}
                         </LabelItem>
 
-                        <FieldItem
-                          as="select"
+                        <Select
                           type="text"
-                          id="breed"
-                          name="breed"
-                          placeholder="Type breed"
                           defaultValue={values.breed}
-                        >
-                          {
-                            <OptionFirst first value="unselected">
-                              Select breed type
-                            </OptionFirst>
+                          options={options(values.typeofpet)}
+                          className="react-select-container"
+                          classNamePrefix="react-select"
+                          placeholder={
+                            values.typeofpet === ''
+                              ? 'Select type of pet firstly...'
+                              : 'Select breed...'
                           }
-                          {breeds
-                            .filter(
-                              breed => breed.typeofpet === values.typeofpet,
-                            )
-                            .map(breed => (
-                              <Option key={breed._id} value={breed['name-en']}>
-                                {breed['name-en']}
-                              </Option>
-                            ))}
-                        </FieldItem>
+                          onChange={e => setFieldValue('breed', e.value)}
+                        />
                       </FieldList>
                     </div>
                     <div
