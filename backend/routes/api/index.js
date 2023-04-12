@@ -7,7 +7,7 @@ const notices = require('./notices');
 const pets = require('./pets');
 const routerFriends = require('./friends');
 const routerNotices = require('./notices');
-
+const routerDevelopers = require('./developers');
 
 module.exports = {
   routerBreeds,
@@ -19,4 +19,5 @@ module.exports = {
   routerAuth,
   routerNotices,
   routerUser,
+  routerDevelopers,
 };

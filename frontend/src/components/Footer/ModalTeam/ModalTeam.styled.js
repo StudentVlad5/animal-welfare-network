@@ -14,7 +14,7 @@ const Modal = styled.div`
   display: block;
 
   max-width: calc(100vw - 40px);
-  padding: 16px 10px;
+  padding: 10px;
 
   background-color: ${baseColor.colors.white};
   border-radius: 20px;
@@ -22,17 +22,18 @@ const Modal = styled.div`
 
   @media screen and (min-width: 768px) {
     max-width: 600px;
-    padding: 32px 20px;
+    padding: 20px;
   }
 
   @media screen and (min-width: 1280px) {
     max-width: 1280px;
+    padding: 40px;
   }
 `;
 
 const CloseIconBtn = styled.button`
   position: absolute;
-  top: 12px;
+  top: 10px;
   right: 10px;
 
   display: flex;
@@ -48,8 +49,10 @@ const CloseIconBtn = styled.button`
   backdrop-filter: blur(2px);
   z-index: 50;
 
+  cursor: pointer;
+
   @media screen and (min-width: 768px) {
-    top: 32px;
+    top: 20px;
     right: 20px;
     width: 34px;
     height: 34px;

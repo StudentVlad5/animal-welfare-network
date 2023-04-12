@@ -43,7 +43,7 @@ const Copyright = styled.p`
   }
 `;
 
-const Developers = styled.div`
+const Team = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -81,7 +81,7 @@ export {
   FooterSection,
   FooterContainer,
   Copyright,
-  Developers,
+  Team,
   Description,
   TeamModalBtn,
 };
