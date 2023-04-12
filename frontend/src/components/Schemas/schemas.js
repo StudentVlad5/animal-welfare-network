@@ -92,7 +92,7 @@ const noticeSchemaSecond = Yup.object().shape({
     .required('Weight is Required!'),
   location: Yup.string()
     .matches(
-      /(([A-Za-zsd&.-]){1,}, ([A-Za-zsd&,.-]){1,})/,
+      /(([0-9A-Za-zsd&.-]){1,}, ([0-9A-Za-zsd&,.-]){1,})/,
       'Invalid format. Example: Brovary, Kyiv ...',
     )
     .required('Location is Required!'),
