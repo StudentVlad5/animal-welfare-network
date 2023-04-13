@@ -11,7 +11,7 @@
     "test:frontend": "cd frontend && echo \"Error: no test specified\" && exit 1",
     "build:frontend": "cd frontend && react-scripts build",
     "eject": "cd frontend && react-scripts eject",
-    "lint:js": "cd frontend && eslint ./frontend/src/**/*.{js,jsx}"
+    "lint:js": "cd frontend && eslint src/*.{js,jsx}"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/StudentVlad5/animal-welfare-network#readme",
   "dependencies": {
+    "@testing-library/react": "^14.0.0",
     "cross-env": "^7.0.3",
     "react-scripts": "^5.0.1"
   },
