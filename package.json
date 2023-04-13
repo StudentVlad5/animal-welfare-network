@@ -7,7 +7,7 @@
     "install:frontend": "npm install",
     "install:backend": "cd backend && npm install",
     "start:frontend": "cd frontend && cross-env GENERATE_SOURCEMAP=false react-scripts start",
-    "start:backend": "cd backend && node server.js",
+    "start": "cd backend && node server.js",
     "test": "cd frontend && react-scripts test --passWithNoTests",
     "build": "cd frontend && react-scripts build",
     "eject": "react-scripts eject",
