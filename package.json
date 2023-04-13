@@ -2,7 +2,7 @@
   "name": "animal-welfare-network",
   "version": "1.0.0",
   "description": "",
-  "main": "./backend/server.js",
+  "main": "server.js",
   "scripts": {
     "install:frontend": "npm install",
     "install:backend": "cd backend && npm install",
