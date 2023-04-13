@@ -1,15 +1,11 @@
-const path = require("path");
 require("dotenv").config();
 const app = require("./app");
 
 const mongoose = require("mongoose");
-//******** */
-const dataConvert = require("./helpers/convertNewsDate");
-//******** */
 
 const { PORT = 3000, DB_HOST, MONGO_URI } = process.env;
-// console.log('DB_HOST:\t', DB_HOST);
-// console.log('DB_TEST_HOST:\t', DB_TEST_HOST);
+console.log("DB_HOST:\t", DB_HOST);
+console.log("DB_TEST_HOST:\t", MONGO_URI);
 
 mongoose
   .connect(
