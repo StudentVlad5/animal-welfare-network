@@ -14,7 +14,7 @@
   },
   "servers": [
     {
-      "url": "https://petsapi.cyclic.app/api"
+      "url": "https://animal-welfare-network.onrender.com/api"
     },
     {
       "url": "http://localhost:3030/api"

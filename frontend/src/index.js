@@ -7,7 +7,7 @@ import { persistor, store } from 'redux/store';
 import { App } from 'components/App/App';
 import { GlobalStyle } from 'components/baseStyles/GlobalStyle';
 
-window.global = { BASE_URL: "https://animal-welfare-network.cyclic.app/api" };
+window.global = { BASE_URL: 'https://animal-welfare-network.onrender.com/api' };
 // window.global = { BASE_URL: "http://localhost:3030/api" };
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -15,7 +15,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="animal-welfare-network">
-          {/* <BrowserRouter basename="animal-welfare-network.cyclic.app/api"> */}
           <GlobalStyle />
           <App />
         </BrowserRouter>
