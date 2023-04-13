@@ -27,16 +27,15 @@ const HeroContainer = styled(Container)`
   justify-content: start;
   align-items: start;
 
-  @media screen and (max-width: 767.9px) {
-    background-image: url(${CatAndDog}), url(${waveMobile});
-    background-image: -webkit-image-set(url(${CatAndDog_w}) 1x),
-      -webkit-image-set(url(${waveMobile}) 1x);
+  background-image: url(${CatAndDog}), url(${waveMobile});
+  background-image: -webkit-image-set(url(${CatAndDog_w}) 1x),
+    -webkit-image-set(url(${waveMobile}) 1x);
 
-    background-repeat: no-repeat;
-    background-size: 320px auto, 620px auto;
-    background-position: bottom 0px left 70%, bottom -20px left 25%;
-  }
-  @media screen and (min-width: 768px) and (max-width: 1279.9px) {
+  background-repeat: no-repeat;
+  background-size: 320px auto, 620px auto;
+  background-position: bottom 0px left 70%, bottom -20px left 25%;
+
+  @media screen and (min-width: 768px) {
     background-image: url(${CatAndDog}), url(${waveTabFull});
     background-image: -webkit-image-set(url(${CatAndDog_w}) 1x),
       -webkit-image-set(url(${waveTabFull}) 1x);
