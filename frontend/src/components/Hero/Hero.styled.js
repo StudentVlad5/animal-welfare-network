@@ -104,7 +104,7 @@ const Ball = styled.img`
   @media screen and (min-width: 1280px) {
     display: block;
     position: absolute;
-    bottom: 200px;
+    bottom: 220px;
     left: 465px;
 
     animation: bounce-in-top 4s both;
@@ -116,7 +116,7 @@ const Ball = styled.img`
       animation-timing-function: ease-in;
     }
     40% {
-      transform: translateY(300px);
+      transform: translateY(200px);
       animation-timing-function: ease-out;
     }
     70% {
