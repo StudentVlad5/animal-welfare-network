@@ -11,7 +11,6 @@ import waveTab from 'images/register/BGFornTab.webp';
 
 const FormSection = styled.section`
   @media screen and (max-width: 767.9px) {
-    /* min-height: 540px; */
     background-image: url(${waveMobile});
     background-repeat: no-repeat;
     background-size: 620px auto;
@@ -19,7 +18,6 @@ const FormSection = styled.section`
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
-    /* min-height: 720px; */
     background: url(${waveTab});
     background-repeat: no-repeat;
     background-size: 1396px auto;
@@ -29,13 +27,15 @@ const FormSection = styled.section`
 
 const FormContainer = styled.div`
   height: 100%;
+  min-height: calc(100vh - 140px);
+
   @media screen and (min-width: 768px) {
     padding-top: 170px;
   }
   @media screen and (min-width: 1280px) {
     padding-top: 80px;
+    min-height: calc(100vh - 120px);
 
-    min-height: 700px;
     background: url(${BackgroundImage});
     background-repeat: no-repeat;
     background-size: 1280px auto;
