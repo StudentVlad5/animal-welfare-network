@@ -23,7 +23,6 @@
   "bugs": {
     "url": "https://github.com/StudentVlad5/animal-welfare-network/issues"
   },
-  "homepage": "https://studentvlad5.github.io/animal-welfare-network/",
   "dependencies": {
     "@testing-library/react": "^14.0.0",
     "cross-env": "^7.0.3",
