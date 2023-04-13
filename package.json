@@ -4,8 +4,8 @@
   "description": "",
   "main": "./backend/server.js",
   "scripts": {
-    "install:frontend": "npm install",
     "start": "cd backend && node server.js",
+    "install:frontend": "npm install",
     "start:dev": "cd backend && nodemon ./server",
     "install:backend": "cd backend && npm install",
     "start:frontend": "cd frontend && cross-env GENERATE_SOURCEMAP=false react-scripts start",
