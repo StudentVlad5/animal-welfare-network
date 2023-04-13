@@ -28,15 +28,17 @@ export const FormSection = styled.section`
 `;
 
 export const FormContainer = styled.div`
-  /* width: 100%; */
   height: 100%;
+  min-height: calc(100vh - 140px);
+
   @media (min-width: 767px) and (max-width: 1279px) {
     padding-top: 168px;
   }
 
   @media screen and (min-width: 1280px) {
     padding-top: 44px;
-    min-height: 700px;
+    min-height: calc(100vh - 120px);
+
     background: url(${BackgroundImage});
     background-repeat: no-repeat;
     background-size: 1280px auto;

@@ -103,8 +103,8 @@ export const NoticesCategoriesList = () => {
         }}
       >
         <ContainerStatus>
-          {listItem?.length === 0 ? (
-            <Title as="h3" size="20px">
+          {listItem?.length === 0 && !isLoading ? (
+            <Title as="h3" size="20px" sizeTablet="20px">
               Whoops! Can't find anything...
             </Title>
           ) : (
