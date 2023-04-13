@@ -9,13 +9,6 @@ import waveMobile from 'images/hero/waveMobileFull.webp';
 import waveTabFull from 'images/hero/waveTabFull.webp';
 import waveLeftDesk from 'images/hero/wave1-desk.webp';
 import waveRightDesk from 'images/hero/wave2Full.webp';
-import DogMobile from 'images/hero/dogMobile-X1.webp';
-import DogMobile2 from 'images/hero/dogMobile-X2.webp';
-import DogTab from 'images/hero/dogTab-X1.webp';
-import DogTab2 from 'images/hero/dogTab-X2.webp';
-import DogDesk from 'images/hero/dogDesk-X1.webp';
-import DogDesk2 from 'images/hero/dogDesk-X2 .webp';
-
 import CatAndDog from 'images/hero/dog-cat.png';
 import CatAndDog_w from 'images/hero/dog-cat.webp';
 
@@ -35,76 +28,26 @@ const HeroContainer = styled(Container)`
   align-items: start;
 
   @media screen and (max-width: 767.9px) {
-    /* min-height: 550px; */
-
-    /* background-image: url(${DogMobile}), url(${waveMobile});
-    background-image: -webkit-image-set(url(${DogMobile}) 1x),
-      -webkit-image-set(url(${waveMobile}) 1x);
-
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      background-image: url(${DogMobile2}), url(${waveMobile});
-      background-image: -webkit-image-set(url(${DogMobile2}) 2x),
-        -webkit-image-set(url(${waveMobile}) 2x);
-    } */
-
     background-image: url(${CatAndDog}), url(${waveMobile});
     background-image: -webkit-image-set(url(${CatAndDog_w}) 1x),
       -webkit-image-set(url(${waveMobile}) 1x);
 
     background-repeat: no-repeat;
-    /* background-size: 280px auto, 620px auto;
-    background-position: bottom 0px left 50%, bottom -20px left 25%; */
     background-size: 320px auto, 620px auto;
     background-position: bottom 0px left 70%, bottom -20px left 25%;
   }
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
-    /* min-height: 1193px; */
-
-    /* background-image: url(${DogTab}), url(${waveTabFull});
-    background-image: -webkit-image-set(url(${DogTab}) 1x),
-      -webkit-image-set(url(${waveTabFull}) 1x);
-
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      background-image: url(${DogTab2}), url(${waveTabFull});
-      background-image: -webkit-image-set(url(${DogTab2}) 2x),
-        -webkit-image-set(url(${waveTabFull}) 2x);
-    } */
-
     background-image: url(${CatAndDog}), url(${waveTabFull});
     background-image: -webkit-image-set(url(${CatAndDog_w}) 1x),
       -webkit-image-set(url(${waveTabFull}) 1x);
 
     background-repeat: no-repeat;
-    /* background-size: 636px auto, 1400px auto;
-    background-position: bottom 0px left 50%, bottom -150px left 30%; */
     background-size: 670px auto, 1400px auto;
     background-position: bottom 0px left 70%, bottom -150px left 30%;
   }
 
   @media screen and (min-width: 1280px) {
     min-height: calc(100vh - 120px);
-    /* min-height: 768px; */
-    /* overflow: hidden; */
-
-    background-image: url(${DogDesk}), url(${waveRightDesk}),
-      url(${waveLeftDesk});
-    /* background-image: -webkit-image-set(url(${DogDesk}) 1x),
-      -webkit-image-set(url(${waveRightDesk}) 1x),
-      -webkit-image-set(url(${waveLeftDesk}) 1x);
-
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      background-image: url(${DogDesk2}), url(${waveRightDesk}),
-        url(${waveLeftDesk});
-      background-image: -webkit-image-set(url(${DogDesk2}) 2x),
-        -webkit-image-set(url(${waveRightDesk}) 2x),
-        -webkit-image-set(url(${waveLeftDesk}) 2x);
-    } */
 
     background-image: url(${CatAndDog}), url(${waveRightDesk}),
       url(${waveLeftDesk});
@@ -162,7 +105,7 @@ const Ball = styled.img`
   @media screen and (min-width: 1280px) {
     display: block;
     position: absolute;
-    bottom: 220px;
+    bottom: 200px;
     left: 465px;
 
     animation: bounce-in-top 4s both;
