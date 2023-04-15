@@ -1,6 +1,5 @@
 import 'modern-normalize';
 import { createGlobalStyle } from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 
 export const GlobalStyle = createGlobalStyle`
 body {
@@ -10,8 +9,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: ${baseColor.colors.mainBg};
-  
+  background-color: ${props => props.theme.mainBg};
+  transition: .3s ease;
   &.scroll {
       max-height: 100vh;
       overflow: hidden;
@@ -88,9 +87,9 @@ img {
   letter-spacing: 0.04em;
   text-align: left;
 
-  color: ${baseColor.colors.mainBg};
+  color: ${props => props.theme.mainBg};
   background-color: rgba(245, 146, 86, 0.8);
-  box-shadow: 0px 0px 5px 0px ${baseColor.colors.inpText};
+  box-shadow: 0px 0px 5px 0px ${props => props.theme.inpText};
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
@@ -139,8 +138,8 @@ img {
 .paginate__page--active {
   pointer-events: none;
   border-radius: 50%;
-  border: 3px solid ${baseColor.colors.mainBg};
-  color: ${baseColor.colors.white};
+  border: 3px solid ${props => props.theme.mainBg};
+  color: ${props => props.theme.white};
 }
 
 
@@ -161,7 +160,7 @@ img {
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${baseColor.colors.inpText};
+  color: ${props => props.theme.inpText};
 
   &::placeholder {
     color: rgba(27, 27, 27, 0.6);
@@ -171,17 +170,17 @@ img {
 
   margin-bottom: 16px;
 
-  background: ${baseColor.colors.mainBg};
-  border: 1px solid ${baseColor.colors.orangeLight};
+  background: ${props => props.theme.mainBg};
+  border: 1px solid ${props => props.theme.orangeLight};
   border-radius: 40px;
   outline: none;
   transition: all 0.25s ease-in;
   &:hover {
-    outline: 2px solid ${baseColor.colors.orangeLight};
+    outline: 2px solid ${props => props.theme.orangeLight};
   }
 
   &:focus {
-    outline: 3px solid ${baseColor.colors.orangeLight};
+    outline: 3px solid ${props => props.theme.orangeLight};
   }
 
   &::-webkit-outer-spin-button,
@@ -217,7 +216,7 @@ margin: 0!important;
 padding: 0!important;
 margin: 0!important;
 
-color: ${baseColor.colors.inpText}!important;
+color: ${props => props.theme.inpText}!important;
 }
 
 .react-select__indicators {
@@ -232,11 +231,11 @@ margin: 0!important;
 }
 
 .react-select__option--is-focused {
-background-color: ${baseColor.colors.mainBg}!important;
+background-color: ${props => props.theme.mainBg}!important;
 }
 
 .react-select__option--is-selected {
-background-color: ${baseColor.colors.orangeLight}!important;
+background-color: ${props => props.theme.orangeLight}!important;
 }
 
 

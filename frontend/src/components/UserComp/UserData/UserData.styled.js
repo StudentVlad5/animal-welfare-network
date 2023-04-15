@@ -1,4 +1,4 @@
-import { baseColor } from 'components/baseStyles/Variables.styled';
+import { lightTheme } from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 import { ReactComponent as EditCamera } from '../../../images/svg/userData/camera.svg';
 
@@ -75,11 +75,11 @@ export const EditPhotoLabel = styled.label`
 
   &:hover,
   &:focus {
-    color: ${baseColor.colors.orange};
+    color: ${props => props.theme.orange};
   }
 
   :hover svg {
-    fill: ${baseColor.colors.orange};
+    fill: ${props => props.theme.orange};
   }
 
   @media screen and (min-width: 768px) {
@@ -89,12 +89,12 @@ export const EditPhotoLabel = styled.label`
 
 export const EditCameraStyle = styled(EditCamera)`
   margin-right: 4px;
-  fill: ${baseColor.colors.orangeLight};
+  fill: ${props => props.theme.orangeLight};
   transition: all 150ms linear;
 
   &:hover,
   :focus {
-    fill: ${baseColor.colors.orange};
+    fill: ${props => props.theme.orange};
   }
 `;
 
@@ -162,10 +162,12 @@ export const UserDataInput = styled.input`
   padding: 4px 18px;
   border-radius: 40px;
   background-color: ${p =>
-    p.disabled ? `${baseColor.colors.white}` : `${baseColor.colors.mainBg}`};
+    p.disabled
+      ? `${props => props.theme.white}`
+      : `${props => props.theme.mainBg}`};
   // border: ${p => (p.disabled ? '1px solid' : 'none')};
   border-color: ${p =>
-    p.disabled ? 'transparent' : `${baseColor.colors.inputColor}`};
+    p.disabled ? 'transparent' : `${lightTheme.inputColor}`};
 
   :focus {
     outline-color: transparent;
@@ -178,7 +180,7 @@ export const UserDataBtn = styled.button`
   padding: 0;
   width: 20px;
   height: 20px;
-  background: ${baseColor.colors.mainBg};
+  background: ${props => props.theme.mainBg};
   border-radius: 50%;
   border-color: transparent;
   margin-left: 9px;

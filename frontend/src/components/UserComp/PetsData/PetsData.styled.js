@@ -1,4 +1,3 @@
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 
 export const AddPetWrapper = styled.div`
@@ -14,7 +13,7 @@ export const AddPetDiv = styled.div`
 `;
 
 export const PetDataTitle = styled.h2`
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
   font-family: ${p => p.theme.fonts.body};
   font-size: 28px;
   font-weight: 500;
@@ -28,7 +27,7 @@ export const PetDataTitle = styled.h2`
 `;
 
 export const PetDataWrapper = styled.div`
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   padding-left: 20px;
@@ -38,7 +37,7 @@ export const PetDataWrapper = styled.div`
 `;
 
 export const PetDataInfo = styled.h2`
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
   font-family: 'Manrope, sans-serif';
   font-size: 18px;
   font-weight: 500;

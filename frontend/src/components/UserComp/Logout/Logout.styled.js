@@ -1,11 +1,10 @@
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 import { ReactComponent as LogoutIcon } from '../../../images/svg/logout/logout.svg';
 
 export const LogoutBtn = styled.button`
   display: flex;
   align-items: center;
-  background: ${baseColor.colors.white};
+  background: ${props => props.theme.white};
   border: none;
   cursor: pointer;
   margin-left: auto;
@@ -13,7 +12,7 @@ export const LogoutBtn = styled.button`
   transform: all 150ms linear;
   transition: all 0.25s ease-in;
   :hover svg {
-    stroke: ${baseColor.colors.orange};
+    stroke: ${props => props.theme.orange};
   }
 
   @media screen and (min-width: 768px) {
@@ -30,12 +29,12 @@ export const LogoutBtn = styled.button`
 `;
 
 export const LogoutIconStyled = styled(LogoutIcon)`
-  stroke: ${baseColor.colors.orangeLight};
+  stroke: ${props => props.theme.orangeLight};
   transition: all 150ms linear;
 
   &:hover,
   :focus {
-    fill: ${baseColor.colors.orange};
+    fill: ${props => props.theme.orange};
   }
 `;
 
@@ -45,13 +44,13 @@ export const LogoutBtnText = styled.span`
   font-weight: 500;
   line-height: 1.37;
   letter-spacing: 0.04em;
-  color: ${baseColor.colors.logout};
+  color: ${props => props.theme.logout};
   margin-left: 8px;
   transition: all 150ms linear;
 
   &:hover,
   :focus {
-    color: ${baseColor.colors.orange};
+    color: ${props => props.theme.orange};
   }
 `;
 

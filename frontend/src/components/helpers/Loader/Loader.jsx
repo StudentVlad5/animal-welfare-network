@@ -1,11 +1,11 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
-import { baseColor } from 'components/baseStyles/Variables.styled';
+import { lightTheme } from 'components/baseStyles/Variables.styled';
 
 const onLoading = () => {
   return Loading.circle('Loading...', {
     backgroundColor: 'transparent',
     svgSize: '160px',
-    svgColor: `${baseColor.colors.orangeLight}`,
+    svgColor: `${props => props.theme.orangeLight}`,
     messageFontSize: '20px',
   });
 };

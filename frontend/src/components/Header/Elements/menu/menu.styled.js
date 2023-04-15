@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 
 import { ReactComponent as iconMenu } from 'images/svg/icon_menu.svg';
 
@@ -23,7 +22,7 @@ const MobileMenuSection = styled.div`
   transition: transform 250ms ease-in-out;
   display: flex;
   flex-direction: column;
-  background-color: ${baseColor.colors.mainBg};
+  background-color: ${props => props.theme.mainBg};
 
   &.is-expanded {
     transform: translateX(0);

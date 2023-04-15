@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
 import schemas from 'components/Schemas/schemas';
-import { baseColor } from 'components/baseStyles/Variables.styled';
+import { lightTheme } from 'components/baseStyles/Variables.styled';
 
 import {
   FormSection,
@@ -88,9 +88,9 @@ export const LoginForm = () => {
                   onBlur={formik.handleBlur}
                 />
                 {!formik.values.email ? null : !formik.errors.email ? (
-                  <IconValid color={baseColor.colors.success} />
+                  <IconValid color={lightTheme.success} />
                 ) : (
-                  <IconInValid color={baseColor.colors.error} />
+                  <IconInValid color={lightTheme.error} />
                 )}
                 {formik.errors.email || formik.touched.email ? (
                   <ErrorBox>{formik.errors.email}</ErrorBox>

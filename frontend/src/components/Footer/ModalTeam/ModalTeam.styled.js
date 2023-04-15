@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
+import { lightTheme } from 'components/baseStyles/Variables.styled';
 
 const BackDrop = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ const Modal = styled.div`
   max-width: calc(100vw - 40px);
   padding: 10px;
 
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.11) 7px 4px 14px;
 
@@ -45,7 +45,7 @@ const CloseIconBtn = styled.button`
 
   border-radius: 50%;
   border-color: transparent;
-  background-color: ${baseColor.colors.mainBg};
+  background-color: ${props => props.theme.mainBg};
   backdrop-filter: blur(2px);
   z-index: 50;
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
+import { lightTheme } from 'components/baseStyles/Variables.styled';
 
 const Item = styled.li`
   position: relative;
@@ -27,7 +27,7 @@ const ImageMember = styled.img`
 
   margin-bottom: 10px;
   border-radius: 10px;
-  background-color: ${baseColor.colors.mainBg};
+  background-color: ${props => props.theme.mainBg};
   object-fit: cover;
 
   @media screen and (min-width: 768px) {
@@ -42,7 +42,7 @@ const InfoMember = styled.p`
   font-weight: 700;
   line-height: 1.15;
   text-align: center;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 768px) {
     margin-bottom: 12px;
@@ -57,11 +57,11 @@ const LinkWrapper = styled.div`
 `;
 
 const LinkMember = styled.a`
-  color: ${baseColor.colors.inpitColor};
+  color: ${props => props.theme.inpitColor};
 
   &:hover,
   &:focus {
-    color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
   }
 `;
 

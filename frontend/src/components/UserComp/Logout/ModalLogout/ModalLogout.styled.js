@@ -1,11 +1,10 @@
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 import { ReactComponent as Close } from '../../../../images/svg/logout/close.svg';
 
 export const ModalWrapper = styled.div`
   position: absolute;
   /* width: 90%; */
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   padding-left: 40px;
   padding-right: 40px;
   padding-top: 40px;
@@ -37,7 +36,7 @@ export const ModalCloseBtn = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0;
-  background: ${baseColor.colors.mainBg};
+  background: ${props => props.theme.mainBg};
   border-color: transparent;
   border-radius: 50%;
   width: 34px;
@@ -46,7 +45,7 @@ export const ModalCloseBtn = styled.button`
   transform: all 150ms linear;
   transition: all 0.25s ease-in;
   :hover svg {
-    fill: ${baseColor.colors.orange};
+    fill: ${props => props.theme.orange};
   }
 
   @media screen and (min-width: 768px) {
@@ -59,12 +58,12 @@ export const ModalCloseBtn = styled.button`
 export const CloseIcon = styled(Close)`
   width: 16px;
   height: 16px;
-  fill: ${baseColor.colors.black};
+  fill: ${props => props.theme.black};
   transform: all 150ms linear;
   transition: all 0.25s ease-in;
   &:hover,
   :focus {
-    fill: ${baseColor.colors.orange};
+    fill: ${props => props.theme.orange};
   }
 
   @media screen and (min-width: 768px) {
@@ -72,7 +71,7 @@ export const CloseIcon = styled(Close)`
 `;
 
 export const ModalDescription = styled.p`
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
   font-size: 16px;
   font-weight: 500;
   line-height: 1.37;
@@ -105,17 +104,17 @@ export const ModalButton = styled.button`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.37;
-  color: ${baseColor.colors.blackText};
-  background: ${baseColor.colors.white};
+  color: ${props => props.theme.blackText};
+  background: ${props => props.theme.white};
   border: 2px solid;
-  border-color: ${baseColor.colors.orangeLight};
+  border-color: ${props => props.theme.orangeLight};
   cursor: pointer;
   transform: all 150ms linear;
   transition: all 0.25s ease-in;
   &:hover,
   :focus {
-    background: ${baseColor.colors.orangeLight};
-    color: ${baseColor.colors.white};
+    background: ${props => props.theme.orangeLight};
+    color: ${props => props.theme.white};
   }
 
   @media screen and (min-width: 768px) {

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import {
   Container,
   Section,
@@ -35,7 +34,7 @@ export const UserDataWrapper = styled.div`
 
 export const UserDataContainer = styled.div`
   position: relative;
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   margin-bottom: 40px;
@@ -91,7 +90,7 @@ export const MyPetContainer = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    border-bottom: 2px solid ${baseColor.colors.orangeLight};
+    border-bottom: 2px solid ${props => props.theme.orangeLight};
   }
 `;
 
@@ -103,7 +102,7 @@ export const UserTitle = styled(Title)`
   font-weight: 500;
   line-height: 1.37;
   letter-spacing: 0.04em;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
   outline: none;
 
   @media (min-width: 768px) {

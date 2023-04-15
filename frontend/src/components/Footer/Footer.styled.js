@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
+import { lightTheme } from 'components/baseStyles/Variables.styled';
 
 const FooterSection = styled.footer`
   width: 100vw;
@@ -31,7 +31,7 @@ const Copyright = styled.p`
   font-weight: 700;
   font-size: 12px;
   line-height: 1.375;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 320px) {
     margin-bottom: 0;
@@ -54,7 +54,7 @@ const Description = styled.p`
   font-weight: 700;
   font-size: 12px;
   line-height: 1.375;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
@@ -73,7 +73,7 @@ const TeamModalBtn = styled.button`
   &:hover,
   &:focus > svg {
     transform: scale(1.2);
-    color: ${baseColor.colors.orange};
+    color: ${props => props.theme.orange};
   }
 `;
 

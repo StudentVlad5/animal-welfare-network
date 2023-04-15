@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const Modal = styled.div`
   position: absolute;
@@ -13,8 +12,8 @@ const Modal = styled.div`
   max-width: 145px;
   padding: 12px;
 
-  background-color: ${baseColor.colors.white};
-  border: 1px solid ${baseColor.colors.orangeLight};
+  background-color: ${props => props.theme.white};
+  border: 1px solid ${props => props.theme.orangeLight};
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   z-index: 20;
@@ -38,7 +37,7 @@ const Day = styled.th`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.333;
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
   cursor: pointer;
 `;
 
@@ -49,8 +48,8 @@ const Time = styled.td`
   line-height: 1.333;
   color: ${props =>
     props.accent
-      ? `${baseColor.colors.orangeLight}`
-      : `${baseColor.colors.black}`};
+      ? `${props => props.theme.orangeLight}`
+      : `${props => props.theme.black}`};
   cursor: pointer;
 `;
 

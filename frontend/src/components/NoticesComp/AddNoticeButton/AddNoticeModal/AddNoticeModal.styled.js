@@ -1,4 +1,4 @@
-import { baseColor } from 'components/baseStyles/Variables.styled';
+import { lightTheme } from 'components/baseStyles/Variables.styled';
 import { Field, Form } from 'formik';
 import { ReactComponent as icon } from 'images/svg/icon_close.svg';
 import { ReactComponent as iconMale } from 'images/svg/icon_male.svg';
@@ -21,7 +21,7 @@ export const ModalAddNoticeStyled = styled.div`
   border-radius: 20px;
   padding: 40px 20px 40px 20px;
 
-  background: ${baseColor.colors.white};
+  background: ${props => props.theme.white};
 
   @media screen and (min-width: 768px) {
     width: 600px;
@@ -75,7 +75,7 @@ export const Title = styled.h1`
   font-size: 24px;
   line-height: 1.375;
   text-align: center;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 
   margin-bottom: 20px;
 
@@ -93,7 +93,7 @@ export const Paragraph = styled.p`
   line-height: 1.375;
   text-align: center;
   letter-spacing: -0.01em;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 
   margin-bottom: 20px;
 
@@ -122,12 +122,12 @@ export const ButtonClose = styled.button`
   width: 34px;
   height: 34px;
 
-  background-color: ${baseColor.colors.mainBg};
+  background-color: ${props => props.theme.mainBg};
   transition: all 0.25s ease-in;
 
   &:hover,
   &:focus {
-    outline: 2px solid ${baseColor.colors.orangeLight};
+    outline: 2px solid ${props => props.theme.orangeLight};
     border: none;
   }
 
@@ -170,18 +170,18 @@ export const ButtonFirst = styled.button`
   font-size: 16px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: ${baseColor.colors.white};
+  color: ${props => props.theme.white};
 
   padding: 10px auto 10px auto;
   height: 40px;
   width: 100%;
 
-  background: ${baseColor.colors.orangeLight};
+  background: ${props => props.theme.orangeLight};
   border-radius: 40px;
   transition: all 0.25s ease-in;
   &:hover,
   &:focus {
-    outline: 2px solid ${baseColor.colors.orangeLight};
+    outline: 2px solid ${props => props.theme.orangeLight};
   }
 
   &:disabled {
@@ -216,19 +216,19 @@ export const ButtonSecond = styled.button`
   font-size: 16px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 
   padding: 10px auto 10px auto;
   height: 40px;
   width: 100%;
 
-  background: ${baseColor.colors.white};
-  border: 2px solid ${baseColor.colors.orangeLight};
+  background: ${props => props.theme.white};
+  border: 2px solid ${props => props.theme.orangeLight};
   border-radius: 40px;
   transition: all 0.25s ease-in;
   &:hover,
   &:focus {
-    outline: 2px solid ${baseColor.colors.orangeLight};
+    outline: 2px solid ${props => props.theme.orangeLight};
   }
   @media screen and (min-width: 768px) {
     height: 44px;
@@ -259,7 +259,7 @@ export const FieldsRadio = styled.div`
   font-size: 14px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: ${baseColor.colors.inpText};
+  color: ${props => props.theme.inpText};
 
   & p {
     position: relative;
@@ -275,7 +275,7 @@ export const FieldsRadio = styled.div`
     letter-spacing: 0.04em;
     text-align: left;
 
-    color: ${baseColor.colors.inpText};
+    color: ${props => props.theme.inpText};
   }
 
   @media screen and (min-width: 768px) {
@@ -297,12 +297,12 @@ export const LabelRadio = styled.label`
   justify-content: center;
 
   border-radius: 40px;
-  border: 2px solid ${baseColor.colors.orangeLight};
+  border: 2px solid ${props => props.theme.orangeLight};
   margin-bottom: 12px;
   height: 35px;
   padding: 8px 28px 8px 28px;
 
-  background: ${baseColor.colors.white};
+  background: ${props => props.theme.white};
   transition: all 0.25s ease-in;
   &:not(:last-child) {
     margin-right: 8px;
@@ -310,7 +310,7 @@ export const LabelRadio = styled.label`
 
   &:hover,
   &:focus {
-    outline: 2px solid ${baseColor.colors.orangeLight};
+    outline: 2px solid ${props => props.theme.orangeLight};
   }
 
   @media screen and (min-width: 768px) {
@@ -328,8 +328,8 @@ export const FieldRadio = styled(Field)`
   height: 0px;
 
   &:checked + ${LabelRadio} {
-    color: ${baseColor.colors.white};
-    background: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background: ${props => props.theme.orangeLight};
   }
 `;
 
@@ -341,7 +341,7 @@ export const FieldItem = styled(Field)`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${baseColor.colors.inpText};
+  color: ${props => props.theme.inpText};
 
   &::placeholder {
     color: rgba(27, 27, 27, 0.6);
@@ -352,17 +352,17 @@ export const FieldItem = styled(Field)`
 
   margin-bottom: 16px;
 
-  background: ${baseColor.colors.mainBg};
-  border: 1px solid ${baseColor.colors.orangeLight};
+  background: ${props => props.theme.mainBg};
+  border: 1px solid ${props => props.theme.orangeLight};
   border-radius: 40px;
   outline: none;
   transition: all 0.25s ease-in;
   &:hover {
-    outline: 2px solid ${baseColor.colors.orangeLight};
+    outline: 2px solid ${props => props.theme.orangeLight};
   }
 
   &:focus {
-    outline: 3px solid ${baseColor.colors.orangeLight};
+    outline: 3px solid ${props => props.theme.orangeLight};
   }
 
   &::-webkit-outer-spin-button,
@@ -390,7 +390,7 @@ export const LabelItem = styled.label`
   letter-spacing: 0.04em;
   text-align: left;
 
-  color: ${baseColor.colors.inpText};
+  color: ${props => props.theme.inpText};
 
   & span {
     display: block;
@@ -432,7 +432,7 @@ export const FieldItemFile = styled(Field)`
   width: 78px;
 
   margin-bottom: 28px;
-  background-color: ${baseColor.colors.mainBg};
+  background-color: ${props => props.theme.mainBg};
   border-radius: 20px;
   outline: none;
 
@@ -445,7 +445,7 @@ export const FieldItemFile = styled(Field)`
 
   color: transparent;
   &:hover {
-    outline: 3px solid ${baseColor.colors.orangeLight};
+    outline: 3px solid ${props => props.theme.orangeLight};
   }
   &:focus {
     outline: none;
@@ -505,7 +505,7 @@ export const LabelRadioSex = styled.label`
   transition: all 0.25s ease-in;
   &:hover,
   &:focus {
-    color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
   }
 
   @media screen and (min-width: 768px) {
@@ -522,7 +522,7 @@ export const FieldRadioSex = styled(Field)`
 
   &:checked + ${LabelRadioSex} {
     & span {
-      color: ${baseColor.colors.orangeLight};
+      color: ${props => props.theme.orangeLight};
     }
   }
 `;
@@ -542,7 +542,7 @@ export const FieldsRadioSex = styled.div`
   font-size: 14px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: ${baseColor.colors.inpText};
+  color: ${props => props.theme.inpText};
 
   & p {
     position: relative;
@@ -557,7 +557,7 @@ export const FieldsRadioSex = styled.div`
     letter-spacing: 0.04em;
     text-align: left;
 
-    color: ${baseColor.colors.inpText};
+    color: ${props => props.theme.inpText};
   }
 
   @media screen and (min-width: 768px) {
@@ -585,7 +585,7 @@ export const LabelItemTextArea = styled.label`
   letter-spacing: 0.04em;
   text-align: left;
 
-  color: ${baseColor.colors.inpText};
+  color: ${props => props.theme.inpText};
 
   & span {
     display: block;
@@ -621,7 +621,7 @@ export const FieldItemTextArea = styled(Field)`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${baseColor.colors.inpText};
+  color: ${props => props.theme.inpText};
 
   &::placeholder {
     color: rgba(27, 27, 27, 0.6);
@@ -637,17 +637,17 @@ export const FieldItemTextArea = styled(Field)`
     margin-bottom: 40px;
   }
 
-  background: ${baseColor.colors.mainBg};
-  border: 1px solid ${baseColor.colors.orangeLight};
+  background: ${props => props.theme.mainBg};
+  border: 1px solid ${props => props.theme.orangeLight};
   border-radius: 40px;
   outline: none;
   transition: all 0.25s ease-in;
   &:hover {
-    outline: 2px solid ${baseColor.colors.orangeLight};
+    outline: 2px solid ${props => props.theme.orangeLight};
   }
 
   &:focus {
-    outline: 3px solid ${baseColor.colors.orangeLight};
+    outline: 3px solid ${props => props.theme.orangeLight};
     height: 137px;
     border-radius: 20px;
   }
@@ -682,7 +682,7 @@ export const Error = styled.span`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${baseColor.colors.orangeLight};
+  color: ${props => props.theme.orangeLight};
 
   @media screen and (min-width: 768px) {
     font-size: 12px;
@@ -701,23 +701,23 @@ export const Li = styled.li`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${baseColor.colors.inpText};
+  color: ${props => props.theme.inpText};
 
   padding: 10px 15px 10px 15px;
 
   margin-bottom: 2px;
 
-  background: ${baseColor.colors.mainBg};
-  border: 1px solid ${baseColor.colors.orangeLight};
+  background: ${props => props.theme.mainBg};
+  border: 1px solid ${props => props.theme.orangeLight};
   border-radius: 40px;
   outline: none;
   transition: all 0.25s ease-in;
   &:hover {
-    outline: 2px solid ${baseColor.colors.orangeLight};
+    outline: 2px solid ${props => props.theme.orangeLight};
   }
 
   &:focus {
-    outline: 3px solid ${baseColor.colors.orangeLight};
+    outline: 3px solid ${props => props.theme.orangeLight};
   }
 
   @media screen and (min-width: 768px) {
@@ -734,9 +734,9 @@ export const Option = styled.option`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${baseColor.colors.inpText};
+  color: ${props => props.theme.inpText};
 
-  background: ${baseColor.colors.mainBg};
+  background: ${props => props.theme.mainBg};
 
   @media screen and (min-width: 768px) {
     font-size: 12px;
@@ -753,7 +753,7 @@ export const OptionFirst = styled.option`
   text-align: left;
   color: rgba(27, 27, 27, 0.6);
 
-  background: ${baseColor.colors.mainBg};
+  background: ${props => props.theme.mainBg};
 
   @media screen and (min-width: 768px) {
     font-size: 12px;
@@ -794,7 +794,7 @@ export const LabelRadioType = styled.label`
   justify-content: center;
   flex-direction: column;
 
-  fill: ${baseColor.colors.blackText};
+  fill: ${props => props.theme.blackText};
 
   &:not(:last-child) {
     margin-right: 40px;
@@ -802,8 +802,8 @@ export const LabelRadioType = styled.label`
   transition: all 0.25s ease-in;
   &:hover,
   &:focus {
-    color: ${baseColor.colors.orangeLight};
-    fill: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
+    fill: ${props => props.theme.orangeLight};
   }
 
   @media screen and (min-width: 768px) {
@@ -819,9 +819,9 @@ export const FieldRadioType = styled(Field)`
   height: 0px;
 
   &:checked + ${LabelRadioType} {
-    fill: ${baseColor.colors.orangeLight};
+    fill: ${props => props.theme.orangeLight};
     & span {
-      color: ${baseColor.colors.orangeLight};
+      color: ${props => props.theme.orangeLight};
     }
   }
 `;
@@ -841,7 +841,7 @@ export const FieldsRadioType = styled.div`
   font-size: 14px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: ${baseColor.colors.inpText};
+  color: ${props => props.theme.inpText};
 
   & p {
     position: relative;
@@ -856,7 +856,7 @@ export const FieldsRadioType = styled.div`
     letter-spacing: 0.04em;
     text-align: left;
 
-    color: ${baseColor.colors.inpText};
+    color: ${props => props.theme.inpText};
   }
 
   @media screen and (min-width: 768px) {

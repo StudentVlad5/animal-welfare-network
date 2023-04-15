@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-import { baseColor } from 'components/baseStyles/Variables.styled';
+import { lightTheme } from 'components/baseStyles/Variables.styled';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
 
 import BackgroundImage from 'images/register/bgForm.webp';
@@ -66,7 +66,7 @@ export const FormRegister = styled(Form)`
     width: 608px;
     margin: 0 auto;
     padding: 60px 0 40px 0;
-    background-color: ${baseColor.colors.white};
+    background-color: ${props => props.theme.white};
     border-radius: 40px;
     -webkit-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
     -moz-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
@@ -133,13 +133,13 @@ export const LocationList = styled.ul`
 
   top: 74%;
   left: 1.1%;
-  background-color: ${baseColor.colors.mainBg};
+  background-color: ${props => props.theme.mainBg};
   z-index: 100;
   border: 1px solid;
   border-top-color: transparent;
-  border-left-color: ${baseColor.colors.error};
-  border-right-color: ${baseColor.colors.error};
-  border-bottom-color: ${baseColor.colors.error};
+  border-left-color: ${props => props.theme.error};
+  border-right-color: ${props => props.theme.error};
+  border-bottom-color: ${props => props.theme.error};
 
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
@@ -158,15 +158,15 @@ export const LocationItem = styled.li`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${baseColor.colors.inpText};
-  background: ${baseColor.colors.mainBg};
+  color: ${props => props.theme.inpText};
+  background: ${props => props.theme.mainBg};
   transition: all 0.25s ease-in;
   &:hover {
-    color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
   }
 
   &:focus {
-    color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
   }
 
   @media screen and (min-width: 768px) {
@@ -180,13 +180,13 @@ export const Input = styled(Field)`
   font-size: 14px;
   line-height: 1.3;
   padding: 11px 0 12px 14px;
-  background: ${baseColor.colors.mainBg};
+  background: ${props => props.theme.mainBg};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   transition: all 0.25s ease-in;
   &:focus,
   &:hover {
-    border-color: ${baseColor.colors.orange};
+    border-color: ${props => props.theme.orange};
     outline: none;
   }
   @media screen and (min-width: 768px) {
@@ -201,14 +201,14 @@ export const Input = styled(Field)`
 export const PhoneInput = styled.div`
   width: 280px;
   padding: 11px 0 12px 14px;
-  background: ${baseColor.colors.mainBg};
+  background: ${props => props.theme.mainBg};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   margin-bottom: 16px;
   transition: all 0.25s ease-in;
   &:focus,
   &:hover {
-    border-color: ${baseColor.colors.orange};
+    border-color: ${props => props.theme.orange};
     outline: none;
   }
   @media screen and (min-width: 768px) {
@@ -224,8 +224,8 @@ export const Button = styled.button`
   width: 100%;
   padding: 11px 0 12px 14px;
   text-align: center;
-  color: ${baseColor.colors.white};
-  background: ${baseColor.colors.orangeLight};
+  color: ${props => props.theme.white};
+  background: ${props => props.theme.orangeLight};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   margin: 8px 0 40px 0;
@@ -251,7 +251,7 @@ export const Button = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
-    background: ${baseColor.colors.orangeLight};
+    background: ${props => props.theme.orangeLight};
     transition: all 450ms;
   }
   :disabled {
@@ -274,8 +274,8 @@ export const BackButton = styled.button`
   padding: 11px 0 12px 14px;
   text-align: center;
   color: #000;
-  background: ${baseColor.colors.white};
-  border: 1px solid ${baseColor.colors.orangeLight};
+  background: ${props => props.theme.white};
+  border: 1px solid ${props => props.theme.orangeLight};
   border-radius: 40px;
   margin: -24px 0 40px 0;
   cursor: pointer;
@@ -299,7 +299,7 @@ export const BackButton = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
-    background: ${baseColor.colors.orangeLight};
+    background: ${props => props.theme.orangeLight};
     transition: all 450ms;
   }
   @media screen and (min-width: 768px) {
@@ -331,12 +331,12 @@ export const Div = styled.div`
 `;
 
 export const StyledLink = styled(Link)`
-  color: ${baseColor.colors.blue};
+  color: ${props => props.theme.blue};
   margin-left: 4px;
   transition: all 0.25s ease-in;
   :hover,
   :focus {
-    color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
   }
 `;
 export const BoxText = styled.div`

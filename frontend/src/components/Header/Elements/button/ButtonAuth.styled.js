@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const AuthLink = styled(NavLink)`
   padding: 8px 28px;
@@ -13,13 +12,13 @@ const AuthLink = styled(NavLink)`
   text-decoration: none;
   color: ${props =>
     props.$active
-      ? `${baseColor.colors.white}`
-      : `${baseColor.colors.blackText}`};
+      ? `${props => props.theme.white}`
+      : `${props => props.theme.blackText}`};
   background-color: ${props =>
     props.$active
-      ? `${baseColor.colors.orangeLight}`
-      : `${baseColor.colors.white}`};
-  border: 2px solid ${baseColor.colors.orangeLight};
+      ? `${props => props.theme.orangeLight}`
+      : `${props => props.theme.white}`};
+  border: 2px solid ${props => props.theme.orangeLight};
 
   font-family: 'Manrope';
   font-style: normal;
@@ -31,13 +30,13 @@ const AuthLink = styled(NavLink)`
 
   :hover,
   :focus {
-    background-color: ${baseColor.colors.orangeLight};
-    color: ${baseColor.colors.white};
+    background-color: ${props => props.theme.orangeLight};
+    color: ${props => props.theme.white};
   }
 
   &.active {
-    background-color: ${baseColor.colors.orangeLight};
-    color: ${baseColor.colors.white};
+    background-color: ${props => props.theme.orangeLight};
+    color: ${props => props.theme.white};
   }
 
   @media screen and (min-width: 768px) and (max-width: 1280px) {

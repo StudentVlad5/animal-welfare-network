@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const BackDrop = styled.div`
   display: flex;
@@ -16,7 +15,7 @@ const NoticesContainerItem = styled.div`
   display: block;
   width: 280px;
   padding: 17px 20px 43px 20px;
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
@@ -69,7 +68,7 @@ const ContainerInfo = styled.div`
   position: relative;
   display: block;
   width: 100%;
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
@@ -99,7 +98,7 @@ const NoticeItemTitle = styled.h2`
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
   @media screen and (min-width: 768px) {
     font-size: 28px;
     line-height: 38px;
@@ -123,18 +122,18 @@ const BtnContact = styled.button`
   width: 240px;
   height: 40px;
   border-radius: 40px;
-  border: 2px solid ${baseColor.colors.orangeLight};
-  background-color: ${baseColor.colors.white};
-  color: ${baseColor.colors.blackText};
+  border: 2px solid ${props => props.theme.orangeLight};
+  background-color: ${props => props.theme.white};
+  color: ${props => props.theme.blackText};
   margin: 40px 0 12px;
   transition: all 0.25s ease-in;
   &:hover {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
   }
   &:focus {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
     outline: none;
   }
   @media screen and (min-width: 768px) {
@@ -151,30 +150,30 @@ const BtnAddFavorits = styled.button`
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  border: 2px solid ${baseColor.colors.orangeLight};
-  background-color: ${baseColor.colors.white};
-  color: ${baseColor.colors.blackText};
+  border: 2px solid ${props => props.theme.orangeLight};
+  background-color: ${props => props.theme.white};
+  color: ${props => props.theme.blackText};
 
   & > svg {
     transition: all 0.3s ease-in;
-    color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
   }
 
   transition: all 0.25s ease-in;
   &:hover {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
     & > svg {
       transition: all 0.3s ease-in;
-      color: ${baseColor.colors.white};
+      color: ${props => props.theme.white};
     }
   }
   &:focus {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
     outline: none;
     & > svg {
-      color: ${baseColor.colors.white};
+      color: ${props => props.theme.white};
     }
   }
 
@@ -214,13 +213,13 @@ const TdTable2 = styled.td`
   }
 `;
 const LinkStyle = styled.div`
-  color: ${baseColor.colors.orangeLight};
+  color: ${props => props.theme.orangeLight};
   text-decoration: none;
   transition: all 0.25s ease-in;
 
   &:hover,
   &:focus {
-    color: ${baseColor.colors.success};
+    color: ${props => props.theme.success};
     transform: scale(1.03);
   }
 `;

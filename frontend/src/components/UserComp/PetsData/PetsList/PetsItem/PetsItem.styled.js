@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
+import { lightTheme } from 'components/baseStyles/Variables.styled';
 import { ReactComponent as Delete } from '../../../../../images/svg/petsitem/delete.svg';
 
 export const PetsItemWrapper = styled.li`
   position: relative;
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   border-radius: 20px;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   padding-top: 16px;
@@ -57,7 +57,7 @@ export const PetsItemDeleteBtn = styled.button`
   align-items: center;
   justify-content: center;
   padding: 0px;
-  background: ${baseColor.colors.white};
+  background: ${props => props.theme.white};
   border-color: transparent;
   border-radius: 50%;
   width: 20px;
@@ -66,7 +66,7 @@ export const PetsItemDeleteBtn = styled.button`
   transition: all 150ms linear;
 
   :hover svg {
-    fill: ${baseColor.colors.orange};
+    fill: ${props => props.theme.orange};
   }
 
   @media screen and (min-width: 768px) {
@@ -74,14 +74,14 @@ export const PetsItemDeleteBtn = styled.button`
     right: 20px;
     width: 44px;
     height: 44px;
-    background: ${baseColor.colors.mainBg};
+    background: ${props => props.theme.mainBg};
   }
 `;
 
 export const DeleteIcon = styled(Delete)`
   width: 20px;
   height: 20px;
-  fill: ${baseColor.colors.logout};
+  fill: ${props => props.theme.logout};
   transition: all 150ms linear;
 
   @media screen and (min-width: 768px) {
@@ -91,12 +91,12 @@ export const DeleteIcon = styled(Delete)`
   transition: all 0.25s ease-in;
   &:hover,
   :focus {
-    fill: ${baseColor.colors.orange};
+    fill: ${props => props.theme.orange};
   }
 `;
 
 export const PetsItemDesc = styled.p`
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
@@ -121,6 +121,6 @@ export const PetsItemDesc = styled.p`
 `;
 
 export const PetsItemSpan = styled.span`
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
   font-weight: 500;
 `;

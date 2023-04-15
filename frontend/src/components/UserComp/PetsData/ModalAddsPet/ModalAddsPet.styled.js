@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import { Field, Form } from 'formik';
 
 export const FormDiv = styled.div`
@@ -34,7 +33,7 @@ const UserPetContainerItem = styled(Form)`
   position: relative;
   display: block;
   padding: 17px 20px 43px 20px;
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
@@ -56,7 +55,7 @@ const ContainerCloseModal = styled.div`
   border-radius: 50%;
   width: 34px;
   height: 34px;
-  background: ${baseColor.colors.mainBg};
+  background: ${props => props.theme.mainBg};
   backdrop-filter: blur(2px);
   margin-bottom: 6px;
   z-index: 99;
@@ -80,7 +79,7 @@ const PetsItemTitle = styled.h2`
   font-size: 24px;
   line-height: 33px;
   text-align: center;
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
 
   @media screen and (min-width: 768px) {
     font-size: 36px;
@@ -121,7 +120,7 @@ const InfoListText = styled.p`
   font-family: 'Manrope';
   margin-bottom: 8px;
 
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
@@ -179,7 +178,7 @@ export const FieldItemFile = styled.input`
   width: 208px;
 
   margin-bottom: 28px;
-  background-color: ${baseColor.colors.mainBg};
+  background-color: ${props => props.theme.mainBg};
   border-radius: 20px;
   outline: none;
 
@@ -192,7 +191,7 @@ export const FieldItemFile = styled.input`
 
   color: transparent;
   &:hover {
-    outline: 3px solid ${baseColor.colors.orangeLight};
+    outline: 3px solid ${props => props.theme.orangeLight};
   }
   &:focus {
     outline: none;
@@ -221,7 +220,7 @@ export const ImgTitle = styled.p`
   text-align: center;
   letter-spacing: -0.01em;
   margin-bottom: 20px;
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
 
   @media screen and (min-width: 768px) {
     font-size: 20px;
@@ -230,8 +229,8 @@ export const ImgTitle = styled.p`
 `;
 
 const InfoListTextArea = styled.textarea`
-  background: ${baseColor.colors.mainBg};
-  border: 1px solid ${baseColor.colors.orangeLight};
+  background: ${props => props.theme.mainBg};
+  border: 1px solid ${props => props.theme.orangeLight};
   border-radius: 20px;
   padding: 12px 0 0 14px;
   width: 240px;
@@ -262,7 +261,7 @@ const ButtonBox = styled.div`
 `;
 
 const ButtonFirst = styled.button`
-  background: ${baseColor.colors.orangeLight};
+  background: ${props => props.theme.orangeLight};
   border-radius: 40px;
   border-color: transparent;
   margin-bottom: 12px;
@@ -283,8 +282,8 @@ const ButtonFirst = styled.button`
 `;
 
 const ButtonSecond = styled.button`
-  background: ${baseColor.colors.white};
-  border: 2px solid ${baseColor.colors.orangeLight};
+  background: ${props => props.theme.white};
+  border: 2px solid ${props => props.theme.orangeLight};
   border-radius: 40px;
   transform: scale(1);
   transition: transform 0.5s ease 0s;
@@ -307,7 +306,7 @@ const ButtonText = styled.p`
   line-height: 22px;
   letter-spacing: 0.04em;
   padding: 9px 101px;
-  color: ${baseColor.colors.white};
+  color: ${props => props.theme.white};
 
   @media screen and (min-width: 768px) {
     padding: 8.5px 66.5px;
@@ -318,7 +317,7 @@ const ButtonText = styled.p`
 
 const ButtonText2 = styled.p`
   padding: 9px 92px;
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
 
   @media screen and (min-width: 768px) {
     padding: 8.5px 55px;
@@ -329,7 +328,7 @@ const ButtonText2 = styled.p`
 
 const ButtonBackText = styled.p`
   padding: 9px 101px;
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
 
   @media screen and (min-width: 768px) {
     padding: 8.5px 55px;
@@ -346,9 +345,9 @@ const Option = styled.option`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${baseColor.colors.inpText};
+  color: ${props => props.theme.inpText};
 
-  background: ${baseColor.colors.mainBg};
+  background: ${props => props.theme.mainBg};
 
   @media screen and (min-width: 768px) {
     font-size: 12px;
@@ -365,7 +364,7 @@ const OptionFirst = styled.option`
   text-align: left;
   color: rgba(27, 27, 27, 0.6);
 
-  background: ${baseColor.colors.mainBg};
+  background: ${props => props.theme.mainBg};
 
   @media screen and (min-width: 768px) {
     font-size: 12px;

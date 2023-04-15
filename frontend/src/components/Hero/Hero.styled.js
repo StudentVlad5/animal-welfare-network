@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
+
 import {
   Container,
   Section,
@@ -135,7 +135,7 @@ const HeroTitle = styled(Title)`
   margin-bottom: 0;
   text-align: left;
   font-size: 32px;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 768px) {
     margin-top: 88px;

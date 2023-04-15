@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
+import { lightTheme } from 'components/baseStyles/Variables.styled';
 
 const Section = styled.section`
   margin: ${props => props.margin || '0 auto'};
@@ -52,7 +52,7 @@ const Title = styled.h1`
   font-size: ${props => props.size || '24px'};
   font-weight: 700;
   line-height: 1.375;
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
 
   @media screen and (min-width: 768px) {
     margin: ${props => props.marginTablet || '0 0 40px 0'};

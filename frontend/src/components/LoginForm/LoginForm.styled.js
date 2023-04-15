@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Form } from 'formik';
 import { Link } from 'react-router-dom';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
 
 import BackgroundImage from 'images/register/bgForm.webp';
@@ -98,7 +97,7 @@ const FormLogin = styled(Form)`
     height: 492px;
     margin: 0 auto;
     padding: 60px 0 40px 0;
-    background-color: ${baseColor.colors.white};
+    background-color: ${props => props.theme.white};
     border-radius: 40px;
     -webkit-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
     -moz-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
@@ -132,14 +131,14 @@ const Input = styled.input`
   font-size: 14px;
   line-height: 1.3;
   padding: 11px 0 12px 14px;
-  background: ${baseColor.colors.mainBg};
+  background: ${props => props.theme.mainBg};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   // margin-bottom: 16px;
   transition: all 0.25s ease-in;
   &:focus,
   &:hover {
-    border-color: ${baseColor.colors.orange};
+    border-color: ${props => props.theme.orange};
     outline: none;
   }
   @media screen and (min-width: 768px) {
@@ -155,8 +154,8 @@ const Button = styled.button`
   width: 100%;
   padding: 11px 0 12px 14px;
   text-align: center;
-  color: ${baseColor.colors.white};
-  background: ${baseColor.colors.orangeLight};
+  color: ${props => props.theme.white};
+  background: ${props => props.theme.orangeLight};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   margin: 8px 0 40px 0;
@@ -182,7 +181,7 @@ const Button = styled.button`
     left: -100%;
     width: 100%;
     height: 100%;
-    background: ${baseColor.colors.orangeLight};
+    background: ${props => props.theme.orangeLight};
     transition: all 450ms;
   }
   :disabled {
@@ -222,12 +221,12 @@ const Div = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: ${baseColor.colors.blue};
+  color: ${props => props.theme.blue};
   margin-left: 4px;
   transition: all 0.25s ease-in;
   :hover,
   :focus {
-    color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
   }
 `;
 const BoxText = styled.div`
