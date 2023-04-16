@@ -1,4 +1,3 @@
-import { lightTheme } from 'components/baseStyles/Variables.styled';
 import { Field, Form } from 'formik';
 import { ReactComponent as icon } from 'images/svg/icon_close.svg';
 import { ReactComponent as iconMale } from 'images/svg/icon_male.svg';
