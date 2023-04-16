@@ -6,7 +6,7 @@ const AuthLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  color: ${props => props.theme.black};
   height: 35px;
   border-radius: 40px;
   text-decoration: none;

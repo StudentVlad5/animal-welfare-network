@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Form, Field } from 'formik';
 import { Link } from 'react-router-dom';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-import { lightTheme } from 'components/baseStyles/Variables.styled';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
 
 import BackgroundImage from 'images/register/bgForm.webp';

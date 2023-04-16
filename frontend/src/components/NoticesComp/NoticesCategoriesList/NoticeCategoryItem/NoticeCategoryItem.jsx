@@ -62,7 +62,7 @@ export const NoticesCategoriesItem = ({
           id: e.currentTarget.dataset.id,
         }),
       );
-      openModalWindow(e, null);
+      setTimeout(() => openModalWindow(e, null), 500);
     }
   };
 

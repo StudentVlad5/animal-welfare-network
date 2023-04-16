@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { lightTheme } from 'components/baseStyles/Variables.styled';
 import { ReactComponent as icon } from 'images/svg/icon_plus.svg';
 
 export const ButtonStyled = styled.button`

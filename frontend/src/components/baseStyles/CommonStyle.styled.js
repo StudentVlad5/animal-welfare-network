@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { lightTheme } from 'components/baseStyles/Variables.styled';
 
 const Section = styled.section`
   margin: ${props => props.margin || '0 auto'};

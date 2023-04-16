@@ -1,6 +1,4 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
-import { lightTheme } from 'components/baseStyles/Variables.styled';
-
 const onLoading = () => {
   return Loading.circle('Loading...', {
     backgroundColor: 'transparent',

@@ -55,13 +55,17 @@ const ContainerStatus = styled.div`
   align-items: center;
   width: 158px;
   height: 28px;
-  background: #fdf7f2;
+  background: ${props => props.theme.orangeLight};
+  color: ${props => props.theme.blackText};
   border-radius: 0 20px 20px 0;
   backdrop-filter: blur(50px);
   font-weight: 500;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 16px;
   letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 10px;
+  border: 3px solid ${props => props.theme.orangeLight};
 `;
 
 const ContainerInfo = styled.div`
@@ -190,6 +194,7 @@ const TdTable = styled.td`
   line-height: 19px;
   overflow: hidden;
   min-width: 115px;
+  color: ${props => props.theme.black};
 
   @media screen and (min-width: 768px) {
     min-width: 115px;
@@ -205,6 +210,7 @@ const TdTable2 = styled.td`
   line-height: 19px;
   overflow: hidden;
   min-width: 115px;
+  color: ${props => props.theme.black};
 
   @media screen and (min-width: 768px) {
     min-width: 115px;
@@ -228,6 +234,7 @@ const Table = styled.table`
   display: flex;
   overflow: hidden;
   margin-top: 26px;
+  color: ${props => props.theme.black};
   @media screen and (min-width: 768px) {
     margin-top: 20px;
   }
@@ -236,11 +243,13 @@ const Comments = styled.span`
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
+  color: ${props => props.theme.black};
 `;
 const MainComments = styled.span`
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
+  color: ${props => props.theme.black};
 `;
 const ContainerComments = styled.div`
   margin-top: 28px;

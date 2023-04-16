@@ -53,9 +53,12 @@ const ContainerStatus = styled.div`
   border-radius: 0 20px 20px 0;
   backdrop-filter: blur(50px);
   font-weight: 500;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 16px;
   letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: ${props => props.theme.black};
+  background-color: ${props => props.theme.orangeLight};
 `;
 const BtnForFavorite = styled.button`
   position: absolute;

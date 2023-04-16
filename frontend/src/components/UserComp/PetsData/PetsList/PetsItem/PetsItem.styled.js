@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { lightTheme } from 'components/baseStyles/Variables.styled';
 import { ReactComponent as Delete } from '../../../../../images/svg/petsitem/delete.svg';
 
 export const PetsItemWrapper = styled.li`
