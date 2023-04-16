@@ -1,4 +1,3 @@
-import { lightTheme } from 'components/baseStyles/Variables.styled';
 import { Field, Form } from 'formik';
 import { ReactComponent as iconSearch } from 'images/svg/icon_search.svg';
 
