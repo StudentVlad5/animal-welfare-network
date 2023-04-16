@@ -63,11 +63,12 @@ const Description = styled.p`
 const TeamModalBtn = styled.button`
   padding: 0;
   text-decoration: underline;
+  color: ${props => props.theme.blackText};
   border: none;
-  color: inherit;
   background-color: transparent;
   cursor: pointer;
   transition: all 0.2s ease-in;
+  animation: 1.5s ease-in-out 0s infinite normal both running heartbeat;
 
   &:hover,
   &:focus > svg {

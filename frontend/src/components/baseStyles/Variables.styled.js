@@ -14,6 +14,9 @@ export const lightTheme = {
   //add fro UserPage
   inpitColor: '#fac9ab',
   logout: '#707070',
+  shadowcolor: 'rgba(0, 0, 0, 0.11)',
+  colorOfForm: '#FFFFFF',
+  colorOfInput: '#FDF7F2',
 };
 
 export const darkTheme = {
@@ -32,4 +35,7 @@ export const darkTheme = {
   //add fro UserPage
   inpitColor: '#fac9ab',
   logout: '#707070',
+  shadowcolor: 'rgba(225, 225, 225, 0.31)',
+  colorOfForm: '#1c1c1c',
+  colorOfInput: '#FFFFFF',
 };

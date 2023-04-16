@@ -61,15 +61,16 @@ export const FormRegister = styled(Form)`
   align-items: center;
   padding-top: 44px;
   margin: 0 auto;
+  background-color: ${props => props.theme.colorOfForm};
+  border-radius: 40px;
+  -webkit-box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowcolor};
+  -moz-box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowcolor};
+  box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowcolor};
+
   @media screen and (min-width: 768px) {
     width: 608px;
     margin: 0 auto;
     padding: 60px 0 40px 0;
-    background-color: ${props => props.theme.white};
-    border-radius: 40px;
-    -webkit-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
-    -moz-box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
-    box-shadow: 7px 4px 14px 0px rgba(0, 0, 0, 0.11);
   }
   @media screen and (min-width: 1280px) {
     width: 618px;
@@ -179,7 +180,8 @@ export const Input = styled(Field)`
   font-size: 14px;
   line-height: 1.3;
   padding: 11px 0 12px 14px;
-  background: ${props => props.theme.mainBg};
+  background-color: ${props => props.theme.colorOfInput};
+  color: ${props => props.theme.inpText};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   transition: all 0.25s ease-in;
@@ -200,7 +202,8 @@ export const Input = styled(Field)`
 export const PhoneInput = styled.div`
   width: 280px;
   padding: 11px 0 12px 14px;
-  background: ${props => props.theme.mainBg};
+  background: ${props => props.theme.colorOfInput};
+  color: ${props => props.theme.inpText};
   border: 1px solid rgba(245, 146, 86, 0.5);
   border-radius: 40px;
   margin-bottom: 16px;
@@ -273,7 +276,7 @@ export const BackButton = styled.button`
   padding: 11px 0 12px 14px;
   text-align: center;
   color: #000;
-  background: ${props => props.theme.white};
+  background: ${props => props.theme.orangeLight};
   border: 1px solid ${props => props.theme.orangeLight};
   border-radius: 40px;
   margin: -24px 0 40px 0;

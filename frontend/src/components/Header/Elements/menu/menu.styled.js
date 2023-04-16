@@ -5,6 +5,7 @@ import { ReactComponent as iconMenu } from 'images/svg/icon_menu.svg';
 const Burger = styled(iconMenu)`
   margin-left: 20px;
   cursor: pointer;
+  fill: ${props => props.theme.black};
 
   @media screen and (min-width: 1280px) {
     display: none;
