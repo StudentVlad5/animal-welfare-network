@@ -16,8 +16,9 @@ const Modal = styled.div`
   padding: 10px;
 
   background-color: ${props => props.theme.white};
+  border: 1px solid ${props => props.theme.colorBorder};
   border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.11) 7px 4px 14px;
+  box-shadow: ${props => props.theme.shadowcolor} 7px 4px 14px;
 
   @media screen and (min-width: 768px) {
     max-width: 600px;
@@ -42,9 +43,10 @@ const CloseIconBtn = styled.button`
   width: 30px;
   height: 30px;
 
+  color: ${props => props.theme.black};
+  background-color: ${props => props.theme.white};
+  border-color: ${props => props.theme.black};
   border-radius: 50%;
-  border-color: transparent;
-  background-color: ${props => props.theme.mainBg};
   backdrop-filter: blur(2px);
   z-index: 50;
 

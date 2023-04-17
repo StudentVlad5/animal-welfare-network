@@ -11,10 +11,10 @@ export const lightTheme = {
   error: '#E2001A',
   success: '#3CBC81',
   textUserNav: '#181C27',
-  //add fro UserPage
   inpitColor: '#fac9ab',
   logout: '#707070',
   shadowcolor: 'rgba(0, 0, 0, 0.11)',
+  colorBorder: 'transparent',
   colorOfForm: '#FFFFFF',
   colorOfInput: '#FDF7F2',
 };
@@ -32,10 +32,10 @@ export const darkTheme = {
   error: '#E2001A',
   success: '#3CBC81',
   textUserNav: '#b8860b',
-  //add fro UserPage
   inpitColor: '#fac9ab',
   logout: '#707070',
   shadowcolor: 'rgba(225, 225, 225, 0.31)',
+  colorBorder: '#000000',
   colorOfForm: '#1c1c1c',
   colorOfInput: '#FFFFFF',
 };
