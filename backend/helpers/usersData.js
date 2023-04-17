@@ -10,6 +10,7 @@ const userMainField = [
   'avatar',
   'favorites',
   'groupAcces',
+  'role',
   // 'authToken',
 ];
 
@@ -25,6 +26,7 @@ const userFullField = [
   'favorites',
   'groupAcces',
   'authToken',
+  'role',
 ];
 // isActivates, // groupsResurces, authToken,
 
@@ -44,6 +46,7 @@ const requiredSignUpFields = [
   'phone',
   'password',
 ];
+
 module.exports = {
   userMainField,
   userFullField,

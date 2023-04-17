@@ -34,7 +34,7 @@ const signup = async (req, res, next) => {
   );
   if (isFoundUser) {
     throw new DuplicateEmailError(
-      `Email: ${userDataCreate.email} alredy register`
+      `Email: ${userDataCreate.email} already register`
     );
   }
   // userDataCreate.authToken = authToken;

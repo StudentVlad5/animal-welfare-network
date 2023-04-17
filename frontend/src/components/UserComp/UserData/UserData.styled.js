@@ -67,7 +67,7 @@ export const EditPhotoLabel = styled.label`
   align-items: center;
   cursor: pointer;
   padding-right: 24px;
-  font-family: 'Manrope, sans-serif';
+  font-family: Manrope, sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.8;
@@ -138,7 +138,7 @@ export const UserDataFormItemWrapper = styled.div`
 
 export const UserDataLabel = styled.label`
   display: block;
-  font-family: 'Manrope, sans-serif';
+  font-family: Manrope, sans-serif;
   font-size: 68px;
   font-weight: 500;
   line-height: 1.33;

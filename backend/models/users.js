@@ -12,6 +12,7 @@ const userValidationSchema = Joi.object({
   phone: Joi.string().length(13).required(),
   birtday: Joi.date(),
   avatar: Joi.string().uri(),
+  role: Joi.string().valid('user', 'admin'),
 });
 
 const userUpdateValidationSchema = Joi.object({
@@ -22,6 +23,7 @@ const userUpdateValidationSchema = Joi.object({
   phone: Joi.string().length(13),
   birthday: Joi.date(),
   avatar: Joi.string().uri(),
+  role: Joi.string().valid('user', 'admin'),
 });
 const UsersSchema = new mongoose.Schema(
   {
@@ -71,6 +73,7 @@ const UsersSchema = new mongoose.Schema(
     //   ref: 'users',
     // },
     favorites: { type: Array, default: [] },
+    role: {type: String, enum: ['user', 'admin'], default: 'user'},
   },
   {
     versionKey: false,

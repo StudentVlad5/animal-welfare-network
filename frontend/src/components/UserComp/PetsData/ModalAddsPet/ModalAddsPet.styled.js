@@ -6,7 +6,7 @@ export const FormDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Manrope';
+  font-family: Manrope;
   font-style: normal;
   width: 100%;
   height: 100%;
