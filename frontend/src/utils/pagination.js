@@ -4,7 +4,12 @@ export function Pagination({ totalPage, changePage, page }) {
   const handlePageClick = event => {
     changePage(event.selected + 1);
   };
-
+  const upToTop = event => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   return (
     <ReactPaginate
       breakLabel="..."
@@ -15,7 +20,7 @@ export function Pagination({ totalPage, changePage, page }) {
       previousLabel="<"
       renderOnZeroPageCount={null}
       // initialPage={page - 1}
-      // forcePage={page}
+      forcePage={page - 1}
       containerClassName="paginate__container"
       pageClassName="paginate__page"
       pageLinkClassName="paginate__link"
@@ -29,6 +34,7 @@ export function Pagination({ totalPage, changePage, page }) {
       activeLinkClassName="paginate__link--active"
       breakClassName="paginate__page--break"
       breakLinkClassName="paginate__link--break"
+      onClick={upToTop}
     />
   );
 }
