@@ -63,9 +63,9 @@ export const FieldStyled = styled(Field)`
   align-items: center;
   letter-spacing: 0.04em;
   color: ${props => props.theme.inpText};
-
+  background-color: ${props => props.theme.colorOfInput};
   padding-right: 5px;
-margin-right: 10px;
+  margin-right: 10px;
 
 &:focus {
 
@@ -118,7 +118,7 @@ export const LabelStyled = styled.label`
 
   padding: 10px;
 
-  background: ${props => props.theme.white};
+  background-color: ${props => props.theme.colorOfInput};
 
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;

@@ -32,6 +32,8 @@ export const UserDataItemLabel = styled.label`
   font-weight: 500;
   line-height: 1.33;
   letter-spacing: 0.04em;
+  background-color: ${props => props.theme.white};
+  color: ${props => props.theme.black};
 
   @media screen and (min-width: 768px) {
     font-size: 18px;
@@ -49,18 +51,19 @@ export const UserDataItemInput = styled.input`
   height: 24px;
   padding: 4px 18px;
   border-radius: 40px;
-  background-color: ${p =>
-    p.disabled
-      ? `${props => props.theme.white}`
-      : `${props => props.theme.mainBg}`};
+  background-color: ${props => props.theme.white};
+  color: ${props => props.theme.black};
   border: ${p => (p.disabled ? '1px solid' : 'none')};
   border-color: ${p =>
-    p.disabled ? 'transparent' : `${lightTheme.inputColor}`};
+    p.disabled ? 'transparent' : `${props => props.theme.colorOfInput}`};
 
   :focus {
     outline-color: ${props => props.theme.inpitColor};
   }
-
+  *:disabled {
+    background-color: ${props => props.theme.black};
+    color: ${props => props.theme.colorOfInput};
+  }
   @media screen and (min-width: 768px) {
     font-size: 18px;
     line-height: 1.8;
