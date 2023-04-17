@@ -38,7 +38,7 @@ export const PetDataWrapper = styled.div`
 
 export const PetDataInfo = styled.h2`
   color: ${props => props.theme.black};
-  font-family: 'Manrope, sans-serif';
+  font-family: 'Manrope', sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.37;
