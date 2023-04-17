@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const ContainerCategoryBtn = styled.ul`
   display: flex;
@@ -25,9 +24,9 @@ const BtnCategory = styled(NavLink)`
   height: 38px;
   cursor: pointer;
   border-radius: 40px;
-  border: 2px solid ${baseColor.colors.orangeLight};
-  background-color: ${baseColor.colors.white};
-  color: ${baseColor.colors.blackText};
+  border: 2px solid ${props => props.theme.orangeLight};
+  background-color: ${props => props.theme.white};
+  color: ${props => props.theme.blackText};
   padding: 0 28px;
   font-weight: 500;
   font-size: 14px;
@@ -35,8 +34,8 @@ const BtnCategory = styled(NavLink)`
   letter-spacing: 0.04em;
 
   &.active {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
   }
 `;
 const StyledLi = styled.li`
@@ -44,14 +43,14 @@ const StyledLi = styled.li`
   align-items: center;
   justify-content: center;
   border-radius: 40px;
-  /* border: 2px solid ${baseColor.colors.orangeLight};
-  background-color: ${baseColor.colors.white}; */
+  /* border: 2px solid ${props => props.theme.orangeLight};
+  background-color: ${props => props.theme.white}; */
   margin: 6px 12px 6px 0;
   transition: all 0.25s ease-in;
   &:hover,
   &:focus {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
     cursor: pointer;
     transform: scale(1.15);
   }

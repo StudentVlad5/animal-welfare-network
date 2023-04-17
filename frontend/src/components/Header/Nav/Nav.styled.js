@@ -1,4 +1,3 @@
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -65,14 +64,14 @@ const NavItem = styled(NavLink)`
     }
   }
 
-  color: ${baseColor.colors.textUserNav};
+  color: ${props => props.theme.textUserNav};
   transition: all 0.25s ease-in;
   :focus,
   :hover {
-    color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
   }
   &.active {
-    color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
     text-decoration: underline;
   }
 `;

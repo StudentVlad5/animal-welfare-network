@@ -127,6 +127,30 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                         <TdTable2>{data.breed}</TdTable2>
                       </tr>
                       <tr>
+                        <TdTable>Size:</TdTable>
+                        <TdTable2>{data.size}</TdTable2>
+                      </tr>
+                      <tr>
+                        <TdTable>Height:</TdTable>
+                        <TdTable2>{data.height}</TdTable2>
+                      </tr>
+                      <tr>
+                        <TdTable>Weight:</TdTable>
+                        <TdTable2>{data.weight}</TdTable2>
+                      </tr>
+                      <tr>
+                        <TdTable>Passport:</TdTable>
+                        <TdTable2>{data.passport}</TdTable2>
+                      </tr>
+                      <tr>
+                        <TdTable>Sterilization:</TdTable>
+                        <TdTable2>{data.sterilization}</TdTable2>
+                      </tr>
+                      <tr>
+                        <TdTable>Lives:</TdTable>
+                        <TdTable2>{data.lives}</TdTable2>
+                      </tr>
+                      <tr>
                         <TdTable>Location:</TdTable>
                         <TdTable2>{data.location}</TdTable2>
                       </tr>

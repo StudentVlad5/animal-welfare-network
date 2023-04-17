@@ -1,4 +1,3 @@
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import { Field, Form } from 'formik';
 import { ReactComponent as iconSearch } from 'images/svg/icon_search.svg';
 
@@ -11,7 +10,7 @@ export const Title = styled.h1`
   font-size: 24px;
   line-height: 1.375;
   text-align: center;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 
   margin-bottom: 28px;
 
@@ -63,26 +62,26 @@ export const FieldStyled = styled(Field)`
   line-height: 1.375;
   align-items: center;
   letter-spacing: 0.04em;
-  color: ${baseColor.colors.inpText};
-
+  color: ${props => props.theme.inpText};
+  background-color: ${props => props.theme.colorOfInput};
   padding-right: 5px;
-margin-right: 10px;
+  margin-right: 10px;
 
 &:focus {
 
-border-right: 2px solid ${baseColor.colors.inpText};
+border-right: 2px solid ${props => props.theme.inpText};
 }
 
 &:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px ${baseColor.colors.white} inset;
+    -webkit-box-shadow: 0 0 0px 1000px ${props => props.theme.white} inset;
 }
 
 &:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 50px ${baseColor.colors.white} inset;
-    -webkit-text-fill-color: ${baseColor.colors.inpText};
+    -webkit-box-shadow: 0 0 0 50px ${props => props.theme.white} inset;
+    -webkit-text-fill-color: ${props => props.theme.inpText};
 }
 
-&:-webkit-box-shadow: 0 0 0px 1000px ${baseColor.colors.white} inset;
+&:-webkit-box-shadow: 0 0 0px 1000px ${props => props.theme.white} inset;
 
   &::-webkit-search-cancel-button,
   &::-webkit-search-decoration,
@@ -119,7 +118,7 @@ export const LabelStyled = styled.label`
 
   padding: 10px;
 
-  background: ${baseColor.colors.white};
+  background-color: ${props => props.theme.colorOfInput};
 
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;

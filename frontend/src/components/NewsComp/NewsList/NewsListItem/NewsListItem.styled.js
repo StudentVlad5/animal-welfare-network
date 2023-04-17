@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const Item = styled.li`
   display: flex;
@@ -37,7 +36,7 @@ const Title = styled.h2`
   font-weight: 700;
   font-size: 24px;
   line-height: 33px;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 `;
 
 const Text = styled.span`
@@ -45,7 +44,7 @@ const Text = styled.span`
   font-weight: 400;
   font-size: 16px;
   line-height: 22px;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 `;
 
 const DateWrapper = styled.div`
@@ -64,7 +63,7 @@ const Dates = styled.span`
   font-weight: 400;
   font-size: 16px;
   line-height: 1.375;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 `;
 
 const Link = styled.a`
@@ -73,30 +72,30 @@ const Link = styled.a`
   font-weight: 500;
   font-size: 16px;
   line-height: 1.375;
-  color: ${baseColor.colors.orangeLight};
+  color: ${props => props.theme.orangeLight};
   cursor: pointer;
   transition: all 0.25s ease-in;
   &:hover,
   &:focus {
-    color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
     text-decoration: underline;
   }
 `;
 const Ractangle = styled.span`
-    border-radius: 40px;
+  border-radius: 40px;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
+
+  @media screen and (min-width: 768px) {
     width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
+    height: 8px;
+  }
 
-    @media screen and (min-width: 768px) {
-      width: 100%;
-      height: 8px;
-    }
-
-    @media screen and (min-width: 1280px) {
-      width: 100%;
-      height: 8px;
-    }
+  @media screen and (min-width: 1280px) {
+    width: 100%;
+    height: 8px;
+  }
 `;
 
 export { Item, Title, TextWrapper, DateWrapper, Text, Link, Ractangle, Dates };

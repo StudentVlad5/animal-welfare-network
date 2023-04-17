@@ -4,8 +4,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import { persistor, store } from 'redux/store';
-import { App } from 'components/App/App';
-import { GlobalStyle } from 'components/baseStyles/GlobalStyle';
+import { ThemeStatus } from 'components/ThemeStatus/ThemeStatus';
 
 window.global = { BASE_URL: 'https://animal-welfare-network.onrender.com/api' };
 // window.global = { BASE_URL: "http://localhost:3030/api" };
@@ -15,8 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="animal-welfare-network">
-          <GlobalStyle />
-          <App />
+          <ThemeStatus />
         </BrowserRouter>
       </PersistGate>
     </Provider>

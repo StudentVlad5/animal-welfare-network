@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import { ReactComponent as icon } from 'images/svg/icon_plus.svg';
 
 export const ButtonStyled = styled.button`
@@ -18,7 +17,7 @@ export const ButtonStyled = styled.button`
   height: 80px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 
-  background: ${baseColor.colors.orangeLight};
+  background: ${props => props.theme.orangeLight};
   border-radius: 50%;
 
   font-family: 'Manrope', sans-serif;
@@ -37,21 +36,21 @@ export const ButtonStyled = styled.button`
 
   cursor: pointer;
 
-  color: ${baseColor.colors.white};
+  color: ${props => props.theme.white};
   transition: all 500ms ease;
 
-  stroke: ${baseColor.colors.white};
-  fill: ${baseColor.colors.white};
+  stroke: ${props => props.theme.white};
+  fill: ${props => props.theme.white};
   transition: all 0.25s ease-in;
 
   &:hover {
     transition: all 500ms ease;
 
-    color: ${baseColor.colors.orangeLight};
-    background: ${baseColor.colors.mainBg};
-    border: 2px solid ${baseColor.colors.orangeLight};
-    fill: ${baseColor.colors.orangeLight};
-    stroke: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
+    background: ${props => props.theme.mainBg};
+    border: 2px solid ${props => props.theme.orangeLight};
+    fill: ${props => props.theme.orangeLight};
+    stroke: ${props => props.theme.orangeLight};
   }
 
   &:focus {
@@ -72,17 +71,17 @@ export const ButtonStyled = styled.button`
     border-radius: 0;
     box-shadow: none;
 
-    color: ${baseColor.colors.inpText};
+    color: ${props => props.theme.inpText};
     transition: all 0.25s ease-in;
     &:hover {
-      color: ${baseColor.colors.inpText};
+      color: ${props => props.theme.inpText};
       background: transparent;
       border: none;
-      fill: ${baseColor.colors.orangeLight};
-      stroke: ${baseColor.colors.orangeLight};
+      fill: ${props => props.theme.orangeLight};
+      stroke: ${props => props.theme.orangeLight};
       & div {
-        background: ${baseColor.colors.white};
-        outline: 2px solid ${baseColor.colors.orangeLight};
+        background: ${props => props.theme.white};
+        outline: 2px solid ${props => props.theme.orangeLight};
       }
     }
 
@@ -96,13 +95,13 @@ export const ButtonStyled = styled.button`
       margin-left: 12px;
       border-radius: 50%;
 
-      background-color: ${baseColor.colors.orangeLight};
+      background-color: ${props => props.theme.orangeLight};
       transition: all 0.25s ease-in;
       &:hover {
-        fill: ${baseColor.colors.orangeLight};
-        stroke: ${baseColor.colors.orangeLight};
-        background: ${baseColor.colors.white};
-        outline: 2px solid ${baseColor.colors.orangeLight};
+        fill: ${props => props.theme.orangeLight};
+        stroke: ${props => props.theme.orangeLight};
+        background: ${props => props.theme.white};
+        outline: 2px solid ${props => props.theme.orangeLight};
       }
     }
   }

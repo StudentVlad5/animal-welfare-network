@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import { ReactComponent as iconUser } from 'images/svg/icon_user.svg';
 
 const MobileAccountButton = styled(NavLink)`
@@ -13,9 +12,9 @@ const MobileAccountButton = styled(NavLink)`
   height: 35px;
   border-radius: 40px;
   text-decoration: none;
-  background-color: ${baseColor.colors.orangeLight};
-  border: 2px solid ${baseColor.colors.orangeLight};
-  color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.orangeLight};
+  border: 2px solid ${props => props.theme.orangeLight};
+  color: ${props => props.theme.white};
 
   font-family: 'Manrope';
   font-style: normal;
@@ -48,7 +47,7 @@ const IconUser = styled(iconUser)`
   height: 20px;
   margin-right: 12px;
   display: block;
-  fill: ${baseColor.colors.white};
+  fill: ${props => props.theme.white};
   @media screen and (min-width: 768px) {
     width: 28px;
     height: 28px;

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const Item = styled.li`
   display: flex;
@@ -12,7 +11,7 @@ const Item = styled.li`
   min-height: 192px;
   padding: 12px 4px;
 
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 20px;
 
@@ -80,7 +79,7 @@ const Title = styled.a`
   font-weight: 700;
   font-size: 12px;
   line-height: 1.333;
-  color: ${baseColor.colors.orangeLight};
+  color: ${props => props.theme.orangeLight};
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
@@ -100,7 +99,7 @@ const Text = styled.span`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.333;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
@@ -119,7 +118,7 @@ const Link = styled.a`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.333;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
   text-decoration: none;
   cursor: pointer;
 
@@ -136,7 +135,7 @@ const Link = styled.a`
 
   &:hover,
   &:focus {
-    color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
     text-decoration: underline;
   }
 `;

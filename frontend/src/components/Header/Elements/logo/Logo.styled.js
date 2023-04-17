@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const Text = styled(NavLink)`
   font-family: 'Poppins';
@@ -9,7 +8,7 @@ const Text = styled(NavLink)`
   font-size: 28px;
   line-height: 42px;
   letter-spacing: 0.07em;
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
   text-decoration: none;
 
   @media screen and (min-width: 768px) {
@@ -19,7 +18,7 @@ const Text = styled(NavLink)`
 `;
 
 const AccentLetter = styled.span`
-  color: ${baseColor.colors.orangeLight};
+  color: ${props => props.theme.orangeLight};
 `;
 
 export { Text, AccentLetter };

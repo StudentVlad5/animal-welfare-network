@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 
 const BackDrop = styled.div`
   display: flex;
@@ -16,7 +15,7 @@ const NoticesContainerItem = styled.div`
   display: block;
   width: 280px;
   padding: 17px 20px 43px 20px;
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
@@ -56,20 +55,24 @@ const ContainerStatus = styled.div`
   align-items: center;
   width: 158px;
   height: 28px;
-  background: #fdf7f2;
+  background: ${props => props.theme.orangeLight};
+  color: ${props => props.theme.blackText};
   border-radius: 0 20px 20px 0;
   backdrop-filter: blur(50px);
   font-weight: 500;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 16px;
   letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 10px;
+  border: 3px solid ${props => props.theme.orangeLight};
 `;
 
 const ContainerInfo = styled.div`
   position: relative;
   display: block;
   width: 100%;
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
@@ -99,7 +102,7 @@ const NoticeItemTitle = styled.h2`
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
   @media screen and (min-width: 768px) {
     font-size: 28px;
     line-height: 38px;
@@ -123,18 +126,18 @@ const BtnContact = styled.button`
   width: 240px;
   height: 40px;
   border-radius: 40px;
-  border: 2px solid ${baseColor.colors.orangeLight};
-  background-color: ${baseColor.colors.white};
-  color: ${baseColor.colors.blackText};
+  border: 2px solid ${props => props.theme.orangeLight};
+  background-color: ${props => props.theme.white};
+  color: ${props => props.theme.blackText};
   margin: 40px 0 12px;
   transition: all 0.25s ease-in;
   &:hover {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
   }
   &:focus {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
     outline: none;
   }
   @media screen and (min-width: 768px) {
@@ -151,30 +154,30 @@ const BtnAddFavorits = styled.button`
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  border: 2px solid ${baseColor.colors.orangeLight};
-  background-color: ${baseColor.colors.white};
-  color: ${baseColor.colors.blackText};
+  border: 2px solid ${props => props.theme.orangeLight};
+  background-color: ${props => props.theme.white};
+  color: ${props => props.theme.blackText};
 
   & > svg {
     transition: all 0.3s ease-in;
-    color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.orangeLight};
   }
 
   transition: all 0.25s ease-in;
   &:hover {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
     & > svg {
       transition: all 0.3s ease-in;
-      color: ${baseColor.colors.white};
+      color: ${props => props.theme.white};
     }
   }
   &:focus {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
     outline: none;
     & > svg {
-      color: ${baseColor.colors.white};
+      color: ${props => props.theme.white};
     }
   }
 
@@ -191,6 +194,7 @@ const TdTable = styled.td`
   line-height: 19px;
   overflow: hidden;
   min-width: 115px;
+  color: ${props => props.theme.black};
 
   @media screen and (min-width: 768px) {
     min-width: 115px;
@@ -206,6 +210,7 @@ const TdTable2 = styled.td`
   line-height: 19px;
   overflow: hidden;
   min-width: 115px;
+  color: ${props => props.theme.black};
 
   @media screen and (min-width: 768px) {
     min-width: 115px;
@@ -214,13 +219,13 @@ const TdTable2 = styled.td`
   }
 `;
 const LinkStyle = styled.div`
-  color: ${baseColor.colors.orangeLight};
+  color: ${props => props.theme.orangeLight};
   text-decoration: none;
   transition: all 0.25s ease-in;
 
   &:hover,
   &:focus {
-    color: ${baseColor.colors.success};
+    color: ${props => props.theme.success};
     transform: scale(1.03);
   }
 `;
@@ -229,6 +234,7 @@ const Table = styled.table`
   display: flex;
   overflow: hidden;
   margin-top: 26px;
+  color: ${props => props.theme.black};
   @media screen and (min-width: 768px) {
     margin-top: 20px;
   }
@@ -237,11 +243,13 @@ const Comments = styled.span`
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
+  color: ${props => props.theme.black};
 `;
 const MainComments = styled.span`
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
+  color: ${props => props.theme.black};
 `;
 const ContainerComments = styled.div`
   margin-top: 28px;

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 
 import { ReactComponent as iconMenu } from 'images/svg/icon_menu.svg';
 
 const Burger = styled(iconMenu)`
   margin-left: 20px;
   cursor: pointer;
+  fill: ${props => props.theme.black};
 
   @media screen and (min-width: 1280px) {
     display: none;
@@ -23,7 +23,7 @@ const MobileMenuSection = styled.div`
   transition: transform 250ms ease-in-out;
   display: flex;
   flex-direction: column;
-  background-color: ${baseColor.colors.mainBg};
+  background-color: ${props => props.theme.mainBg};
 
   &.is-expanded {
     transform: translateX(0);

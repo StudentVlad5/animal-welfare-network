@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import { ReactComponent as delBack } from 'images/svg/icon_delete.svg';
 
 const ItemContainer = styled.li`
@@ -20,16 +19,16 @@ const NoticesContainerItem = styled.div`
   object-fit: cover;
   width: 280px;
   padding: 0 0 12px 0;
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   border-radius: 0px 0px 20px 20px;
   transition: box-shadow 250ms linear;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   transition: all 0.25s ease-in;
   &:hover {
     cursor: pointer;
-    box-shadow: 0 1px 4px ${baseColor.colors.orange},
-      -23px 0 20px -23px ${baseColor.colors.orange},
-      23px 0 20px -23px ${baseColor.colors.orange};
+    box-shadow: 0 1px 4px ${props => props.theme.orange},
+      -23px 0 20px -23px ${props => props.theme.orange},
+      23px 0 20px -23px ${props => props.theme.orange};
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
@@ -54,9 +53,12 @@ const ContainerStatus = styled.div`
   border-radius: 0 20px 20px 0;
   backdrop-filter: blur(50px);
   font-weight: 500;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 16px;
   letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: ${props => props.theme.black};
+  background-color: ${props => props.theme.orangeLight};
 `;
 const BtnForFavorite = styled.button`
   position: absolute;
@@ -81,7 +83,7 @@ const BtnForFavorite = styled.button`
 
     & > svg {
       transition: all 0.25s ease-in;
-      color: ${baseColor.colors.orangeLight};
+      color: ${props => props.theme.orangeLight};
     }
   }
 `;
@@ -89,7 +91,7 @@ const ContainerInfo = styled.div`
   position: relative;
   display: block;
   width: 100%;
-  background-color: ${baseColor.colors.white};
+  background-color: ${props => props.theme.white};
   border-radius: 20px;
 `;
 const ImgItem = styled.img`
@@ -112,7 +114,7 @@ const NoticeItemTitle = styled.h2`
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
-  color: ${baseColor.colors.black};
+  color: ${props => props.theme.black};
   margin: 20px;
   @media screen and (min-width: 768px) {
     font-size: 28px;
@@ -130,19 +132,19 @@ const BtnLearnMore = styled.button`
   width: 248px;
   height: 38px;
   border-radius: 40px;
-  border: 2px solid ${baseColor.colors.orangeLight};
-  background-color: ${baseColor.colors.white};
-  color: ${baseColor.colors.blackText};
+  border: 2px solid ${props => props.theme.orangeLight};
+  background-color: ${props => props.theme.white};
+  color: ${props => props.theme.blackText};
   margin: 40px 0 12px;
   transition: all 0.25s ease-in;
   &:hover {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
     cursor: pointer;
   }
   &:focus {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
     outline: none;
   }
 `;
@@ -151,31 +153,31 @@ const BtnDelete = styled.button`
   width: 248px;
   height: 38px;
   border-radius: 40px;
-  border: 2px solid ${baseColor.colors.orange};
-  background-color: ${baseColor.colors.white};
-  color: ${baseColor.colors.blackText};
+  border: 2px solid ${props => props.theme.orange};
+  background-color: ${props => props.theme.white};
+  color: ${props => props.theme.blackText};
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.25s ease-in;
   &:hover {
     cursor: pointer;
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
 
     & > svg {
       transition: all 0.3s ease-in;
-      fill: ${baseColor.colors.white};
+      fill: ${props => props.theme.white};
     }
   }
   &:focus {
-    color: ${baseColor.colors.white};
-    background-color: ${baseColor.colors.orangeLight};
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
     outline: none;
 
     & > svg {
       transition: all 0.3s ease-in;
-      fill: ${baseColor.colors.white};
+      fill: ${props => props.theme.white};
     }
   }
 `;
@@ -183,7 +185,7 @@ const DeleteIcon = styled(delBack)`
   margin-left: 12px;
   width: 18px;
   height: 18px;
-  fill: ${baseColor.colors.orangeLight};
+  fill: ${props => props.theme.orangeLight};
 `;
 
 const TBody = styled.tbody`
@@ -198,6 +200,7 @@ const TdTable = styled.td`
   line-height: 19px;
   overflow: hidden;
   min-width: 115px;
+  color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 768px) {
     min-width: 115px;
@@ -213,6 +216,7 @@ const TdTable2 = styled.td`
   line-height: 19px;
   overflow: hidden;
   min-width: 115px;
+  color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 768px) {
     min-width: 115px;

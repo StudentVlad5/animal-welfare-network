@@ -1,4 +1,3 @@
-import { baseColor } from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
 import { ReactComponent as Plus } from 'images/svg/addPetBtn/plus.svg';
 
@@ -14,7 +13,7 @@ export const AddPetWrapper = styled.div`
 export const AddPetBtn = styled.button`
   display: flex;
   align-items: center;
-  background: ${baseColor.colors.orangeLight};
+  background: ${props => props.theme.orangeLight};
   border: none;
   border-radius: 40px;
   padding: 8px;
@@ -23,13 +22,13 @@ export const AddPetBtn = styled.button`
 
   &:hover,
   :focus {
-    background: ${baseColor.colors.orange};
-    border-color: ${baseColor.colors.orange};
+    background: ${props => props.theme.orange};
+    border-color: ${props => props.theme.orange};
   }
 `;
 
 export const AddPetDesc = styled.p`
-  color: ${baseColor.colors.blackText};
+  color: ${props => props.theme.blackText};
   font-size: 20px;
   font-weight: 500;
   line-height: 1.37;
@@ -45,12 +44,12 @@ export const AddPetDesc = styled.p`
 
   @media (max-width: 767px) {
     font-size: 12px;
-    color: ${baseColor.colors.white};
+    color: ${props => props.theme.white};
     margin: 0px;
   }
 `;
 
 export const PlusIcon = styled(Plus)`
   width: 24px;
-  stroke: ${baseColor.colors.white};
+  stroke: ${props => props.theme.white};
 `;
