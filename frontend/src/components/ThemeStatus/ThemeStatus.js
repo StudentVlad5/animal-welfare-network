@@ -8,9 +8,12 @@ import { ImgChangeTheme, BtnChangeTheme } from './ThemeStatus.styled';
 import changeThemeImg from 'images/public_img/toogle_change_theme.webp';
 
 export const ThemeStatus = () => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
   const switchTheme = () => {
+    theme === 'light'
+      ? localStorage.setItem('theme', 'dark')
+      : localStorage.setItem('theme', 'light');
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
   return (
