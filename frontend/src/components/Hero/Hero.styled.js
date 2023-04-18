@@ -41,8 +41,8 @@ const HeroContainer = styled(Container)`
       -webkit-image-set(url(${waveTabFull}) 1x);
 
     background-repeat: no-repeat;
-    background-size: 670px auto, 1400px auto;
-    background-position: bottom 0px left 70%, bottom -150px left 30%;
+    background-size: 50vh auto, 1400px auto;
+    background-position: bottom 0px left 90%, bottom -150px left 30%;
   }
 
   @media screen and (min-width: 1280px) {
