@@ -27,7 +27,7 @@ export const UserDataItemInputBtnWrapper = styled.div`
 
 export const UserDataItemLabel = styled.label`
   display: block;
-  font-family: Manrope, sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 1.33;
@@ -43,6 +43,7 @@ export const UserDataItemLabel = styled.label`
 
 export const UserDataItemInput = styled.input`
   box-sizing: border-box;
+  font-family: 'Manrope', sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.33;

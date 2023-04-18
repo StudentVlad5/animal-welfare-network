@@ -17,7 +17,7 @@ const UserPage = lazy(() => import('pages/User'));
 const RegisterPage = lazy(() => import('pages/Register'));
 const LoginPage = lazy(() => import('pages/Login'));
 
-export const App = () => {
+export const App = ({ theme, setTheme }) => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
@@ -32,7 +32,10 @@ export const App = () => {
     <HelmetProvider>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/" element={<SharedLayout />}>
+          <Route
+            path="/"
+            element={<SharedLayout theme={theme} setTheme={setTheme} />}
+          >
             <Route index element={<HomePage />} />
 
             <Route

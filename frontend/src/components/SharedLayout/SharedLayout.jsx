@@ -4,10 +4,10 @@ import { Header } from 'components/Header/Header';
 import { Footer } from 'components/Footer/Footer';
 import { Main } from './SharedLayout.styled';
 
-export const SharedLayout = () => {
+export const SharedLayout = ({ theme, setTheme }) => {
   return (
     <>
-      <Header />
+      <Header theme={theme} setTheme={setTheme} />
       <Suspense fallback={null}>
         <Main>
           <Outlet />

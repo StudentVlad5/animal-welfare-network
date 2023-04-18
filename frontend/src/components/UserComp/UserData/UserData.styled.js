@@ -67,7 +67,7 @@ export const EditPhotoLabel = styled.label`
   align-items: center;
   cursor: pointer;
   padding-right: 24px;
-  font-family: Manrope, sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.8;
@@ -138,7 +138,7 @@ export const UserDataFormItemWrapper = styled.div`
 
 export const UserDataLabel = styled.label`
   display: block;
-  font-family: Manrope, sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 68px;
   font-weight: 500;
   line-height: 1.33;
@@ -152,7 +152,7 @@ export const UserDataInputBtnWrapper = styled.div`
 
 export const UserDataInput = styled.input`
   box-sizing: border-box;
-  font-family: Manrope, sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 68px;
   font-weight: 400;
   line-height: 1.33;
@@ -173,6 +173,7 @@ export const UserDataInput = styled.input`
     outline-color: transparent;
   }
 `;
+
 export const UserDataBtn = styled.button`
   display: flex;
   align-items: center;

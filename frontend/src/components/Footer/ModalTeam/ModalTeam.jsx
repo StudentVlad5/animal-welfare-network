@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { MdClose } from 'react-icons/md';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
+import { modalComponent } from 'redux/modal/selectors';
 import { fetchData } from 'services/APIservice';
 import { TeamList } from '../TeamList/TeamList';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
@@ -15,6 +16,8 @@ export const ModalTeam = () => {
   const [developers, setDevelopers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const modal = useSelector(modalComponent);
 
   useEffect(() => {
     (async function getData() {
@@ -42,31 +45,36 @@ export const ModalTeam = () => {
   };
 
   return createPortal(
-    <BackDrop
-      onClick={e => {
-        if (e.currentTarget === e.target) closeModalTeam(e);
-      }}
-    >
-      <Modal>
-        <CloseIconBtn onClick={e => closeModalTeam(e)} aria-label="Close modal">
-          <MdClose size={15} />
-        </CloseIconBtn>
-        <Title
-          as="h2"
-          size="20px"
-          sizeTablet="26px"
-          margin="0 0 20px 0"
-          marginTablet="0 0 20px 0"
-        >
-          Development team
-        </Title>
-        {isLoading ? onLoading() : onLoaded()}
-        {error && onFetchError('Whoops, something went wrong')}
-        {developers.length > 0 && !error && (
-          <TeamList developers={developers} />
-        )}
-      </Modal>
-    </BackDrop>,
+    Object.values(modal)[0] === 'developers' && (
+      <BackDrop
+        onClick={e => {
+          if (e.currentTarget === e.target) closeModalTeam(e);
+        }}
+      >
+        <Modal>
+          <CloseIconBtn
+            onClick={e => closeModalTeam(e)}
+            aria-label="Close modal"
+          >
+            <MdClose size={15} />
+          </CloseIconBtn>
+          <Title
+            as="h2"
+            size="20px"
+            sizeTablet="26px"
+            margin="0 0 20px 0"
+            marginTablet="0 0 20px 0"
+          >
+            Development team
+          </Title>
+          {isLoading ? onLoading() : onLoaded()}
+          {error && onFetchError('Whoops, something went wrong')}
+          {developers.length > 0 && !error && (
+            <TeamList developers={developers} />
+          )}
+        </Modal>
+      </BackDrop>
+    ),
     document.querySelector('#popup-root'),
   );
 };
