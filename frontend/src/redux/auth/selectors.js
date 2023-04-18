@@ -4,3 +4,4 @@ export const selectFavorites = state => state.auth.user.favorites;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
 export const selecId = state => state.auth.user;
 export const getUser = ({ auth }) => auth.user;
+export const getPermission = ({ auth }) => auth.user.role;

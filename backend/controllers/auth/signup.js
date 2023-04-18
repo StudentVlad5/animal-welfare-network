@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const {
   dataFilter,
   userFullField,
-  userFieldRecivedFromFront,
+  userFieldReceivedFromFront,
   requiredSignUpFields,
   checkObjByList,
   ValidationError,
@@ -19,7 +19,7 @@ const signup = async (req, res, next) => {
     throw new ValidationError('Bad request, invalid data');
   }
 
-  const userDataCreate = dataFilter(req.body, userFieldRecivedFromFront);
+  const userDataCreate = dataFilter(req.body, userFieldReceivedFromFront);
 
   console.log('userDataCreate: ', userDataCreate);
   const hashPassword = bcrypt.hashSync(
@@ -40,8 +40,6 @@ const signup = async (req, res, next) => {
   // userDataCreate.authToken = authToken;
 
   const user = await Users.create(userDataCreate);
-
-  // console.log()
   const payload = { id: user._id };
   const authToken = jwt.sign(payload, SECRET_KEY, { expiresIn: '14d' });
   const result = await Users.findByIdAndUpdate(
