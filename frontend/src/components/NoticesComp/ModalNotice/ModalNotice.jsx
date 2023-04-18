@@ -29,6 +29,7 @@ import {
 } from './ModalNotice.styled';
 import { selectFavorites } from 'redux/auth/selectors';
 import { Link } from 'react-router-dom';
+import { Slider, SliderData } from './Slider';
 
 export const ModalNotices = ({ addToFavoriteFunction }) => {
   const dispatch = useDispatch();
@@ -86,13 +87,15 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
             <>
               <ContainerInfo>
                 <ContainerStatus>{data.category}</ContainerStatus>
-                <ImgItem
+                <Slider slides={SliderData} />
+
+                {/* <ImgItem
                   src={
                     data.imageUrl === '' || data.imageUrl === undefined
                       ? no_Photo
                       : data.imageUrl
                   }
-                />
+                /> */}
                 <div>
                   <NoticeItemTitle>{data.title}</NoticeItemTitle>
                   <Table>
