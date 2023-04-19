@@ -249,5 +249,40 @@ padding: 0!important;
 margin: 0!important;
 }
 
+//-----Swiper-----//
 
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-button-next::after {
+  color: ${props => props.theme.orangeLight};
+}
+
+.swiper-button-prev::after {
+  color: ${props => props.theme.orangeLight};
+}
+
+.swiper-pagination-bullet-active {
+  background-color: ${props => props.theme.orangeLight}!important;
+}
 `;

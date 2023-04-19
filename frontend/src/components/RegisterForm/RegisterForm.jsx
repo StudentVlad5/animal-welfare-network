@@ -19,12 +19,12 @@ import {
   IconInValid,
   ErrBox,
   Div,
-  LocationList,
-  LocationItem,
+  // LocationList,
+  // LocationItem,
   FormSection,
 } from './RegisterForm.styled';
-import usePlacesAutocomplete from 'use-places-autocomplete';
-import useOnclickOutside from 'react-cool-onclickoutside';
+// import usePlacesAutocomplete from 'use-places-autocomplete';
+// import useOnclickOutside from 'react-cool-onclickoutside';
 
 const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
@@ -88,45 +88,45 @@ const RegisterForm = () => {
     return !hasValue ? null : isValide ? '#E2001A' : '#3CBC81';
   };
 
-  const {
-    ready,
-    suggestions: { data, status },
-    setValue,
-    clearSuggestions,
-  } = usePlacesAutocomplete({
-    requestOptions: {},
-    debounce: 300,
-  });
+  // const {
+  //   ready,
+  //   suggestions: { data, status },
+  //   setValue,
+  //   clearSuggestions,
+  // } = usePlacesAutocomplete({
+  //   requestOptions: {},
+  //   debounce: 300,
+  // });
 
-  const ref = useOnclickOutside(() => {
-    clearSuggestions();
-  });
+  // const ref = useOnclickOutside(() => {
+  //   clearSuggestions();
+  // });
 
-  const handleInput = e => {
-    setValue(e.target.value);
-  };
+  // const handleInput = e => {
+  //   setValue(e.target.value);
+  // };
 
-  const renderSuggestions = setFieldValue =>
-    data.map(suggestion => {
-      const {
-        place_id,
-        structured_formatting: { main_text, secondary_text },
-      } = suggestion;
+  // const renderSuggestions = setFieldValue =>
+  //   data.map(suggestion => {
+  //     const {
+  //       place_id,
+  //       structured_formatting: { main_text, secondary_text },
+  //     } = suggestion;
 
-      return (
-        <LocationItem
-          key={place_id}
-          onClick={() => {
-            setFieldValue('location', suggestion.description);
-            clearSuggestions();
-          }}
-        >
-          {main_text}
-          {', '}
-          {secondary_text}
-        </LocationItem>
-      );
-    });
+  //     return (
+  //       <LocationItem
+  //         key={place_id}
+  //         onClick={() => {
+  //           setFieldValue('location', suggestion.description);
+  //           clearSuggestions();
+  //         }}
+  //       >
+  //         {main_text}
+  //         {', '}
+  //         {secondary_text}
+  //       </LocationItem>
+  //     );
+  //   });
 
   return (
     <FormSection>
@@ -244,7 +244,9 @@ const RegisterForm = () => {
               </Div>
             )}
             {!isShown && (
-              <Div ref={ref}>
+              <Div
+              //  ref={ref}
+              >
                 <Input
                   style={{
                     borderColor: showAccentValidateInput(
@@ -257,10 +259,10 @@ const RegisterForm = () => {
                   placeholder="Location, region"
                   value={formik.values.location}
                   onBlur={formik.handleBlur}
-                  disabled={!ready}
+                  // disabled={!ready}
                   onChange={e => {
                     formik.handleChange(e);
-                    handleInput(e);
+                    // handleInput(e);
                   }}
                 />
                 {!formik.values.location ? null : !formik.errors.location ? (
@@ -269,11 +271,11 @@ const RegisterForm = () => {
                   <IconInValid color={lightTheme.error} />
                 )}
 
-                {status === 'OK' && (
+                {/* {status === 'OK' && (
                   <LocationList>
                     {renderSuggestions(formik.setFieldValue)}
                   </LocationList>
-                )}
+                )} */}
 
                 {formik.errors.location && formik.touched.location ? (
                   <ErrBox>{formik.errors.location}</ErrBox>

@@ -68,8 +68,32 @@ export const NoticesCategoriesItem = ({
     }
   };
 
+  const openModalSwiper = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.currentTarget.dataset.modal === 'swiper') {
+      dispatch(
+        addModal({
+          modal: e.currentTarget.dataset.modal,
+          image1: e.currentTarget.dataset.image1,
+          image2: e.currentTarget.dataset.image2,
+          image3: e.currentTarget.dataset.image3,
+        }),
+      );
+      setTimeout(() => openModalWindow(e, null), 500);
+    }
+  };
+
   return (
-    <ItemContainer>
+    <ItemContainer
+      onClick={e =>
+        e.currentTarget.innerText !== 'Learn more' && openModalSwiper(e)
+      }
+      data-modal="swiper"
+      data-image1={data?.imageUrl}
+      data-image2={data?.imageUrl_1}
+      data-image3={data?.imageUrl_2}
+    >
       <NoticesContainerItem>
         <ContainerInfo>
           <ContainerStatus>{data.category}</ContainerStatus>
@@ -128,7 +152,10 @@ export const NoticesCategoriesItem = ({
         </ContainerInfo>
         <NoticeContainerButton>
           <BtnLearnMore
-            onClick={openModalForItemPet}
+            onClick={e =>
+              e.currentTarget.innerText === 'Learn more' &&
+              openModalForItemPet(e)
+            }
             data-modal="itemPet"
             data-id={data._id}
           >
