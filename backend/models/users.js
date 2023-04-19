@@ -10,8 +10,9 @@ const userValidationSchema = Joi.object({
   password: Joi.string().min(7).max(32).required(),
   location: Joi.string().required(),
   phone: Joi.string().length(13).required(),
-  birtday: Joi.date(),
+  birthday: Joi.date(),
   avatar: Joi.string().uri(),
+  role: Joi.string().valid('user', 'admin'),
 });
 
 const userUpdateValidationSchema = Joi.object({
@@ -22,6 +23,7 @@ const userUpdateValidationSchema = Joi.object({
   phone: Joi.string().length(13),
   birthday: Joi.date(),
   avatar: Joi.string().uri(),
+  role: Joi.string().valid('user', 'admin'),
 });
 const UsersSchema = new mongoose.Schema(
   {
@@ -36,7 +38,7 @@ const UsersSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: [true, 'Set pasword'],
+      required: [true, 'Set password'],
     },
     location: {
       type: String,
@@ -66,11 +68,15 @@ const UsersSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
-    // birthday: {
-    //   type: mongoose.SchemaTypes.ObjectId,
-    //   ref: 'users',
-    // },
-    favorites: { type: Array, default: [] },
+    favorites: {
+      type: Array,
+      default: [],
+    },
+    role: {
+      type: String,
+      enum: ['user', 'admin'],
+      default: 'user',
+    },
   },
   {
     versionKey: false,

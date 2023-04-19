@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const signup = async credentials => {
+export const signUp = async credentials => {
   try {
     const res = await axios.post('/auth/signup', credentials);
     return res;
@@ -9,7 +9,7 @@ export const signup = async credentials => {
   }
 };
 
-export const signin = async credentials => {
+export const signIn = async credentials => {
   try {
     const res = await axios.post('/auth/signin', credentials);
     return res;
@@ -28,7 +28,7 @@ export const updateUserData = async updateData => {
   return data;
 };
 
-export const refreshUserTocken = async () => {
+export const refreshUserToken = async () => {
   const { data } = await axios.post('/auth');
   return data;
 };
