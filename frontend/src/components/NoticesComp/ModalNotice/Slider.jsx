@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 export const SliderData = [
   {
     image:
@@ -13,11 +14,9 @@ export const SliderData = [
   },
 ];
 
-import React, { useState } from 'react';
-
 export const Slider = ({ slides }) => {
   const [current, setCurrent] = useState(0);
-    const length = slides.length;
+  const length = slides.length;
 
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -26,7 +25,6 @@ export const Slider = ({ slides }) => {
   const prevSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
-
 
   return (
     <section className="slider">
@@ -43,7 +41,7 @@ export const Slider = ({ slides }) => {
             key={index}
           >
             {index === current && (
-              <img src={slide.image} alt="travel image" className="image" />
+              <img src={slide.image} alt="travel" className="image" />
             )}
           </div>
         );
