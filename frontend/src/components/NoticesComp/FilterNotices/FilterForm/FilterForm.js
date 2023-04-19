@@ -5,6 +5,8 @@ import {
   InputForm,
   Check,
   LabelForInput,
+  BtnFilter,
+  BtnContiner,
 } from './FilterForm.styled';
 
 export const FilterForm = () => {
@@ -128,6 +130,10 @@ export const FilterForm = () => {
           <Check className="check" />
         </LabelForInput>
       </FieldSet>
+      <BtnContiner>
+        <BtnFilter type="submit">Submit</BtnFilter>
+        <BtnFilter type="button">Clear all</BtnFilter>
+      </BtnContiner>
     </Form>
   );
 };
