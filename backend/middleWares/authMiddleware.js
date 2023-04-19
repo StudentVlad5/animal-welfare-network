@@ -21,13 +21,7 @@ const authMiddleware = async (req, res, next) => {
 
   try {
     const { id } = jwt.verify(token, SECRET_KEY);
-    // console.log('token decoder, id:\t', id);
     const user = await Users.findById({ _id: id });
-    // console.log('!!! middleware USER:\n', user);
-    // console.log('token1: ', token);
-    // console.log('token2: ', user.authToken);
-    // console.log('token !== token2  -  ', user.authToken !== token);
-    // console.log('!!!-0');
     (!user || user.authToken !== token) &&
       next(new UnauthorizedError('Not authorized'));
     const newUser = dataFilter(user, userMainField);

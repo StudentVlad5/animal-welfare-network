@@ -11,7 +11,7 @@ const {
 } = require('./errors');
 const {
   userMainField,
-  userFieldRecivedFromFront,
+  userFieldReceivedFromFront,
   userFullField,
   requiredSignUpFields,
 } = require('./usersData');
@@ -27,7 +27,7 @@ module.exports = {
   errorHandler,
   userMainField,
   userFullField,
-  userFieldRecivedFromFront,
+  userFieldReceivedFromFront,
   requiredSignUpFields,
   constructorResponse,
 };

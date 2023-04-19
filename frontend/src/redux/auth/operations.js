@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import {
-  signup,
-  signin,
+  signUp,
+  signIn,
   singOut,
-  refreshUserTocken,
+  refreshUserToken,
   addToFavorite,
   removeFromFavorite,
   updateUserData,
@@ -22,9 +22,9 @@ export const register = createAsyncThunk(
   '/auth/signup',
   async (credentials, thunkAPI) => {
     try {
-      const res = await signup(credentials);
-      setAuthHeader(res.data.data.authToken);
-      return res.data;
+      const { data } = await signUp(credentials);
+      setAuthHeader(data.data.authToken);
+      return data;
     } catch (error) {
       alert(`Something wrong`, error.message);
       return thunkAPI.rejectWithValue(error.message);
@@ -36,7 +36,7 @@ export const logIn = createAsyncThunk(
   '/auth/signin',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await signin(credentials);
+      const { data } = await signIn(credentials);
       setAuthHeader(data.data.authToken);
       return data;
     } catch (error) {
@@ -78,7 +78,7 @@ export const refreshUser = createAsyncThunk(
     }
     try {
       setAuthHeader(persistedToken);
-      const { data } = await refreshUserTocken('/auth');
+      const { data } = await refreshUserToken('/auth');
 
       return data;
     } catch (error) {

@@ -1,4 +1,3 @@
-// const userMainField = [
 const userMainField = [
   '_id',
   'userName',
@@ -10,6 +9,7 @@ const userMainField = [
   'avatar',
   'favorites',
   'groupAcces',
+  'role',
   // 'authToken',
 ];
 
@@ -25,10 +25,10 @@ const userFullField = [
   'favorites',
   'groupAcces',
   'authToken',
+  'role',
 ];
-// isActivates, // groupsResurces, authToken,
 
-const userFieldRecivedFromFront = [
+const userFieldReceivedFromFront = [
   'userName',
   'email',
   'location',
@@ -44,9 +44,10 @@ const requiredSignUpFields = [
   'phone',
   'password',
 ];
+
 module.exports = {
   userMainField,
   userFullField,
-  userFieldRecivedFromFront,
+  userFieldReceivedFromFront,
   requiredSignUpFields,
 };
