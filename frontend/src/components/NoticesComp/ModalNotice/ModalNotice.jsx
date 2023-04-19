@@ -29,7 +29,6 @@ import {
 } from './ModalNotice.styled';
 import { selectFavorites } from 'redux/auth/selectors';
 import { Link } from 'react-router-dom';
-import { Slider, SliderData } from './Slider';
 
 export const ModalNotices = ({ addToFavoriteFunction }) => {
   const dispatch = useDispatch();
@@ -72,8 +71,39 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
     if (modal.id !== '') {
       fetchNoticesList();
     }
-  }, [itemForFetch, modal.id]);
+  }, [itemForFetch]);
+  const [current, setCurrent] = useState(0);
 
+  const nextSlide = () => {
+    if (SliderData.length === 2) {
+      setCurrent(current === 0 ? 1 : 0);
+    } else {
+      setCurrent(current === SliderData.length - 1 ? 0 : current + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (SliderData.length === 2) {
+      setCurrent(current === 1 ? 0 : 1);
+    } else {
+      setCurrent(current === 0 ? SliderData.length - 1 : current - 1);
+    }
+  };
+
+  const SliderData = [
+    {
+      id: 1,
+      image: data.imageUrl,
+    },
+    {
+      id: 2,
+      image: data.imageUrl_1,
+    },
+    {
+      id: 3,
+      image: data.imageUrl_2,
+    },
+  ];
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'itemPet' && (
       <BackDrop onClick={closeModalForItemPet}>
@@ -87,15 +117,56 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
             <>
               <ContainerInfo>
                 <ContainerStatus>{data.category}</ContainerStatus>
-                <Slider slides={SliderData} />
 
-                {/* <ImgItem
-                  src={
-                    data.imageUrl === '' || data.imageUrl === undefined
-                      ? no_Photo
-                      : data.imageUrl
-                  }
-                /> */}
+                <div className="slider">
+                  {SliderData.length > 0 && (
+                    <div className="slider">
+                      {SliderData.length > 1 && (
+                        <>
+                          <button
+                            type="button"
+                            className="left-arrow"
+                            onClick={prevSlide}
+                          >
+                            left
+                          </button>
+                          <button
+                            type="button"
+                            className="right-arrow"
+                            onClick={nextSlide}
+                          >
+                            right
+                          </button>
+                        </>
+                      )}
+                      {SliderData.map(slide => {
+                        return (
+                          <div
+                            className={
+                              slide.id === current + 1
+                                ? 'slide active'
+                                : 'slide'
+                            }
+                            key={slide.id}
+                          >
+                            {slide.id === current + 1 && (
+                              <ImgItem
+                                src={
+                                  slide.image === '' ||
+                                  slide.image === undefined
+                                    ? no_Photo
+                                    : slide.image
+                                }
+                                key={slide.id}
+                              />
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+
                 <div>
                   <NoticeItemTitle>{data.title}</NoticeItemTitle>
                   <Table>

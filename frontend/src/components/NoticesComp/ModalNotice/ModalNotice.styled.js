@@ -254,7 +254,22 @@ const MainComments = styled.span`
 const ContainerComments = styled.div`
   margin-top: 28px;
 `;
+
+const ImageModal = styled.div`
+    position: absolute;
+  /* width: 90%; */
+  background-color: ${props => props.theme.white};
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-radius: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 export {
+  ImageModal,
   NoticesContainerItem,
   ContainerCloseModal,
   ContainerPositionForCloseModal,
