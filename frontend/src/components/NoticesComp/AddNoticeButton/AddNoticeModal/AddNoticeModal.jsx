@@ -26,7 +26,7 @@ import {
   LabelItemTextArea,
   FieldItemTextArea,
   Error,
-  Li,
+  // Li,
   Option,
   OptionFirst,
   IconCat,
@@ -44,8 +44,8 @@ import React, { useState } from 'react';
 import { fetchNotice } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
-import usePlacesAutocomplete from 'use-places-autocomplete';
-import useOnclickOutside from 'react-cool-onclickoutside';
+// import usePlacesAutocomplete from 'use-places-autocomplete';
+// import useOnclickOutside from 'react-cool-onclickoutside';
 import { breedsValue } from 'redux/breeds/selectors';
 import { setImage } from 'utils/setimage';
 import { useSearchParams } from 'react-router-dom';
@@ -98,45 +98,45 @@ export const AddNoticeModal = () => {
     }
   }
 
-  const {
-    ready,
-    suggestions: { data, status },
-    setValue,
-    clearSuggestions,
-  } = usePlacesAutocomplete({
-    requestOptions: {},
-    debounce: 300,
-  });
+  // const {
+  //   ready,
+  //   suggestions: { data, status },
+  //   setValue,
+  //   clearSuggestions,
+  // } = usePlacesAutocomplete({
+  //   requestOptions: {},
+  //   debounce: 300,
+  // });
 
-  const ref = useOnclickOutside(() => {
-    clearSuggestions();
-  });
+  // const ref = useOnclickOutside(() => {
+  //   clearSuggestions();
+  // });
 
-  const handleInput = e => {
-    setValue(e.target.value);
-  };
+  // const handleInput = e => {
+  //   setValue(e.target.value);
+  // };
 
-  const renderSuggestions = setFieldValue =>
-    data.map(suggestion => {
-      const {
-        place_id,
-        structured_formatting: { main_text, secondary_text },
-      } = suggestion;
+  // const renderSuggestions = setFieldValue =>
+  //   data.map(suggestion => {
+  //     const {
+  //       place_id,
+  //       structured_formatting: { main_text, secondary_text },
+  //     } = suggestion;
 
-      return (
-        <Li
-          key={place_id}
-          onClick={() => {
-            setFieldValue('location', suggestion.description);
-            clearSuggestions();
-          }}
-        >
-          {main_text}
-          {', '}
-          {secondary_text}
-        </Li>
-      );
-    });
+  //     return (
+  //       <Li
+  //         key={place_id}
+  //         onClick={() => {
+  //           setFieldValue('location', suggestion.description);
+  //           clearSuggestions();
+  //         }}
+  //       >
+  //         {main_text}
+  //         {', '}
+  //         {secondary_text}
+  //       </Li>
+  //     );
+  //   });
 
   function changeBack(e) {
     if (formQueue === 'first') {
@@ -407,7 +407,7 @@ export const AddNoticeModal = () => {
                       </FieldList>
                     </div>
                     <div
-                      ref={ref}
+                      // ref={ref}
                       className="formSecond"
                       style={
                         formQueue === 'second'
@@ -517,13 +517,13 @@ export const AddNoticeModal = () => {
                             name="location"
                             placeholder="Type location"
                             value={values.location}
-                            disabled={!ready}
+                            // disabled={!ready}
                             onChange={e => {
                               handleChange(e);
-                              handleInput(e);
+                              // handleInput(e);
                             }}
                           />
-                          {status === 'OK' && (
+                          {/* {status === 'OK' && (
                             <ul
                               style={{
                                 position: 'absolute',
@@ -534,7 +534,7 @@ export const AddNoticeModal = () => {
                             >
                               {renderSuggestions(setFieldValue)}
                             </ul>
-                          )}
+                          )} */}
                         </div>
                         {fieldPrice && (
                           <div>

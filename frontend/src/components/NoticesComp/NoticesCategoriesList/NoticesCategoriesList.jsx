@@ -74,11 +74,11 @@ export const NoticesCategoriesList = () => {
         const { data } = await fetchData(
           `/notices/${routeParams.id}?${searchParams}`,
         );
-        setListItem(data.data);
-        setTotalPage(data.totalPage);
         if (!data) {
           return onFetchError('Whoops, something went wrong');
         }
+        setListItem(data.data);
+        setTotalPage(data.totalPage);
       } catch (error) {
         setError(error);
       } finally {
@@ -121,11 +121,7 @@ export const NoticesCategoriesList = () => {
       </div>
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError('Whoops, something went wrong')}
-      <Pagination
-        totalPage={totalPage}
-        changePage={setPage}
-        page={searchParams.get('page')}
-      />
+      <Pagination totalPage={totalPage} changePage={setPage} />
       <ModalNotices addToFavoriteFunction={handleFavoriteBtnClick} />
     </>
   );
