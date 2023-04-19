@@ -6,11 +6,11 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { modalReducer } from './modal/slice';
 
-// Persisting token field from auth slice to localstorage
+// Persisting token and role fields from auth slice to localstorage
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'permission'],
 };
 
 export const store = configureStore({

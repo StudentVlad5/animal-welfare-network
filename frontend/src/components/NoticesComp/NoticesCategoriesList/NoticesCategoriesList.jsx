@@ -18,6 +18,7 @@ import { selectFavorites, selectIsLoggedIn } from 'redux/auth/selectors';
 import { Pagination } from 'utils/pagination';
 import { addReload } from 'redux/reload/slice';
 import { reloadValue } from 'redux/reload/selectors';
+import { FilterModal } from '../FilterNotices/FilterModal/FilterModal';
 
 let page = 1;
 let perPage = 12;
@@ -125,6 +126,7 @@ export const NoticesCategoriesList = () => {
       <Pagination totalPage={totalPage} changePage={setPage} />
       <ModalNotices addToFavoriteFunction={handleFavoriteBtnClick} />
       <NoticeCategoryItemSwiper />
+      <FilterModal />
     </>
   );
 };

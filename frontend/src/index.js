@@ -7,7 +7,6 @@ import { persistor, store } from 'redux/store';
 import { ThemeStatus } from 'components/ThemeStatus/ThemeStatus';
 
 window.global = { BASE_URL: 'https://animal-welfare-network.onrender.com/api' };
-// window.global = { BASE_URL: "http://localhost:3030/api" };
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

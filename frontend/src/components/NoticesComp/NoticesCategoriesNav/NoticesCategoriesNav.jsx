@@ -1,5 +1,6 @@
 import { useAuth } from 'hooks/useAuth';
 import { useSearchParams } from 'react-router-dom';
+import { BtnFilterNotices } from '../FilterNotices/BtnFilterNotices/BtnFilterNotices';
 
 import {
   BtnCategory,
@@ -41,21 +42,24 @@ export const NoticesCategoriesNav = () => {
   // }, [dispatch]);
 
   return (
-    <ContainerCategoryBtn>
-      {navItemsPublick.map(({ href, text }) => (
-        <StyledLi key={href}>
-          <BtnCategory to={href}>{text}</BtnCategory>
-        </StyledLi>
-      ))}
-      {isLoggedIn && (
-        <>
-          {navItemsPrivate.map(({ href, text }) => (
-            <StyledLi key={href}>
-              <BtnCategory to={href}>{text}</BtnCategory>
-            </StyledLi>
-          ))}
-        </>
-      )}
-    </ContainerCategoryBtn>
+    <>
+      <ContainerCategoryBtn>
+        {navItemsPublick.map(({ href, text }) => (
+          <StyledLi key={href}>
+            <BtnCategory to={href}>{text}</BtnCategory>
+          </StyledLi>
+        ))}
+        {isLoggedIn && (
+          <>
+            {navItemsPrivate.map(({ href, text }) => (
+              <StyledLi key={href}>
+                <BtnCategory to={href}>{text}</BtnCategory>
+              </StyledLi>
+            ))}
+          </>
+        )}
+      </ContainerCategoryBtn>
+      <BtnFilterNotices />
+    </>
   );
 };

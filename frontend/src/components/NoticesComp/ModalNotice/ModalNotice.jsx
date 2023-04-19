@@ -1,3 +1,5 @@
+import { Slider, SliderData } from './Slider';
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,13 +8,13 @@ import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
 import { AiFillHeart } from 'react-icons/ai';
-import no_Photo from 'images/No-image-available.webp';
+// import no_Photo from 'images/No-image-available.webp';
 import {
   NoticesContainerItem,
   ContainerCloseModal,
   ContainerPositionForCloseModal,
   ContainerInfo,
-  ImgItem,
+  // ImgItem,
   ContainerStatus,
   NoticeItemTitle,
   BtnContact,
@@ -28,7 +30,6 @@ import {
   LinkStyle,
 } from './ModalNotice.styled';
 import { selectFavorites } from 'redux/auth/selectors';
-import { Link } from 'react-router-dom';
 
 export const ModalNotices = ({ addToFavoriteFunction }) => {
   const dispatch = useDispatch();
@@ -86,13 +87,15 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
             <>
               <ContainerInfo>
                 <ContainerStatus>{data.category}</ContainerStatus>
-                <ImgItem
+                <Slider slides={SliderData} />
+
+                {/* <ImgItem
                   src={
                     data.imageUrl === '' || data.imageUrl === undefined
                       ? no_Photo
                       : data.imageUrl
                   }
-                />
+                /> */}
                 <div>
                   <NoticeItemTitle>{data.title}</NoticeItemTitle>
                   <Table>

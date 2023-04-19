@@ -11,16 +11,18 @@ import {
 
 const initialState = {
   user: {
+    _id: null,
     userName: null,
+    avatarUrl: null,
     email: null,
     location: null,
     phone: null,
     favorites: null,
-    _id: null,
     birthday: null,
-    avatarUrl: null,
+    role: 'user',
   },
   token: null,
+  permission: null,
   isLoggedIn: false,
   isLoading: false,
   isError: null,
@@ -36,27 +38,32 @@ export const authSlice = createSlice({
         if (action.payload.data.authToken) {
           state.user = action.payload.data;
           state.token = action.payload.data.authToken;
+          state.permission = action.payload.data.role;
           state.isLoggedIn = true;
         }
       })
       .addCase(register.rejected, (state, action) => {
         state.user = initialState.user;
         state.token = null;
+        state.permission = null;
         state.isLoggedIn = false;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.data;
         state.token = action.payload.data.authToken;
+        state.permission = action.payload.data.role;
         state.isLoggedIn = true;
       })
       .addCase(logIn.rejected, (state, action) => {
         state.user = initialState.user;
         state.token = null;
+        state.permission = null;
         state.isLoggedIn = false;
       })
       .addCase(logOut.fulfilled, state => {
         state.user = initialState.user;
         state.token = null;
+        state.permission = null;
         state.isLoggedIn = false;
         state.isRefreshing = false;
       })
@@ -78,7 +85,6 @@ export const authSlice = createSlice({
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload.user; //data
-
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -87,6 +93,7 @@ export const authSlice = createSlice({
         state.isLoggedIn = false;
         state.isRefreshing = false;
         state.token = null;
+        state.permission = null;
       })
       .addCase(addFavorite.pending, state => {
         state.isLoading = true;

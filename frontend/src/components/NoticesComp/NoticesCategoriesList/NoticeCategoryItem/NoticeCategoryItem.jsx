@@ -21,7 +21,7 @@ import {
   TBody,
   DeleteIcon,
 } from './NoticeCategoryItem.styled';
-import { selecId } from 'redux/auth/selectors';
+import { selectId, getPermission } from 'redux/auth/selectors';
 import { useState } from 'react';
 import { deleteNoticeUser } from 'services/APIservice';
 import { addReload } from 'redux/reload/slice';
@@ -34,10 +34,12 @@ export const NoticesCategoriesItem = ({
   const [, setIsLoading] = useState(false);
   const [, setError] = useState(null);
 
-  const { _id } = useSelector(selecId); //isLoggedIn
+  const _id = useSelector(selectId); //isLoggedIn
   const dispatch = useDispatch();
   let id = '';
   _id == null ? (id = 1) : (id = _id);
+
+  const permission = useSelector(getPermission);
 
   async function deleteNotice(id) {
     setIsLoading(true);
@@ -159,7 +161,7 @@ export const NoticesCategoriesItem = ({
           >
             Learn more
           </BtnLearnMore>
-          {data.owner === id && (
+          {(data.owner === id || permission === 'admin') && (
             <BtnDelete onClick={e => deleteNotice(data._id)}>
               Delete
               <DeleteIcon />
