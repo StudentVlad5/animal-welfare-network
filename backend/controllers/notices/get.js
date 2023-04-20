@@ -16,15 +16,16 @@ const get = async (req, res, next) => {
     const skip = perPage * (page - 1);
 
     const category = req.params.category;
-    const {
+    const typeofpet = req.params.typeofpet;
+    // const {
       // birthday,
-      typeofpet,
+      // typeofpet,
       // size,
       // sterilization,
       // lives,
       // sex
-    } = req.body;
-    console.log("typeofpet", req);
+    // } = req.body;
+    console.log("typeofpet", typeofpet);
     let total = await Notices.find({ category, typeofpet }).count();
     let notices = [];
     const constructorData = {
