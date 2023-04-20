@@ -24,6 +24,7 @@ const get = async (req, res, next) => {
       // lives,
       // sex
     } = req.body;
+    console.log("typeofpet",typeofpet);
     let total = await Notices.find({ category, typeofpet }).count();
     let notices = [];
     const constructorData = {
