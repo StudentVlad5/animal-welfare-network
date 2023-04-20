@@ -130,6 +130,7 @@ const get = async (req, res, next) => {
     } else {
       notices = await Notices.find({
         category: { $regex: category, $options: "i" },
+        typeofpet,
       })
         .limit(limit)
         .skip(skip)
