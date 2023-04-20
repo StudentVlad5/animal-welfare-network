@@ -1,7 +1,7 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css';
