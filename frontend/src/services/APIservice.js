@@ -5,9 +5,18 @@ import PropTypes from 'prop-types';
 const BASE_URL = 'https://animal-welfare-network.onrender.com/api';
 // const BASE_URL = 'http://localhost:3030/api';
 
-async function fetchData(pathParams) {
+async function fetchData(pathParams, body) {
+  const formData = new FormData();
+  formData.append('birthday', body.birthday);
+  formData.append('typeofpet', body.typeofpet);
+  formData.append('size', body.size);
+  formData.append('sterilization', body.sterilization);
+  formData.append('lives', body.lives);
+  formData.append('sex', body.sex);
+
   const axiosInstance = axios.create({
     baseURL: `${BASE_URL}${pathParams}`,
+    formData,
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
