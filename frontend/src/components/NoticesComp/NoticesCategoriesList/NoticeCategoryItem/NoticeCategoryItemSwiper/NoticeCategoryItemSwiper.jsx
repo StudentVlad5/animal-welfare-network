@@ -1,4 +1,7 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
+import {
+  Swiper,
+  SwiperSlide,
+} from './../../../../../../node_modules/swiper/react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper';
