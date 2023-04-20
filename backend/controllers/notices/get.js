@@ -42,12 +42,14 @@ const get = async (req, res, next) => {
           total = await Notices.find({
             _id: { $in: favorites },
             title: { $regex: findtext, $options: "i" },
+            typeofpet,
           }).count();
           constructorData.total = total;
 
           notices = await Notices.find({
             _id: { $in: favorites },
             title: { $regex: findtext, $options: "i" },
+            typeofpet,
           })
             .limit(limit)
             .skip(skip)
@@ -71,11 +73,13 @@ const get = async (req, res, next) => {
           total = await Notices.find({
             owner: _id,
             title: { $regex: findtext, $options: "i" },
+            typeofpet,
           }).count();
           constructorData.total = total;
           notices = await Notices.find({
             owner: _id,
             title: { $regex: findtext, $options: "i" },
+            typeofpet,
           })
             .limit(limit)
             .skip(skip)
@@ -103,11 +107,13 @@ const get = async (req, res, next) => {
       total = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
+        typeofpet,
       }).count();
       constructorData.total = total;
       notices = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
+        typeofpet,
       })
         .limit(limit)
         .skip(skip)
