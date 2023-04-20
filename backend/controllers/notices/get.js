@@ -23,8 +23,8 @@ const get = async (req, res, next) => {
       // sterilization,
       // lives,
       // sex
-    } = req;
-    console.log("typeofpet",req.body);
+    } = req.body;
+    console.log("typeofpet", req);
     let total = await Notices.find({ category, typeofpet }).count();
     let notices = [];
     const constructorData = {
