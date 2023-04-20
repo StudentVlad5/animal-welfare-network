@@ -9,6 +9,7 @@ const get = async (req, res, next) => {
       isFavorites,
       myAdds,
       findtext,
+      typeofpet,
       page = 1,
       perPage = isPagination ? 20 : 5000,
     } = req.query;
@@ -16,7 +17,7 @@ const get = async (req, res, next) => {
     const skip = perPage * (page - 1);
 
     const category = req.params.category;
-    const typeofpet = req.params.typeofpet;
+
     // const {
       // birthday,
       // typeofpet,
