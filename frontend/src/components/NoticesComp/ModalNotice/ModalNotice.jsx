@@ -71,7 +71,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
     if (modal.id !== '') {
       fetchNoticesList();
     }
-  }, [itemForFetch]);
+  }, [itemForFetch, modal.id]);
   const [current, setCurrent] = useState(0);
 
   const nextSlide = () => {
