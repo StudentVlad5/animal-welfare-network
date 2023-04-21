@@ -1,5 +1,5 @@
-const { Notices } = require('../../models');
-const { ValidationError, constructorResponse } = require('../../helpers');
+const { Notices } = require("../../models");
+const { ValidationError, constructorResponse } = require("../../helpers");
 
 const get = async (req, res, next) => {
   try {
@@ -16,15 +16,17 @@ const get = async (req, res, next) => {
     const skip = perPage * (page - 1);
 
     const filterConstructor = {};
-    let {typeofpet, sex, size, sterilization, lives} = req.query;
-    if(typeofpet !== null) filterConstructor.typeofpet = typeofpet;
-    if(sex !== null) filterConstructor.sex = sex;
-    if(size !== null) filterConstructor.size = size;
-    if(typesterilizationofpet !== null) filterConstructor.sterilization = sterilization;
-    if(lives !== null) filterConstructor.lives = lives;
-console.log("filterConstructor",filterConstructor)
+    let { typeofpet, sex, size, sterilization, lives } = req.query;
+    if (typeofpet !== null) filterConstructor.typeofpet = typeofpet;
+    if (sex !== null) filterConstructor.sex = sex;
+    if (size !== null) filterConstructor.size = size;
+    if (typesterilizationofpet !== null)
+      filterConstructor.sterilization = sterilization;
+    if (lives !== null) filterConstructor.lives = lives;
+    console.log("filterConstructor", filterConstructor);
     const category = req.params.category;
-    let total = await Notices.find({ category, filterConstructor }).count();
+
+    let total = await Notices.find({ category }).count();
     let notices = [];
     const constructorData = {
       pagination: isPagination,
@@ -37,17 +39,17 @@ console.log("filterConstructor",filterConstructor)
     if (req.user) {
       const { _id, favorites } = req.user;
 
-      if (category === 'favorite') {
+      if (category === "favorite") {
         if (findtext) {
           total = await Notices.find({
             _id: { $in: favorites },
-            title: { $regex: findtext, $options: 'i' },
+            title: { $regex: findtext, $options: "i" },
           }).count();
           constructorData.total = total;
 
           notices = await Notices.find({
             _id: { $in: favorites },
-            title: { $regex: findtext, $options: 'i' },
+            title: { $regex: findtext, $options: "i" },
           })
             .limit(limit)
             .skip(skip)
@@ -66,16 +68,16 @@ console.log("filterConstructor",filterConstructor)
           .status(200)
           .json(constructorResponse(constructorData, notices));
       }
-      if (category === 'own') {
+      if (category === "own") {
         if (findtext) {
           total = await Notices.find({
             owner: _id,
-            title: { $regex: findtext, $options: 'i' },
+            title: { $regex: findtext, $options: "i" },
           }).count();
           constructorData.total = total;
           notices = await Notices.find({
             owner: _id,
-            title: { $regex: findtext, $options: 'i' },
+            title: { $regex: findtext, $options: "i" },
           })
             .limit(limit)
             .skip(skip)
@@ -102,13 +104,13 @@ console.log("filterConstructor",filterConstructor)
     if (findtext) {
       total = await Notices.find({
         category: category,
-        title: { $regex: findtext, $options: 'i' },
+        title: { $regex: findtext, $options: "i" },
         filterConstructor,
       }).count();
       constructorData.total = total;
       notices = await Notices.find({
         category: category,
-        title: { $regex: findtext, $options: 'i' },
+        title: { $regex: findtext, $options: "i" },
         filterConstructor,
       })
         .limit(limit)
@@ -122,7 +124,7 @@ console.log("filterConstructor",filterConstructor)
       res.status(200).json(constructorResponse(constructorData, notices));
     } else {
       notices = await Notices.find({
-        category: { $regex: category, $options: 'i' },
+        category: { $regex: category, $options: "i" },
         filterConstructor,
       })
         .limit(limit)
@@ -131,7 +133,7 @@ console.log("filterConstructor",filterConstructor)
       res.status(200).json(constructorResponse(constructorData, notices));
     }
   } catch (error) {
-    res.status(400).json({ message: 'Invalid search characters' });
+    res.status(400).json({ message: "Invalid search characters" });
   }
   // const isPagination = req.query.page;
   // const {
