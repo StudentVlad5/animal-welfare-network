@@ -15,7 +15,7 @@ const get = async (req, res, next) => {
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
 
-    const filterConstructor = {};
+    let filterConstructor = {};
     let { typeofpet, sex, size, sterilization, lives } = req.query;
     if (typeofpet !== null) filterConstructor.typeofpet = typeofpet;
     if (sex !== null) filterConstructor.sex = sex;
