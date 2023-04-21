@@ -1,5 +1,5 @@
-const { Notices } = require("../../models");
-const { ValidationError, constructorResponse } = require("../../helpers");
+const { Notices } = require('../../models');
+const { ValidationError, constructorResponse } = require('../../helpers');
 
 const get = async (req, res, next) => {
   try {
@@ -29,17 +29,17 @@ const get = async (req, res, next) => {
     if (req.user) {
       const { _id, favorites } = req.user;
 
-      if (category === "favorite") {
+      if (category === 'favorite') {
         if (findtext) {
           total = await Notices.find({
             _id: { $in: favorites },
-            title: { $regex: findtext, $options: "i" },
+            title: { $regex: findtext, $options: 'i' },
           }).count();
           constructorData.total = total;
 
           notices = await Notices.find({
             _id: { $in: favorites },
-            title: { $regex: findtext, $options: "i" },
+            title: { $regex: findtext, $options: 'i' },
           })
             .limit(limit)
             .skip(skip)
@@ -58,16 +58,16 @@ const get = async (req, res, next) => {
           .status(200)
           .json(constructorResponse(constructorData, notices));
       }
-      if (category === "own") {
+      if (category === 'own') {
         if (findtext) {
           total = await Notices.find({
             owner: _id,
-            title: { $regex: findtext, $options: "i" },
+            title: { $regex: findtext, $options: 'i' },
           }).count();
           constructorData.total = total;
           notices = await Notices.find({
             owner: _id,
-            title: { $regex: findtext, $options: "i" },
+            title: { $regex: findtext, $options: 'i' },
           })
             .limit(limit)
             .skip(skip)
@@ -94,12 +94,12 @@ const get = async (req, res, next) => {
     if (findtext) {
       total = await Notices.find({
         category: category,
-        title: { $regex: findtext, $options: "i" },
+        title: { $regex: findtext, $options: 'i' },
       }).count();
       constructorData.total = total;
       notices = await Notices.find({
         category: category,
-        title: { $regex: findtext, $options: "i" },
+        title: { $regex: findtext, $options: 'i' },
       })
         .limit(limit)
         .skip(skip)
@@ -112,7 +112,7 @@ const get = async (req, res, next) => {
       res.status(200).json(constructorResponse(constructorData, notices));
     } else {
       notices = await Notices.find({
-        category: { $regex: category, $options: "i" },
+        category: { $regex: category, $options: 'i' },
       })
         .limit(limit)
         .skip(skip)
@@ -120,7 +120,7 @@ const get = async (req, res, next) => {
       res.status(200).json(constructorResponse(constructorData, notices));
     }
   } catch (error) {
-    res.status(400).json({ message: "Invalid search characters" });
+    res.status(400).json({ message: 'Invalid search characters' });
   }
   // const isPagination = req.query.page;
   // const {
