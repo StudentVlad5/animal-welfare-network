@@ -15,8 +15,16 @@ const get = async (req, res, next) => {
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
 
+    const filterConstructor = {};
+    let {typeofpet, sex, size, sterilization, lives} = req.query;
+    if(typeofpet !== null) filterConstructor.typeofpet = typeofpet;
+    if(sex !== null) filterConstructor.sex = sex;
+    if(size !== null) filterConstructor.size = size;
+    if(typesterilizationofpet !== null) filterConstructor.sterilization = sterilization;
+    if(lives !== null) filterConstructor.lives = lives;
+
     const category = req.params.category;
-    let total = await Notices.find({ category }).count();
+    let total = await Notices.find({ category, filterConstructor }).count();
     let notices = [];
     const constructorData = {
       pagination: isPagination,
@@ -95,11 +103,13 @@ const get = async (req, res, next) => {
       total = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: 'i' },
+        filterConstructor,
       }).count();
       constructorData.total = total;
       notices = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: 'i' },
+        filterConstructor,
       })
         .limit(limit)
         .skip(skip)
@@ -113,6 +123,7 @@ const get = async (req, res, next) => {
     } else {
       notices = await Notices.find({
         category: { $regex: category, $options: 'i' },
+        filterConstructor,
       })
         .limit(limit)
         .skip(skip)
