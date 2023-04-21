@@ -15,15 +15,15 @@ const get = async (req, res, next) => {
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
 
-    let filterConstructor = {};
-    let { typeofpet, sex, size, sterilization, lives } = req.query;
-    if (typeofpet !== null) filterConstructor.typeofpet = typeofpet;
-    if (sex !== null) filterConstructor.sex = sex;
-    if (size !== null) filterConstructor.size = size;
-    if (typesterilizationofpet !== null)
-      filterConstructor.sterilization = sterilization;
-    if (lives !== null) filterConstructor.lives = lives;
-    console.log("filterConstructor", filterConstructor);
+    // let filterConstructor = {};
+    // let { typeofpet, sex, size, sterilization, lives } = req.query;
+    // if (typeofpet !== null) filterConstructor.typeofpet = typeofpet;
+    // if (sex !== null) filterConstructor.sex = sex;
+    // if (size !== null) filterConstructor.size = size;
+    // if (typesterilizationofpet !== null)
+    //   filterConstructor.sterilization = sterilization;
+    // if (lives !== null) filterConstructor.lives = lives;
+    // console.log("filterConstructor", filterConstructor);
     
     const category = req.params.category;
 
