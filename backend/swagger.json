@@ -299,6 +299,70 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["users"],
+        "operationId": "UsersDelFavorites",
+        "description": "description",
+        "summary": "Delete Users",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Success user delete"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (id incorrect)",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Bad request (id incorrect)"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (invalid access rights)",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Unauthorized (invalid access rights)"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Users not found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Users not found"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/developers": {
