@@ -22,7 +22,7 @@ const get = async (req, res, next) => {
     if(size !== null) filterConstructor.size = size;
     if(typesterilizationofpet !== null) filterConstructor.sterilization = sterilization;
     if(lives !== null) filterConstructor.lives = lives;
-
+console.log("filterConstructor",filterConstructor)
     const category = req.params.category;
     let total = await Notices.find({ category, filterConstructor }).count();
     let notices = [];
