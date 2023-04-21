@@ -24,6 +24,7 @@ const get = async (req, res, next) => {
       filterConstructor.sterilization = sterilization;
     if (lives !== null) filterConstructor.lives = lives;
     console.log("filterConstructor", filterConstructor);
+    
     const category = req.params.category;
 
     let total = await Notices.find({ category }).count();
@@ -105,13 +106,11 @@ const get = async (req, res, next) => {
       total = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
-        filterConstructor,
       }).count();
       constructorData.total = total;
       notices = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
-        filterConstructor,
       })
         .limit(limit)
         .skip(skip)
@@ -125,7 +124,6 @@ const get = async (req, res, next) => {
     } else {
       notices = await Notices.find({
         category: { $regex: category, $options: "i" },
-        filterConstructor,
       })
         .limit(limit)
         .skip(skip)
