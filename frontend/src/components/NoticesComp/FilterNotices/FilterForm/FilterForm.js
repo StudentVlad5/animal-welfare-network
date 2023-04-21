@@ -13,7 +13,7 @@ import {
 export const FilterForm = () => {
   const [typeofpet, setTypeofpet] = useState('');
   const [sex, setSex] = useState('');
-  const [birthday, setBirthday] = useState('');
+  // const [birthday, setBirthday] = useState('');
   const [size, setSize] = useState('');
   const [sterilization, setSterilization] = useState('');
   const [lives, setLives] = useState('');
@@ -21,13 +21,13 @@ export const FilterForm = () => {
   const handleClearAll = () => {
     setTypeofpet('');
     setSex('');
-    setBirthday('');
+    // setBirthday('');
     setSize('');
     setSterilization('');
     setLives('');
     localStorage.setItem('typeofpet', '');
     localStorage.setItem('sex', '');
-    localStorage.setItem('birthday', '');
+    // localStorage.setItem('birthday', '');
     localStorage.setItem('size', '');
     localStorage.setItem('sterilization', '');
     localStorage.setItem('lives', '');
@@ -50,18 +50,18 @@ export const FilterForm = () => {
         setSex(e.target.value);
         localStorage.setItem('sex', e.target.value);
         break;
-      case 'less1year':
-        setBirthday(e.target.value);
-        localStorage.setItem('birthday', e.target.value);
-        break;
-      case 'from1to4years':
-        setBirthday(e.target.value);
-        localStorage.setItem('birthday', e.target.value);
-        break;
-      case 'from4years':
-        setBirthday(e.target.value);
-        localStorage.setItem('birthday', e.target.value);
-        break;
+      // case 'less1year':
+      //   setBirthday(e.target.value);
+      //   localStorage.setItem('birthday', e.target.value);
+      //   break;
+      // case 'from1to4years':
+      //   setBirthday(e.target.value);
+      //   localStorage.setItem('birthday', e.target.value);
+      //   break;
+      // case 'from4years':
+      //   setBirthday(e.target.value);
+      //   localStorage.setItem('birthday', e.target.value);
+      //   break;
       case 'big':
         setSize(e.target.value);
         localStorage.setItem('size', e.target.value);
@@ -156,8 +156,8 @@ export const FilterForm = () => {
           <Check className="check" />
         </LabelForInput>
       </FieldSet>
-      <FieldSet>
-        <LegendFieldSet>Age</LegendFieldSet>
+      {/* <FieldSet> */}
+      {/* <LegendFieldSet>Age</LegendFieldSet>
         <LabelForInput htmlFor="less1year">
           less 1 year
           <InputForm
@@ -194,7 +194,7 @@ export const FilterForm = () => {
           />
           <Check className="check" />
         </LabelForInput>
-      </FieldSet>
+      </FieldSet> */}
       <FieldSet>
         <LegendFieldSet>Size of the pet </LegendFieldSet>
         <LabelForInput htmlFor="big">

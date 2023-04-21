@@ -9,13 +9,11 @@ const get = async (req, res, next) => {
       isFavorites,
       myAdds,
       findtext,
-      typeofpet,
       page = 1,
       perPage = isPagination ? 20 : 5000,
     } = req.query;
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
-
     const category = req.params.category;
 
     // const {
@@ -27,7 +25,7 @@ const get = async (req, res, next) => {
       // sex
     // } = req.body;
 
-    let total = await Notices.find({ category, typeofpet }).count();
+    let total = await Notices.find({ category }).count();
     let notices = [];
     const constructorData = {
       pagination: isPagination,
@@ -45,14 +43,12 @@ const get = async (req, res, next) => {
           total = await Notices.find({
             _id: { $in: favorites },
             title: { $regex: findtext, $options: "i" },
-            typeofpet,
           }).count();
           constructorData.total = total;
 
           notices = await Notices.find({
             _id: { $in: favorites },
             title: { $regex: findtext, $options: "i" },
-            typeofpet,
           })
             .limit(limit)
             .skip(skip)
@@ -76,13 +72,11 @@ const get = async (req, res, next) => {
           total = await Notices.find({
             owner: _id,
             title: { $regex: findtext, $options: "i" },
-            typeofpet,
           }).count();
           constructorData.total = total;
           notices = await Notices.find({
             owner: _id,
             title: { $regex: findtext, $options: "i" },
-            typeofpet,
           })
             .limit(limit)
             .skip(skip)
@@ -110,13 +104,11 @@ const get = async (req, res, next) => {
       total = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
-        typeofpet,
       }).count();
       constructorData.total = total;
       notices = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
-        typeofpet,
       })
         .limit(limit)
         .skip(skip)
@@ -130,7 +122,6 @@ const get = async (req, res, next) => {
     } else {
       notices = await Notices.find({
         category: { $regex: category, $options: "i" },
-        typeofpet,
       })
         .limit(limit)
         .skip(skip)
