@@ -17,12 +17,22 @@ const get = async (req, res, next) => {
 
     let filterConstructor = {};
     let { typeofpet, sex, size, sterilization, lives } = req.query;
-    if (!typeofpet && typeofpet !== "") filterConstructor.typeofpet = typeofpet;
-    if (!sex && sex !== "") filterConstructor.sex = sex;
-    if (!size && size !== "") filterConstructor.size = size;
-    if (!sterilization && sterilization !== "")
+
+    if (!typeofpet && typeofpet !== "") {
+      filterConstructor.typeofpet = typeofpet;
+    }
+    if (!sex && sex !== "") {
+      filterConstructor.sex = sex;
+    }
+    if (!size && size !== "") {
+      filterConstructor.size = size;
+    }
+    if (!sterilization && sterilization !== "") {
       filterConstructor.sterilization = sterilization;
-    if (!lives && lives !== "") filterConstructor.lives = lives;
+    }
+    if (!lives && lives !== "") {
+      filterConstructor.lives = lives;
+    }
 
     const category = req.params.category;
 
