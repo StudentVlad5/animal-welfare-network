@@ -44,8 +44,12 @@ const get = async (req, res, next) => {
     }
 
     console.log("filterConstructor", filterConstructor);
-    let filter = filterConstructor.join();
-    console.log("filter", filter);
+    const arrayKeyFilter = Object.entries(filterConstructor).forEach(
+      ([key, value]) => {
+        `${key}: ${value}`;
+      }
+    );
+    console.log("arrayKeyFilter", arrayKeyFilter);
 
     const category = req.params.category;
 
