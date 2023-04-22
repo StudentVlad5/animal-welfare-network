@@ -23,7 +23,7 @@ const get = async (req, res, next) => {
       typeofpet !== "" &&
       typeofpet !== undefined
     ) {
-      filterConstructor.push({"typeofpet": typeofpet});
+      filterConstructor.push({ ["typeofpet"]: typeofpet });
     }
     if (!sex && sex !== null && sex !== "" && sex !== undefined) {
       filterConstructor.sex = sex;
@@ -44,6 +44,7 @@ const get = async (req, res, next) => {
     }
 
     console.log("filterConstructor", filterConstructor);
+    console.log("typeofpet", typeofpet);
     const category = req.params.category;
 
     let total = await Notices.find({ category }).count();
