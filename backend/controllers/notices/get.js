@@ -128,8 +128,7 @@ const get = async (req, res, next) => {
         .limit(limit)
         .skip(skip)
         .sort({ createdAt: -1 });
-        console.log("filterConstructor", filterConstructor);
-      res.status(200).json(constructorResponse(constructorData, notices));
+      res.status(200).json(constructorResponse(constructorData, notices, filterConstructor));
     }
   } catch (error) {
     res.status(400).json({ message: "Invalid search characters" });
