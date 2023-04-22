@@ -38,7 +38,7 @@ const get = async (req, res, next) => {
     if (!lives && lives !== null && lives !== "" && lives !== undefined)
       filterConstructor.lives = lives;
 
-    console.log("filterConstructor", filterConstructor.join(","));
+    console.log("filterConstructor", filterConstructor);
     const category = req.params.category;
 
     let total = await Notices.find({ category }).count();
