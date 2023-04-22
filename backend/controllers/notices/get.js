@@ -44,11 +44,10 @@ const get = async (req, res, next) => {
     }
 
     console.log("filterConstructor", filterConstructor);
-    const arrayKeyFilter = Object.entries(filterConstructor).forEach(
-      ([key, value]) => {
-        `${key}: ${value}`;
-      }
-    );
+    let arrayKeyFilter = "";
+    Object.entries(filterConstructor).forEach(([key, value]) => {
+      arrayKeyFilter += `${key}: ${value},`;
+    });
     console.log("arrayKeyFilter", arrayKeyFilter);
 
     const category = req.params.category;
