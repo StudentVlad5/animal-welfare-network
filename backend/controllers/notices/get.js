@@ -20,23 +20,23 @@ const get = async (req, res, next) => {
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
 
-    let filterConstructor = {};
+    // let filterConstructor = {};
 
-    if (!typeofpet) {
-      filterConstructor["typeofpet"] = typeofpet;
-    }
-    if (!sex) {
-      filterConstructor["sex"] = sex;
-    }
-    if (!size) {
-      filterConstructor["size"] = size;
-    }
-    if (!sterilization) {
-      filterConstructor["sterilization"] = sterilization;
-    }
-    if (!lives) {
-      filterConstructor["lives"] = lives;
-    }
+    // if (!typeofpet) {
+    //   filterConstructor["typeofpet"] = typeofpet;
+    // }
+    // if (!sex) {
+    //   filterConstructor["sex"] = sex;
+    // }
+    // if (!size) {
+    //   filterConstructor["size"] = size;
+    // }
+    // if (!sterilization) {
+    //   filterConstructor["sterilization"] = sterilization;
+    // }
+    // if (!lives) {
+    //   filterConstructor["lives"] = lives;
+    // }
 
     const category = req.params.category;
 
