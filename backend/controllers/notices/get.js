@@ -44,7 +44,9 @@ const get = async (req, res, next) => {
     }
 
     console.log("filterConstructor", filterConstructor);
-    console.log("typeofpet", typeofpet);
+    const filter = filterConstructor.join(',')
+    console.log("filter", filter);
+
     const category = req.params.category;
 
     let total = await Notices.find({ category }).count();
@@ -144,6 +146,7 @@ const get = async (req, res, next) => {
     } else {
       notices = await Notices.find({
         category: { $regex: category, $options: "i" },
+        
       })
         .limit(limit)
         .skip(skip)
