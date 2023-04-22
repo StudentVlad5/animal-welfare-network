@@ -11,33 +11,19 @@ const get = async (req, res, next) => {
       findtext,
       page = 1,
       perPage = isPagination ? 20 : 5000,
-      typeofpet,
-      sex,
-      size,
-      sterilization,
-      lives,
     } = req.query;
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
 
     let filterConstructor = {};
-
-    if (!typeofpet) {
-      filterConstructor["typeofpet"] = typeofpet;
-    }
-    if (!sex) {
-      filterConstructor["sex"] = sex;
-    }
-    if (!size) {
-      filterConstructor["size"] = size;
-    }
-    if (!sterilization) {
-      filterConstructor["sterilization"] = sterilization;
-    }
-    if (!lives) {
-      filterConstructor["lives"] = lives;
-    }
-    console.log("filterConstructor", filterConstructor)
+    let { typeofpet, sex, size, sterilization, lives } = req.query;
+    if (!typeofpet && typeofpet !== null && typeofpet !== "") filterConstructor.typeofpet = typeofpet;
+    if (!sex && sex !== null && sex !== "") filterConstructor.sex = sex;
+    if (!size && size !== null && size !== "") filterConstructor.size = size;
+    if (!sterilization && sterilization !== null && sterilization !== "")
+      filterConstructor.sterilization = sterilization;
+    if (!lives && lives !== null && lives !== "") filterConstructor.lives = lives;
+    console.log("filterConstructor", filterConstructor);
 
     const category = req.params.category;
 
