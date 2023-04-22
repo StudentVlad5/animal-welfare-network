@@ -23,7 +23,7 @@ const get = async (req, res, next) => {
       typeofpet !== "" &&
       typeofpet !== undefined
     ) {
-      filterConstructor.push({ ["typeofpet"]: typeofpet });
+      filterConstructor.push(typeofpet);
     }
     if (!sex && sex !== null && sex !== "" && sex !== undefined) {
       filterConstructor.sex = sex;
