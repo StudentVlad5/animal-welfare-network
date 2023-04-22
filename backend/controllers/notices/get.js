@@ -15,28 +15,33 @@ const get = async (req, res, next) => {
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
 
-    let filterConstructor = {};
+    let filterConstructor = [];
     let { typeofpet, sex, size, sterilization, lives } = req.query;
     if (
       !typeofpet &&
       typeofpet !== null &&
       typeofpet !== "" &&
       typeofpet !== undefined
-    )
-      {filterConstructor.push({'typeofpet' : typeofpet})};
-    if (!sex && sex !== null && sex !== "" && sex !== undefined)
-      {filterConstructor.sex = sex};
-    if (!size && size !== null && size !== "" && size !== undefined)
-      {filterConstructor.size = size};
+    ) {
+      filterConstructor.push({"typeofpet": typeofpet});
+    }
+    if (!sex && sex !== null && sex !== "" && sex !== undefined) {
+      filterConstructor.sex = sex;
+    }
+    if (!size && size !== null && size !== "" && size !== undefined) {
+      filterConstructor.size = size;
+    }
     if (
       !sterilization &&
       sterilization !== null &&
       sterilization !== "" &&
       sterilization !== undefined
-    )
-      {filterConstructor.sterilization = sterilization};
-    if (!lives && lives !== null && lives !== "" && lives !== undefined)
-      {filterConstructor.lives = lives};
+    ) {
+      filterConstructor.sterilization = sterilization;
+    }
+    if (!lives && lives !== null && lives !== "" && lives !== undefined) {
+      filterConstructor.lives = lives;
+    }
 
     console.log("filterConstructor", filterConstructor);
     const category = req.params.category;
