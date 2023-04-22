@@ -15,7 +15,7 @@ const get = async (req, res, next) => {
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
 
-    let filterConstructor = {};
+    let filterConstructor = [];
     let { typeofpet, sex, size, sterilization, lives } = req.query;
     if (
       !typeofpet &&
@@ -37,8 +37,8 @@ const get = async (req, res, next) => {
       filterConstructor.sterilization = sterilization;
     if (!lives && lives !== null && lives !== "" && lives !== undefined)
       filterConstructor.lives = lives;
-    console.log("filterConstructor", filterConstructor);
 
+    console.log("filterConstructor", filterConstructor.join(","));
     const category = req.params.category;
 
     let total = await Notices.find({ category }).count();
