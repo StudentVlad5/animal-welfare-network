@@ -23,7 +23,7 @@ const get = async (req, res, next) => {
     if (!sterilization && sterilization !== null && sterilization !== "")
       filterConstructor.sterilization = sterilization;
     if (!lives && lives !== null && lives !== "") filterConstructor.lives = lives;
-    console.log("filterConstructor", ...filterConstructor);
+    
 
     const category = req.params.category;
 
@@ -128,6 +128,7 @@ const get = async (req, res, next) => {
         .limit(limit)
         .skip(skip)
         .sort({ createdAt: -1 });
+        console.log("filterConstructor", filterConstructor);
       res.status(200).json(constructorResponse(constructorData, notices));
     }
   } catch (error) {
