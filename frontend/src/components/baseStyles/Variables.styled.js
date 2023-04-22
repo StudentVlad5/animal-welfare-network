@@ -16,7 +16,7 @@ export const lightTheme = {
   shadowcolor: 'rgba(0, 0, 0, 0.11)',
   colorBorder: 'transparent',
   colorOfForm: '#FFFFFF',
-  colorOfInput: '#FDF7F2',
+  colorOfInput: '#FFFFFF',
 };
 
 export const darkTheme = {
