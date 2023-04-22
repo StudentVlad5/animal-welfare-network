@@ -11,11 +11,11 @@ const get = async (req, res, next) => {
       findtext,
       page = 1,
       perPage = isPagination ? 20 : 5000,
-      typeofpet,
-      sex,
-      size,
-      sterilization,
-      lives,
+      // typeofpet,
+      // sex,
+      // size,
+      // sterilization,
+      // lives,
     } = req.query;
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
