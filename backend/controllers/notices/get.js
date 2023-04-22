@@ -23,20 +23,20 @@ const get = async (req, res, next) => {
       typeofpet !== "" &&
       typeofpet !== undefined
     )
-      filterConstructor.typeofpet = typeofpet;
+      {filterConstructor.typeofpet = typeofpet};
     if (!sex && sex !== null && sex !== "" && sex !== undefined)
-      filterConstructor.sex = sex;
+      {filterConstructor.sex = sex};
     if (!size && size !== null && size !== "" && size !== undefined)
-      filterConstructor.size = size;
+      {filterConstructor.size = size};
     if (
       !sterilization &&
       sterilization !== null &&
       sterilization !== "" &&
       sterilization !== undefined
     )
-      filterConstructor.sterilization = sterilization;
+      {filterConstructor.sterilization = sterilization};
     if (!lives && lives !== null && lives !== "" && lives !== undefined)
-      filterConstructor.lives = lives;
+      {filterConstructor.lives = lives};
 
     console.log("filterConstructor", filterConstructor);
     const category = req.params.category;
