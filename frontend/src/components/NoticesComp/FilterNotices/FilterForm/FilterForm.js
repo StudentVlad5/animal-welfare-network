@@ -9,6 +9,7 @@ import {
   BtnFilter,
   BtnContiner,
 } from './FilterForm.styled';
+import { useSearchParams } from 'react-router-dom';
 
 export const FilterForm = () => {
   const [typeofpet, setTypeofpet] = useState('');
@@ -31,6 +32,34 @@ export const FilterForm = () => {
     localStorage.setItem('size', '');
     localStorage.setItem('sterilization', '');
     localStorage.setItem('lives', '');
+  };
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const setParams = search => {
+    const params = getParams();
+    params.page = 1;
+    if (typeofpet !== '') {
+      params.typeofpet = typeofpet;
+    }
+    if (sex !== '') {
+      params.sex = sex;
+    }
+    if (size !== '') {
+      params.size = size;
+    }
+    if (sterilization !== '') {
+      params.sterilization = sterilization;
+    }
+    if (lives !== '') {
+      params.lives = lives;
+    }
+    setSearchParams(params);
+  };
+
+  const getParams = () => {
+    const params = Object.fromEntries(searchParams);
+    return params;
   };
 
   const handleChooseRadioButton = e => {
