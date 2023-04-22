@@ -32,6 +32,7 @@ export const FilterForm = () => {
     localStorage.setItem('sterilization', '');
     localStorage.setItem('lives', '');
   };
+
   const handleChooseRadioButton = e => {
     switch (e.target.value) {
       case 'dog':
@@ -94,7 +95,6 @@ export const FilterForm = () => {
         setLives(e.target.value);
         localStorage.setItem('lives', e.target.value);
         break;
-
       default:
         handleClearAll();
         break;
