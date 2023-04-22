@@ -44,7 +44,7 @@ const get = async (req, res, next) => {
     }
 
     console.log("filterConstructor", filterConstructor);
-    const filter = filterConstructor.join();
+    let filter = filterConstructor.join();
     console.log("filter", filter);
 
     const category = req.params.category;
