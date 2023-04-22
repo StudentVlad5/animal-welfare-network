@@ -17,13 +17,12 @@ const get = async (req, res, next) => {
 
     let filterConstructor = {};
     let { typeofpet, sex, size, sterilization, lives } = req.query;
-    if (!typeofpet && typeofpet !== null && typeofpet !== "") filterConstructor.typeofpet = typeofpet;
-    if (!sex && sex !== null && sex !== "") filterConstructor.sex = sex;
-    if (!size && size !== null && size !== "") filterConstructor.size = size;
-    if (!sterilization && sterilization !== null && sterilization !== "")
+    if (!typeofpet && typeofpet !== "") filterConstructor.typeofpet = typeofpet;
+    if (!sex && sex !== "") filterConstructor.sex = sex;
+    if (!size && size !== "") filterConstructor.size = size;
+    if (!sterilization && sterilization !== "")
       filterConstructor.sterilization = sterilization;
-    if (!lives && lives !== null && lives !== "") filterConstructor.lives = lives;
-    
+    if (!lives && lives !== "") filterConstructor.lives = lives;
 
     const category = req.params.category;
 
@@ -128,7 +127,7 @@ const get = async (req, res, next) => {
         .limit(limit)
         .skip(skip)
         .sort({ createdAt: -1 });
-      res.status(200).json(constructorResponse(constructorData, notices, filterConstructor));
+      res.status(200).json(constructorResponse(constructorData, notices));
     }
   } catch (error) {
     res.status(400).json({ message: "Invalid search characters" });
