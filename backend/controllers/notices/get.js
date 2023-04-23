@@ -43,7 +43,7 @@ const get = async (req, res, next) => {
     console.log("filterConstructor", filterConstructor);
     let arrayKeyFilter = "";
     Object.entries(filterConstructor).forEach(([key, value]) => {
-      arrayKeyFilter += `${key}: ${value},`;
+      arrayKeyFilter += `${key}: '${value}',`;
     });
     console.log("arrayKeyFilter", arrayKeyFilter);
 
