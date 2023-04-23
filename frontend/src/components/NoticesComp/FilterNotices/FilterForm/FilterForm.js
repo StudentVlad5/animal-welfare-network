@@ -11,13 +11,16 @@ import {
 } from './FilterForm.styled';
 import { useSearchParams } from 'react-router-dom';
 
-export const FilterForm = () => {
+export const FilterForm = ({ closeModal }) => {
   const [typeofpet, setTypeofpet] = useState('');
   const [sex, setSex] = useState('');
   // const [birthday, setBirthday] = useState('');
   const [size, setSize] = useState('');
   const [sterilization, setSterilization] = useState('');
   const [lives, setLives] = useState('');
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const { id } = useParams();
 
   const handleClearAll = () => {
     setTypeofpet('');
@@ -32,12 +35,11 @@ export const FilterForm = () => {
     localStorage.setItem('size', '');
     localStorage.setItem('sterilization', '');
     localStorage.setItem('lives', '');
+    setSearchParams({ page: 1, perPage: 12 });
   };
 
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const setParams = search => {
-    const params = getParams();
+  const setParams = () => {
+    const params = Object.fromEntries(searchParams);
     params.page = 1;
     if (typeofpet !== '') {
       params.typeofpet = typeofpet;
@@ -55,11 +57,7 @@ export const FilterForm = () => {
       params.lives = lives;
     }
     setSearchParams(params);
-  };
-
-  const getParams = () => {
-    const params = Object.fromEntries(searchParams);
-    return params;
+    console.log('params', params);
   };
 
   const handleChooseRadioButton = e => {
@@ -129,8 +127,12 @@ export const FilterForm = () => {
         break;
     }
   };
+
   return (
-    <Form>
+    <Form
+      // action={`${id}/?${searchParams}`}
+      onSubmit={e => e.preventDefault()}
+    >
       <FieldSet>
         <LegendFieldSet>Type of pet</LegendFieldSet>
         <LabelForInput htmlFor="dog">
@@ -330,7 +332,15 @@ export const FilterForm = () => {
         </LabelForInput>
       </FieldSet>
       <BtnContiner>
-        <BtnFilter type="submit">Submit</BtnFilter>
+        <BtnFilter
+          type="submit"
+          onClick={e => {
+            setParams();
+            closeModal(e);
+          }}
+        >
+          Submit
+        </BtnFilter>
         <BtnFilter type="button" onClick={handleClearAll}>
           Clear all
         </BtnFilter>

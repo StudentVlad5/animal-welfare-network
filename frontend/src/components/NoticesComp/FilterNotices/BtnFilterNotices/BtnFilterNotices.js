@@ -13,7 +13,6 @@ export const BtnFilterNotices = () => {
       dispatch(
         addModal({
           modal: e.currentTarget.dataset.modal,
-          id: e.currentTarget.dataset.id,
         }),
       );
       openModalWindow(e, null);

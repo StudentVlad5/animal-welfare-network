@@ -35,7 +35,7 @@ export const FilterModal = () => {
               <MdClose style={{ width: '15.5px', height: '15.5px' }} />
             </ContainerCloseModal>
           </ContainerPositionForCloseModal>
-          <FilterForm />
+          <FilterForm closeModal={closeModal} />
         </FilterContainerItem>
       </BackDrop>
     ),
