@@ -18,19 +18,19 @@ const get = async (req, res, next) => {
     let filterConstructor = {};
     let { typeofpet, sex, size, sterilization, lives } = req.query;
 
-    typeofpet == "" || !typeofpet
+    typeofpet == "" && typeofpet == undefined
       ? (filterConstructor.typeofpet = null)
       : (filterConstructor.typeofpet = typeofpet);
-    sex == "" || !sex
+    sex == "" && sex == undefined
       ? (filterConstructor.sex = null)
       : (filterConstructor.sex = sex);
-    size == "" || !size
+    size == "" && size == undefined
       ? (filterConstructor.size = null)
       : (filterConstructor.size = size);
-    sterilization == "" || !sterilization
+    sterilization == "" && sterilization == undefined
       ? (filterConstructor.sterilization = null)
       : (filterConstructor.sterilization = sterilization);
-    lives == "" || !lives
+    lives == "" && lives == undefined
       ? (filterConstructor.lives = null)
       : (filterConstructor.lives = lives);
 
@@ -60,22 +60,12 @@ const get = async (req, res, next) => {
           total = await Notices.find({
             _id: { $in: favorites },
             title: { $regex: findtext, $options: "i" },
-            typeofpet: filterConstructor.typeofpet,
-            sex: filterConstructor.sex,
-            size: filterConstructor.size,
-            sterilization: filterConstructor.sterilization,
-            lives: filterConstructor.lives,
           }).count();
           constructorData.total = total;
 
           notices = await Notices.find({
             _id: { $in: favorites },
             title: { $regex: findtext, $options: "i" },
-            typeofpet: filterConstructor.typeofpet,
-            sex: filterConstructor.sex,
-            size: filterConstructor.size,
-            sterilization: filterConstructor.sterilization,
-            lives: filterConstructor.lives,
           })
             .limit(limit)
             .skip(skip)
@@ -84,23 +74,9 @@ const get = async (req, res, next) => {
             .status(200)
             .json(constructorResponse(constructorData, notices));
         }
-        total = await Notices.find({
-          _id: { $in: favorites },
-          typeofpet: filterConstructor.typeofpet,
-          sex: filterConstructor.sex,
-          size: filterConstructor.size,
-          sterilization: filterConstructor.sterilization,
-          lives: filterConstructor.lives,
-        }).count();
+        total = await Notices.find({ _id: { $in: favorites } }).count();
         constructorData.total = total;
-        notices = await Notices.find({
-          _id: { $in: favorites },
-          typeofpet: filterConstructor.typeofpet,
-          sex: filterConstructor.sex,
-          size: filterConstructor.size,
-          sterilization: filterConstructor.sterilization,
-          lives: filterConstructor.lives,
-        })
+        notices = await Notices.find({ _id: { $in: favorites } })
           .limit(limit)
           .skip(skip)
           .sort({ createdAt: -1 });
@@ -113,21 +89,11 @@ const get = async (req, res, next) => {
           total = await Notices.find({
             owner: _id,
             title: { $regex: findtext, $options: "i" },
-            typeofpet: filterConstructor.typeofpet,
-            sex: filterConstructor.sex,
-            size: filterConstructor.size,
-            sterilization: filterConstructor.sterilization,
-            lives: filterConstructor.lives,
           }).count();
           constructorData.total = total;
           notices = await Notices.find({
             owner: _id,
             title: { $regex: findtext, $options: "i" },
-            typeofpet: filterConstructor.typeofpet,
-            sex: filterConstructor.sex,
-            size: filterConstructor.size,
-            sterilization: filterConstructor.sterilization,
-            lives: filterConstructor.lives,
           })
             .limit(limit)
             .skip(skip)
@@ -137,14 +103,7 @@ const get = async (req, res, next) => {
             .json(constructorResponse(constructorData, notices));
         }
 
-        notices = await Notices.find({
-          owner: _id,
-          typeofpet: filterConstructor.typeofpet,
-          sex: filterConstructor.sex,
-          size: filterConstructor.size,
-          sterilization: filterConstructor.sterilization,
-          lives: filterConstructor.lives,
-        })
+        notices = await Notices.find({ owner: _id })
           .limit(limit)
           .skip(skip)
           .sort({ createdAt: -1 });
@@ -162,21 +121,11 @@ const get = async (req, res, next) => {
       total = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
-        typeofpet: filterConstructor.typeofpet,
-        sex: filterConstructor.sex,
-        size: filterConstructor.size,
-        sterilization: filterConstructor.sterilization,
-        lives: filterConstructor.lives,
       }).count();
       constructorData.total = total;
       notices = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
-        typeofpet: filterConstructor.typeofpet,
-        sex: filterConstructor.sex,
-        size: filterConstructor.size,
-        sterilization: filterConstructor.sterilization,
-        lives: filterConstructor.lives,
       })
         .limit(limit)
         .skip(skip)
@@ -190,16 +139,15 @@ const get = async (req, res, next) => {
     } else {
       notices = await Notices.find({
         category: { $regex: category, $options: "i" },
-        typeofpet: filterConstructor.typeofpet,
-        sex: filterConstructor.sex,
-        size: filterConstructor.size,
-        sterilization: filterConstructor.sterilization,
-        lives: filterConstructor.lives,
       })
         .limit(limit)
         .skip(skip)
         .sort({ createdAt: -1 });
       res.status(200).json(constructorResponse(constructorData, notices));
+      console.log("notices", notices);
+      console.log("category", category);
+      console.log("constructorData", constructorData);
+      console.log("arrayKeyFilter", arrayKeyFilter);
     }
   } catch (error) {
     res.status(400).json({ message: "Invalid search characters" });
