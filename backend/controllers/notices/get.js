@@ -134,7 +134,7 @@ const get = async (req, res, next) => {
       res.status(200).json(constructorResponse(constructorData, notices));
     } else {
       filterConstructor.category = { $regex: category, $options: "i" };
-      notices = await Notices.find(filterConstructor)
+      notices = await Notices.find({...filterConstructor})
         .limit(limit)
         .skip(skip)
         .sort({ createdAt: -1 });
