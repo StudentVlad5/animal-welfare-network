@@ -64,124 +64,56 @@ const get = async (req, res, next) => {
 
       if (category === "favorite") {
         if (findtext) {
-          arrayKeyFilter &&
-          arrayKeyFilter !== "" &&
-          arrayKeyFilter !== undefined &&
-          arrayKeyFilter !== null
-            ? (total = await Notices.find({
-                _id: { $in: favorites },
-                title: { $regex: findtext, $options: "i" },
-                arrayKeyFilter,
-              }).count())
-            : (total = await Notices.find({
-                _id: { $in: favorites },
-                title: { $regex: findtext, $options: "i" },
-              }).count());
+          total = await Notices.find({
+            _id: { $in: favorites },
+            title: { $regex: findtext, $options: "i" },
+          }).count();
           constructorData.total = total;
-          arrayKeyFilter &&
-          arrayKeyFilter !== "" &&
-          arrayKeyFilter !== undefined &&
-          arrayKeyFilter !== null
-            ? (notices = await Notices.find({
-                _id: { $in: favorites },
-                title: { $regex: findtext, $options: "i" },
-                arrayKeyFilter,
-              })
-                .limit(limit)
-                .skip(skip)
-                .sort({ createdAt: -1 }))
-            : (notices = await Notices.find({
-                _id: { $in: favorites },
-                title: { $regex: findtext, $options: "i" },
-              })
-                .limit(limit)
-                .skip(skip)
-                .sort({ createdAt: -1 }));
+
+          notices = await Notices.find({
+            _id: { $in: favorites },
+            title: { $regex: findtext, $options: "i" },
+          })
+            .limit(limit)
+            .skip(skip)
+            .sort({ createdAt: -1 });
           return res
             .status(200)
             .json(constructorResponse(constructorData, notices));
         }
-        arrayKeyFilter &&
-        arrayKeyFilter !== "" &&
-        arrayKeyFilter !== undefined &&
-        arrayKeyFilter !== null
-          ? (total = await Notices.find({
-              _id: { $in: favorites },
-              arrayKeyFilter,
-            }).count())
-          : await Notices.find({ _id: { $in: favorites } }).count();
+        total = await Notices.find({ _id: { $in: favorites } }).count();
         constructorData.total = total;
-        arrayKeyFilter &&
-        arrayKeyFilter !== "" &&
-        arrayKeyFilter !== undefined &&
-        arrayKeyFilter !== null
-          ? (notices = await Notices.find({
-              _id: { $in: favorites },
-              arrayKeyFilter,
-            })
-              .limit(limit)
-              .skip(skip)
-              .sort({ createdAt: -1 }))
-          : (notices = await Notices.find({ _id: { $in: favorites } })
-              .limit(limit)
-              .skip(skip)
-              .sort({ createdAt: -1 }));
+        notices = await Notices.find({ _id: { $in: favorites } })
+          .limit(limit)
+          .skip(skip)
+          .sort({ createdAt: -1 });
         return res
           .status(200)
           .json(constructorResponse(constructorData, notices));
       }
       if (category === "own") {
         if (findtext) {
-          arrayKeyFilter &&
-          arrayKeyFilter !== "" &&
-          arrayKeyFilter !== undefined &&
-          arrayKeyFilter !== null
-            ? (total = await Notices.find({
-                owner: _id,
-                title: { $regex: findtext, $options: "i" },
-                arrayKeyFilter,
-              }).count())
-            : (total = await Notices.find({
-                owner: _id,
-                title: { $regex: findtext, $options: "i" },
-              }).count());
+          total = await Notices.find({
+            owner: _id,
+            title: { $regex: findtext, $options: "i" },
+          }).count();
           constructorData.total = total;
-          arrayKeyFilter &&
-          arrayKeyFilter !== "" &&
-          arrayKeyFilter !== undefined &&
-          arrayKeyFilter !== null
-            ? (notices = await Notices.find({
-                owner: _id,
-                title: { $regex: findtext, $options: "i" },
-                arrayKeyFilter,
-              })
-                .limit(limit)
-                .skip(skip)
-                .sort({ createdAt: -1 }))
-            : (notices = await Notices.find({
-                owner: _id,
-                title: { $regex: findtext, $options: "i" },
-              })
-                .limit(limit)
-                .skip(skip)
-                .sort({ createdAt: -1 }));
+          notices = await Notices.find({
+            owner: _id,
+            title: { $regex: findtext, $options: "i" },
+          })
+            .limit(limit)
+            .skip(skip)
+            .sort({ createdAt: -1 });
           return res
             .status(200)
             .json(constructorResponse(constructorData, notices));
         }
 
-        arrayKeyFilter &&
-        arrayKeyFilter !== "" &&
-        arrayKeyFilter !== undefined &&
-        arrayKeyFilter !== null
-          ? (notices = await Notices.find({ owner: _id }, arrayKeyFilter)
-              .limit(limit)
-              .skip(skip)
-              .sort({ createdAt: -1 }))
-          : (notices = await Notices.find({ owner: _id })
-              .limit(limit)
-              .skip(skip)
-              .sort({ createdAt: -1 }));
+        notices = await Notices.find({ owner: _id })
+          .limit(limit)
+          .skip(skip)
+          .sort({ createdAt: -1 });
 
         return res
           .status(200)
@@ -247,7 +179,7 @@ const get = async (req, res, next) => {
             .sort({ createdAt: -1 }))
         : (notices = await Notices.find({
             category: { $regex: category, $options: "i" },
-            arrayKeyFilter,
+            arrayKeyFilter
           })
             .limit(limit)
             .skip(skip)
