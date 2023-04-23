@@ -131,11 +131,13 @@ const get = async (req, res, next) => {
       total = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
+        arrayKeyFilter,
       }).count();
       constructorData.total = total;
       notices = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
+        arrayKeyFilter,
       })
         .limit(limit)
         .skip(skip)
@@ -149,6 +151,7 @@ const get = async (req, res, next) => {
     } else {
       notices = await Notices.find({
         category: { $regex: category, $options: "i" },
+        arrayKeyFilter,
       })
         .limit(limit)
         .skip(skip)
