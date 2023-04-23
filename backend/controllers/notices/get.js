@@ -18,24 +18,22 @@ const get = async (req, res, next) => {
     let filterConstructor = {};
     let { typeofpet, sex, size, sterilization, lives } = req.query;
 
-    if (typeofpet !== "" || typeofpet !== undefined) {
+    if (typeofpet !== "" && typeofpet !== undefined) {
       filterConstructor.typeofpet = typeofpet;
     }
-    if (sex !== "" || sex !== undefined) {
+    if (sex !== "" && sex !== undefined) {
       filterConstructor.sex = sex;
     }
-    if (size !== "" || size !== undefined) {
+    if (size !== "" && size !== undefined) {
       filterConstructor.size = size;
     }
-    if (sterilization !== "" || sterilization !== undefined) {
+    if (sterilization !== "" && sterilization !== undefined) {
       filterConstructor.sterilization = sterilization;
     }
-    if (lives !== "" || lives !== undefined) {
+    if (lives !== "" && lives !== undefined) {
       filterConstructor.lives = lives;
     }
 
-    console.log("filterConstructor", filterConstructor);
- 
     const category = req.params.category;
 
     let total = await Notices.find({ category }).count();
@@ -134,15 +132,12 @@ const get = async (req, res, next) => {
       res.status(200).json(constructorResponse(constructorData, notices));
     } else {
       filterConstructor.category = { $regex: category, $options: "i" };
-      notices = await Notices.find({...filterConstructor})
+      notices = await Notices.find({ ...filterConstructor })
         .limit(limit)
         .skip(skip)
         .sort({ createdAt: -1 });
       res.status(200).json(constructorResponse(constructorData, notices));
-      console.log("notices", notices);
-      console.log("category", category);
-      console.log("constructorData", constructorData);
-      console.log("arrayKeyFilter", arrayKeyFilter);
+      console.log("filterConstructor", filterConstructor);
     }
   } catch (error) {
     res.status(400).json({ message: "Invalid search characters" });
