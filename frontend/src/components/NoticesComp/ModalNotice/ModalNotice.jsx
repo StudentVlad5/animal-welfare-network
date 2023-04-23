@@ -1,4 +1,3 @@
-import { Slider, SliderData } from './Slider';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
@@ -8,13 +7,13 @@ import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
 import { AiFillHeart } from 'react-icons/ai';
-// import no_Photo from 'images/No-image-available.webp';
+import no_Photo from 'images/No-image-available.webp';
 import {
   NoticesContainerItem,
   ContainerCloseModal,
   ContainerPositionForCloseModal,
   ContainerInfo,
-  // ImgItem,
+  ImgItem,
   ContainerStatus,
   NoticeItemTitle,
   BtnContact,
@@ -28,6 +27,8 @@ import {
   ContainerComments,
   NoticeContainerButtom,
   LinkStyle,
+  ModalBtn,
+  ModalBtn1,
 } from './ModalNotice.styled';
 import { selectFavorites } from 'redux/auth/selectors';
 
@@ -44,6 +45,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
   const [data, setData] = useState([]);
   const [, setIsLoading] = useState(false);
   const [, setError] = useState(null);
+  const [current, setCurrent] = useState(0);
 
   let isInFavorite = false;
   favorites
@@ -74,6 +76,36 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
     }
   }, [itemForFetch, modal.id]);
 
+  const nextSlide = () => {
+    if (SliderData.length === 2) {
+      setCurrent(current === 0 ? 1 : 0);
+    } else {
+      setCurrent(current === SliderData.length - 1 ? 0 : current + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (SliderData.length === 2) {
+      setCurrent(current === 1 ? 0 : 1);
+    } else {
+      setCurrent(current === 0 ? SliderData.length - 1 : current - 1);
+    }
+  };
+
+  const SliderData = [
+    {
+      id: 1,
+      image: data.imageUrl,
+    },
+    {
+      id: 2,
+      image: data.imageUrl_1,
+    },
+    {
+      id: 3,
+      image: data.imageUrl_2,
+    },
+  ];
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'itemPet' && (
       <BackDrop onClick={closeModalForItemPet}>
@@ -87,15 +119,85 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
             <>
               <ContainerInfo>
                 <ContainerStatus>{data.category}</ContainerStatus>
-                <Slider slides={SliderData} />
+                <div className="slider">
+                  {SliderData.length > 0 && (
+                    <div className="slider">
+                      {SliderData.length > 1 && (
+                        <>
+                          <ModalBtn
+                            type="button"
+                            className="left-arrow"
+                            onClick={prevSlide}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              className="w-6 h-6"
+                              width={40}
+                              hanging={40}
+                            >
+                              <path
+                                fill="rgb(245, 146, 86)"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15.75 19.5L8.25 12l7.5-7.5"
+                              />
+                            </svg>
+                          </ModalBtn>
+                          <ModalBtn1
+                            type="button"
+                            className="right-arrow"
+                            onClick={nextSlide}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              width={40}
+                              hanging={40}
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fill="rgb(245, 146, 86)"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                              />
+                            </svg>
+                          </ModalBtn1>
+                        </>
+                      )}
+                      {SliderData.map(slide => {
+                        return (
+                          <div
+                            className={
+                              slide.id === current + 1
+                                ? 'slide active'
+                                : 'slide'
+                            }
+                            key={slide.id}
+                          >
+                            {slide.id === current + 1 && (
+                              <ImgItem
+                                src={
+                                  slide.image === '' ||
+                                  slide.image === undefined
+                                    ? no_Photo
+                                    : slide.image
+                                }
+                                key={slide.id}
+                              />
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
 
-                {/* <ImgItem
-                  src={
-                    data.imageUrl === '' || data.imageUrl === undefined
-                      ? no_Photo
-                      : data.imageUrl
-                  }
-                /> */}
                 <div>
                   <NoticeItemTitle>{data.title}</NoticeItemTitle>
                   <Table>

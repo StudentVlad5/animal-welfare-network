@@ -1,5 +1,10 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css';
 import { MdClose } from 'react-icons/md';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
@@ -10,11 +15,6 @@ import {
   ContainerPositionForCloseModal,
   BackDrop,
 } from './NoticeCategoryItemSwiper.styled';
-import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 export const NoticeCategoryItemSwiper = () => {
   const dispatch = useDispatch();

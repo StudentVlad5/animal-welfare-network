@@ -257,7 +257,34 @@ const MainComments = styled.span`
 const ContainerComments = styled.div`
   margin-top: 28px;
 `;
+
+const ModalBtn = styled.button`
+  position: absolute;
+  border-color: transparent;
+  color: transparent;
+  background-color: transparent;
+  top: 170px;
+  right: 633px;
+  @media screen and (max-width: 768px) {
+    right: 200px;
+  }
+`;
+
+const ModalBtn1 = styled.button`
+  position: absolute;
+  border-color: transparent;
+  color: transparent;
+  background-color: transparent;
+  top: 170px;
+  left: 250px;
+  @media screen and (max-width: 768px) {
+    left: 200px;
+  }
+`;
+
 export {
+  ModalBtn,
+  ModalBtn1,
   NoticesContainerItem,
   ContainerCloseModal,
   ContainerPositionForCloseModal,

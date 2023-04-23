@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const BASE_URL = 'https://animal-welfare-network.onrender.com/api';
 // const BASE_URL = 'http://localhost:3030/api';
 
-async function fetchData(pathParams) {
+async function fetchData(pathParams, body) {
   const axiosInstance = axios.create({
     baseURL: `${BASE_URL}${pathParams}`,
     headers: {

@@ -9,29 +9,57 @@ import {
   BtnFilter,
   BtnContiner,
 } from './FilterForm.styled';
+import { useSearchParams } from 'react-router-dom';
 
-export const FilterForm = () => {
+export const FilterForm = ({ closeModal }) => {
   const [typeofpet, setTypeofpet] = useState('');
   const [sex, setSex] = useState('');
-  const [birthday, setBirthday] = useState('');
+  // const [birthday, setBirthday] = useState('');
   const [size, setSize] = useState('');
   const [sterilization, setSterilization] = useState('');
   const [lives, setLives] = useState('');
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const { id } = useParams();
+
   const handleClearAll = () => {
     setTypeofpet('');
     setSex('');
-    setBirthday('');
+    // setBirthday('');
     setSize('');
     setSterilization('');
     setLives('');
     localStorage.setItem('typeofpet', '');
     localStorage.setItem('sex', '');
-    localStorage.setItem('birthday', '');
+    // localStorage.setItem('birthday', '');
     localStorage.setItem('size', '');
     localStorage.setItem('sterilization', '');
     localStorage.setItem('lives', '');
+    setSearchParams({ page: 1, perPage: 12 });
   };
+
+  const setParams = () => {
+    const params = Object.fromEntries(searchParams);
+    params.page = 1;
+    if (typeofpet !== '') {
+      params.typeofpet = typeofpet;
+    }
+    if (sex !== '') {
+      params.sex = sex;
+    }
+    if (size !== '') {
+      params.size = size;
+    }
+    if (sterilization !== '') {
+      params.sterilization = sterilization;
+    }
+    if (lives !== '') {
+      params.lives = lives;
+    }
+    setSearchParams(params);
+    console.log('params', params);
+  };
+
   const handleChooseRadioButton = e => {
     switch (e.target.value) {
       case 'dog':
@@ -50,18 +78,18 @@ export const FilterForm = () => {
         setSex(e.target.value);
         localStorage.setItem('sex', e.target.value);
         break;
-      case 'less1year':
-        setBirthday(e.target.value);
-        localStorage.setItem('birthday', e.target.value);
-        break;
-      case 'from1to4years':
-        setBirthday(e.target.value);
-        localStorage.setItem('birthday', e.target.value);
-        break;
-      case 'from4years':
-        setBirthday(e.target.value);
-        localStorage.setItem('birthday', e.target.value);
-        break;
+      // case 'less1year':
+      //   setBirthday(e.target.value);
+      //   localStorage.setItem('birthday', e.target.value);
+      //   break;
+      // case 'from1to4years':
+      //   setBirthday(e.target.value);
+      //   localStorage.setItem('birthday', e.target.value);
+      //   break;
+      // case 'from4years':
+      //   setBirthday(e.target.value);
+      //   localStorage.setItem('birthday', e.target.value);
+      //   break;
       case 'big':
         setSize(e.target.value);
         localStorage.setItem('size', e.target.value);
@@ -94,14 +122,17 @@ export const FilterForm = () => {
         setLives(e.target.value);
         localStorage.setItem('lives', e.target.value);
         break;
-
       default:
         handleClearAll();
         break;
     }
   };
+
   return (
-    <Form>
+    <Form
+      // action={`${id}/?${searchParams}`}
+      onSubmit={e => e.preventDefault()}
+    >
       <FieldSet>
         <LegendFieldSet>Type of pet</LegendFieldSet>
         <LabelForInput htmlFor="dog">
@@ -156,8 +187,8 @@ export const FilterForm = () => {
           <Check className="check" />
         </LabelForInput>
       </FieldSet>
-      <FieldSet>
-        <LegendFieldSet>Age</LegendFieldSet>
+      {/* <FieldSet> */}
+      {/* <LegendFieldSet>Age</LegendFieldSet>
         <LabelForInput htmlFor="less1year">
           less 1 year
           <InputForm
@@ -194,7 +225,7 @@ export const FilterForm = () => {
           />
           <Check className="check" />
         </LabelForInput>
-      </FieldSet>
+      </FieldSet> */}
       <FieldSet>
         <LegendFieldSet>Size of the pet </LegendFieldSet>
         <LabelForInput htmlFor="big">
@@ -301,7 +332,15 @@ export const FilterForm = () => {
         </LabelForInput>
       </FieldSet>
       <BtnContiner>
-        <BtnFilter type="submit">Submit</BtnFilter>
+        <BtnFilter
+          type="submit"
+          onClick={e => {
+            setParams();
+            closeModal(e);
+          }}
+        >
+          Submit
+        </BtnFilter>
         <BtnFilter type="button" onClick={handleClearAll}>
           Clear all
         </BtnFilter>
