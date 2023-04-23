@@ -27,6 +27,8 @@ import {
   ContainerComments,
   NoticeContainerButtom,
   LinkStyle,
+  ModalBtn,
+  ModalBtn1,
 } from './ModalNotice.styled';
 import { selectFavorites } from 'redux/auth/selectors';
 
@@ -73,6 +75,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
       fetchNoticesList();
     }
   }, [itemForFetch, modal.id]);
+
   const nextSlide = () => {
     if (SliderData.length === 2) {
       setCurrent(current === 0 ? 1 : 0);
@@ -121,20 +124,50 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                     <div className="slider">
                       {SliderData.length > 1 && (
                         <>
-                          <button
+                          <ModalBtn
                             type="button"
                             className="left-arrow"
                             onClick={prevSlide}
                           >
-                            left
-                          </button>
-                          <button
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              className="w-6 h-6"
+                              width={40}
+                              hanging={40}
+                            >
+                              <path
+                                fill="rgb(245, 146, 86)"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15.75 19.5L8.25 12l7.5-7.5"
+                              />
+                            </svg>
+                          </ModalBtn>
+                          <ModalBtn1
                             type="button"
                             className="right-arrow"
                             onClick={nextSlide}
                           >
-                            right
-                          </button>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              width={40}
+                              hanging={40}
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fill="rgb(245, 146, 86)"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                              />
+                            </svg>
+                          </ModalBtn1>
                         </>
                       )}
                       {SliderData.map(slide => {
