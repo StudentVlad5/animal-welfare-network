@@ -5,9 +5,6 @@ const get = async (req, res, next) => {
   try {
     const isPagination = req.query.page;
     const {
-      search,
-      isFavorites,
-      myAdds,
       findtext,
       page = 1,
       perPage = isPagination ? 20 : 5000,
@@ -128,20 +125,40 @@ const get = async (req, res, next) => {
     // }
 
     if (findtext) {
-      total = await Notices.find({
-        category: category,
-        title: { $regex: findtext, $options: "i" },
-        arrayKeyFilter,
-      }).count();
+      arrayKeyFilter &&
+      arrayKeyFilter !== "" &&
+      arrayKeyFilter !== undefined &&
+      arrayKeyFilter !== null
+        ? (total = await Notices.find({
+            category: category,
+            title: { $regex: findtext, $options: "i" },
+            arrayKeyFilter,
+          }).count())
+        : (total = await Notices.find({
+            category: category,
+            title: { $regex: findtext, $options: "i" },
+          }).count());
       constructorData.total = total;
-      notices = await Notices.find({
-        category: category,
-        title: { $regex: findtext, $options: "i" },
-        arrayKeyFilter,
-      })
-        .limit(limit)
-        .skip(skip)
-        .sort({ createdAt: -1 });
+      arrayKeyFilter &&
+      arrayKeyFilter !== "" &&
+      arrayKeyFilter !== undefined &&
+      arrayKeyFilter !== null
+        ? (notices = await Notices.find({
+            category: category,
+            title: { $regex: findtext, $options: "i" },
+            arrayKeyFilter,
+          })
+            .limit(limit)
+            .skip(skip)
+            .sort({ createdAt: -1 }))
+        : (notices = await Notices.find({
+            category: category,
+            title: { $regex: findtext, $options: "i" },
+          })
+            .limit(limit)
+            .skip(skip)
+            .sort({ createdAt: -1 }));
+
       if (isPagination) {
         return res
           .status(200)
@@ -149,13 +166,23 @@ const get = async (req, res, next) => {
       }
       res.status(200).json(constructorResponse(constructorData, notices));
     } else {
-      notices = await Notices.find({
-        category: { $regex: category, $options: "i" },
-        arrayKeyFilter,
-      })
-        .limit(limit)
-        .skip(skip)
-        .sort({ createdAt: -1 });
+      arrayKeyFilter &&
+      arrayKeyFilter !== "" &&
+      arrayKeyFilter !== undefined &&
+      arrayKeyFilter !== null
+        ? (notices = await Notices.find({
+            category: { $regex: category, $options: "i" },
+            arrayKeyFilter,
+          })
+            .limit(limit)
+            .skip(skip)
+            .sort({ createdAt: -1 }))
+        : (notices = await Notices.find({
+            category: { $regex: category, $options: "i" },
+          })
+            .limit(limit)
+            .skip(skip)
+            .sort({ createdAt: -1 }));
       res.status(200).json(constructorResponse(constructorData, notices));
     }
   } catch (error) {
