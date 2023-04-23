@@ -46,7 +46,7 @@ const get = async (req, res, next) => {
     console.log("filterConstructor", filterConstructor);
     let arrayKeyFilter = "";
     Object.entries(filterConstructor).forEach(([key, value]) => {
-      arrayKeyFilter += `${key}: '${value}',`;
+      arrayKeyFilter += `${key}: ${value},`;
     });
     console.log("arrayKeyFilter", arrayKeyFilter);
 
@@ -131,13 +131,11 @@ const get = async (req, res, next) => {
       total = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
-        arrayKeyFilter,
       }).count();
       constructorData.total = total;
       notices = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
-        arrayKeyFilter,
       })
         .limit(limit)
         .skip(skip)
@@ -151,7 +149,6 @@ const get = async (req, res, next) => {
     } else {
       notices = await Notices.find({
         category: { $regex: category, $options: "i" },
-        arrayKeyFilter,
       })
         .limit(limit)
         .skip(skip)
