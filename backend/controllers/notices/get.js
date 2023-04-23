@@ -17,27 +17,22 @@ const get = async (req, res, next) => {
 
     let filterConstructor = {};
     let { typeofpet, sex, size, sterilization, lives } = req.query;
+
     typeofpet == "" && typeofpet == undefined
       ? (filterConstructor.typeofpet = null)
       : (filterConstructor.typeofpet = typeofpet);
-
-    if (sex && sex !== null && sex !== "" && sex !== undefined) {
-      filterConstructor.sex = sex;
-    }
-    if (size && size !== null && size !== "" && size !== undefined) {
-      filterConstructor.size = size;
-    }
-    if (
-      sterilization &&
-      sterilization !== null &&
-      sterilization !== "" &&
-      sterilization !== undefined
-    ) {
-      filterConstructor.sterilization = sterilization;
-    }
-    if (lives && lives !== null && lives !== "" && lives !== undefined) {
-      filterConstructor.lives = lives;
-    }
+    sex == "" && sex == undefined
+      ? (filterConstructor.sex = null)
+      : (filterConstructor.sex = sex);
+    size == "" && size == undefined
+      ? (filterConstructor.size = null)
+      : (filterConstructor.size = size);
+    sterilization == "" && sterilization == undefined
+      ? (filterConstructor.sterilization = null)
+      : (filterConstructor.sterilization = sterilization);
+    lives == "" && lives == undefined
+      ? (filterConstructor.lives = null)
+      : (filterConstructor.lives = lives);
 
     console.log("filterConstructor", filterConstructor);
     let arrayKeyFilter = "";
@@ -65,12 +60,22 @@ const get = async (req, res, next) => {
           total = await Notices.find({
             _id: { $in: favorites },
             title: { $regex: findtext, $options: "i" },
+            typeofpet: filterConstructor.typeofpet,
+            typeofpet: filterConstructor.sex,
+            typeofpet: filterConstructor.size,
+            typeofpet: filterConstructor.sterilization,
+            typeofpet: filterConstructor.lives,
           }).count();
           constructorData.total = total;
 
           notices = await Notices.find({
             _id: { $in: favorites },
             title: { $regex: findtext, $options: "i" },
+            typeofpet: filterConstructor.typeofpet,
+            typeofpet: filterConstructor.sex,
+            typeofpet: filterConstructor.size,
+            typeofpet: filterConstructor.sterilization,
+            typeofpet: filterConstructor.lives,
           })
             .limit(limit)
             .skip(skip)
@@ -79,9 +84,23 @@ const get = async (req, res, next) => {
             .status(200)
             .json(constructorResponse(constructorData, notices));
         }
-        total = await Notices.find({ _id: { $in: favorites } }).count();
+        total = await Notices.find({
+          _id: { $in: favorites },
+          typeofpet: filterConstructor.typeofpet,
+          typeofpet: filterConstructor.sex,
+          typeofpet: filterConstructor.size,
+          typeofpet: filterConstructor.sterilization,
+          typeofpet: filterConstructor.lives,
+        }).count();
         constructorData.total = total;
-        notices = await Notices.find({ _id: { $in: favorites } })
+        notices = await Notices.find({
+          _id: { $in: favorites },
+          typeofpet: filterConstructor.typeofpet,
+          typeofpet: filterConstructor.sex,
+          typeofpet: filterConstructor.size,
+          typeofpet: filterConstructor.sterilization,
+          typeofpet: filterConstructor.lives,
+        })
           .limit(limit)
           .skip(skip)
           .sort({ createdAt: -1 });
@@ -94,11 +113,21 @@ const get = async (req, res, next) => {
           total = await Notices.find({
             owner: _id,
             title: { $regex: findtext, $options: "i" },
+            typeofpet: filterConstructor.typeofpet,
+            typeofpet: filterConstructor.sex,
+            typeofpet: filterConstructor.size,
+            typeofpet: filterConstructor.sterilization,
+            typeofpet: filterConstructor.lives,
           }).count();
           constructorData.total = total;
           notices = await Notices.find({
             owner: _id,
             title: { $regex: findtext, $options: "i" },
+            typeofpet: filterConstructor.typeofpet,
+            typeofpet: filterConstructor.sex,
+            typeofpet: filterConstructor.size,
+            typeofpet: filterConstructor.sterilization,
+            typeofpet: filterConstructor.lives,
           })
             .limit(limit)
             .skip(skip)
@@ -108,7 +137,14 @@ const get = async (req, res, next) => {
             .json(constructorResponse(constructorData, notices));
         }
 
-        notices = await Notices.find({ owner: _id })
+        notices = await Notices.find({
+          owner: _id,
+          typeofpet: filterConstructor.typeofpet,
+          typeofpet: filterConstructor.sex,
+          typeofpet: filterConstructor.size,
+          typeofpet: filterConstructor.sterilization,
+          typeofpet: filterConstructor.lives,
+        })
           .limit(limit)
           .skip(skip)
           .sort({ createdAt: -1 });
@@ -126,11 +162,21 @@ const get = async (req, res, next) => {
       total = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
+        typeofpet: filterConstructor.typeofpet,
+        typeofpet: filterConstructor.sex,
+        typeofpet: filterConstructor.size,
+        typeofpet: filterConstructor.sterilization,
+        typeofpet: filterConstructor.lives,
       }).count();
       constructorData.total = total;
       notices = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
+        typeofpet: filterConstructor.typeofpet,
+        typeofpet: filterConstructor.sex,
+        typeofpet: filterConstructor.size,
+        typeofpet: filterConstructor.sterilization,
+        typeofpet: filterConstructor.lives,
       })
         .limit(limit)
         .skip(skip)
@@ -145,15 +191,15 @@ const get = async (req, res, next) => {
       notices = await Notices.find({
         category: { $regex: category, $options: "i" },
         typeofpet: filterConstructor.typeofpet,
+        typeofpet: filterConstructor.sex,
+        typeofpet: filterConstructor.size,
+        typeofpet: filterConstructor.sterilization,
+        typeofpet: filterConstructor.lives,
       })
         .limit(limit)
         .skip(skip)
         .sort({ createdAt: -1 });
       res.status(200).json(constructorResponse(constructorData, notices));
-      console.log("notices", notices);
-      console.log("category", category);
-      console.log("constructorData", constructorData);
-      console.log("arrayKeyFilter", arrayKeyFilter);
     }
   } catch (error) {
     res.status(400).json({ message: "Invalid search characters" });
