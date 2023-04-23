@@ -61,10 +61,10 @@ const get = async (req, res, next) => {
             _id: { $in: favorites },
             title: { $regex: findtext, $options: "i" },
             typeofpet: filterConstructor.typeofpet,
-            typeofpet: filterConstructor.sex,
-            typeofpet: filterConstructor.size,
-            typeofpet: filterConstructor.sterilization,
-            typeofpet: filterConstructor.lives,
+            sex: filterConstructor.sex,
+            size: filterConstructor.size,
+            sterilization: filterConstructor.sterilization,
+            lives: filterConstructor.lives,
           }).count();
           constructorData.total = total;
 
@@ -72,10 +72,10 @@ const get = async (req, res, next) => {
             _id: { $in: favorites },
             title: { $regex: findtext, $options: "i" },
             typeofpet: filterConstructor.typeofpet,
-            typeofpet: filterConstructor.sex,
-            typeofpet: filterConstructor.size,
-            typeofpet: filterConstructor.sterilization,
-            typeofpet: filterConstructor.lives,
+            sex: filterConstructor.sex,
+            size: filterConstructor.size,
+            sterilization: filterConstructor.sterilization,
+            lives: filterConstructor.lives,
           })
             .limit(limit)
             .skip(skip)
@@ -87,19 +87,19 @@ const get = async (req, res, next) => {
         total = await Notices.find({
           _id: { $in: favorites },
           typeofpet: filterConstructor.typeofpet,
-          typeofpet: filterConstructor.sex,
-          typeofpet: filterConstructor.size,
-          typeofpet: filterConstructor.sterilization,
-          typeofpet: filterConstructor.lives,
+          sex: filterConstructor.sex,
+          size: filterConstructor.size,
+          sterilization: filterConstructor.sterilization,
+          lives: filterConstructor.lives,
         }).count();
         constructorData.total = total;
         notices = await Notices.find({
           _id: { $in: favorites },
           typeofpet: filterConstructor.typeofpet,
-          typeofpet: filterConstructor.sex,
-          typeofpet: filterConstructor.size,
-          typeofpet: filterConstructor.sterilization,
-          typeofpet: filterConstructor.lives,
+          sex: filterConstructor.sex,
+          size: filterConstructor.size,
+          sterilization: filterConstructor.sterilization,
+          lives: filterConstructor.lives,
         })
           .limit(limit)
           .skip(skip)
@@ -114,20 +114,20 @@ const get = async (req, res, next) => {
             owner: _id,
             title: { $regex: findtext, $options: "i" },
             typeofpet: filterConstructor.typeofpet,
-            typeofpet: filterConstructor.sex,
-            typeofpet: filterConstructor.size,
-            typeofpet: filterConstructor.sterilization,
-            typeofpet: filterConstructor.lives,
+            sex: filterConstructor.sex,
+            size: filterConstructor.size,
+            sterilization: filterConstructor.sterilization,
+            lives: filterConstructor.lives,
           }).count();
           constructorData.total = total;
           notices = await Notices.find({
             owner: _id,
             title: { $regex: findtext, $options: "i" },
             typeofpet: filterConstructor.typeofpet,
-            typeofpet: filterConstructor.sex,
-            typeofpet: filterConstructor.size,
-            typeofpet: filterConstructor.sterilization,
-            typeofpet: filterConstructor.lives,
+            sex: filterConstructor.sex,
+            size: filterConstructor.size,
+            sterilization: filterConstructor.sterilization,
+            lives: filterConstructor.lives,
           })
             .limit(limit)
             .skip(skip)
@@ -140,10 +140,10 @@ const get = async (req, res, next) => {
         notices = await Notices.find({
           owner: _id,
           typeofpet: filterConstructor.typeofpet,
-          typeofpet: filterConstructor.sex,
-          typeofpet: filterConstructor.size,
-          typeofpet: filterConstructor.sterilization,
-          typeofpet: filterConstructor.lives,
+          sex: filterConstructor.sex,
+          size: filterConstructor.size,
+          sterilization: filterConstructor.sterilization,
+          lives: filterConstructor.lives,
         })
           .limit(limit)
           .skip(skip)
@@ -163,20 +163,20 @@ const get = async (req, res, next) => {
         category: category,
         title: { $regex: findtext, $options: "i" },
         typeofpet: filterConstructor.typeofpet,
-        typeofpet: filterConstructor.sex,
-        typeofpet: filterConstructor.size,
-        typeofpet: filterConstructor.sterilization,
-        typeofpet: filterConstructor.lives,
+        sex: filterConstructor.sex,
+        size: filterConstructor.size,
+        sterilization: filterConstructor.sterilization,
+        lives: filterConstructor.lives,
       }).count();
       constructorData.total = total;
       notices = await Notices.find({
         category: category,
         title: { $regex: findtext, $options: "i" },
         typeofpet: filterConstructor.typeofpet,
-        typeofpet: filterConstructor.sex,
-        typeofpet: filterConstructor.size,
-        typeofpet: filterConstructor.sterilization,
-        typeofpet: filterConstructor.lives,
+        sex: filterConstructor.sex,
+        size: filterConstructor.size,
+        sterilization: filterConstructor.sterilization,
+        lives: filterConstructor.lives,
       })
         .limit(limit)
         .skip(skip)
@@ -191,10 +191,10 @@ const get = async (req, res, next) => {
       notices = await Notices.find({
         category: { $regex: category, $options: "i" },
         typeofpet: filterConstructor.typeofpet,
-        typeofpet: filterConstructor.sex,
-        typeofpet: filterConstructor.size,
-        typeofpet: filterConstructor.sterilization,
-        typeofpet: filterConstructor.lives,
+        sex: filterConstructor.sex,
+        size: filterConstructor.size,
+        sterilization: filterConstructor.sterilization,
+        lives: filterConstructor.lives,
       })
         .limit(limit)
         .skip(skip)
