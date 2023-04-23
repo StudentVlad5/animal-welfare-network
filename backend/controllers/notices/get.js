@@ -132,7 +132,7 @@ const get = async (req, res, next) => {
         ? (total = await Notices.find({
             category: category,
             title: { $regex: findtext, $options: "i" },
-            arrayKeyFilter,
+            filterConstructor,
           }).count())
         : (total = await Notices.find({
             category: category,
@@ -146,7 +146,7 @@ const get = async (req, res, next) => {
         ? (notices = await Notices.find({
             category: category,
             title: { $regex: findtext, $options: "i" },
-            arrayKeyFilter,
+            filterConstructor,
           })
             .limit(limit)
             .skip(skip)
@@ -172,7 +172,7 @@ const get = async (req, res, next) => {
       arrayKeyFilter !== null
         ? (notices = await Notices.find({
             category: { $regex: category, $options: "i" },
-            arrayKeyFilter,
+            filterConstructor,
           })
             .limit(limit)
             .skip(skip)
