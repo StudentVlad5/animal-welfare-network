@@ -18,28 +18,24 @@ const get = async (req, res, next) => {
     let filterConstructor = {};
     let { typeofpet, sex, size, sterilization, lives } = req.query;
 
-    typeofpet == "" || typeofpet == undefined
-      ? (filterConstructor.typeofpet = null)
-      : (filterConstructor.typeofpet = typeofpet);
-    sex == "" || sex == undefined
-      ? (filterConstructor.sex = null)
-      : (filterConstructor.sex = sex);
-    size == "" || size == undefined
-      ? (filterConstructor.size = null)
-      : (filterConstructor.size = size);
-    sterilization == "" || sterilization == undefined
-      ? (filterConstructor.sterilization = null)
-      : (filterConstructor.sterilization = sterilization);
-    lives == "" || lives == undefined
-      ? (filterConstructor.lives = null)
-      : (filterConstructor.lives = lives);
+    if (typeofpet !== "" || typeofpet !== undefined) {
+      filterConstructor.typeofpet = typeofpet;
+    }
+    if (sex !== "" || sex !== undefined) {
+      filterConstructor.sex = sex;
+    }
+    if (size !== "" || size !== undefined) {
+      filterConstructor.size = size;
+    }
+    if (sterilization !== "" || sterilization !== undefined) {
+      filterConstructor.sterilization = sterilization;
+    }
+    if (lives !== "" || lives !== undefined) {
+      filterConstructor.lives = lives;
+    }
 
     console.log("filterConstructor", filterConstructor);
-    let arrayKeyFilter = "";
-    Object.entries(filterConstructor).forEach(([key, value]) => {
-      arrayKeyFilter += `${key}: ${value},`;
-    });
-
+ 
     const category = req.params.category;
 
     let total = await Notices.find({ category }).count();
@@ -137,9 +133,8 @@ const get = async (req, res, next) => {
       }
       res.status(200).json(constructorResponse(constructorData, notices));
     } else {
-      notices = await Notices.find({
-        category: { $regex: category, $options: "i" },
-      })
+      filterConstructor.category = { $regex: category, $options: "i" };
+      notices = await Notices.find(filterConstructor)
         .limit(limit)
         .skip(skip)
         .sort({ createdAt: -1 });
