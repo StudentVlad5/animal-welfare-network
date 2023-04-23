@@ -76,7 +76,9 @@ export const UserComp = () => {
         </UserDataWrapper>
         <UserAboutWrapper>
           <TopContainer>
-            {/* <UserTitle as="h2">My pets:</UserTitle> */}
+            <UserTitle as="h2" hidden>
+              My pets:
+            </UserTitle>
             <ButtonStyled
               onClick={e => {
                 navigate('/notices/sell?perPage=12&page=1');

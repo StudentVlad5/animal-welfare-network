@@ -23,7 +23,7 @@ import {
 } from './NoticeCategoryItem.styled';
 import { selectId, getPermission } from 'redux/auth/selectors';
 import { useState } from 'react';
-import { deleteNoticeUser } from 'services/APIservice';
+import { deleteData } from 'services/APIservice';
 import { addReload } from 'redux/reload/slice';
 
 export const NoticesCategoriesItem = ({
@@ -44,7 +44,7 @@ export const NoticesCategoriesItem = ({
   async function deleteNotice(id) {
     setIsLoading(true);
     try {
-      const { date } = await deleteNoticeUser(`/notices/${id}`);
+      const { date } = await deleteData(`/notices/${id}`);
       return date;
     } catch (error) {
       setError(error);

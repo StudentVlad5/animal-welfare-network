@@ -16,9 +16,9 @@ const NewsPage = lazy(() => import('pages/News'));
 const UserPage = lazy(() => import('pages/User'));
 const RegisterPage = lazy(() => import('pages/Register'));
 const LoginPage = lazy(() => import('pages/Login'));
-const AdminPage = lazy(() => import('pages/Admin'));
-const AdminUsersPage = lazy(() => import('pages/AdminUsers'));
-const AdminNoticesPage = lazy(() => import('pages/AdminNotices'));
+const AdminPage = lazy(() => import('pages/Admin/Admin'));
+const AdminUsersPage = lazy(() => import('pages/Admin/AdminUsers'));
+const AdminNoticesPage = lazy(() => import('pages/Admin/AdminNotices'));
 
 export const App = ({ theme, setTheme }) => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { MdClose, MdEdit } from 'react-icons/md';
-import { fetchData } from 'services/APIservice';
+import { MdClose } from 'react-icons/md'; // MdEdit
+import { fetchData, deleteData } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { SEO } from 'utils/SEO';
@@ -13,7 +13,7 @@ import {
   TableHead,
   TableRow,
   TableData,
-} from '../components/Table/ListTable.styled';
+} from 'components/AdminTable/AdminTable.styled';
 
 const AdminUsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -39,6 +39,18 @@ const AdminUsersPage = () => {
       }
     })();
   }, []);
+
+  async function deleteUser(id) {
+    setIsLoading(true);
+    try {
+      const { date } = await deleteData(`/admin/users/${id}`);
+      return date;
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const date = date => (date ? new Date(date).toISOString().slice(0, 10) : '');
 
@@ -84,10 +96,15 @@ const AdminUsersPage = () => {
                     <TableData>{user.avatar ? 'yes' : 'no'}</TableData>
                     <TableData>{user.role}</TableData>
                     <TableData>
-                      <IconButton aria-label="Edit user">
+                      {/* <IconButton aria-label="Edit user">
                         <MdEdit size={15} />
-                      </IconButton>
-                      <IconButton aria-label="Delete user">
+                      </IconButton> */}
+                      <IconButton
+                        aria-label="Delete user"
+                        onClick={e => {
+                          deleteUser(user._id);
+                        }}
+                      >
                         <MdClose size={15} />
                       </IconButton>
                     </TableData>

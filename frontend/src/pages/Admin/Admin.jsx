@@ -5,7 +5,7 @@ import { SEO } from 'utils/SEO';
 import { UserComp } from 'components/UserComp/UserComp';
 import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 import { UserTitle } from 'components/UserComp/UserComp.styled';
-import { Item, SLink, List } from 'components/Table/ListTable.styled';
+import { Item, SLink, List } from 'components/AdminTable/AdminTable.styled';
 
 const AdminPage = () => {
   return (
@@ -20,7 +20,7 @@ const AdminPage = () => {
         paddingTopDesktop="0"
         paddingBottomDesktop="30px"
       >
-        <Container alignItemsTablet="flex-start">
+        <Container alignItemsTablet="flex-start" alignItemsDesktop="flex-start">
           <UserTitle as="h2">Administration of:</UserTitle>
           <List>
             <Item>

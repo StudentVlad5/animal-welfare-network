@@ -12,6 +12,7 @@ async function fetchData(pathParams) {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+      'Access-Control-Expose-Headers': 'Content-Range',
     },
   });
 
@@ -67,7 +68,7 @@ async function fetchPetsUser(pathParams, body, file) {
   });
 }
 
-async function deleteNoticeUser(pathParams) {
+async function deleteData(pathParams) {
   const formData = new FormData();
   return axios.delete(`${BASE_URL}${pathParams}`, formData, {
     headers: {
@@ -82,4 +83,8 @@ fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
 
-export { fetchData, fetchNotice, fetchPetsUser, deleteNoticeUser };
+deleteData.propTypes = {
+  pathParams: PropTypes.string.isRequired,
+};
+
+export { fetchData, fetchNotice, fetchPetsUser, deleteData };

@@ -59,6 +59,7 @@ const Item = styled.li`
 
 const SLink = styled(NavLink)`
   display: flex;
+  align-items: center;
   font-family: 'Manrope';
   font-weight: 500;
   font-size: 14px;
@@ -120,6 +121,12 @@ const Table = styled.table`
 `;
 
 const TableHead = styled.th`
+  padding: 0.25rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.33;
+
   border-bottom: 1px solid ${props => props.theme.logout};
 `;
 
@@ -132,10 +139,16 @@ const TableRow = styled.tr`
 `;
 
 const TableData = styled.td`
-  white-space: nowrap;
-  padding: 0.5rem;
+  padding: 0.25rem;
   max-width: 200px;
+
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.33;
+
   overflow-x: hidden;
+  white-space: nowrap;
 `;
 
 export { List, Item, SLink, IconButton, Table, TableHead, TableRow, TableData };

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { MdClose, MdEdit } from 'react-icons/md';
-import { fetchData } from 'services/APIservice';
+import { MdClose } from 'react-icons/md'; // MdEdit
+import { fetchData, deleteData } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { SEO } from 'utils/SEO';
@@ -13,7 +13,7 @@ import {
   TableHead,
   TableRow,
   TableData,
-} from '../components/Table/ListTable.styled';
+} from 'components/AdminTable/AdminTable.styled';
 
 const AdminNoticesPage = () => {
   const [notices, setNotices] = useState([]);
@@ -39,6 +39,18 @@ const AdminNoticesPage = () => {
       }
     })();
   }, []);
+
+  async function deleteNotice(id) {
+    setIsLoading(true);
+    try {
+      const { date } = await deleteData(`/notices/${id}`);
+      return date;
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const date = date => (date ? new Date(date).toISOString().slice(0, 10) : '');
   return (
@@ -89,7 +101,19 @@ const AdminNoticesPage = () => {
                     <TableData>{notice.typeofpet}</TableData>
                     <TableData>{notice.title}</TableData>
                     <TableData>{notice.name}</TableData>
-                    <TableData>{date(notice.birthday)}</TableData>
+                    <TableData>
+                      {notice.birthday
+                        ? Math.round(
+                            (Date.now() - Date.parse(notice.birthday)) /
+                              31536000000,
+                          ) < 1
+                          ? '<1'
+                          : Math.round(
+                              (Date.now() - Date.parse(notice.birthday)) /
+                                31536000000,
+                            )
+                        : 'no info'}
+                    </TableData>
                     <TableData>{notice.breed}</TableData>
                     <TableData>{notice.sex}</TableData>
                     <TableData>{notice.size}</TableData>
@@ -113,10 +137,15 @@ const AdminNoticesPage = () => {
                     </TableData>
                     <TableData>{date(notice.createdAt)}</TableData>
                     <TableData>
-                      <IconButton aria-label="Edit notice">
+                      {/* <IconButton aria-label="Edit notice">
                         <MdEdit size={15} />
-                      </IconButton>
-                      <IconButton aria-label="Delete notice">
+                      </IconButton> */}
+                      <IconButton
+                        aria-label="Delete notice"
+                        onClick={e => {
+                          deleteNotice(notice._id);
+                        }}
+                      >
                         <MdClose size={15} />
                       </IconButton>
                     </TableData>
