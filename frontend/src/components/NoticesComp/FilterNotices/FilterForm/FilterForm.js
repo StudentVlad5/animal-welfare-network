@@ -12,12 +12,24 @@ import {
 import { useSearchParams } from 'react-router-dom';
 
 export const FilterForm = ({ closeModal }) => {
-  const [typeofpet, setTypeofpet] = useState('');
-  const [sex, setSex] = useState('');
+  const [typeofpet, setTypeofpet] = useState(
+    localStorage.getItem('typeofpet') ? localStorage.getItem('typeofpet') : '',
+  );
+  const [sex, setSex] = useState(
+    localStorage.getItem('sex') ? localStorage.getItem('sex') : '',
+  );
   // const [birthday, setBirthday] = useState('');
-  const [size, setSize] = useState('');
-  const [sterilization, setSterilization] = useState('');
-  const [lives, setLives] = useState('');
+  const [size, setSize] = useState(
+    localStorage.getItem('size') ? localStorage.getItem('size') : '',
+  );
+  const [sterilization, setSterilization] = useState(
+    localStorage.getItem('sterilization')
+      ? localStorage.getItem('sterilization')
+      : '',
+  );
+  const [lives, setLives] = useState(
+    localStorage.getItem('lives') ? localStorage.getItem('lives') : '',
+  );
 
   const [searchParams, setSearchParams] = useSearchParams();
   // const { id } = useParams();
@@ -57,7 +69,6 @@ export const FilterForm = ({ closeModal }) => {
       params.lives = lives;
     }
     setSearchParams(params);
-    console.log('params', params);
   };
 
   const handleChooseRadioButton = e => {

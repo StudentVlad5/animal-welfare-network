@@ -132,6 +132,8 @@ const get = async (req, res, next) => {
       res.status(200).json(constructorResponse(constructorData, notices));
     } else {
       filterConstructor.category = { $regex: category, $options: "i" };
+      total = await Notices.find({ ...filterConstructor }).count();
+      constructorData.total = total;
       notices = await Notices.find({ ...filterConstructor })
         .limit(limit)
         .skip(skip)
