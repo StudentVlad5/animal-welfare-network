@@ -17,14 +17,10 @@ const get = async (req, res, next) => {
 
     let filterConstructor = {};
     let { typeofpet, sex, size, sterilization, lives } = req.query;
-    if (
-      typeofpet &&
-      typeofpet !== null &&
-      typeofpet !== "" &&
-      typeofpet !== undefined
-    ) {
-      filterConstructor.typeofpet = typeofpet;
-    }
+    typeofpet == "" && typeofpet == undefined
+      ? (filterConstructor.typeofpet = null)
+      : (filterConstructor.typeofpet = typeofpet);
+
     if (sex && sex !== null && sex !== "" && sex !== undefined) {
       filterConstructor.sex = sex;
     }
@@ -148,6 +144,7 @@ const get = async (req, res, next) => {
     } else {
       notices = await Notices.find({
         category: { $regex: category, $options: "i" },
+        typeofpet: filterConstructor.typeofpet,
       })
         .limit(limit)
         .skip(skip)
