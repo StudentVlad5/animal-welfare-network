@@ -59,7 +59,7 @@ export const UserDataItemInput = styled.input`
     p.disabled ? 'transparent' : `${props => props.theme.colorOfInput}`};
 
   :focus {
-    outline-color: ${props => props.theme.inpitColor};
+    outline-color: ${props => props.theme.inputColor};
   }
   *:disabled {
     background-color: ${props => props.theme.black};

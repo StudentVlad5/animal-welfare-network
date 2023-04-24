@@ -69,9 +69,9 @@ export const FormRegister = styled(Form)`
 
     background-color: ${props => props.theme.colorOfForm};
     border-radius: 40px;
-    -webkit-box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowcolor};
-    -moz-box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowcolor};
-    box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowcolor};
+    -webkit-box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowColor};
+    -moz-box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowColor};
+    box-shadow: 7px 4px 14px 0px ${props => props.theme.shadowColor};
   }
 
   @media screen and (min-width: 1280px) {

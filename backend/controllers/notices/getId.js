@@ -14,8 +14,8 @@ const getId = async (req, res, next) => {
         select: '-_id email phone',
       })
       .lean();
-    notices.email = notices.owner.email;
-    notices.phone = notices.owner.phone;
+    notices.email = notices.owner?.email || 'no owner';
+    notices.phone = notices.owner?.phone || 'no owner';
     delete notices.owner;
     res.status(200).json(notices);
   } catch (error) {

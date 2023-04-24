@@ -6,9 +6,9 @@ const Form = styled.form`
   color: ${props => props.theme.black};
   border-radius: 40px;
   padding: 20px;
-  -webkit-box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowcolor};
-  -moz-box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowcolor};
-  box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowcolor};
+  -webkit-box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowColor};
+  -moz-box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowColor};
+  box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowColor};
 
   /* @media screen and (min-width: 768px) {
 

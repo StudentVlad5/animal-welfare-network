@@ -78,7 +78,7 @@ const AdminNoticesPage = () => {
                 <TableHead>Sex</TableHead>
                 <TableHead>Size</TableHead>
                 <TableHead>Height</TableHead>
-                <TableHead>Width</TableHead>
+                <TableHead>Weight</TableHead>
                 <TableHead>Location</TableHead>
                 <TableHead>Price</TableHead>
                 <TableHead>Currency</TableHead>

@@ -17,7 +17,7 @@ import {
   ContainerStatus,
   NoticeItemTitle,
   BtnContact,
-  BtnAddFavorits,
+  BtnAddFavorites,
   BackDrop,
   TdTable,
   TdTable2,
@@ -25,10 +25,11 @@ import {
   Comments,
   MainComments,
   ContainerComments,
-  NoticeContainerButtom,
+  NoticeContainerButton,
   LinkStyle,
   ModalBtn,
   ModalBtn1,
+  NoticeItemTitleError,
 } from './ModalNotice.styled';
 import { selectFavorites } from 'redux/auth/selectors';
 
@@ -288,7 +289,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                 <MainComments>Comments: </MainComments>
                 <Comments>{data.comments}</Comments>
               </ContainerComments>
-              <NoticeContainerButtom>
+              <NoticeContainerButton>
                 <Link
                   style={{ textDecoration: 'none' }}
                   to={`tel:${data.phone}`}
@@ -296,20 +297,22 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                   <BtnContact>Contacts</BtnContact>
                 </Link>
                 {isInFavorite ? (
-                  <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
+                  <BtnAddFavorites onClick={addToFavoriteFunction(modal.id)}>
                     Remove from
                     <AiFillHeart size={22} style={{ marginLeft: '5px' }} />
-                  </BtnAddFavorits>
+                  </BtnAddFavorites>
                 ) : (
-                  <BtnAddFavorits onClick={addToFavoriteFunction(modal.id)}>
+                  <BtnAddFavorites onClick={addToFavoriteFunction(modal.id)}>
                     Add to
                     <AiFillHeart size={22} style={{ marginLeft: '5px' }} />
-                  </BtnAddFavorits>
+                  </BtnAddFavorites>
                 )}
-              </NoticeContainerButtom>
+              </NoticeContainerButton>
             </>
           ) : (
-            <h2>"Whoops... Don't have information about this pet"</h2>
+            <NoticeItemTitleError>
+              "Whoops... Don't have information about this pet"
+            </NoticeItemTitleError>
           )}
         </NoticesContainerItem>
       </BackDrop>

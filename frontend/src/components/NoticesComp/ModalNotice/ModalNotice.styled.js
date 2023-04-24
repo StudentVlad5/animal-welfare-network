@@ -17,9 +17,9 @@ const NoticesContainerItem = styled.div`
   padding: 17px 20px 43px 20px;
   background-color: ${props => props.theme.white};
   border-radius: 20px;
-  -webkit-box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowcolor};
-  -moz-box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowcolor};
-  box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowcolor};
+  -webkit-box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowColor};
+  -moz-box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowColor};
+  box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowColor};
 
   @media screen and (min-width: 768px) {
     width: 704px;
@@ -117,7 +117,15 @@ const NoticeItemTitle = styled.h2`
   }
 `;
 
-const NoticeContainerButtom = styled.div`
+const NoticeItemTitleError = styled(NoticeItemTitle)`
+  font-size: 14px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
+`;
+
+const NoticeContainerButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -153,7 +161,7 @@ const BtnContact = styled.button`
     margin: 0 0 0 0;
   }
 `;
-const BtnAddFavorits = styled.button`
+const BtnAddFavorites = styled.button`
   cursor: pointer;
   width: 240px;
   height: 40px;
@@ -297,8 +305,9 @@ export {
   ImgItem,
   ContainerStatus,
   NoticeItemTitle,
+  NoticeItemTitleError,
   BtnContact,
-  BtnAddFavorits,
+  BtnAddFavorites,
   BackDrop,
   Table,
   TdTable,
@@ -306,6 +315,6 @@ export {
   Comments,
   MainComments,
   ContainerComments,
-  NoticeContainerButtom,
+  NoticeContainerButton,
   LinkStyle,
 };
