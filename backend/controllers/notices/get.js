@@ -53,12 +53,10 @@ const get = async (req, res, next) => {
         if (findtext) {
           filterConstructor.title = { $regex: findtext, $options: "i" };
           filterConstructor._id = { $in: favorites };
-          total = await Notices.find({ filterConstructor }).count();
+          total = await Notices.find({ ...filterConstructor }).count();
           constructorData.total = total;
 
-          notices = await Notices.find({
-            filterConstructor,
-          })
+          notices = await Notices.find({ ...filterConstructor })
             .limit(limit)
             .skip(skip)
             .sort({ createdAt: -1 });
@@ -67,9 +65,9 @@ const get = async (req, res, next) => {
             .json(constructorResponse(constructorData, notices));
         }
         filterConstructor._id = { $in: favorites };
-        total = await Notices.find({ filterConstructor }).count();
+        total = await Notices.find({ ...filterConstructor }).count();
         constructorData.total = total;
-        notices = await Notices.find({ filterConstructor })
+        notices = await Notices.find({ ...filterConstructor })
           .limit(limit)
           .skip(skip)
           .sort({ createdAt: -1 });
