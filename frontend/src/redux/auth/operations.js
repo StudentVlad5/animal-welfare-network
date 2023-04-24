@@ -91,7 +91,7 @@ export const addFavorite = createAsyncThunk(
   '/auth/addFavorite',
   async (id, thunkAPI) => {
     try {
-      await addToFavorite(`/${id}`); //notices/favorites/
+      await addToFavorite(`${id}`); //notices/favorites/
       return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -103,7 +103,7 @@ export const removeFavorite = createAsyncThunk(
   '/auth/removeFavorite',
   async (id, thunkAPI) => {
     try {
-      await removeFromFavorite(`/${id}`);
+      await removeFromFavorite(`${id}`);
       return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
