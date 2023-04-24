@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkanimal_support_project=self.webpackChunkanimal_support_project||[]).push([[434],{35434:function(e,r,t){t.r(r);var s=t(54361),n=t(28020),i=t(37878);r.default=function(){return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)(n.H,{title:"Profile",description:"User profile"}),(0,i.jsx)(s.A,{})]})}}}]);
+//# sourceMappingURL=434.ca12df89.chunk.js.map
