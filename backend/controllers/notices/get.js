@@ -1,13 +1,10 @@
 const { Notices } = require("../../models");
-const { ValidationError, constructorResponse } = require("../../helpers");
+const { constructorResponse } = require("../../helpers");
 
 const get = async (req, res, next) => {
   try {
     const isPagination = req.query.page;
     const {
-      search,
-      isFavorites,
-      myAdds,
       findtext,
       page = 1,
       perPage = isPagination ? 20 : 5000,
@@ -42,7 +39,6 @@ const get = async (req, res, next) => {
       pagination: isPagination,
       total,
       perPage,
-      // data: notices,
       page,
     };
 
@@ -51,16 +47,12 @@ const get = async (req, res, next) => {
 
       if (category === "favorite") {
         if (findtext) {
-          total = await Notices.find({
-            _id: { $in: favorites },
-            title: { $regex: findtext, $options: "i" },
-          }).count();
+          filterConstructor.title = { $regex: findtext, $options: "i" };
+          filterConstructor._id = { $in: favorites };
+          total = await Notices.find({ ...filterConstructor }).count();
           constructorData.total = total;
 
-          notices = await Notices.find({
-            _id: { $in: favorites },
-            title: { $regex: findtext, $options: "i" },
-          })
+          notices = await Notices.find({ ...filterConstructor })
             .limit(limit)
             .skip(skip)
             .sort({ createdAt: -1 });
@@ -68,9 +60,10 @@ const get = async (req, res, next) => {
             .status(200)
             .json(constructorResponse(constructorData, notices));
         }
-        total = await Notices.find({ _id: { $in: favorites } }).count();
+        filterConstructor._id = { $in: favorites };
+        total = await Notices.find({ ...filterConstructor }).count();
         constructorData.total = total;
-        notices = await Notices.find({ _id: { $in: favorites } })
+        notices = await Notices.find({ ...filterConstructor })
           .limit(limit)
           .skip(skip)
           .sort({ createdAt: -1 });
@@ -80,15 +73,11 @@ const get = async (req, res, next) => {
       }
       if (category === "own") {
         if (findtext) {
-          total = await Notices.find({
-            owner: _id,
-            title: { $regex: findtext, $options: "i" },
-          }).count();
+          filterConstructor.title = { $regex: findtext, $options: "i" };
+          filterConstructor.owner = _id;
+          total = await Notices.find({ ...filterConstructor }).count();
           constructorData.total = total;
-          notices = await Notices.find({
-            owner: _id,
-            title: { $regex: findtext, $options: "i" },
-          })
+          notices = await Notices.find({ ...filterConstructor })
             .limit(limit)
             .skip(skip)
             .sort({ createdAt: -1 });
@@ -97,7 +86,8 @@ const get = async (req, res, next) => {
             .json(constructorResponse(constructorData, notices));
         }
 
-        notices = await Notices.find({ owner: _id })
+        filterConstructor.owner = _id;
+        notices = await Notices.find({ ...filterConstructor })
           .limit(limit)
           .skip(skip)
           .sort({ createdAt: -1 });
@@ -107,9 +97,6 @@ const get = async (req, res, next) => {
           .json(constructorResponse(constructorData, notices));
       }
     }
-    // if('lost-found' === category || 'for-free' === category ||) {
-
-    // }
 
     if (findtext) {
       filterConstructor.category = category;
