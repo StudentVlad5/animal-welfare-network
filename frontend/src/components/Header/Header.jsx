@@ -1,25 +1,13 @@
 import { Navigation } from 'components/Header/Navigation/Navigation';
-import {
-  HeaderContainer,
-  BtnChangeTheme,
-  ImgChangeTheme,
-} from './Header.styled';
+import { HeaderContainer } from './Header.styled';
 import { Logo } from './Elements/logo/Logo';
-import changeThemeImg from 'images/public_img/toogle_change_theme.webp';
+import { SwitchTheme } from 'components/ThemeStatus/SwitcherTheme/ToogleTheme.js/SwitchTheme';
 
-export const Header = ({ theme, setTheme }) => {
-  const switchTheme = () => {
-    theme === 'light'
-      ? localStorage.setItem('theme', 'dark')
-      : localStorage.setItem('theme', 'light');
-    theme === 'light' ? setTheme('dark') : setTheme('light');
-  };
+export const Header = () => {
   return (
     <HeaderContainer>
       <Logo />
-      <BtnChangeTheme type="button" onClick={switchTheme}>
-        <ImgChangeTheme alt="change theme" src={changeThemeImg} />
-      </BtnChangeTheme>
+      <SwitchTheme />
       <Navigation />
     </HeaderContainer>
   );

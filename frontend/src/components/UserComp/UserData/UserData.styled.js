@@ -1,6 +1,6 @@
-import { lightTheme } from 'components/baseStyles/Variables.styled';
 import styled from 'styled-components';
-import { ReactComponent as EditCamera } from '../../../images/svg/userData/camera.svg';
+import { ReactComponent as EditCamera } from 'images/svg/userData/camera.svg';
+import { theme } from 'components/baseStyles/Variables.styled';
 
 export const UserDataContainer = styled.div`
   margin-bottom: 42px;
@@ -167,7 +167,7 @@ export const UserDataInput = styled.input`
       : `${props => props.theme.mainBg}`};
   // border: ${p => (p.disabled ? '1px solid' : 'none')};
   border-color: ${p =>
-    p.disabled ? 'transparent' : `${lightTheme.inputColor}`};
+    p.disabled ? 'transparent' : `${theme.light.inputColor}`};
 
   :focus {
     outline-color: transparent;

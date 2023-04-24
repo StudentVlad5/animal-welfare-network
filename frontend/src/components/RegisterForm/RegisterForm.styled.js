@@ -354,7 +354,7 @@ export const BoxText = styled.div`
   text-align: center;
   letter-spacing: 0.04em;
 
-  color: rgba(17, 17, 17, 0.6);
+  color: ${props => props.theme.logout};
 `;
 
 // export const Background = styled.div`

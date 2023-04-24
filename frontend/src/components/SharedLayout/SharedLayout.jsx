@@ -3,16 +3,18 @@ import { Outlet } from 'react-router-dom';
 import { Header } from 'components/Header/Header';
 import { Footer } from 'components/Footer/Footer';
 import { Main } from './SharedLayout.styled';
+import { ScrollTop } from 'components/helpers/Scroll/ScrollToTop';
 
-export const SharedLayout = ({ theme, setTheme }) => {
+export const SharedLayout = () => {
   return (
     <>
-      <Header theme={theme} setTheme={setTheme} />
+      <Header />
       <Suspense fallback={null}>
         <Main>
           <Outlet />
         </Main>
         <Footer />
+        <ScrollTop />
       </Suspense>
     </>
   );

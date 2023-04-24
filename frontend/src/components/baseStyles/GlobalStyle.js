@@ -138,7 +138,7 @@ img {
 .paginate__page--active {
   pointer-events: none;
   border-radius: 50%;
-  border: 3px solid ${props => props.theme.mainBg};
+  border: 3px solid ${props => props.theme.white};
   color: ${props => props.theme.white};
 }
 

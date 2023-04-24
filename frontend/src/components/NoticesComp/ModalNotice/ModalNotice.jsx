@@ -51,6 +51,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
   favorites
     ? (isInFavorite = favorites.includes(modal.id))
     : (isInFavorite = false);
+  // const BASE_URL = 'http://localhost:3030/api';
   const { BASE_URL } = window.global;
   let itemForFetch = `${BASE_URL}/notices/byid/${modal.id}`;
 

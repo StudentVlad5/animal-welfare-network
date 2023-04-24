@@ -7,7 +7,11 @@ import {
 
 export const UserSection = styled(Section)`
   padding-top: 60px;
-  padding-bottom: 80px;
+  padding-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    padding-bottom: 40px;
+  }
 
   @media screen and (min-width: 1280px) {
     padding-bottom: 40px;
@@ -36,7 +40,7 @@ export const UserDataContainer = styled.div`
   position: relative;
   background-color: ${props => props.theme.white};
   border-radius: 20px;
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  box-shadow: 7px 4px 14px ${props => props.theme.shadowcolor};
   margin-bottom: 40px;
   margin-top: 18px;
   padding-top: 20px;
@@ -68,6 +72,7 @@ export const UserDataContainer = styled.div`
 export const UserAboutWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
 
   @media screen and (min-width: 768px) {
     width: 100%;

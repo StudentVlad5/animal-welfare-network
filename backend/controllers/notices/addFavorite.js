@@ -1,6 +1,6 @@
 const { Users } = require('../../models/users');
 
-const addFavorit = async (req, res, next) => {
+const addFavorite = async (req, res, next) => {
   const { user, params } = req;
   console.log('ctrl addfavorites param: ', params);
   console.log('ctrl addfavorites user._id: ', user._id);
@@ -15,4 +15,4 @@ const addFavorit = async (req, res, next) => {
   res.status(201).json({ message: 'Success added to favorites' });
 };
 
-module.exports = addFavorit;
+module.exports = addFavorite;

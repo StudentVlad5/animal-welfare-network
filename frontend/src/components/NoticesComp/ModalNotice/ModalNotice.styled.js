@@ -34,13 +34,18 @@ const ContainerCloseModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
+
   width: 34px;
   height: 34px;
-  background: #fdf7f2;
-  backdrop-filter: blur(2px);
   margin-bottom: 6px;
-  z-index: 99;
+
+  color: ${props => props.theme.black};
+  background-color: ${props => props.theme.white};
+  border: 1px solid ${props => props.theme.black};
+  border-radius: 50%;
+  backdrop-filter: blur(2px);
+
+  z-index: 50;
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
