@@ -56,7 +56,7 @@ const LinkWrapper = styled.div`
 `;
 
 const LinkMember = styled.a`
-  color: ${props => props.theme.inpitColor};
+  color: ${props => props.theme.inputColor};
 
   &:hover,
   &:focus {

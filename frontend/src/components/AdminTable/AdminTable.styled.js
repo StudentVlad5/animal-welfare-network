@@ -28,7 +28,7 @@ const Item = styled.li`
   padding: 12px 4px;
 
   background-color: ${props => props.theme.white};
-  box-shadow: 7px 4px 14px ${props => props.theme.shadowcolor};
+  box-shadow: 7px 4px 14px ${props => props.theme.shadowColor};
   border-radius: 20px;
 
   @media screen and (min-width: 320px) {
@@ -134,7 +134,7 @@ const TableRow = styled.tr`
   max-width: calc(100vw - 40px);
 
   &:nth-child(2n) {
-    background-color: ${props => props.theme.shadowcolor};
+    background-color: ${props => props.theme.shadowColor};
   }
 `;
 
