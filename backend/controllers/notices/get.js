@@ -1,10 +1,13 @@
 const { Notices } = require("../../models");
-const { constructorResponse } = require("../../helpers");
+const { ValidationError, constructorResponse } = require("../../helpers");
 
 const get = async (req, res, next) => {
   try {
     const isPagination = req.query.page;
     const {
+      search,
+      isFavorites,
+      myAdds,
       findtext,
       page = 1,
       perPage = isPagination ? 20 : 5000,
@@ -39,6 +42,7 @@ const get = async (req, res, next) => {
       pagination: isPagination,
       total,
       perPage,
+      // data: notices,
       page,
     };
 
@@ -49,10 +53,12 @@ const get = async (req, res, next) => {
         if (findtext) {
           filterConstructor.title = { $regex: findtext, $options: "i" };
           filterConstructor._id = { $in: favorites };
-          total = await Notices.find({ ...filterConstructor }).count();
+          total = await Notices.find({ filterConstructor }).count();
           constructorData.total = total;
 
-          notices = await Notices.find({ ...filterConstructor })
+          notices = await Notices.find({
+            filterConstructor,
+          })
             .limit(limit)
             .skip(skip)
             .sort({ createdAt: -1 });
@@ -61,9 +67,9 @@ const get = async (req, res, next) => {
             .json(constructorResponse(constructorData, notices));
         }
         filterConstructor._id = { $in: favorites };
-        total = await Notices.find({ ...filterConstructor }).count();
+        total = await Notices.find({ filterConstructor }).count();
         constructorData.total = total;
-        notices = await Notices.find({ ...filterConstructor })
+        notices = await Notices.find({ filterConstructor })
           .limit(limit)
           .skip(skip)
           .sort({ createdAt: -1 });
