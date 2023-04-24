@@ -28,7 +28,7 @@ const Item = styled.li`
   padding: 12px 4px;
 
   background-color: ${props => props.theme.white};
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  box-shadow: 7px 4px 14px ${props => props.theme.shadowcolor};
   border-radius: 20px;
 
   @media screen and (min-width: 320px) {

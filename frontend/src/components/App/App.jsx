@@ -20,7 +20,7 @@ const AdminPage = lazy(() => import('pages/Admin/Admin'));
 const AdminUsersPage = lazy(() => import('pages/Admin/AdminUsers'));
 const AdminNoticesPage = lazy(() => import('pages/Admin/AdminNotices'));
 
-export const App = ({ theme, setTheme }) => {
+export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   const permission = useSelector(getPermission);
@@ -35,10 +35,7 @@ export const App = ({ theme, setTheme }) => {
     <HelmetProvider>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route
-            path="/"
-            element={<SharedLayout theme={theme} setTheme={setTheme} />}
-          >
+          <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
 
             <Route

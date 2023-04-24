@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useFormik, Formik } from 'formik';
 import { ImEye, ImEyeBlocked } from 'react-icons/im';
-import { lightTheme } from 'components/baseStyles/Variables.styled';
+import { theme } from 'components/baseStyles/Variables.styled';
 import schemas from 'components/Schemas/schemas';
 import { register } from 'redux/auth/operations';
 import {
@@ -153,9 +153,9 @@ const RegisterForm = () => {
                 />
 
                 {!formik.values.email ? null : !formik.errors.email ? (
-                  <IconValid color={lightTheme.success} />
+                  <IconValid color={theme.light.success} />
                 ) : (
-                  <IconInValid color={lightTheme.error} />
+                  <IconInValid color={theme.light.error} />
                 )}
                 {formik.errors.email && formik.touched.email ? (
                   <ErrBox>{formik.errors.email}</ErrBox>
@@ -234,9 +234,9 @@ const RegisterForm = () => {
                   onBlur={formik.handleBlur}
                 />
                 {!formik.values.name ? null : !formik.errors.name ? (
-                  <IconValid color={lightTheme.success} />
+                  <IconValid color={theme.light.success} />
                 ) : (
-                  <IconInValid color={lightTheme.error} />
+                  <IconInValid color={theme.light.error} />
                 )}
                 {formik.errors.name && formik.touched.name ? (
                   <ErrBox>{formik.errors.name}</ErrBox>
@@ -266,9 +266,9 @@ const RegisterForm = () => {
                   }}
                 />
                 {!formik.values.location ? null : !formik.errors.location ? (
-                  <IconValid color={lightTheme.success} />
+                  <IconValid color={theme.light.success} />
                 ) : (
-                  <IconInValid color={lightTheme.error} />
+                  <IconInValid color={theme.light.error} />
                 )}
 
                 {/* {status === 'OK' && (
@@ -300,9 +300,9 @@ const RegisterForm = () => {
                   name="phone"
                 />
                 {!formik.values.phone ? null : !formik.errors.phone ? (
-                  <IconValid color={lightTheme.success} />
+                  <IconValid color={theme.light.success} />
                 ) : (
-                  <IconInValid color={lightTheme.error} />
+                  <IconInValid color={theme.light.error} />
                 )}
                 {formik.errors.phone && formik.touched.phone ? (
                   <ErrBox>{formik.errors.phone}</ErrBox>

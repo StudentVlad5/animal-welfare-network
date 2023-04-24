@@ -40,7 +40,7 @@ export const UserDataContainer = styled.div`
   position: relative;
   background-color: ${props => props.theme.white};
   border-radius: 20px;
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  box-shadow: 7px 4px 14px ${props => props.theme.shadowcolor};
   margin-bottom: 40px;
   margin-top: 18px;
   padding-top: 20px;

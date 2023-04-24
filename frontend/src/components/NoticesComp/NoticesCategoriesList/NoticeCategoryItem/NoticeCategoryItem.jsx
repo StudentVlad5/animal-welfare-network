@@ -3,7 +3,7 @@ import { openModalWindow } from 'hooks/modalWindow';
 import { useDispatch, useSelector } from 'react-redux';
 import { addModal } from 'redux/modal/operation';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { lightTheme } from 'components/baseStyles/Variables.styled';
+import { theme } from 'components/baseStyles/Variables.styled';
 import {
   NoticesContainerItem,
   ContainerInfo,
@@ -99,9 +99,9 @@ export const NoticesCategoriesItem = ({
           <ContainerStatus>{data.category}</ContainerStatus>
           <BtnForFavorite onClick={addToFavoriteFunction(data._id)}>
             {isInFavorite ? (
-              <AiFillHeart size={28} color={lightTheme.orangeLight} />
+              <AiFillHeart size={28} color={theme.light.orangeLight} />
             ) : (
-              <AiOutlineHeart size={28} color={lightTheme.orangeLight} />
+              <AiOutlineHeart size={28} color={theme.light.orangeLight} />
             )}
           </BtnForFavorite>
           <ImgItem

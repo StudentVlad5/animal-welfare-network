@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ReactComponent as Pencil } from 'images/svg/userData/pencil.svg';
 import { ReactComponent as CheckMark } from 'images/svg/userData/checkMark.svg';
-import { lightTheme } from 'components/baseStyles/Variables.styled';
+import { theme } from 'components/baseStyles/Variables.styled';
 
 export const UserDataItemWrapper = styled.li`
   display: flex;
@@ -125,7 +125,7 @@ export const UserDataItemBtn = styled.button`
 
   :disabled {
     svg {
-      fill: ${lightTheme.inputColor};
+      fill: ${theme.light.inputColor};
     }
   }
 
