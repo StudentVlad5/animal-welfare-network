@@ -1,6 +1,6 @@
 const { Users } = require('../../models/users');
 
-const daletFavorit = async (req, res, next) => {
+const deleteFavorite = async (req, res, next) => {
   const { user, params } = req;
 
   const ddd = await Users.updateOne(
@@ -12,4 +12,4 @@ const daletFavorit = async (req, res, next) => {
   res.status(201).json({ message: 'Success deleted from favorites' });
 };
 
-module.exports = daletFavorit;
+module.exports = deleteFavorite;

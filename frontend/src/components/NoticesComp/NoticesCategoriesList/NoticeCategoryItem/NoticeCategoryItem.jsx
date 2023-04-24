@@ -3,7 +3,7 @@ import { openModalWindow } from 'hooks/modalWindow';
 import { useDispatch, useSelector } from 'react-redux';
 import { addModal } from 'redux/modal/operation';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { lightTheme } from 'components/baseStyles/Variables.styled';
+import { theme } from 'components/baseStyles/Variables.styled';
 import {
   NoticesContainerItem,
   ContainerInfo,
@@ -23,7 +23,7 @@ import {
 } from './NoticeCategoryItem.styled';
 import { selectId, getPermission } from 'redux/auth/selectors';
 import { useState } from 'react';
-import { deleteNoticeUser } from 'services/APIservice';
+import { deleteData } from 'services/APIservice';
 import { addReload } from 'redux/reload/slice';
 
 export const NoticesCategoriesItem = ({
@@ -44,7 +44,7 @@ export const NoticesCategoriesItem = ({
   async function deleteNotice(id) {
     setIsLoading(true);
     try {
-      const { date } = await deleteNoticeUser(`/notices/${id}`);
+      const { date } = await deleteData(`/notices/${id}`);
       return date;
     } catch (error) {
       setError(error);
@@ -99,9 +99,9 @@ export const NoticesCategoriesItem = ({
           <ContainerStatus>{data.category}</ContainerStatus>
           <BtnForFavorite onClick={addToFavoriteFunction(data._id)}>
             {isInFavorite ? (
-              <AiFillHeart size={28} color={lightTheme.orangeLight} />
+              <AiFillHeart size={28} color={theme.light.orangeLight} />
             ) : (
-              <AiOutlineHeart size={28} color={lightTheme.orangeLight} />
+              <AiOutlineHeart size={28} color={theme.light.orangeLight} />
             )}
           </BtnForFavorite>
           <ImgItem

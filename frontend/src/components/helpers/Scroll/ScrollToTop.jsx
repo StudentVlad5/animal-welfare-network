@@ -1,28 +1,22 @@
-import { BsArrowUpCircleFill } from 'react-icons/bs';
-import { ScrollBtn } from './ScrollToTop.styled';
+import ScrollToTop from 'react-scroll-to-top';
+import { theme } from 'components/baseStyles/Variables.styled';
+import { MdKeyboardDoubleArrowUp } from 'react-icons/md';
 
-const ScrollToTop = () => {
-  const handleScrollToTop = () => {
-    const start = document.querySelector('#header');
-    return window.scrollTo({ top: start, behavior: 'smooth' });
-  };
-
+const ScrollTop = () => {
   return (
-    <ScrollBtn type="button" aria-label="Arrow up" onClick={handleScrollToTop}>
-      <BsArrowUpCircleFill size={30} />
-    </ScrollBtn>
+    <ScrollToTop
+      smooth
+      top="400"
+      style={{
+        width: '40px',
+        height: '40px',
+        backgroundColor: `${theme.light.orangeLight}`,
+        color: `${theme.light.white}`,
+        fontSize: '16px',
+      }}
+      component={<MdKeyboardDoubleArrowUp size={30} />}
+    />
   );
 };
 
-// const ScrollBy = () => {
-//   const { height: cardHeight } = document
-//     .querySelector('main')
-//     .firstElementChild.getBoundingClientRect();
-
-//   return window.scrollBy({
-//     top: cardHeight * 2,
-//     behavior: 'smooth',
-//   });
-// };
-
-export { ScrollToTop }; // ScrollBy
+export { ScrollTop };
