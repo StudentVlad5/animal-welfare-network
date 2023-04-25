@@ -708,7 +708,12 @@ export const AddNoticeModal = () => {
                               Select option...
                             </OptionFirst>
                           }
-                          {['In street', 'Shelter', 'At volunteers'].map(s => (
+                          {[
+                            'In street',
+                            'Shelter',
+                            'At volunteers',
+                            'Home',
+                          ].map(s => (
                             <Option key={s} value={s.toLowerCase()}>
                               {s}
                             </Option>

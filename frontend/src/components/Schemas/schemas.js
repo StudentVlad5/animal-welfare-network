@@ -29,7 +29,7 @@ const registerSchema = Yup.object().shape({
     )
     .required('Require field'),
   phone: Yup.string()
-    .matches(/^\+380\d{9}$/, 'Invalid number. valid +38(0xx) xxx-xx-xx')
+    .matches(/^\380\d{9}$/, 'Invalid number. valid 380xxxxxxxxx')
     .required('Require field'),
   location: Yup.string()
     .matches(
