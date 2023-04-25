@@ -21,7 +21,7 @@ const createValidation = (req, res, next) => {
     passport: Joi.string().required(),
     sterilization: Joi.string().valid("yes", "no").required(),
     lives: Joi.string()
-      .valid("in street", "shelter", "at volunteers")
+      .valid("in street", "shelter", "at volunteers", "home")
       .required(),
     location: Joi.string().required(),
     comments: Joi.string().min(8).max(120).required(),
