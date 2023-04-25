@@ -8,11 +8,13 @@ const ScrollTop = () => {
       smooth
       top="400"
       style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         width: '40px',
         height: '40px',
         backgroundColor: `${theme.light.orangeLight}`,
         color: `${theme.light.white}`,
-        fontSize: '16px',
       }}
       component={<MdKeyboardDoubleArrowUp size={30} />}
     />
