@@ -68,7 +68,7 @@ const noticesSchema = new Schema(
     },
     lives: {
       type: String,
-      enum: ["in street", "shelter", "at volunteers"],
+      enum: ["in street", "shelter", "at volunteers", "home"],
       required: true,
     },
     comments: {
