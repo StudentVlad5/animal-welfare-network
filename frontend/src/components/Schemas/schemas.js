@@ -28,9 +28,11 @@ const registerSchema = Yup.object().shape({
       'Name must includes only Latin alphabet',
     )
     .required('Require field'),
-  phone: Yup.string()
-    .matches(/^\380\d{9}$/, 'Invalid number. valid 380xxxxxxxxx')
-    .required('Require field'),
+  phone: Yup.number()
+    .nullable(true)
+    .required('Require field')
+    .min(99999)
+    .max(9999999999),
   location: Yup.string()
     .matches(
       /(([A-Za-zsd&.-]){1,}, ([A-Za-zsd&,.-]){1,})/,
