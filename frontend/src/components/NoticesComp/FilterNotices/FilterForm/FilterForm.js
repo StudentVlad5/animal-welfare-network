@@ -133,6 +133,10 @@ export const FilterForm = ({ closeModal }) => {
         setLives(e.target.value);
         localStorage.setItem('lives', e.target.value);
         break;
+      case 'home':
+        setLives(e.target.value);
+        localStorage.setItem('lives', e.target.value);
+        break;
       default:
         handleClearAll();
         break;
@@ -337,6 +341,18 @@ export const FilterForm = ({ closeModal }) => {
             name="lives"
             value="at volunteers"
             checked={lives === 'at volunteers'}
+            onChange={handleChooseRadioButton}
+          />
+          <Check className="check" />
+        </LabelForInput>
+        <LabelForInput htmlFor="home">
+          home
+          <InputForm
+            type="radio"
+            id="home"
+            name="lives"
+            value="home"
+            checked={lives === 'home'}
             onChange={handleChooseRadioButton}
           />
           <Check className="check" />

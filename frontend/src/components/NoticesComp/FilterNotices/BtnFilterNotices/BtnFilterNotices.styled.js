@@ -6,6 +6,7 @@ const FilterNoticesWrapper = styled.div`
   justify-content: center;
   font-family: 'Manrope';
   font-style: normal;
+  flex-direction: column;
 `;
 
 const BtnFilter = styled.button`
@@ -20,14 +21,14 @@ const BtnFilter = styled.button`
   background-color: ${props => props.theme.white};
   color: ${props => props.theme.blackText};
   padding: 0 28px;
-  margin-bottom: 10px;
+  margin: 10px;
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
   letter-spacing: 0.04em;
   transition: all 0.25s ease-in;
-  &:hover,
-  &:focus {
+  &:hover:not([disabled]),
+  &:focus:not([disabled]) {
     color: ${props => props.theme.white};
     background-color: ${props => props.theme.orangeLight};
     cursor: pointer;
@@ -35,6 +36,9 @@ const BtnFilter = styled.button`
   }
   &:focus {
     outline: none;
+  }
+  &[disabled] {
+    color: gray;
   }
   @media screen and (min-width: 768px) and (max-width: 1279.9px) {
     margin-bottom: 0px;
