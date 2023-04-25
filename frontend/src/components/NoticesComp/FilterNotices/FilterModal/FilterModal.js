@@ -22,9 +22,6 @@ export const FilterModal = () => {
     dispatch(cleanModal());
     closeModalWindow(e);
   };
-  //   const прописуємо всі стейти по фільтру;
-  //   const [, setIsLoading] = useState(false);
-  //   const [, setError] = useState(null);
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'filterModal' && (

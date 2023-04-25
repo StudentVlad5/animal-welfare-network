@@ -21,9 +21,10 @@ const FieldSet = styled.fieldset`
   border-color: ${props => props.theme.orangeLight};
   border-radius: 40px;
   margin-bottom: 20px;
-  /* @media screen and (min-width: 768px) {
-
-  } */
+  flex-direction: column;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 const LegendFieldSet = styled.legend`
   position: relative;
@@ -33,12 +34,12 @@ const LegendFieldSet = styled.legend`
   border-radius: 40px;
   font-family: 'Manrope';
   font-style: normal;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: bold;
 
-  /* @media screen and (min-width: 768px) {
-
-  } */
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
 `;
 
 const InputForm = styled.input`
@@ -64,7 +65,7 @@ const LabelForInput = styled.label`
   margin-bottom: 20px;
   margin-left: 30px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;
   &:hover input ~ .check::before {
     content: '';
     background-color: gray;
@@ -93,7 +94,7 @@ const Check = styled.span`
 
 const BtnFilter = styled.button`
   cursor: pointer;
-  width: 248px;
+  width: 200px;
   height: 38px;
   border-radius: 40px;
   border: 2px solid ${props => props.theme.orangeLight};
@@ -110,6 +111,9 @@ const BtnFilter = styled.button`
     color: ${props => props.theme.white};
     background-color: ${props => props.theme.orangeLight};
     outline: none;
+  }
+  @media screen and (min-width: 768px) {
+    width: 248px;
   }
 `;
 const BtnContiner = styled.div`
