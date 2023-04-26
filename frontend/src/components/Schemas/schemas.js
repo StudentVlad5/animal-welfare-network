@@ -32,7 +32,7 @@ const registerSchema = Yup.object().shape({
     .nullable(true)
     .required('Require field')
     .min(99999)
-    .max(9999999999),
+    .max(999999999999),
   location: Yup.string()
     .matches(
       /(([A-Za-zsd&.-]){1,}, ([A-Za-zsd&,.-]){1,})/,
