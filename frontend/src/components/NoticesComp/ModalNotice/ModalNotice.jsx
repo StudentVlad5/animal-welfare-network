@@ -1,12 +1,15 @@
-import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { MdClose } from 'react-icons/md';
+import { AiFillHeart } from 'react-icons/ai';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
-import { AiFillHeart } from 'react-icons/ai';
+import { selectFavorites } from 'redux/auth/selectors';
+import { fetchData } from 'services/APIservice';
+import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import no_Photo from 'images/No-image-available.webp';
 import {
   NoticesContainerItem,
@@ -31,7 +34,6 @@ import {
   ModalBtn1,
   NoticeItemTitleError,
 } from './ModalNotice.styled';
-import { selectFavorites } from 'redux/auth/selectors';
 
 export const ModalNotices = ({ addToFavoriteFunction }) => {
   const dispatch = useDispatch();
@@ -52,26 +54,24 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
   favorites
     ? (isInFavorite = favorites.includes(modal.id))
     : (isInFavorite = false);
-  // const BASE_URL = 'http://localhost:3030/api';
-  const { BASE_URL } = window.global;
-  let itemForFetch = `${BASE_URL}/notices/byid/${modal.id}`;
+
+  let itemForFetch = `/notices/byid/${modal.id}`;
 
   useEffect(() => {
-    setIsLoading(true);
     async function fetchNoticesList() {
-      await fetch(itemForFetch)
-        .then(res => {
-          setIsLoading(false);
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(new Error(`Can't find anything`));
-        })
-        .then(value => setData(value))
-        .catch(error => {
-          setData(false);
-          setError(error);
-        });
+      setIsLoading(true);
+      try {
+        const { data } = await fetchData(itemForFetch);
+        setData(data);
+        if (!data) {
+          return onFetchError('Whoops, something went wrong');
+        }
+      } catch (error) {
+        setData(false);
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
     }
     if (modal.id !== '') {
       fetchNoticesList();
@@ -208,6 +208,14 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                         <TdTable>Name:</TdTable>
                         <TdTable2>{data.name}</TdTable2>
                       </tr>
+                      {data.price && (
+                        <tr>
+                          <TdTable>Price:</TdTable>
+                          <TdTable2>
+                            {data.price} {data.currency}
+                          </TdTable2>
+                        </tr>
+                      )}
                       <tr>
                         <TdTable>Birthday:</TdTable>
                         <TdTable2>
