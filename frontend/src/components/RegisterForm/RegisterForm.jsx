@@ -270,7 +270,12 @@ const RegisterForm = () => {
                 )}
 
                 {status === 'OK' && (
-                  <LocationList>
+                  <LocationList
+                    style={{
+                      color: `${props => props.theme.black}`,
+                      backgroundColor: `${props => props.theme.white}`,
+                    }}
+                  >
                     {renderSuggestions(formik.setFieldValue)}
                   </LocationList>
                 )}
