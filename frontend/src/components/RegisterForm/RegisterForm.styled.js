@@ -119,7 +119,7 @@ export const IconInValid = styled(FaTimes)`
   width: 20px;
   height: 20px;
   right: 6%;
-  top: 62%;
+  top: 30px;
   transform: translateY(-80%);
   color: grey;
   cursor: pointer;
@@ -160,8 +160,8 @@ export const LocationItem = styled.li`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${props => props.theme.inpText};
-  background: ${props => props.theme.mainBg};
+  color: ${props => props.theme.black};
+  background: ${props => props.theme.white};
   transition: all 0.25s ease-in;
   &:hover {
     color: ${props => props.theme.orangeLight};
@@ -314,7 +314,6 @@ export const BackButton = styled.button`
 
 export const ErrBox = styled.div`
   position: relative;
-  white-space: nowrap;
   bottom: 0px;
   left: 15px;
   color: #e53e3e;
@@ -324,6 +323,10 @@ export const ErrBox = styled.div`
   line-height: 1.4;
   letter-spacing: 0.03em;
   margin-bottom: -16px;
+  display: flex;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  max-width: 400px;
 
   @media screen and (min-width: 768px) {
     left: 32px;
