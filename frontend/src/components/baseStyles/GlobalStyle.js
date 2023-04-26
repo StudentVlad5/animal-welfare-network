@@ -285,4 +285,10 @@ margin: 0!important;
 .swiper-pagination-bullet-active {
   background-color: ${props => props.theme.orangeLight}!important;
 }
+
+.swiper-button-prev,
+.swiper-button-next,
+.swiper-pagination-bullet {
+  transform: scale(1.7);
+}
 `;
