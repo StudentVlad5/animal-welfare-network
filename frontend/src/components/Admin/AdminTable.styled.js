@@ -43,14 +43,6 @@ const Item = styled.li`
   @media screen and (min-width: 1280px) {
     max-width: 390px;
   }
-  transition: all 0.25s ease-in;
-
-  &:hover,
-  &:focus {
-    position: relative;
-    z-index: 10;
-    scale: 1.05;
-  }
 
   & svg {
     margin-left: 8px;
@@ -84,6 +76,7 @@ const SLink = styled(NavLink)`
   &:focus {
     color: ${props => props.theme.orangeLight};
     text-decoration: none;
+    scale: 1.05;
   }
 `;
 
@@ -100,6 +93,7 @@ const IconButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
@@ -123,16 +117,24 @@ const Table = styled.table`
 const TableHead = styled.th`
   padding: 0.25rem;
   font-family: 'Manrope', sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
-  line-height: 1.33;
+  line-height: 1.1;
 
   border-bottom: 1px solid ${props => props.theme.logout};
+
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 200px;
+    font-size: 14px;
+  }
 `;
 
 const TableRow = styled.tr`
-  max-width: calc(100vw - 40px);
-
   &:nth-child(2n) {
     background-color: ${props => props.theme.shadowColor};
   }
@@ -140,15 +142,56 @@ const TableRow = styled.tr`
 
 const TableData = styled.td`
   padding: 0.25rem;
-  max-width: 200px;
+  max-width: 80px;
 
   font-family: 'Manrope', sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 400;
-  line-height: 1.33;
+  line-height: 1.1;
 
   overflow-x: hidden;
   white-space: nowrap;
+
+  @media screen and (min-width: 768px) {
+    max-width: 100px;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 200px;
+    font-size: 14px;
+  }
 `;
 
-export { List, Item, SLink, IconButton, Table, TableHead, TableRow, TableData };
+const LearnMoreBtn = styled.button`
+  margin-left: auto;
+  padding: 4px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  color: ${props => props.theme.blackText};
+  background-color: transparent;
+  border: 1px solid ${props => props.theme.logout};
+  box-shadow: ${props => props.theme.shadowColor} 3px 3px 5px;
+  border-radius: 4px;
+
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    box-shadow: ${props => props.theme.shadowColor} 3px 3px 5px inset;
+  }
+`;
+
+export {
+  List,
+  Item,
+  SLink,
+  IconButton,
+  Table,
+  TableHead,
+  TableRow,
+  TableData,
+  LearnMoreBtn,
+};

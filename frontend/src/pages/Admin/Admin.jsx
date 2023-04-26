@@ -5,7 +5,7 @@ import { SEO } from 'utils/SEO';
 import { UserComp } from 'components/UserComp/UserComp';
 import { Container, Section } from 'components/baseStyles/CommonStyle.styled';
 import { UserTitle } from 'components/UserComp/UserComp.styled';
-import { Item, SLink, List } from 'components/AdminTable/AdminTable.styled';
+import { Item, SLink, List } from 'components/Admin/AdminTable.styled';
 
 const AdminPage = () => {
   return (

@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { MdClose } from 'react-icons/md'; // MdEdit
+import { useDispatch } from 'react-redux';
+import { MdClose, MdEdit } from 'react-icons/md';
+import { openModalWindow } from 'hooks/modalWindow';
+import { addModal } from 'redux/modal/operation';
 import { fetchData, deleteData } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
@@ -13,15 +16,14 @@ import {
   TableHead,
   TableRow,
   TableData,
-} from 'components/AdminTable/AdminTable.styled';
+  LearnMoreBtn,
+} from 'components/Admin/AdminTable.styled';
+import { EditDataModal } from 'components/Admin/EditDataModal/EditDataModal';
 
 const AdminNoticesPage = () => {
   const [notices, setNotices] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/admin';
 
   useEffect(() => {
     (async function getData() {
@@ -52,7 +54,44 @@ const AdminNoticesPage = () => {
     }
   }
 
+  async function editNotice(id) {
+    setIsLoading(true);
+    try {
+      const { date } = await deleteData(`/notices/${id}`);
+      return date;
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  // add link to back
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/admin';
+
+  // watch for view and toggle columns
+  const viewWidth = window.screen.width;
+  const [isLearnMore, setIsLearnMore] = useState(viewWidth >= 1280);
+  const toggleLearnMore = () => setIsLearnMore(state => !state);
+
+  // add edit modal
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const dispatch = useDispatch();
+  const toggleModal = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(
+      addModal({
+        modal: e.currentTarget.dataset.modal,
+      }),
+    );
+    openModalWindow(e, null);
+    setIsOpenModal(true);
+  };
+
   const date = date => (date ? new Date(date).toISOString().slice(0, 10) : '');
+
   return (
     <>
       <SEO title="Notices list" description="Notice administration page" />
@@ -65,6 +104,11 @@ const AdminNoticesPage = () => {
           <BackButton to={backLinkHref}>Go back</BackButton>
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
+          {isLearnMore ? (
+            <LearnMoreBtn onClick={toggleLearnMore}>Less</LearnMoreBtn>
+          ) : (
+            <LearnMoreBtn onClick={toggleLearnMore}>More</LearnMoreBtn>
+          )}
           <Table>
             <thead>
               <TableRow>
@@ -73,21 +117,25 @@ const AdminNoticesPage = () => {
                 <TableHead>Type</TableHead>
                 <TableHead>Title</TableHead>
                 <TableHead>Name</TableHead>
-                <TableHead>Birthday</TableHead>
-                <TableHead>Breed</TableHead>
-                <TableHead>Sex</TableHead>
-                <TableHead>Size</TableHead>
-                <TableHead>Height</TableHead>
-                <TableHead>Weight</TableHead>
-                <TableHead>Location</TableHead>
-                <TableHead>Price</TableHead>
-                <TableHead>Currency</TableHead>
-                <TableHead>Passport</TableHead>
-                <TableHead>Sterilization</TableHead>
-                <TableHead>Lives</TableHead>
-                <TableHead>Comments</TableHead>
-                <TableHead>Images</TableHead>
-                <TableHead>Created at</TableHead>
+                {isLearnMore && (
+                  <>
+                    <TableHead>Birthday</TableHead>
+                    <TableHead>Breed</TableHead>
+                    <TableHead>Sex</TableHead>
+                    <TableHead>Size</TableHead>
+                    <TableHead>Height</TableHead>
+                    <TableHead>Weight</TableHead>
+                    <TableHead>Location</TableHead>
+                    <TableHead>Price</TableHead>
+                    <TableHead>Currency</TableHead>
+                    <TableHead>Passport</TableHead>
+                    <TableHead>Sterilization</TableHead>
+                    <TableHead>Lives</TableHead>
+                    <TableHead>Comments</TableHead>
+                    <TableHead>Images</TableHead>
+                    <TableHead>Created at</TableHead>
+                  </>
+                )}
                 <TableHead>Action</TableHead>
               </TableRow>
             </thead>
@@ -101,45 +149,55 @@ const AdminNoticesPage = () => {
                     <TableData>{notice.typeofpet}</TableData>
                     <TableData>{notice.title}</TableData>
                     <TableData>{notice.name}</TableData>
+                    {isLearnMore && (
+                      <>
+                        <TableData>
+                          {notice.birthday
+                            ? Math.round(
+                                (Date.now() - Date.parse(notice.birthday)) /
+                                  31536000000,
+                              ) < 1
+                              ? '<1'
+                              : Math.round(
+                                  (Date.now() - Date.parse(notice.birthday)) /
+                                    31536000000,
+                                )
+                            : 'no info'}
+                        </TableData>
+                        <TableData>{notice.breed}</TableData>
+                        <TableData>{notice.sex}</TableData>
+                        <TableData>{notice.size}</TableData>
+                        <TableData>{notice.height}</TableData>
+                        <TableData>{notice.weight}</TableData>
+                        <TableData>{notice.location}</TableData>
+                        <TableData>{notice.price}</TableData>
+                        <TableData>{notice.currency}</TableData>
+                        <TableData>{notice.passport}</TableData>
+                        <TableData>{notice.sterilization}</TableData>
+                        <TableData>{notice.lives}</TableData>
+                        <TableData>{notice.comments}</TableData>
+                        <TableData>
+                          {notice.imageUrl_2
+                            ? '3'
+                            : notice.imageUrl_1
+                            ? '2'
+                            : notice.imageUrl
+                            ? '1'
+                            : '0'}
+                        </TableData>
+                        <TableData>{date(notice.createdAt)}</TableData>
+                      </>
+                    )}
                     <TableData>
-                      {notice.birthday
-                        ? Math.round(
-                            (Date.now() - Date.parse(notice.birthday)) /
-                              31536000000,
-                          ) < 1
-                          ? '<1'
-                          : Math.round(
-                              (Date.now() - Date.parse(notice.birthday)) /
-                                31536000000,
-                            )
-                        : 'no info'}
-                    </TableData>
-                    <TableData>{notice.breed}</TableData>
-                    <TableData>{notice.sex}</TableData>
-                    <TableData>{notice.size}</TableData>
-                    <TableData>{notice.height}</TableData>
-                    <TableData>{notice.weight}</TableData>
-                    <TableData>{notice.location}</TableData>
-                    <TableData>{notice.price}</TableData>
-                    <TableData>{notice.currency}</TableData>
-                    <TableData>{notice.passport}</TableData>
-                    <TableData>{notice.sterilization}</TableData>
-                    <TableData>{notice.lives}</TableData>
-                    <TableData>{notice.comments}</TableData>
-                    <TableData>
-                      {notice.imageUrl_2
-                        ? '3'
-                        : notice.imageUrl_1
-                        ? '2'
-                        : notice.imageUrl
-                        ? '1'
-                        : '0'}
-                    </TableData>
-                    <TableData>{date(notice.createdAt)}</TableData>
-                    <TableData>
-                      {/* <IconButton aria-label="Edit notice">
+                      <IconButton
+                        aria-label="Edit notice"
+                        onClick={e => {
+                          toggleModal(e);
+                        }}
+                        data-modal="notices"
+                      >
                         <MdEdit size={15} />
-                      </IconButton> */}
+                      </IconButton>
                       <IconButton
                         aria-label="Delete notice"
                         onClick={e => {
@@ -148,6 +206,13 @@ const AdminNoticesPage = () => {
                       >
                         <MdClose size={15} />
                       </IconButton>
+                      {isOpenModal && (
+                        <EditDataModal
+                          onClose={editNotice(notice._id)}
+                          path="notices"
+                          id={notice._id}
+                        />
+                      )}
                     </TableData>
                   </TableRow>
                 ))}
