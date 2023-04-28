@@ -81,7 +81,6 @@ async function deleteData(pathParams) {
 
 async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
   const formData = new FormData();
-  formData.append('id', body._id);
   formData.append('birthday', body.birthday);
   formData.append('typeofpet', body.typeofpet);
   formData.append('breed', body.breed);
@@ -106,7 +105,7 @@ async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
     },
   });
 }

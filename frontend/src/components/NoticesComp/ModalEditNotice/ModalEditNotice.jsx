@@ -220,7 +220,6 @@ export const ModalEditNotice = () => {
           <div>
             <Formik
               initialValues={{
-                id: dataOfPet?._id,
                 category: dataOfPet?.category ? dataOfPet.category : '',
                 typeofpet: dataOfPet?.typeofpet ? dataOfPet.typeofpet : '',
                 title: dataOfPet?.title ? dataOfPet.title : '',

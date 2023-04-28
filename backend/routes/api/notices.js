@@ -35,14 +35,14 @@ router.post(
   ctrlWrapper(createNotices)
 );
 router.patch(
-  "/:category",
+  "/:id",
   ctrlWrapper(authMiddleware),
   uploadCloud.fields([
     { name: "imageUrl", maxCount: 1 },
     { name: "imageUrl_1", maxCount: 1 },
     { name: "imageUrl_2", maxCount: 1 },
   ]),
-  createValidation,
+  // createValidation,
   ctrlWrapper(editNotices)
 );
 router.post(

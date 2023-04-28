@@ -14,7 +14,7 @@ const editNotices = async (req, res, next) => {
   const fullData = { ...body, category: lower, owner: _id, ...imagesObject };
   console.log("fullData", fullData);
   console.log("id", id);
-  const notices = await Notices.findOneAndUpdate(id, fullData, {
+  const notices = await Notices.findOneAndUpdate({id}, fullData, {
     new: true,
   });
   res.status(201).json(notices);
