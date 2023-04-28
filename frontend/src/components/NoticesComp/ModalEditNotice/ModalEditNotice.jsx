@@ -112,7 +112,7 @@ export const ModalEditNotice = () => {
     setIsLoading(true);
     try {
       const { code } = await fetchPatchNotice(
-        `/notices/${values.category}`,
+        `/notices/${values.category}/${modal.id}`,
         values,
         file1,
         file2,
