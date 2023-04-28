@@ -5,7 +5,7 @@ const {
   dataFilter,
 } = require('../../helpers');
 
-const update = async (req, res, next) => {
+const updateAvatar = async (req, res, next) => {
   const newData = dataFilter(req.body, userFieldReceivedFromFront);
   req.file?.path && (newData.avatar = req.file.path);
 
@@ -20,4 +20,4 @@ const update = async (req, res, next) => {
     .json({ code: 200, message: 'Successful operation', data: newResponse });
 };
 
-module.exports = update;
+module.exports = updateAvatar;

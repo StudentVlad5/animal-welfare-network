@@ -26,8 +26,60 @@ const Modal = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 1280px;
+    max-width: 800px;
     padding: 40px;
+  }
+`;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  margin: 0 auto;
+  padding: 30px 12px;
+  min-width: 280px;
+`;
+const Field = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
+const Label = styled.label`
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+`;
+
+const Input = styled.input`
+  box-sizing: border-box;
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+
+  background-color: ${props => props.theme.white};
+  color: ${props => props.theme.black};
+  border: 1px solid;
+  border-color: ${p =>
+    p.disabled
+      ? `${props => props.theme.inputColor}`
+      : `${props => props.theme.colorOfInput}`};
+
+  :focus {
+    outline-color: ${props => props.theme.inputColor};
+  }
+  *:disabled {
+    background-color: ${props => props.theme.black};
+    color: ${props => props.theme.colorOfInput};
   }
 `;
 
@@ -51,13 +103,43 @@ const CloseIconBtn = styled.button`
   z-index: 50;
 
   cursor: pointer;
+`;
 
-  @media screen and (min-width: 768px) {
-    top: 20px;
-    right: 20px;
-    width: 34px;
-    height: 34px;
+const DoneIconBtn = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 45px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  color: ${props => props.theme.orangeLight};
+  background-color: transparent;
+  border-color: ${props => props.theme.orangeLight};
+  border-radius: 50%;
+  backdrop-filter: blur(2px);
+  z-index: 50;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
   }
 `;
 
-export { BackDrop, Modal, CloseIconBtn };
+export {
+  BackDrop,
+  Modal,
+  Form,
+  Field,
+  Label,
+  Input,
+  CloseIconBtn,
+  DoneIconBtn,
+};

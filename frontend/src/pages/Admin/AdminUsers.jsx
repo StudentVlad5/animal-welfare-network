@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { MdClose, MdEdit } from 'react-icons/md';
 import { openModalWindow } from 'hooks/modalWindow';
 import { addModal } from 'redux/modal/operation';
-import { fetchData, deleteData } from 'services/APIservice';
+import { fetchData, deleteData, updateData } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { SEO } from 'utils/SEO';
@@ -22,6 +22,7 @@ import { EditDataModal } from 'components/Admin/EditDataModal/EditDataModal';
 
 const AdminUsersPage = () => {
   const [users, setUsers] = useState([]);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -40,12 +41,13 @@ const AdminUsersPage = () => {
         setIsLoading(false);
       }
     })();
-  }, []);
+  }, [isUpdating]);
 
   async function deleteUser(id) {
     setIsLoading(true);
     try {
       const { date } = await deleteData(`/admin/users/${id}`);
+      setIsUpdating(true);
       return date;
     } catch (error) {
       setError(error);
@@ -54,10 +56,11 @@ const AdminUsersPage = () => {
     }
   }
 
-  async function editUser(id) {
+  async function editUser(id, formData) {
     setIsLoading(true);
     try {
-      const { date } = await deleteData(`/admin/users/${id}`);
+      const { date } = await updateData(`/admin/users/${id}`, formData);
+      setIsUpdating(true);
       return date;
     } catch (error) {
       setError(error);
@@ -76,18 +79,19 @@ const AdminUsersPage = () => {
   const toggleLearnMore = () => setIsLearnMore(state => !state);
 
   // add edit modal
-  const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
-  const toggleModal = e => {
+  const openModal = e => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(
-      addModal({
-        modal: e.currentTarget.dataset.modal,
-      }),
-    );
-    openModalWindow(e, null);
-    setIsOpenModal(true);
+    if (e.currentTarget.dataset.modal === 'admin') {
+      dispatch(
+        addModal({
+          modal: e.currentTarget.dataset.modal,
+          id: e.currentTarget.dataset.id,
+        }),
+      );
+      openModalWindow(e, null);
+    }
   };
 
   const date = date => (date ? new Date(date).toISOString().slice(0, 10) : '');
@@ -150,9 +154,10 @@ const AdminUsersPage = () => {
                       <IconButton
                         aria-label="Edit user"
                         onClick={e => {
-                          toggleModal(e);
+                          openModal(e);
                         }}
-                        data-modal="users"
+                        data-modal="admin"
+                        data-id={user._id}
                       >
                         <MdEdit size={15} />
                       </IconButton>
@@ -164,13 +169,6 @@ const AdminUsersPage = () => {
                       >
                         <MdClose size={15} />
                       </IconButton>
-                      {isOpenModal && (
-                        <EditDataModal
-                          onClose={editUser(user._id)}
-                          path="user"
-                          id={user._id}
-                        />
-                      )}
                     </TableData>
                   </TableRow>
                 ))}
@@ -178,6 +176,7 @@ const AdminUsersPage = () => {
           </Table>
         </Container>
       </Section>
+      <EditDataModal path="admin/users" onEdit={editUser} />
     </>
   );
 };

@@ -15,6 +15,7 @@ const {
   addFavorite,
   deleteFavorite,
   deleteNotices,
+  updateNotices,
 } = notices;
 
 const router = express.Router();
@@ -46,5 +47,12 @@ router.delete(
   ctrlWrapper(deleteFavorite)
 );
 router.delete('/:id', ctrlWrapper(authMiddleware), ctrlWrapper(deleteNotices));
+
+router.put(
+  '/:id',
+  ctrlWrapper(authMiddleware),
+  createValidation,
+  ctrlWrapper(updateNotices)
+);
 
 module.exports = routerNotices = router;

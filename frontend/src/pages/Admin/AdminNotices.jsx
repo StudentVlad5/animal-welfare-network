@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { MdClose, MdEdit } from 'react-icons/md';
 import { openModalWindow } from 'hooks/modalWindow';
 import { addModal } from 'redux/modal/operation';
-import { fetchData, deleteData } from 'services/APIservice';
+import { fetchData, deleteData, updateData } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { SEO } from 'utils/SEO';
@@ -22,6 +22,7 @@ import { EditDataModal } from 'components/Admin/EditDataModal/EditDataModal';
 
 const AdminNoticesPage = () => {
   const [notices, setNotices] = useState([]);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -40,12 +41,13 @@ const AdminNoticesPage = () => {
         setIsLoading(false);
       }
     })();
-  }, []);
+  }, [isUpdating]);
 
   async function deleteNotice(id) {
     setIsLoading(true);
     try {
       const { date } = await deleteData(`/notices/${id}`);
+      setIsUpdating(true);
       return date;
     } catch (error) {
       setError(error);
@@ -54,10 +56,11 @@ const AdminNoticesPage = () => {
     }
   }
 
-  async function editNotice(id) {
+  async function editNotice(id, formData) {
     setIsLoading(true);
     try {
-      const { date } = await deleteData(`/notices/${id}`);
+      const { date } = await updateData(`/notices/${id}`, formData);
+      setIsUpdating(true);
       return date;
     } catch (error) {
       setError(error);
@@ -119,7 +122,7 @@ const AdminNoticesPage = () => {
                 <TableHead>Name</TableHead>
                 {isLearnMore && (
                   <>
-                    <TableHead>Birthday</TableHead>
+                    <TableHead>Years</TableHead>
                     <TableHead>Breed</TableHead>
                     <TableHead>Sex</TableHead>
                     <TableHead>Size</TableHead>
@@ -194,7 +197,7 @@ const AdminNoticesPage = () => {
                         onClick={e => {
                           toggleModal(e);
                         }}
-                        data-modal="notices"
+                        data-modal="notices/byid"
                       >
                         <MdEdit size={15} />
                       </IconButton>
@@ -209,7 +212,7 @@ const AdminNoticesPage = () => {
                       {isOpenModal && (
                         <EditDataModal
                           onClose={editNotice(notice._id)}
-                          path="notices"
+                          path="notices/byid"
                           id={notice._id}
                         />
                       )}

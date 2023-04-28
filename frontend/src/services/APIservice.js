@@ -79,6 +79,16 @@ async function deleteData(pathParams) {
   });
 }
 
+async function updateData(pathParams, formData) {
+  return await axios.put(`${BASE_URL}${pathParams}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+    },
+  });
+}
+
 fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
@@ -87,4 +97,9 @@ deleteData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
 
-export { fetchData, fetchNotice, fetchPetsUser, deleteData };
+updateData.propTypes = {
+  pathParams: PropTypes.string.isRequired,
+  formData: PropTypes.string.isRequired,
+};
+
+export { fetchData, fetchNotice, fetchPetsUser, deleteData, updateData };

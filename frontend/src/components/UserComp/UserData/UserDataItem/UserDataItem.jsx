@@ -36,81 +36,106 @@ export const UserDataItem = ({
   const handleChange = e => {
     const { name, value } = e.currentTarget;
 
-    if (name === 'userName') {
-      setInputValue(value);
-    }
-    if (name === 'email') {
-      setInputValue(value);
-    } else if (name === 'birthday') {
-      setInputValue(value);
-    } else if (name === 'phone') {
-      setInputValue(value);
-    } else if (name === 'location') {
-      setInputValue(value);
+    switch (name) {
+      case 'userName':
+        setInputValue(value);
+        break;
+
+      case 'email':
+        setInputValue(value);
+        break;
+
+      case 'birthday':
+        setInputValue(value);
+        break;
+
+      case 'phone':
+        setInputValue(value);
+        break;
+
+      case 'location':
+        setInputValue(value);
+        break;
+
+      default:
+        return;
     }
   };
 
   const handleSubmit = name => {
-    if (name === 'userName') {
-      setActive('userName');
-      if (
-        inputValue.length !== 0 &&
-        (inputValue.length < 2 || inputValue.length > 16)
-      ) {
-        setIsError('type from 2 to 16 letters');
+    switch (name) {
+      case 'userName':
+        setActive('userName');
+        if (
+          inputValue.length !== 0 &&
+          (inputValue.length < 2 || inputValue.length > 16)
+        ) {
+          setIsError('type from 2 to 16 letters');
+          return;
+        }
+        setIsError('');
+        setActive('');
+        dispatch(update({ userName: inputValue }));
+        break;
+
+      case 'email':
+        setActive('email');
+        if (!inputValue.match(emailRegExp)) {
+          setIsError('please type valid email');
+          return;
+        }
+        setIsError('');
+        setActive('');
+        dispatch(update({ email: inputValue }));
+        break;
+
+      case 'birthday':
+        setActive('birthday');
+        if (inputValue > dayToday) {
+          setIsError('date must be current');
+          return;
+        }
+        if (inputValue < minDate) {
+          setIsError('date must be current');
+          return;
+        }
+        setIsError('');
+        setActive('');
+        dispatch(
+          update({
+            birthday: inputValue,
+          }),
+        );
+        break;
+
+      case 'phone':
+        setActive('phone');
+        if (!phoneRegExp.test(inputValue)) {
+          setIsError('please type valid phone number starting with +380');
+          return;
+        }
+        if (inputValue.length !== 13) {
+          setIsError('phone number should contain 13 digits');
+          return;
+        }
+        setIsError('');
+        setActive('');
+        dispatch(update({ phone: inputValue }));
+        break;
+
+      case 'location':
+        setActive('location');
+        if (!inputValue.match(cityRegex)) {
+          setIsError('use format Kyiv, Brovary');
+          return;
+        }
+        setIsError('');
+        setActive('');
+        dispatch(update({ location: inputValue }));
+        break;
+
+      default:
         return;
-      }
-      setIsError('');
-      setActive('');
-      dispatch(update({ userName: inputValue }));
-    } else if (name === 'email') {
-      setActive('email');
-      if (!inputValue.match(emailRegExp)) {
-        setIsError('please type valid email');
-        return;
-      }
-      setIsError('');
-      setActive('');
-      dispatch(update({ email: inputValue }));
-    } else if (name === 'birthday') {
-      setActive('birthday');
-      if (inputValue > dayToday) {
-        setIsError('date must be current');
-        return;
-      }
-      if (inputValue < minDate) {
-        setIsError('date must be current');
-        return;
-      }
-      setIsError('');
-      setActive('');
-      dispatch(
-        update({
-          birthday: inputValue,
-        }),
-      );
-    } else if (name === 'phone') {
-      setActive('phone');
-      if (!phoneRegExp.test(inputValue)) {
-        setIsError('please type valid phone number starting with +380');
-        return;
-      }
-      if (inputValue.length !== 13) {
-        setIsError('phone number should contain 13 digits');
-        return;
-      }
-      setIsError('');
-      setActive('');
-      dispatch(update({ phone: inputValue }));
-    } else if (name === 'location') {
-      setActive('location');
-      if (!inputValue.match(cityRegex)) {
-        setIsError('use format Kyiv, Brovary');
-        return;
-      }
-      setIsError('');
-      setActive('');
-      dispatch(update({ location: inputValue }));
     }
   };
 
@@ -119,38 +144,36 @@ export const UserDataItem = ({
   };
 
   return (
-    <>
-      <UserDataItemWrapper>
-        <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
-        <UserDataItemInputBtnWrapper>
-          <InputWrapper>
-            <UserDataItemInput
-              value={!profile ? inputValue : defaultValue}
-              onChange={handleChange}
-              active={active === name}
-              disabled={active !== name}
-              type={type}
-              name={name}
-              id={name}
-            />
-            {isError && active === name ? <Error>{isError}</Error> : null}
-          </InputWrapper>
+    <UserDataItemWrapper>
+      <UserDataItemLabel htmlFor={name}>{label}</UserDataItemLabel>
+      <UserDataItemInputBtnWrapper>
+        <InputWrapper>
+          <UserDataItemInput
+            value={!profile ? inputValue : defaultValue}
+            onChange={handleChange}
+            active={active === name}
+            disabled={active !== name}
+            type={type}
+            name={name}
+            id={name}
+          />
+          {isError && active === name ? <Error>{isError}</Error> : null}
+        </InputWrapper>
 
-          {!profile &&
-            (active === name ? (
-              <UserDataItemBtn>
-                <CheckMarkStyle onClick={() => handleSubmit(name)} />
-              </UserDataItemBtn>
-            ) : (
-              <UserDataItemBtn
-                disabled={active && active !== name}
-                onClick={() => activeHandleClick(name)}
-              >
-                <PensilStyle />
-              </UserDataItemBtn>
-            ))}
-        </UserDataItemInputBtnWrapper>
-      </UserDataItemWrapper>
-    </>
+        {!profile &&
+          (active === name ? (
+            <UserDataItemBtn>
+              <CheckMarkStyle onClick={() => handleSubmit(name)} />
+            </UserDataItemBtn>
+          ) : (
+            <UserDataItemBtn
+              disabled={active && active !== name}
+              onClick={() => activeHandleClick(name)}
+            >
+              <PensilStyle />
+            </UserDataItemBtn>
+          ))}
+      </UserDataItemInputBtnWrapper>
+    </UserDataItemWrapper>
   );
 };

@@ -16,7 +16,7 @@ const deleteNotices = async (req, res, next) => {
         return res.status(400).json({ message: `Bad request (id incorrect)` });
       }
     }
-    res.status(201).json({ message: 'Success deleted' });
+    res.json({ message: 'Success deleted' });
   } catch (error) {
     res.status(400).json({ message: `Bad request (id incorrect)` });
   }

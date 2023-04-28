@@ -9,7 +9,6 @@ import {
   LabelRadio,
   FieldRadio,
   Title,
-  Paragraph,
   FieldList,
   LabelItem,
   FieldItem,
@@ -249,10 +248,6 @@ export const AddNoticeModal = () => {
                           : { display: 'none' }
                       }
                     >
-                      <Paragraph>
-                        Lorem ipsum dolor sit amet, consectetur Lorem ipsum
-                        dolor sit amet, consectetur
-                      </Paragraph>
                       <FieldsRadio role="group" id="category">
                         <p>
                           Category
@@ -573,7 +568,7 @@ export const AddNoticeModal = () => {
                                   Select currency
                                 </OptionFirst>
                               }
-                              {['$', '€', '£', '₴', '¥', 'zł'].map(s => (
+                              {['₴', '$', '€'].map(s => (
                                 <Option key={s} value={s.toLowerCase()}>
                                   {s}
                                 </Option>

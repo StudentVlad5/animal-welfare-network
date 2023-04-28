@@ -212,7 +212,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                         <tr>
                           <TdTable>Price:</TdTable>
                           <TdTable2>
-                            {data.price} {data.currency}
+                            {data.price} {data.currency || '₴'}
                           </TdTable2>
                         </tr>
                       )}
