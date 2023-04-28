@@ -35,7 +35,7 @@ router.post(
   ctrlWrapper(createNotices)
 );
 router.patch(
-  "category/:id",
+  "/:id",
   ctrlWrapper(authMiddleware),
   uploadCloud.fields([
     { name: "imageUrl", maxCount: 1 },
