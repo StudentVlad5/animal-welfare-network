@@ -35,7 +35,7 @@ router.post(
   ctrlWrapper(createNotices)
 );
 router.patch(
-  "/:id",
+  "/own/:id",
   validateId,
   // ctrlWrapper(authMiddleware),
   // uploadCloud.fields([
