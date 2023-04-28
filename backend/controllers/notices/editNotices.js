@@ -9,7 +9,7 @@ const editNotices = async (req, res, next) => {
   Object.values(files).forEach((e) => {
     imagesObject[e[0].fieldname] = e[0].path;
   });
-  const id = params.id;
+  const { id } = req.params;
   const { _id } = user;
   const { category } = params;
   const lower = category.toLowerCase();
@@ -17,10 +17,16 @@ const editNotices = async (req, res, next) => {
   const fullData = { ...body, category: lower, owner: _id, ...imagesObject };
   console.log("fullData", fullData);
   console.log("id", id);
-  const notices = await Notices.findOneAndUpdate({id}, fullData, {
+  const notices = await Notices.findByIdAndUpdate({ id }, fullData, {
     new: true,
   });
-  res.status(201).json(notices);
+  if (notices) {
+    return res.status(201).json(notices);
+  } else {
+    const error = new Error(`pet whith id = ${id} not found`);
+    error.status = 404;
+    throw error;
+  }
 };
 
 module.exports = editNotices;
