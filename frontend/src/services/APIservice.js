@@ -79,6 +79,40 @@ async function deleteData(pathParams) {
   });
 }
 
+async function fetchPathNotice(pathParams, body, file1, file2, file3) {
+  const formData = new FormData();
+
+  formData.append('birthday', body.birthday);
+  formData.append('typeofpet', body.typeofpet);
+  formData.append('breed', body.breed);
+  formData.append('size', body.size);
+  formData.append('height', body.height);
+  formData.append('weight', body.weight);
+  formData.append('passport', body.passport);
+  formData.append('sterilization', body.sterilization);
+  formData.append('lives', body.lives);
+  formData.append('comments', body.comments);
+  formData.append('imageUrl', file1);
+  file2 && formData.append('imageUrl_1', file2);
+  file3 && formData.append('imageUrl_2', file3);
+  formData.append('location', body.location);
+  formData.append('name', body.name);
+  body.price !== '' && formData.append('price', body.price);
+  body.currency !== '' && formData.append('currency', body.currency);
+  formData.append('sex', body.sex);
+  formData.append('title', body.title);
+
+  return axios.patch(`${BASE_URL}${pathParams}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+    },
+  });
+}
+
+export { fetchData, fetchNotice, fetchPetsUser, deleteData, fetchPathNotice };
+
 fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
@@ -86,5 +120,3 @@ fetchData.propTypes = {
 deleteData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
-
-export { fetchData, fetchNotice, fetchPetsUser, deleteData };

@@ -1,5 +1,6 @@
 import { NoticesCategoriesItem } from './NoticeCategoryItem/NoticeCategoryItem';
 import { ModalNotices } from '../ModalNotice/ModalNotice';
+import { ModalEditNotice } from '../ModalEditNotice/ModalEditNotice';
 import { NoticeCategoryItemSwiper } from './NoticeCategoryItem/NoticeCategoryItemSwiper/NoticeCategoryItemSwiper';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { ContainerStatus } from './NoticesCategoriesList.styled';
@@ -125,6 +126,7 @@ export const NoticesCategoriesList = () => {
       {error && onFetchError('Whoops, something went wrong')}
       <Pagination totalPage={totalPage} changePage={setPage} />
       <ModalNotices addToFavoriteFunction={handleFavoriteBtnClick} />
+      <ModalEditNotice addToFavoriteFunction={handleFavoriteBtnClick} />
       <NoticeCategoryItemSwiper />
       <FilterModal />
     </>

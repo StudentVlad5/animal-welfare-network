@@ -11,7 +11,7 @@ import {
   ContainerStatus,
   NoticeItemTitle,
   BtnLearnMore,
-  BtnDelete,
+  // BtnDelete,
   ItemContainer,
   TdTable,
   TdTable2,
@@ -19,20 +19,22 @@ import {
   NoticeContainerButton,
   BtnForFavorite,
   TBody,
-  DeleteIcon,
+  // DeleteIcon,
+  EditIcon,
+  BtnEdit,
 } from './NoticeCategoryItem.styled';
 import { selectId, getPermission } from 'redux/auth/selectors';
-import { useState } from 'react';
-import { deleteData } from 'services/APIservice';
-import { addReload } from 'redux/reload/slice';
+// import { useState } from 'react';
+// import { deleteData } from 'services/APIservice';
+// import { addReload } from 'redux/reload/slice';
 
 export const NoticesCategoriesItem = ({
   data,
   addToFavoriteFunction,
   isInFavorite,
 }) => {
-  const [, setIsLoading] = useState(false);
-  const [, setError] = useState(null);
+  // const [, setIsLoading] = useState(false);
+  // const [, setError] = useState(null);
 
   const _id = useSelector(selectId); //isLoggedIn
   const dispatch = useDispatch();
@@ -41,23 +43,37 @@ export const NoticesCategoriesItem = ({
 
   const permission = useSelector(getPermission);
 
-  async function deleteNotice(id) {
-    setIsLoading(true);
-    try {
-      const { date } = await deleteData(`/notices/${id}`);
-      return date;
-    } catch (error) {
-      setError(error);
-    } finally {
-      dispatch(addReload(true));
-      setIsLoading(false);
-    }
-  }
+  // async function deleteNotice(id) {
+  //   setIsLoading(true);
+  //   try {
+  //     const { date } = await deleteData(`/notices/${id}`);
+  //     return date;
+  //   } catch (error) {
+  //     setError(error);
+  //   } finally {
+  //     dispatch(addReload(true));
+  //     setIsLoading(false);
+  //   }
+  // }
 
   const openModalForItemPet = e => {
     e.preventDefault();
     e.stopPropagation();
     if (e.currentTarget.dataset.modal === 'itemPet') {
+      dispatch(
+        addModal({
+          modal: e.currentTarget.dataset.modal,
+          id: e.currentTarget.dataset.id,
+        }),
+      );
+      setTimeout(() => openModalWindow(e, null), 500);
+    }
+  };
+
+  const openModalForEditItemPet = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.currentTarget.dataset.modal === 'editItemPet') {
       dispatch(
         addModal({
           modal: e.currentTarget.dataset.modal,
@@ -162,10 +178,21 @@ export const NoticesCategoriesItem = ({
             Learn more
           </BtnLearnMore>
           {(data.owner === id || permission === 'admin') && (
-            <BtnDelete onClick={e => deleteNotice(data._id)}>
-              Delete
-              <DeleteIcon />
-            </BtnDelete>
+            // <BtnEdit onClick={e => deleteNotice(data._id)}>
+            //   Delete
+            //   <DeleteIcon />
+            // </BtnEdit>
+            <BtnEdit
+              onClick={e =>
+                e.currentTarget.innerText === 'Edit' &&
+                openModalForEditItemPet(e)
+              }
+              data-modal="editItemPet"
+              data-id={data._id}
+            >
+              Edit
+              <EditIcon />
+            </BtnEdit>
           )}
         </NoticeContainerButton>
       </NoticesContainerItem>
