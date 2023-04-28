@@ -79,9 +79,9 @@ async function deleteData(pathParams) {
   });
 }
 
-async function fetchPathNotice(pathParams, body, file1, file2, file3) {
+async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
   const formData = new FormData();
-
+  formData.append('_id', body._id);
   formData.append('birthday', body.birthday);
   formData.append('typeofpet', body.typeofpet);
   formData.append('breed', body.breed);
@@ -111,7 +111,7 @@ async function fetchPathNotice(pathParams, body, file1, file2, file3) {
   });
 }
 
-export { fetchData, fetchNotice, fetchPetsUser, deleteData, fetchPathNotice };
+export { fetchData, fetchNotice, fetchPetsUser, deleteData, fetchPatchNotice };
 
 fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,

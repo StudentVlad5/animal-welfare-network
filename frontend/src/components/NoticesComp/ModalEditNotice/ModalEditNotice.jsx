@@ -41,7 +41,7 @@ import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
 import schemas from 'components/Schemas/schemas';
 import React, { useEffect, useState } from 'react';
-import { fetchPathNotice } from 'services/APIservice';
+import { fetchPatchNotice } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import usePlacesAutocomplete from 'use-places-autocomplete';
@@ -111,7 +111,7 @@ export const ModalEditNotice = () => {
     const file3 = document.querySelector('#imageUrl_2')?.files[0];
     setIsLoading(true);
     try {
-      const { code } = await fetchPathNotice(
+      const { code } = await fetchPatchNotice(
         `/notices/${values.category}`,
         values,
         file1,
@@ -220,6 +220,7 @@ export const ModalEditNotice = () => {
           <div>
             <Formik
               initialValues={{
+                _id: dataOfPet?._id,
                 category: dataOfPet?.category ? dataOfPet.category : '',
                 typeofpet: dataOfPet?.typeofpet ? dataOfPet.typeofpet : '',
                 title: dataOfPet?.title ? dataOfPet.title : '',

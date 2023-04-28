@@ -15,6 +15,7 @@ const {
   addFavorite,
   deleteFavorite,
   deleteNotices,
+  editNotices,
 } = notices;
 
 const router = express.Router();
@@ -42,7 +43,7 @@ router.patch(
     { name: "imageUrl_2", maxCount: 1 },
   ]),
   createValidation,
-  ctrlWrapper(createNotices)
+  ctrlWrapper(editNotices)
 );
 router.post(
   "/favorites/:id",
