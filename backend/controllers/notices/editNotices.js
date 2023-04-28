@@ -12,7 +12,9 @@ const editNotices = async (req, res, next) => {
 
   const fullData = { ...body, category: lower, owner: _id, ...imagesObject };
 
-  const notices = await Notices.updateOne(body._id, fullData);
+  const notices = await Notices.findOneAndUpdate(body._id, fullData, {
+    new: true,
+  });
   res.status(201).json(notices);
 };
 
