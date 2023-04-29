@@ -91,9 +91,9 @@ async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
   formData.append('sterilization', body.sterilization);
   formData.append('lives', body.lives);
   formData.append('comments', body.comments);
-  file1 && formData.append('imageUrl', file1);
-  file2 && formData.append('imageUrl_1', file2);
-  file3 && formData.append('imageUrl_2', file3);
+  // file1 && formData.append("imageUrl", file1);
+  // file2 && formData.append("imageUrl_1", file2);
+  // file3 && formData.append("imageUrl_2", file3);
   formData.append('location', body.location);
   formData.append('name', body.name);
   body.price && formData.append('price', body.price);
@@ -102,17 +102,13 @@ async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
   formData.append('title', body.title);
   console.log('formData', formData);
 
-  return axios.patch(
-    `${BASE_URL}${pathParams}`,
-    body,
-    // {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data',
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
-    //   },
-    // }
-  );
+  return axios.patch(`${BASE_URL}${pathParams}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
+    },
+  });
 }
 
 export { fetchData, fetchNotice, fetchPetsUser, deleteData, fetchPatchNotice };
