@@ -3,7 +3,7 @@ const { Schema, model, SchemaTypes } = require("mongoose");
 const noticesSchema = new Schema(
   {
     owner: { type: SchemaTypes.ObjectId, ref: "users" },
-    // _id: { type: String },
+    _id: Object,
     category: {
       type: String,
       enum: ["sell", "lost-found", "for-free", "none"],
