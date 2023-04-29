@@ -48,7 +48,7 @@ router.patch(
 );
 router.patch(
   "/for-free/:id",
-  validateId,
+  // validateId,
   // ctrlWrapper(authMiddleware),
   // uploadCloud.fields([
   //   { name: "imageUrl", maxCount: 1 },
@@ -60,7 +60,7 @@ router.patch(
 );
 router.patch(
   "/lost-found/:id",
-  validateId,
+  // validateId,
   // ctrlWrapper(authMiddleware),
   // uploadCloud.fields([
   //   { name: "imageUrl", maxCount: 1 },
@@ -72,7 +72,7 @@ router.patch(
 );
 router.patch(
   "/favorite/:id",
-  validateId,
+  // validateId,
   // ctrlWrapper(authMiddleware),
   // uploadCloud.fields([
   //   { name: "imageUrl", maxCount: 1 },
@@ -84,7 +84,7 @@ router.patch(
 );
 router.patch(
   "/sell/:id",
-  validateId,
+  // validateId,
   // ctrlWrapper(authMiddleware),
   // uploadCloud.fields([
   //   { name: "imageUrl", maxCount: 1 },

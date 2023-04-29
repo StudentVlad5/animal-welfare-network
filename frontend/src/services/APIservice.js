@@ -11,7 +11,7 @@ async function fetchData(pathParams, body) {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
       'Access-Control-Expose-Headers': 'Content-Range',
     },
   });
@@ -46,7 +46,7 @@ async function fetchNotice(pathParams, body, file1, file2, file3) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
     },
   });
 }
@@ -63,7 +63,7 @@ async function fetchPetsUser(pathParams, body, file) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
     },
   });
 }
@@ -74,7 +74,7 @@ async function deleteData(pathParams) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
     },
   });
 }
