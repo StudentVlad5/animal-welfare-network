@@ -1,18 +1,18 @@
 const { Notices } = require("../../models");
 
 const editNotices = async (req, res, next) => {
-  const { user, body, params, files } = req;
-  console.log("req", req);
+  // const { user, body, params, files } = req;
+  // console.log("req", req);
   // console.log("user", user);
-  console.log("body", body);
-  console.log("params", params);
+  console.log("body", req.body);
+  console.log("params", req.params);
   // const imagesObject = {};
   // Object.values(files).forEach((e) => {
   //   imagesObject[e[0].fieldname] = e[0].path;
   // });
   const { id } = req.params;
   // const { _id } = user;
-  const { category } = params;
+  // const { category } = params;
   // const lower = category.toLowerCase();
 
   const fullData = {

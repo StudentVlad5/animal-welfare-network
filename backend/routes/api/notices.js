@@ -36,7 +36,7 @@ router.post(
 );
 router.patch(
   "/own/:id",
-  validateId,
+  // validateId,
   // ctrlWrapper(authMiddleware),
   // uploadCloud.fields([
   //   { name: "imageUrl", maxCount: 1 },
