@@ -13,11 +13,11 @@ const editNotices = async (req, res, next) => {
   const { id } = req.params;
   // const { _id } = user;
   const { category } = params;
-  const lower = category.toLowerCase();
+  // const lower = category.toLowerCase();
 
   const fullData = {
     ...body,
-    category: lower,
+    // category: lower,
     // owner: _id,
     // ...imagesObject,
   };
