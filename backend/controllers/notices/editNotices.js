@@ -24,7 +24,7 @@ const editNotices = async (req, res, next) => {
   };
   console.log("fullData", fullData);
   console.log("id", id);
-  const notices = await Notices.findByIdAndUpdate({ id }, fullData, {
+  const notices = await Notices.findByIdAndUpdate({ _id:id }, fullData, {
     new: true,
   });
   if (notices) {
