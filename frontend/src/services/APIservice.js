@@ -91,9 +91,9 @@ async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
   formData.append('sterilization', body.sterilization);
   formData.append('lives', body.lives);
   formData.append('comments', body.comments);
-  // file1 && formData.append("imageUrl", file1);
-  // file2 && formData.append("imageUrl_1", file2);
-  // file3 && formData.append("imageUrl_2", file3);
+  file1 && formData.append('imageUrl', file1);
+  file2 && formData.append('imageUrl_1', file2);
+  file3 && formData.append('imageUrl_2', file3);
   formData.append('location', body.location);
   formData.append('name', body.name);
   body.price && formData.append('price', body.price);

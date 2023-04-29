@@ -6,12 +6,13 @@ const editNotices = async (req, res, next) => {
   // console.log("user", user);
   console.log("body", req.body);
   console.log("params", req.params);
-  // const imagesObject = {};
-  // Object.values(files).forEach((e) => {
-  //   imagesObject[e[0].fieldname] = e[0].path;
-  // });
+  const imagesObject = {};
+  Object.values(files).forEach((e) => {
+    imagesObject[e[0].fieldname] = e[0].path;
+  });
   const { id } = req.params;
   const body = req.body;
+  const  files  = req.files;
   // const { _id } = user;
   // const { category } = params;
   // const lower = category.toLowerCase();
@@ -20,7 +21,7 @@ const editNotices = async (req, res, next) => {
     ...body,
     // category: lower,
     // owner: _id,
-    // ...imagesObject,
+    ...imagesObject,
   };
   console.log("fullData", fullData);
   console.log("id", id);
