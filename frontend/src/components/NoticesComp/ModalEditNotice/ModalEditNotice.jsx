@@ -84,7 +84,6 @@ export const ModalEditNotice = () => {
           return Promise.reject(new Error(`Can't find anything`));
         })
         .then(value => {
-          console.log(value);
           setDataOfPet(value);
         })
         .catch(error => {
@@ -110,6 +109,7 @@ export const ModalEditNotice = () => {
     const file2 = document.querySelector('#imageUrl_1')?.files[0];
     const file3 = document.querySelector('#imageUrl_2')?.files[0];
     setIsLoading(true);
+    console.log('values', values);
     try {
       const { code } = await fetchPatchNotice(
         `/notices/${values.category}/${modal.id}`,

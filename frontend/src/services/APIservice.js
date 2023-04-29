@@ -91,16 +91,16 @@ async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
   formData.append('sterilization', body.sterilization);
   formData.append('lives', body.lives);
   formData.append('comments', body.comments);
-  formData.append('imageUrl', file1);
+  file1 && formData.append('imageUrl', file1);
   file2 && formData.append('imageUrl_1', file2);
   file3 && formData.append('imageUrl_2', file3);
   formData.append('location', body.location);
   formData.append('name', body.name);
-  body.price !== '' && formData.append('price', body.price);
-  body.currency !== '' && formData.append('currency', body.currency);
+  body.price && formData.append('price', body.price);
+  body.currency && formData.append('currency', body.currency);
   formData.append('sex', body.sex);
   formData.append('title', body.title);
-
+  console.log('formData', formData);
   return axios.patch(`${BASE_URL}${pathParams}`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
