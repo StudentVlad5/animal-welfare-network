@@ -101,6 +101,7 @@ async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
   formData.append('sex', body.sex);
   formData.append('title', body.title);
   console.log('formData', formData);
+
   return axios.patch(`${BASE_URL}${pathParams}`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
