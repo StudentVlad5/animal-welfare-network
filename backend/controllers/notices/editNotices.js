@@ -11,6 +11,7 @@ const editNotices = async (req, res, next) => {
   //   imagesObject[e[0].fieldname] = e[0].path;
   // });
   const { id } = req.params;
+  const body = req.body;
   // const { _id } = user;
   // const { category } = params;
   // const lower = category.toLowerCase();
