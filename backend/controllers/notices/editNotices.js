@@ -2,6 +2,7 @@ const { Notices } = require("../../models");
 
 const editNotices = async (req, res, next) => {
   const { user, body, params, files } = req;
+  console.log("req", req);
   console.log("user", user);
   console.log("body", body);
   console.log("params", params);
