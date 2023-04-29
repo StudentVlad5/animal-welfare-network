@@ -36,62 +36,62 @@ router.post(
 );
 router.patch(
   "/own/:id",
-  // validateId,
-  // ctrlWrapper(authMiddleware),
+  validateId,
+  ctrlWrapper(authMiddleware),
   uploadCloud.fields([
     { name: "imageUrl", maxCount: 1 },
     { name: "imageUrl_1", maxCount: 1 },
     { name: "imageUrl_2", maxCount: 1 },
   ]),
-  // createValidation,
+  createValidation,
   ctrlWrapper(editNotices)
 );
 router.patch(
   "/for-free/:id",
-  // validateId,
-  // ctrlWrapper(authMiddleware),
+  validateId,
+  ctrlWrapper(authMiddleware),
   uploadCloud.fields([
     { name: "imageUrl", maxCount: 1 },
     { name: "imageUrl_1", maxCount: 1 },
     { name: "imageUrl_2", maxCount: 1 },
   ]),
-  // createValidation,
+  createValidation,
   ctrlWrapper(editNotices)
 );
 router.patch(
   "/lost-found/:id",
-  // validateId,
-  // ctrlWrapper(authMiddleware),
+  validateId,
+  ctrlWrapper(authMiddleware),
   uploadCloud.fields([
     { name: "imageUrl", maxCount: 1 },
     { name: "imageUrl_1", maxCount: 1 },
     { name: "imageUrl_2", maxCount: 1 },
   ]),
-  // createValidation,
+  createValidation,
   ctrlWrapper(editNotices)
 );
 router.patch(
   "/favorite/:id",
-  // validateId,
-  // ctrlWrapper(authMiddleware),
+  validateId,
+  ctrlWrapper(authMiddleware),
   uploadCloud.fields([
     { name: "imageUrl", maxCount: 1 },
     { name: "imageUrl_1", maxCount: 1 },
     { name: "imageUrl_2", maxCount: 1 },
   ]),
-  // createValidation,
+  createValidation,
   ctrlWrapper(editNotices)
 );
 router.patch(
   "/sell/:id",
-  // validateId,
-  // ctrlWrapper(authMiddleware),
+  validateId,
+  ctrlWrapper(authMiddleware),
   uploadCloud.fields([
     { name: "imageUrl", maxCount: 1 },
     { name: "imageUrl_1", maxCount: 1 },
     { name: "imageUrl_2", maxCount: 1 },
   ]),
-  // createValidation,
+  createValidation,
   ctrlWrapper(editNotices)
 );
 router.post(
