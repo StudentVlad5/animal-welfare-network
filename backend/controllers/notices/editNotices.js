@@ -10,7 +10,7 @@ const editNotices = async (req, res, next) => {
   // Object.values(files).forEach((e) => {
   //   imagesObject[e[0].fieldname] = e[0].path;
   // });
-  const { id } = req.params;
+  const { _id } = req.params;
   const body = req.body;
   // const { _id } = user;
   // const { category } = params;
@@ -24,7 +24,7 @@ const editNotices = async (req, res, next) => {
   };
   console.log("fullData", fullData);
   console.log("id", id);
-  const notices = await Notices.findByIdAndUpdate({ _id:id }, fullData, {
+  const notices = await Notices.findByIdAndUpdate({ _id }, fullData, {
     new: true,
   });
   if (notices) {
