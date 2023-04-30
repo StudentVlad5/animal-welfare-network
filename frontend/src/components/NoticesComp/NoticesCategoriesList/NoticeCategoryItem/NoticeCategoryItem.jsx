@@ -179,10 +179,6 @@ export const NoticesCategoriesItem = ({
           </BtnLearnMore>
           {(data.owner === id || permission === 'admin') && (
             <>
-              <BtnDelete onClick={e => deleteNotice(data._id)}>
-                Delete
-                <DeleteIcon />
-              </BtnDelete>
               <BtnEdit
                 onClick={e =>
                   e.currentTarget.innerText === 'Edit' &&
@@ -194,6 +190,10 @@ export const NoticesCategoriesItem = ({
                 Edit
                 <EditIcon />
               </BtnEdit>
+              <BtnDelete onClick={e => deleteNotice(data._id)}>
+                Delete
+                <DeleteIcon />
+              </BtnDelete>
             </>
           )}
         </NoticeContainerButton>

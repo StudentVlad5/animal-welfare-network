@@ -101,17 +101,13 @@ async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
   formData.append('sex', body.sex);
   formData.append('title', body.title);
 
-  return axios.patch(
-    `${BASE_URL}${pathParams}`,
-    formData,
-    // {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //     "Access-Control-Allow-Origin": "*",
-    //     "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS,PATCH",
-    //   },
-    // }
-  );
+  return axios.patch(`${BASE_URL}${pathParams}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Access-Control-Allow-Origin': '*',
+      // "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS,PATCH",
+    },
+  });
 }
 
 export { fetchData, fetchNotice, fetchPetsUser, deleteData, fetchPatchNotice };

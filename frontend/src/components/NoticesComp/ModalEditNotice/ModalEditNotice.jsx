@@ -509,11 +509,11 @@ export const ModalEditNotice = () => {
                           }
                           defaultValue={values.size}
                         >
-                          {
+                          {values.size === '' && (
                             <OptionFirst first value="unselected">
                               Select size type
                             </OptionFirst>
-                          }
+                          )}
                           {['Big', 'Average', 'Small'].map(s => (
                             <Option key={s} value={s.toLowerCase()}>
                               {s}
@@ -779,11 +779,11 @@ export const ModalEditNotice = () => {
                           }
                           defaultValue={values.sterilization}
                         >
-                          {
+                          {values.sterilization === '' && (
                             <OptionFirst first value="unselected">
                               Select option...
                             </OptionFirst>
-                          }
+                          )}
                           {['Yes', 'No'].map(s => (
                             <Option key={s} value={s.toLowerCase()}>
                               {s}
@@ -808,6 +808,11 @@ export const ModalEditNotice = () => {
                           }
                           defaultValue={values.lives}
                         >
+                          {values.lives === '' && (
+                            <OptionFirst first value="unselected">
+                              Select option...
+                            </OptionFirst>
+                          )}
                           {[
                             'In street',
                             'Shelter',

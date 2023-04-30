@@ -200,6 +200,7 @@ const BtnEdit = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 0 12px;
   transition: all 0.25s ease-in;
   &:hover {
     cursor: pointer;
