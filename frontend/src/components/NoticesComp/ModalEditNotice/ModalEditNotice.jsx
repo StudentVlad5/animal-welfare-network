@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router';
 import { Formik } from 'formik';
 import ReactDOM from 'react-dom';
 import {
@@ -61,7 +60,6 @@ export const ModalEditNotice = () => {
   const [fieldPrice, setFieldPrice] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
   const breeds = useSelector(breedsValue);

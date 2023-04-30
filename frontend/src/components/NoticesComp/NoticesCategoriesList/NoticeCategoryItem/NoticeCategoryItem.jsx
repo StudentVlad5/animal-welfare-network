@@ -43,7 +43,9 @@ export const NoticesCategoriesItem = ({
 
   const permission = useSelector(getPermission);
 
-  async function deleteNotice(id) {
+  async function deleteNotice(e, id) {
+    e.preventDefault();
+    e.stopPropagation();
     setIsLoading(true);
     try {
       const { date } = await deleteData(`/notices/${id}`);
@@ -190,7 +192,7 @@ export const NoticesCategoriesItem = ({
                 Edit
                 <EditIcon />
               </BtnEdit>
-              <BtnDelete onClick={e => deleteNotice(data._id)}>
+              <BtnDelete onClick={e => deleteNotice(e, data._id)}>
                 Delete
                 <DeleteIcon />
               </BtnDelete>
