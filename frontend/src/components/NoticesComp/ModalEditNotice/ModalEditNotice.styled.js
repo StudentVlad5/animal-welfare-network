@@ -258,7 +258,7 @@ export const FieldsRadio = styled.div`
   font-size: 14px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   & p {
     position: relative;
@@ -274,7 +274,7 @@ export const FieldsRadio = styled.div`
     letter-spacing: 0.04em;
     text-align: left;
 
-    color: ${props => props.theme.inpText};
+    color: ${props => props.theme.inpTextModal};
   }
 
   @media screen and (min-width: 768px) {
@@ -389,7 +389,7 @@ export const LabelItem = styled.label`
   letter-spacing: 0.04em;
   text-align: left;
 
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   & span {
     display: block;
@@ -541,7 +541,7 @@ export const FieldsRadioSex = styled.div`
   font-size: 14px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   & p {
     position: relative;
@@ -556,7 +556,7 @@ export const FieldsRadioSex = styled.div`
     letter-spacing: 0.04em;
     text-align: left;
 
-    color: ${props => props.theme.inpText};
+    color: ${props => props.theme.inpTextModal};
   }
 
   @media screen and (min-width: 768px) {
@@ -584,7 +584,7 @@ export const LabelItemTextArea = styled.label`
   letter-spacing: 0.04em;
   text-align: left;
 
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   & span {
     display: block;
@@ -620,7 +620,7 @@ export const FieldItemTextArea = styled(Field)`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   &::placeholder {
     color: rgba(27, 27, 27, 0.6);
@@ -700,7 +700,7 @@ export const Li = styled.li`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   padding: 10px 15px 10px 15px;
 
@@ -733,7 +733,7 @@ export const Option = styled.option`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   background: ${props => props.theme.mainBg};
 
@@ -840,7 +840,7 @@ export const FieldsRadioType = styled.div`
   font-size: 14px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   & p {
     position: relative;
@@ -855,7 +855,7 @@ export const FieldsRadioType = styled.div`
     letter-spacing: 0.04em;
     text-align: left;
 
-    color: ${props => props.theme.inpText};
+    color: ${props => props.theme.inpTextModal};
   }
 
   @media screen and (min-width: 768px) {

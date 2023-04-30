@@ -194,7 +194,7 @@ const BtnEdit = styled.button`
   width: 248px;
   height: 38px;
   border-radius: 40px;
-  border: 2px solid ${props => props.theme.orange};
+  border: 2px solid ${props => props.theme.orangeLight};
   background-color: ${props => props.theme.white};
   color: ${props => props.theme.blackText};
   display: flex;

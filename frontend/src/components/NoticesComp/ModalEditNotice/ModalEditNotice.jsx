@@ -406,22 +406,23 @@ export const ModalEditNotice = () => {
                             <Error>{errors.birthday}</Error>
                           ) : null}
                         </LabelItem>
-
-                        <FieldItem
-                          onFocus={e => {
-                            e.target.setAttribute('type', 'date');
-                          }}
-                          onBlur={e => {
-                            e.target.setAttribute('type', 'text');
-                          }}
-                          type="text"
-                          id="birthday"
-                          name="birthday"
-                          min={'2000-01-01'}
-                          max={`${new Date().toISOString().split('T')[0]}`}
-                          placeholder="Type day of birth"
-                          value={values.birthday}
-                        />
+                        <div style={{ position: 'relative' }}>
+                          <FieldItem
+                            onFocus={e => {
+                              e.target.setAttribute('type', 'date');
+                            }}
+                            onBlur={e => {
+                              e.target.setAttribute('type', 'text');
+                            }}
+                            type="text"
+                            id="birthday"
+                            name="birthday"
+                            min={'2000-01-01'}
+                            max={`${new Date().toISOString().split('T')[0]}`}
+                            placeholder="Type day of birth"
+                            value={values.birthday}
+                          />
+                        </div>
                         <LabelItem htmlFor="breed">
                           <span>Breed</span>
                           {errors.breed && touched.breed ? (
