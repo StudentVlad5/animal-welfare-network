@@ -109,7 +109,6 @@ export const ModalEditNotice = () => {
     const file2 = document.querySelector('#imageUrl_1')?.files[0];
     const file3 = document.querySelector('#imageUrl_2')?.files[0];
     setIsLoading(true);
-    console.log('values', values);
     try {
       const { code } = await fetchPatchNotice(
         `/notices/${values.category}/${modal.id}`,
@@ -251,7 +250,6 @@ export const ModalEditNotice = () => {
                   setFormQueue('first');
                   setFieldPrice(false);
                   window.removeEventListener('keydown', closeByEsc);
-                  navigate(`/notices/own?${searchParams}`);
                   dispatch(addReload(false));
                 } else if (formQueue === 'first') {
                   setFormQueue('second');
