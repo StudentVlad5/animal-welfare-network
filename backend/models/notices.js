@@ -5,7 +5,7 @@ const noticesSchema = new Schema(
     owner: { type: SchemaTypes.ObjectId, ref: "users" },
     category: {
       type: String,
-      enum: ["sell", "lost-found", "for-free", "none"],
+      enum: ["sell", "needs-care", "for-free", "none"],
       required: [true, "Category is required"],
       default: "none",
     },

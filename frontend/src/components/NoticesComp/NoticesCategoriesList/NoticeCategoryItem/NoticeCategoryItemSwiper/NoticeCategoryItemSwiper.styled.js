@@ -17,6 +17,9 @@ export const NoticesContainerItem = styled.div`
   padding: 17px 20px 43px 20px;
   background-color: ${props => props.theme.white};
   border-radius: 20px;
+  -webkit-box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowColor};
+  -moz-box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowColor};
+  box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowColor};
 
   @media screen and (min-width: 768px) {
     width: 704px;

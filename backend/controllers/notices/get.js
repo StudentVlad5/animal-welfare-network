@@ -51,7 +51,7 @@ const get = async (req, res, next) => {
 
       if (category === "favorite") {
         if (findtext) {
-          filterConstructor.title = { $regex: findtext, $options: "i" };
+          filterConstructor.comments = { $regex: findtext, $options: "i" };
           filterConstructor._id = { $in: favorites };
           total = await Notices.find({ ...filterConstructor }).count();
           constructorData.total = total;
@@ -77,7 +77,7 @@ const get = async (req, res, next) => {
       }
       if (category === "own") {
         if (findtext) {
-          filterConstructor.title = { $regex: findtext, $options: "i" };
+          filterConstructor.comments = { $regex: findtext, $options: "i" };
           filterConstructor.owner = _id;
           total = await Notices.find({ ...filterConstructor }).count();
           constructorData.total = total;
@@ -104,7 +104,7 @@ const get = async (req, res, next) => {
 
     if (findtext) {
       filterConstructor.category = category;
-      filterConstructor.title = { $regex: findtext, $options: "i" };
+      filterConstructor.comments = { $regex: findtext, $options: "i" };
       total = await Notices.find({
         ...filterConstructor,
       }).count();

@@ -285,4 +285,21 @@ margin: 0!important;
 .swiper-pagination-bullet-active {
   background-color: ${props => props.theme.orangeLight}!important;
 }
+
+.swiper-button-prev,
+.swiper-button-next,
+.swiper-pagination-bullet {
+  transform: scale(1.7);
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color-scheme: ${props => props.theme.colorscheme};
+  opacity: 1;
+}
+
+input::-webkit-calendar-picker-indicator:hover {
+  opacity: 0.6;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
 `;

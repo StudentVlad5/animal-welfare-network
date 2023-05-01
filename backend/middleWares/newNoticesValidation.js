@@ -14,14 +14,14 @@ const createValidation = (req, res, next) => {
     breed: Joi.string().min(2).max(34).required(),
     sex: Joi.string().valid("boy", "girl").required(),
     typeofpet: Joi.string().valid("cat", "dog").required(),
-    // category: Joi.string().valid("sell", "lost-found", "for-free", "none").required(),
+    // category: Joi.string().valid("sell", "needs-care", "for-free", "none").required(),
     size: Joi.string().valid("big", "average", "small").required(),
     height: Joi.number().required(),
     weight: Joi.number().required(),
     passport: Joi.string().required(),
     sterilization: Joi.string().valid("yes", "no").required(),
     lives: Joi.string()
-      .valid("in street", "shelter", "at volunteers")
+      .valid("in street", "shelter", "at volunteers", "home")
       .required(),
     location: Joi.string().required(),
     comments: Joi.string().min(8).max(120).required(),
@@ -29,7 +29,7 @@ const createValidation = (req, res, next) => {
       "number.base": "The price must be a number",
       "number.min": "The price must be greater than 0",
     }),
-currency: Joi.string(),
+    currency: Joi.string(),
   });
 
   const validationResult = schema.validate(req.body);

@@ -583,7 +583,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": ["sell", "lost-found", "for-free"]
+              "enum": ["sell", "needs-care", "for-free"]
             }
           },
           {
@@ -664,7 +664,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": ["sell", "lost-found", "for-free"]
+              "enum": ["sell", "needs-care", "for-free"]
             }
           }
         ],
@@ -1543,7 +1543,7 @@
           },
           "category": {
             "type": "string",
-            "enum": ["sell", "lost-found", "for-free"]
+            "enum": ["sell", "needs-care", "for-free"]
           },
           "title": {
             "type": "string"
@@ -1605,7 +1605,7 @@
             },
             "category": {
               "type": "string",
-              "enum": ["sell", "lost-found", "for-free"]
+              "enum": ["sell", "needs-care", "for-free"]
             },
             "title": {
               "type": "string"
@@ -1657,7 +1657,7 @@
           },
           "category": {
             "type": "string",
-            "enum": ["sell", "lost-found", "for-free"]
+            "enum": ["sell", "needs-care", "for-free"]
           },
           "title": {
             "type": "string"

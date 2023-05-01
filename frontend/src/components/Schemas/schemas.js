@@ -28,9 +28,11 @@ const registerSchema = Yup.object().shape({
       'Name must includes only Latin alphabet',
     )
     .required('Require field'),
-  phone: Yup.string()
-    .matches(/^\+380\d{9}$/, 'Invalid number. valid +38(0xx) xxx-xx-xx')
-    .required('Require field'),
+  phone: Yup.number()
+    .nullable(true)
+    .required('Require field')
+    .min(99999)
+    .max(999999999999),
   location: Yup.string()
     .matches(
       /(([A-Za-zsd&.-]){1,}, ([A-Za-zsd&,.-]){1,})/,
@@ -122,6 +124,19 @@ const noticeSchemaThird = Yup.object().shape({
     .required('Comments are Required!'),
 });
 
+const noticeSchemaThirdforEdit = Yup.object().shape({
+  imageUrl: Yup.string(),
+  imageUrl_1: Yup.string(),
+  imageUrl_2: Yup.string(),
+  passport: Yup.string().required('Passport is Required!'),
+  sterilization: Yup.string().required('Sterilization is Required!'),
+  lives: Yup.string().required('Lives is Required!'),
+  comments: Yup.string()
+    .min(8, 'Too Short!')
+    .max(120, 'Too Long!')
+    .required('Comments are Required!'),
+});
+
 const addPetsUser = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Too Short!')
@@ -150,6 +165,7 @@ const schemas = {
   noticeSchemaSecond,
   noticeSchemaSecondPrice,
   noticeSchemaThird,
+  noticeSchemaThirdforEdit,
   addPetsUser,
 };
 

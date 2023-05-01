@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router';
 import { Formik } from 'formik';
 import ReactDOM from 'react-dom';
 import {
@@ -9,6 +8,7 @@ import {
   LabelRadio,
   FieldRadio,
   Title,
+  // Paragraph,
   FieldList,
   LabelItem,
   FieldItem,
@@ -33,14 +33,14 @@ import {
   FieldRadioType,
   LabelRadioType,
   FieldsRadioType,
-} from './AddNoticeModal.styled';
+} from './ModalEditNotice.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModalWindow, closeByEsc } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
 import schemas from 'components/Schemas/schemas';
-import React, { useState } from 'react';
-import { fetchNotice } from 'services/APIservice';
+import React, { useEffect, useState } from 'react';
+import { fetchPatchNotice } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import usePlacesAutocomplete from 'use-places-autocomplete';
@@ -50,13 +50,16 @@ import { setImage } from 'utils/setimage';
 import { useSearchParams } from 'react-router-dom';
 import { addReload } from 'redux/reload/slice';
 import CreatableSelect from 'react-select/creatable';
+import { fetchData } from 'services/APIservice';
+import { addBreeds } from 'redux/breeds/slice';
 
-export const AddNoticeModal = () => {
+export const ModalEditNotice = () => {
+  const [dataOfPet, setDataOfPet] = useState([]);
+
   const [formQueue, setFormQueue] = useState('first');
   const [fieldPrice, setFieldPrice] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
   const breeds = useSelector(breedsValue);
@@ -64,8 +67,34 @@ export const AddNoticeModal = () => {
   searchParams.set('perPage', 12);
   searchParams.set('page', 1);
 
+  const { BASE_URL } = window.global;
+  let itemForFetch = `${BASE_URL}/notices/byid/${modal.id}`;
+
+  useEffect(() => {
+    setIsLoading(true);
+    async function fetchNoticesList() {
+      await fetch(itemForFetch)
+        .then(res => {
+          setIsLoading(false);
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(new Error(`Can't find anything`));
+        })
+        .then(value => {
+          setDataOfPet(value);
+        })
+        .catch(error => {
+          setDataOfPet(false);
+          setError(error);
+        });
+    }
+    if (modal.id !== '') {
+      fetchNoticesList();
+    }
+  }, [itemForFetch, modal.id]);
+
   const onClickBackdrop = e => {
-    setFieldPrice(false);
     setFormQueue('first');
     e.preventDefault();
     e.stopPropagation();
@@ -79,8 +108,8 @@ export const AddNoticeModal = () => {
     const file3 = document.querySelector('#imageUrl_2')?.files[0];
     setIsLoading(true);
     try {
-      const { code } = await fetchNotice(
-        `/notices/${values.category}`,
+      const { code } = await fetchPatchNotice(
+        `/notices/${values.category}/${modal.id}`,
         values,
         file1,
         file2,
@@ -147,6 +176,21 @@ export const AddNoticeModal = () => {
     }
   }
 
+  useEffect(() => {
+    async function getData() {
+      try {
+        const { data } = await fetchData('/breeds');
+        dispatch(addBreeds(data));
+        if (!data) {
+          return alert('Whoops, something went wrong');
+        }
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+    getData();
+  }, [dispatch]);
+
   function options(typeofpet) {
     const options = [];
     breeds
@@ -161,7 +205,7 @@ export const AddNoticeModal = () => {
   }
 
   return ReactDOM.createPortal(
-    Object.values(modal)[0] === 'formSell' && (
+    Object.values(modal)[0] === 'editItemPet' && (
       <Overlay onClick={e => onClickBackdrop(e)}>
         <ModalAddNoticeStyled onClick={e => e.stopPropagation()}>
           {isLoading ? onLoading() : onLoaded()}
@@ -169,30 +213,32 @@ export const AddNoticeModal = () => {
           <ButtonClose type="button" onClick={e => onClickBackdrop(e)}>
             <IconClose />
           </ButtonClose>
-          <Title>Add pet</Title>
+          <Title>Edit data of pet</Title>
           <div>
             <Formik
               initialValues={{
-                category: '',
-                typeofpet: '',
-                title: '',
-                name: '',
-                birthday: '',
-                breed: '',
-                sex: '',
-                size: '',
-                height: '',
-                weight: '',
-                location: '',
-                price: '',
-                currency: '',
+                category: dataOfPet?.category ? dataOfPet.category : '',
+                typeofpet: dataOfPet?.typeofpet ? dataOfPet.typeofpet : '',
+                title: dataOfPet?.title ? dataOfPet.title : '',
+                name: dataOfPet?.name ? dataOfPet.name : '',
+                birthday: dataOfPet?.birthday ? dataOfPet.birthday : '',
+                breed: dataOfPet?.breed ? dataOfPet.breed : '',
+                sex: dataOfPet?.sex ? dataOfPet.sex : '',
+                size: dataOfPet?.size ? dataOfPet.size : '',
+                height: dataOfPet?.height ? dataOfPet.height : '',
+                weight: dataOfPet?.weight ? dataOfPet.weight : '',
+                location: dataOfPet?.location ? dataOfPet.location : '',
+                price: dataOfPet?.price ? dataOfPet.price : '',
+                currency: dataOfPet?.currency ? dataOfPet.currency : '',
                 imageUrl: '',
                 imageUrl_1: '',
                 imageUrl_2: '',
-                passport: '',
-                sterilization: '',
-                lives: '',
-                comments: '',
+                passport: dataOfPet?.passport ? dataOfPet.passport : '',
+                sterilization: dataOfPet?.sterilization
+                  ? dataOfPet.sterilization
+                  : '',
+                lives: dataOfPet?.lives ? dataOfPet.lives : '',
+                comments: dataOfPet?.comments ? dataOfPet.comments : '',
               }}
               onSubmit={values => {
                 if (formQueue === 'third') {
@@ -202,7 +248,6 @@ export const AddNoticeModal = () => {
                   setFormQueue('first');
                   setFieldPrice(false);
                   window.removeEventListener('keydown', closeByEsc);
-                  navigate(`/notices/own?${searchParams}`);
                   dispatch(addReload(false));
                 } else if (formQueue === 'first') {
                   setFormQueue('second');
@@ -218,7 +263,7 @@ export const AddNoticeModal = () => {
                   ? !fieldPrice
                     ? schemas.noticeSchemaSecond
                     : schemas.noticeSchemaSecondPrice
-                  : schemas.noticeSchemaThird
+                  : schemas.noticeSchemaThirdforEdit
               }
             >
               {({
@@ -361,22 +406,23 @@ export const AddNoticeModal = () => {
                             <Error>{errors.birthday}</Error>
                           ) : null}
                         </LabelItem>
-
-                        <FieldItem
-                          onFocus={e => {
-                            e.target.setAttribute('type', 'date');
-                          }}
-                          onBlur={e => {
-                            e.target.setAttribute('type', 'text');
-                          }}
-                          type="text"
-                          id="birthday"
-                          name="birthday"
-                          min={'2000-01-01'}
-                          max={`${new Date().toISOString().split('T')[0]}`}
-                          placeholder="Type day of birth"
-                          value={values.birthday}
-                        />
+                        <div style={{ position: 'relative' }}>
+                          <FieldItem
+                            onFocus={e => {
+                              e.target.setAttribute('type', 'date');
+                            }}
+                            onBlur={e => {
+                              e.target.setAttribute('type', 'text');
+                            }}
+                            type="text"
+                            id="birthday"
+                            name="birthday"
+                            min={'2000-01-01'}
+                            max={`${new Date().toISOString().split('T')[0]}`}
+                            placeholder="Type day of birth"
+                            value={values.birthday}
+                          />
+                        </div>
                         <LabelItem htmlFor="breed">
                           <span>Breed</span>
                           {errors.breed && touched.breed ? (
@@ -389,13 +435,14 @@ export const AddNoticeModal = () => {
                           isDisabled={values.typeofpet === '' ? true : false}
                           type="text"
                           defaultValue={values.breed}
+                          value={values.breed}
                           options={options(values.typeofpet)}
                           className="react-select-container"
                           classNamePrefix="react-select"
                           placeholder={
                             values.typeofpet === ''
                               ? 'Select type of pet firstly...'
-                              : 'Select breed...'
+                              : values.breed
                           }
                           onChange={e => setFieldValue('breed', e?.value)}
                         />
@@ -454,14 +501,16 @@ export const AddNoticeModal = () => {
                           type="text"
                           id="size"
                           name="size"
-                          placeholder="Pet size"
+                          placeholder={
+                            values.size === '' ? 'Pet size' : values.size
+                          }
                           defaultValue={values.size}
                         >
-                          {
+                          {values.size === '' && (
                             <OptionFirst first value="unselected">
                               Select size type
                             </OptionFirst>
-                          }
+                          )}
                           {['Big', 'Average', 'Small'].map(s => (
                             <Option key={s} value={s.toLowerCase()}>
                               {s}
@@ -531,7 +580,7 @@ export const AddNoticeModal = () => {
                             </ul>
                           )}
                         </div>
-                        {fieldPrice && (
+                        {values.category === 'sell' && (
                           <div>
                             <LabelItem htmlFor="price">
                               <span>Price</span>
@@ -560,7 +609,11 @@ export const AddNoticeModal = () => {
                               type="text"
                               id="currency"
                               name="currency"
-                              placeholder="Select currency"
+                              placeholder={
+                                values.currency === ''
+                                  ? 'Select currency'
+                                  : values.currency
+                              }
                               defaultValue={values.currency}
                             >
                               {
@@ -568,7 +621,7 @@ export const AddNoticeModal = () => {
                                   Select currency
                                 </OptionFirst>
                               }
-                              {['₴', '$', '€'].map(s => (
+                              {['$', '€', '₴'].map(s => (
                                 <Option key={s} value={s.toLowerCase()}>
                                   {s}
                                 </Option>
@@ -601,19 +654,52 @@ export const AddNoticeModal = () => {
                             gap: '4px',
                           }}
                         >
-                          <FieldItemFile
-                            className="file"
-                            type="file"
-                            id="imageUrl"
-                            name="imageUrl"
-                            accept=".jpeg,.jpg,.png,.gif"
-                            onChange={e => {
-                              handleChange(e);
-                              setImage(e);
-                            }}
-                          />
-
-                          {values.imageUrl !== '' && (
+                          {dataOfPet?.imageUrl ? (
+                            <FieldItemFile
+                              style={{
+                                backgroundImage: `url(${dataOfPet?.imageUrl})`,
+                                backgroundSize: '140px ,140px',
+                              }}
+                              className="file"
+                              type="file"
+                              id="imageUrl"
+                              name="imageUrl"
+                              accept=".jpeg,.jpg,.png,.gif"
+                              onChange={e => {
+                                handleChange(e);
+                                setImage(e);
+                              }}
+                            />
+                          ) : (
+                            <FieldItemFile
+                              className="file"
+                              type="file"
+                              id="imageUrl"
+                              name="imageUrl"
+                              accept=".jpeg,.jpg,.png,.gif"
+                              onChange={e => {
+                                handleChange(e);
+                                setImage(e);
+                              }}
+                            />
+                          )}
+                          {dataOfPet?.imageUrl_1 ? (
+                            <FieldItemFile
+                              style={{
+                                backgroundImage: `url(${dataOfPet?.imageUrl_1})`,
+                                backgroundSize: '140px ,140px',
+                              }}
+                              className="file"
+                              type="file"
+                              id="imageUrl_1"
+                              name="imageUrl_1"
+                              accept=".jpeg,.jpg,.png,.gif"
+                              onChange={e => {
+                                handleChange(e);
+                                setImage(e);
+                              }}
+                            />
+                          ) : (
                             <FieldItemFile
                               className="file"
                               type="file"
@@ -626,8 +712,23 @@ export const AddNoticeModal = () => {
                               }}
                             />
                           )}
-
-                          {values.imageUrl_1 !== '' && (
+                          {dataOfPet?.imageUrl_2 ? (
+                            <FieldItemFile
+                              style={{
+                                backgroundImage: `url(${dataOfPet?.imageUrl_2})`,
+                                backgroundSize: '140px ,140px',
+                              }}
+                              className="file"
+                              type="file"
+                              id="imageUrl_2"
+                              name="imageUrl_2"
+                              accept=".jpeg,.jpg,.png,.gif"
+                              onChange={e => {
+                                handleChange(e);
+                                setImage(e);
+                              }}
+                            />
+                          ) : (
                             <FieldItemFile
                               className="file"
                               type="file"
@@ -668,14 +769,18 @@ export const AddNoticeModal = () => {
                           type="text"
                           id="sterilization"
                           name="sterilization"
-                          placeholder="Is sterilized"
+                          placeholder={
+                            values.sterilization === ''
+                              ? 'Is sterilized'
+                              : values.sterilization
+                          }
                           defaultValue={values.sterilization}
                         >
-                          {
+                          {values.sterilization === '' && (
                             <OptionFirst first value="unselected">
                               Select option...
                             </OptionFirst>
-                          }
+                          )}
                           {['Yes', 'No'].map(s => (
                             <Option key={s} value={s.toLowerCase()}>
                               {s}
@@ -695,14 +800,16 @@ export const AddNoticeModal = () => {
                           type="text"
                           id="lives"
                           name="lives"
-                          placeholder="Select place"
+                          placeholder={
+                            values.lives === '' ? 'Select place' : values.lives
+                          }
                           defaultValue={values.lives}
                         >
-                          {
+                          {values.lives === '' && (
                             <OptionFirst first value="unselected">
                               Select option...
                             </OptionFirst>
-                          }
+                          )}
                           {[
                             'In street',
                             'Shelter',

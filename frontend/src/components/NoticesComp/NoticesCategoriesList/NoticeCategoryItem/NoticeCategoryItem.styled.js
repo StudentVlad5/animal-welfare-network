@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as delBack } from 'images/svg/icon_delete.svg';
+import { ReactComponent as editBack } from 'images/svg/petsitem/edit-button-svgrepo-com.svg';
 
 const ItemContainer = styled.li`
   display: flex;
@@ -188,6 +189,47 @@ const DeleteIcon = styled(delBack)`
   fill: ${props => props.theme.orangeLight};
 `;
 
+const BtnEdit = styled.button`
+  cursor: pointer;
+  width: 248px;
+  height: 38px;
+  border-radius: 40px;
+  border: 2px solid ${props => props.theme.orangeLight};
+  background-color: ${props => props.theme.white};
+  color: ${props => props.theme.blackText};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 12px;
+  transition: all 0.25s ease-in;
+  &:hover {
+    cursor: pointer;
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
+
+    & > svg {
+      transition: all 0.3s ease-in;
+      fill: ${props => props.theme.white};
+    }
+  }
+  &:focus {
+    color: ${props => props.theme.white};
+    background-color: ${props => props.theme.orangeLight};
+    outline: none;
+
+    & > svg {
+      transition: all 0.3s ease-in;
+      fill: ${props => props.theme.white};
+    }
+  }
+`;
+const EditIcon = styled(editBack)`
+  margin-left: 12px;
+  width: 18px;
+  height: 18px;
+  fill: ${props => props.theme.orangeLight};
+`;
+
 const TBody = styled.tbody`
   width: 100%;
 `;
@@ -247,4 +289,6 @@ export {
   NoticeContainerButton,
   BtnForFavorite,
   TBody,
+  EditIcon,
+  BtnEdit,
 };

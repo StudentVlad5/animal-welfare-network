@@ -11,7 +11,7 @@ async function fetchData(pathParams, body) {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
       'Access-Control-Expose-Headers': 'Content-Range',
     },
   });
@@ -46,7 +46,7 @@ async function fetchNotice(pathParams, body, file1, file2, file3) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
     },
   });
 }
@@ -63,7 +63,38 @@ async function fetchPetsUser(pathParams, body, file) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
+
+async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
+  const formData = new FormData();
+  formData.append('birthday', body.birthday);
+  formData.append('typeofpet', body.typeofpet);
+  formData.append('breed', body.breed);
+  formData.append('size', body.size);
+  formData.append('height', body.height);
+  formData.append('weight', body.weight);
+  formData.append('passport', body.passport);
+  formData.append('sterilization', body.sterilization);
+  formData.append('lives', body.lives);
+  formData.append('comments', body.comments);
+  file1 && formData.set('imageUrl', file1);
+  file2 && formData.set('imageUrl_1', file2);
+  file3 && formData.set('imageUrl_2', file3);
+  formData.append('location', body.location);
+  formData.append('name', body.name);
+  body.price && formData.append('price', body.price);
+  body.currency && formData.append('currency', body.currency);
+  formData.append('sex', body.sex);
+  formData.append('title', body.title);
+
+  return axios.patch(`${BASE_URL}${pathParams}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Access-Control-Allow-Origin': '*',
+      // "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS",
     },
   });
 }
@@ -74,7 +105,7 @@ async function deleteData(pathParams) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
     },
   });
 }
@@ -84,7 +115,7 @@ async function updateData(pathParams, formData) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
     },
   });
 }
@@ -102,4 +133,11 @@ updateData.propTypes = {
   formData: PropTypes.string.isRequired,
 };
 
-export { fetchData, fetchNotice, fetchPetsUser, deleteData, updateData };
+export {
+  fetchData,
+  fetchNotice,
+  fetchPetsUser,
+  fetchPatchNotice,
+  deleteData,
+  updateData,
+};

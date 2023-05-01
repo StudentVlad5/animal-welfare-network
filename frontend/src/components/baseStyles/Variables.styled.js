@@ -4,6 +4,7 @@ export const theme = {
     blackText: '#111111',
     black: '#000000',
     inpText: '#535353',
+    inpTextModal: '#535353',
     white: '#FFFFFF',
     orangeLight: '#F59256',
     orange: '#FF6101',
@@ -18,6 +19,7 @@ export const theme = {
     colorBorder: 'transparent',
     colorOfForm: '#FFFFFF',
     colorOfInput: '#FFFFFF',
+    colorscheme: 'light',
   },
 
   dark: {
@@ -25,6 +27,7 @@ export const theme = {
     blackText: '#FFFFFF',
     black: '#FFFFFF',
     inpText: '#535353',
+    inpTextModal: '#FFFFFF',
     white: '#000000',
     orangeLight: '#F59256',
     orange: '#FF6101',
@@ -39,5 +42,6 @@ export const theme = {
     colorBorder: '#000000',
     colorOfForm: '#1c1c1c',
     colorOfInput: '#FFFFFF',
+    colorscheme: 'dark',
   },
 };

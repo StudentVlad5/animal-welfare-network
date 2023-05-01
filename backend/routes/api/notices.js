@@ -16,6 +16,7 @@ const {
   deleteFavorite,
   deleteNotices,
   updateNotices,
+  editNotices,
 } = notices;
 
 const router = express.Router();
@@ -33,6 +34,66 @@ router.post(
   ]),
   createValidation,
   ctrlWrapper(createNotices)
+);
+router.patch(
+  '/own/:id',
+  validateId,
+  ctrlWrapper(authMiddleware),
+  uploadCloud.fields([
+    { name: 'imageUrl', maxCount: 1 },
+    { name: 'imageUrl_1', maxCount: 1 },
+    { name: 'imageUrl_2', maxCount: 1 },
+  ]),
+  createValidation,
+  ctrlWrapper(editNotices)
+);
+router.patch(
+  '/for-free/:id',
+  validateId,
+  ctrlWrapper(authMiddleware),
+  uploadCloud.fields([
+    { name: 'imageUrl', maxCount: 1 },
+    { name: 'imageUrl_1', maxCount: 1 },
+    { name: 'imageUrl_2', maxCount: 1 },
+  ]),
+  createValidation,
+  ctrlWrapper(editNotices)
+);
+router.patch(
+  '/needs-care/:id',
+  validateId,
+  ctrlWrapper(authMiddleware),
+  uploadCloud.fields([
+    { name: 'imageUrl', maxCount: 1 },
+    { name: 'imageUrl_1', maxCount: 1 },
+    { name: 'imageUrl_2', maxCount: 1 },
+  ]),
+  createValidation,
+  ctrlWrapper(editNotices)
+);
+router.patch(
+  '/favorite/:id',
+  validateId,
+  ctrlWrapper(authMiddleware),
+  uploadCloud.fields([
+    { name: 'imageUrl', maxCount: 1 },
+    { name: 'imageUrl_1', maxCount: 1 },
+    { name: 'imageUrl_2', maxCount: 1 },
+  ]),
+  createValidation,
+  ctrlWrapper(editNotices)
+);
+router.patch(
+  '/sell/:id',
+  validateId,
+  ctrlWrapper(authMiddleware),
+  uploadCloud.fields([
+    { name: 'imageUrl', maxCount: 1 },
+    { name: 'imageUrl_1', maxCount: 1 },
+    { name: 'imageUrl_2', maxCount: 1 },
+  ]),
+  createValidation,
+  ctrlWrapper(editNotices)
 );
 router.post(
   '/favorites/:id',

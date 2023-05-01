@@ -20,6 +20,8 @@ import {
   BtnForFavorite,
   TBody,
   DeleteIcon,
+  EditIcon,
+  BtnEdit,
 } from './NoticeCategoryItem.styled';
 import { selectId, getPermission } from 'redux/auth/selectors';
 import { useState } from 'react';
@@ -41,7 +43,9 @@ export const NoticesCategoriesItem = ({
 
   const permission = useSelector(getPermission);
 
-  async function deleteNotice(id) {
+  async function deleteNotice(e, id) {
+    e.preventDefault();
+    e.stopPropagation();
     setIsLoading(true);
     try {
       const { date } = await deleteData(`/notices/${id}`);
@@ -58,6 +62,20 @@ export const NoticesCategoriesItem = ({
     e.preventDefault();
     e.stopPropagation();
     if (e.currentTarget.dataset.modal === 'itemPet') {
+      dispatch(
+        addModal({
+          modal: e.currentTarget.dataset.modal,
+          id: e.currentTarget.dataset.id,
+        }),
+      );
+      setTimeout(() => openModalWindow(e, null), 500);
+    }
+  };
+
+  const openModalForEditItemPet = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.currentTarget.dataset.modal === 'editItemPet') {
       dispatch(
         addModal({
           modal: e.currentTarget.dataset.modal,
@@ -167,10 +185,23 @@ export const NoticesCategoriesItem = ({
             Learn more
           </BtnLearnMore>
           {(data.owner === id || permission === 'admin') && (
-            <BtnDelete onClick={e => deleteNotice(data._id)}>
-              Delete
-              <DeleteIcon />
-            </BtnDelete>
+            <>
+              <BtnEdit
+                onClick={e =>
+                  e.currentTarget.innerText === 'Edit' &&
+                  openModalForEditItemPet(e)
+                }
+                data-modal="editItemPet"
+                data-id={data._id}
+              >
+                Edit
+                <EditIcon />
+              </BtnEdit>
+              <BtnDelete onClick={e => deleteNotice(e, data._id)}>
+                Delete
+                <DeleteIcon />
+              </BtnDelete>
+            </>
           )}
         </NoticeContainerButton>
       </NoticesContainerItem>
