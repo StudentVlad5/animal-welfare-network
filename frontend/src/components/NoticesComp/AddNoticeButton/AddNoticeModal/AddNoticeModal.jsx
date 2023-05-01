@@ -9,7 +9,6 @@ import {
   LabelRadio,
   FieldRadio,
   Title,
-  // Paragraph,
   FieldList,
   LabelItem,
   FieldItem,
@@ -569,7 +568,7 @@ export const AddNoticeModal = () => {
                                   Select currency
                                 </OptionFirst>
                               }
-                              {['$', '€', '£', '₴', '¥', 'zł'].map(s => (
+                              {['₴', '$', '€'].map(s => (
                                 <Option key={s} value={s.toLowerCase()}>
                                   {s}
                                 </Option>

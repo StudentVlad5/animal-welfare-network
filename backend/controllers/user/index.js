@@ -1,6 +1,15 @@
 const get = require('./get');
+const getUserById = require('./getId');
 const getUsers = require('./getAll');
-const update = require('./update');
+const updateAvatar = require('./updateAvatar');
+const updateUser = require('./updateUser');
 const deleteUsers = require('./delete');
 
-module.exports = { get, getUsers, update, deleteUsers };
+module.exports = {
+  get,
+  getUserById,
+  getUsers,
+  updateAvatar,
+  updateUser,
+  deleteUsers,
+};

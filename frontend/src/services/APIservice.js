@@ -11,7 +11,7 @@ async function fetchData(pathParams, body) {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
       'Access-Control-Expose-Headers': 'Content-Range',
     },
   });
@@ -46,7 +46,7 @@ async function fetchNotice(pathParams, body, file1, file2, file3) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
     },
   });
 }
@@ -63,18 +63,7 @@ async function fetchPetsUser(pathParams, body, file) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
-    },
-  });
-}
-
-async function deleteData(pathParams) {
-  const formData = new FormData();
-  return axios.delete(`${BASE_URL}${pathParams}`, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS,PATCH',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
     },
   });
 }
@@ -105,12 +94,31 @@ async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      // "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS,PATCH",
+      // "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS",
     },
   });
 }
 
-export { fetchData, fetchNotice, fetchPetsUser, deleteData, fetchPatchNotice };
+async function deleteData(pathParams) {
+  const formData = new FormData();
+  return axios.delete(`${BASE_URL}${pathParams}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
+
+async function updateData(pathParams, formData) {
+  return await axios.put(`${BASE_URL}${pathParams}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
 
 fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,
@@ -118,4 +126,18 @@ fetchData.propTypes = {
 
 deleteData.propTypes = {
   pathParams: PropTypes.string.isRequired,
+};
+
+updateData.propTypes = {
+  pathParams: PropTypes.string.isRequired,
+  formData: PropTypes.string.isRequired,
+};
+
+export {
+  fetchData,
+  fetchNotice,
+  fetchPetsUser,
+  fetchPatchNotice,
+  deleteData,
+  updateData,
 };

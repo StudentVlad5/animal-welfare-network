@@ -9,7 +9,7 @@ const deleteUsers = async (req, res, next) => {
     if (users.deletedCount === 0) {
       return res.status(400).json({ message: `Bad request (id incorrect)` });
     }
-    res.status(201).json({ message: 'Success deleted' });
+    res.json({ message: 'Success deleted' });
   } catch (error) {
     res.status(400).json({ message: `Bad request (id incorrect)` });
   }

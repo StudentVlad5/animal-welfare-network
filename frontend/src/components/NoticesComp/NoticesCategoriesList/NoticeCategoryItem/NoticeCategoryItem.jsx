@@ -152,17 +152,22 @@ export const NoticesCategoriesItem = ({
                 <TdTable2>
                   {data.birthday
                     ? Math.round(
-                        (Date.now() - Date.parse(data.birthday)) /
-                          31536000 /
-                          1000,
-                      ) + ' years'
+                        (Date.now() - Date.parse(data.birthday)) / 31536000000,
+                      ) < 1
+                      ? '<1 year'
+                      : Math.round(
+                          (Date.now() - Date.parse(data.birthday)) /
+                            31536000000,
+                        ) + ' years'
                     : 'no info'}
                 </TdTable2>
               </tr>
               {data.price && (
                 <tr>
                   <TdTable>Price:</TdTable>
-                  <TdTable2>{data.price}</TdTable2>
+                  <TdTable2>
+                    {data.price} {data.currency}
+                  </TdTable2>
                 </tr>
               )}
             </TBody>

@@ -16,7 +16,7 @@ router.patch(
   ctrlWrapper(authMiddleware),
   uploadCloud.single('avatar'),
   validation(userUpdateValidationSchema),
-  ctrlWrapper(ctrl.update)
+  ctrlWrapper(ctrl.updateAvatar)
 );
 
 module.exports = routerUser = router;
