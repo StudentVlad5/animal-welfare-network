@@ -30,9 +30,11 @@ const RegisterForm = () => {
   const [isShown, setIsShown] = useState(true);
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const onSubmit = ({ values, action }) => {
+    setIsLoading(true);
     const { name: userName, email, password, phone, location } = values;
     dispatch(
       register({
@@ -319,6 +321,7 @@ const RegisterForm = () => {
             </BoxText>
           </FormRegister>
         </Formik>
+        {isLoading && <h1 style={{ textAlign: 'center' }}>Loading...</h1>}
       </FormContainer>
     </FormSection>
   );

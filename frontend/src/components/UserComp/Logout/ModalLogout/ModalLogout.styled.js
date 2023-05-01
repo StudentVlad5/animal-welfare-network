@@ -74,7 +74,6 @@ export const ModalDescription = styled.p`
   color: ${props => props.theme.blackText};
   font-size: 16px;
   font-weight: 500;
-  line-height: 1.37;
   text-align: center;
   margin-bottom: 28px;
   padding-left: 24px;
@@ -103,7 +102,6 @@ export const ModalButton = styled.button`
   padding-bottom: 10px;
   font-size: 16px;
   font-weight: 500;
-  line-height: 1.37;
   color: ${props => props.theme.blackText};
   background: ${props => props.theme.white};
   border: 2px solid;

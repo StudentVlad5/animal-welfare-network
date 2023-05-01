@@ -25,6 +25,7 @@ import { logIn } from 'redux/auth/operations';
 export const LoginForm = () => {
   const [isShown, setIsShown] = useState(true); //
   const [showPass, setShowPass] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const hideForm = () => {
@@ -32,6 +33,7 @@ export const LoginForm = () => {
   };
 
   const onSubmit = values => {
+    setIsLoading(true);
     const { email, password } = values;
     dispatch(
       logIn({
@@ -137,6 +139,7 @@ export const LoginForm = () => {
             </BoxText>
           </FormLogin>
         </Formik>
+        {isLoading && <h1 style={{ textAlign: 'center' }}>Loading...</h1>}
       </FormContainer>
     </FormSection>
   );
