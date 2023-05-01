@@ -262,10 +262,10 @@ export const AddNoticeModal = () => {
                           type="radio"
                           id="radioOne"
                           name="category"
-                          value="lost-found"
-                          checked={values.category === 'lost-found'}
+                          value="needs-care"
+                          checked={values.category === 'needs-care'}
                         />
-                        <LabelRadio htmlFor="radioOne">lost/found</LabelRadio>
+                        <LabelRadio htmlFor="radioOne">needs-care</LabelRadio>
 
                         <FieldRadio
                           type="radio"

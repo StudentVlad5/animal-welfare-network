@@ -16,8 +16,8 @@ export const NoticesCategoriesNav = () => {
 
   const navItemsPublick = [
     {
-      href: `/notices/lost-found?${searchParams}`,
-      text: 'lost/found',
+      href: `/notices/needs-care?${searchParams}`,
+      text: 'needs-care',
     },
     {
       href: `/notices/for-free?${searchParams}`,

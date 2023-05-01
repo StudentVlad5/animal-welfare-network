@@ -59,7 +59,7 @@ router.patch(
   ctrlWrapper(editNotices)
 );
 router.patch(
-  "/lost-found/:id",
+  "/needs-care/:id",
   validateId,
   ctrlWrapper(authMiddleware),
   uploadCloud.fields([
