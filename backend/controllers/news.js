@@ -34,7 +34,8 @@ const news = async (req, res, next) => {
     // const total = search
     //   ? await News.find({ title: { $regex: search, $options: "i" } }).count()
     //   : await News.find().count();
-    const total = await arrayNews.response.doc.length;
+    console.log(arrayNews)
+    const total = await arrayNews.response.docs.length;
     const constructorData = {
       pagination: isPagination,
       total,
