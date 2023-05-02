@@ -26,7 +26,7 @@ const news = async (req, res, next) => {
         if (err) {
           console.error(err);
         } else {
-          arrayNews = {...body};
+          return arrayNews = {...body};
         }
       });
     })();
@@ -34,7 +34,7 @@ const news = async (req, res, next) => {
     // const total = search
     //   ? await News.find({ title: { $regex: search, $options: "i" } }).count()
     //   : await News.find().count();
-    console.log(arrayNews)
+    console.log("arrayNews", arrayNews)
     const total = await arrayNews.response.docs.length;
     const constructorData = {
       pagination: isPagination,
@@ -57,7 +57,7 @@ const news = async (req, res, next) => {
           if (err) {
             console.error(err);
           } else {
-            arrayNews = {...body};
+            return arrayNews = {...body};
           }
         });
       })();
