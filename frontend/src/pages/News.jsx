@@ -58,6 +58,7 @@ const News = () => {
         const { data } = await fetchData(`/news?${searchParams}`);
         setNews(data.data);
         setTotalPage(data.totalPage);
+        console.log('data', data);
         if (!data) {
           return onFetchError('Whoops, something went wrong 404');
         }
