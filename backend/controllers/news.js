@@ -26,7 +26,7 @@ const news = async (req, res, next) => {
         if (err) {
           console.error(err);
         } else {
-          return arrayNews = body;
+          arrayNews = {...body};
         }
       });
     })();
@@ -34,7 +34,7 @@ const news = async (req, res, next) => {
     // const total = search
     //   ? await News.find({ title: { $regex: search, $options: "i" } }).count()
     //   : await News.find().count();
-    const total = await body.response.doc.length;
+    const total = await arrayNews.response.doc.length;
     const constructorData = {
       pagination: isPagination,
       total,
@@ -56,7 +56,7 @@ const news = async (req, res, next) => {
           if (err) {
             console.error(err);
           } else {
-            return arrayNews = body;
+            arrayNews = {...body};
           }
         });
       })();
@@ -66,7 +66,7 @@ const news = async (req, res, next) => {
       //   .limit(limit)
       //   .skip(skip)
       //   .sort({ date: -1 });
-      const news = arrayNews;
+      const news = {...arrayNews};
       if (isPagination) {
         return res.status(200).json(constructorResponse(constructorData, news));
       }
@@ -74,7 +74,7 @@ const news = async (req, res, next) => {
     }
     // console.log("limit: ", limit, "\tskip: ", skip);
     // const news = await News.find().limit(limit).skip(skip).sort({ date: -1 });
-    const news = arrayNews;
+    const news = {...arrayNews};
     // console.log("total", total);
     // console.log('news: ', news);
     // const constructorData = {
