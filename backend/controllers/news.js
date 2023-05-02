@@ -26,7 +26,7 @@ const news = async (req, res, next) => {
         if (err) {
           console.error(err);
         } else {
-          return arrayNews = {...body};
+          return arrayNews = JSON.parse(JSON.stringify(body));
         }
       });
     })();
@@ -57,7 +57,7 @@ const news = async (req, res, next) => {
           if (err) {
             console.error(err);
           } else {
-            return arrayNews = {...body};
+            return arrayNews = JSON.parse(JSON.stringify(body));
           }
         });
       })();
