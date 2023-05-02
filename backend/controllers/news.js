@@ -3,6 +3,7 @@ const { News } = require("../models");
 const request = require("request");
 
 const news = async (req, res, next) => {
+  const { API_KEY } = process.env;
   const isPagination = req.query.page;
   const {
     search = null,
@@ -14,7 +15,7 @@ const news = async (req, res, next) => {
 
   (function execute() {
     const options = {
-      url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=DaKTCUfUpYdOxMI1tnz5L08GZOoO0ARS`,
+      url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&facet_fields=ingredients&page=1&q=pet&sort=newest&api-key=${API_KEY}`,
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -27,7 +28,7 @@ const news = async (req, res, next) => {
         console.log(body);
       }
     });
-  })()
+  })();
 
   try {
     // const total = await News.find().count();
