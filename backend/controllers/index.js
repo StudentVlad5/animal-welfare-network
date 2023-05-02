@@ -1,4 +1,5 @@
 const news = require('./news');
+const execute = require('./newsT');
 const friends = require('./friends');
 const breeds = require('./breeds');
 const {
@@ -10,6 +11,7 @@ const user = require('./user');
 const notices = require('./notices');
 const developers = require('./developers');
 
+
 module.exports = {
   breeds,
   news,
@@ -20,4 +22,5 @@ module.exports = {
   user,
   notices,
   developers,
+  execute,
 };

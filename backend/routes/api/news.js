@@ -1,9 +1,9 @@
 const express = require('express');
-const { news } = require('../../controllers');
+const { execute } = require('../../controllers');
 const ctrlWrapper = require('../../middleWares/ctrlWrapper');
 
 const router = express.Router();
 
-router.get('/', ctrlWrapper(news));
+router.get('/', ctrlWrapper(execute));
 
 module.exports = routerNews = router;
