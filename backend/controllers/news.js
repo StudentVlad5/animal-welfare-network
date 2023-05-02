@@ -12,7 +12,7 @@ const news = async (req, res, next) => {
   const limit = perPage * 1;
   const skip = perPage * (page - 1);
 
-  function execute() {
+  (function execute() {
     const options = {
       url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&facet_fields=ingredients&page=1&q=pet&sort=newest&api-key=${process.env.API_KEY}`,
       method: "GET",
@@ -27,11 +27,10 @@ const news = async (req, res, next) => {
         console.log(body);
       }
     });
-  }
+  })()
 
   try {
     // const total = await News.find().count();
-    execute();
     const total = search
       ? await News.find({ title: { $regex: search, $options: "i" } }).count()
       : await News.find().count();
