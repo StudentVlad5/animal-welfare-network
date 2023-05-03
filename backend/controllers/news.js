@@ -46,7 +46,7 @@ const news = async (req, res, next) => {
 
     // const total = await arrayNews.response.docs.length;
        const news =  await JSON.parse(JSON.stringify(arrayNews));
-    
+    return await news
         }
       }
     );
