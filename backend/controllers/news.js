@@ -19,18 +19,16 @@ const news = async (req, res, next) => {
     },
   };
 
- request(options, function (err, res, body) {
-    if (err) {
-      console.error(err);
-    } else {
-      
-      arrayNews.push(body);
-      console.log("in request",arrayNews);
-    }
-  });
-
-  console.log("arrayNews: ", arrayNews);
   try {
+    request(options, function (err, res, body) {
+      if (err) {
+        console.error(err);
+      } else {
+        arrayNews.push(body);
+        // console.log("in request",arrayNews);
+      }
+    });
+    console.log("arrayNews: ", arrayNews);
     const total = await arrayNews.response.docs.length;
     const constructorData = {
       pagination: isPagination,
@@ -39,14 +37,14 @@ const news = async (req, res, next) => {
       // data: news,
       page,
     };
-    if (search) {
-      console.log("search: ", search);
-      const news = JSON.parse(JSON.stringify(arrayNews));
-      if (isPagination) {
-        return res.status(200).json(constructorResponse(constructorData, news));
-      }
-      return res.status(200).json(news);
-    }
+    // if (search) {
+    //   console.log("search: ", search);
+    //   const news = JSON.parse(JSON.stringify(arrayNews));
+    //   if (isPagination) {
+    //     return res.status(200).json(constructorResponse(constructorData, news));
+    //   }
+    //   return res.status(200).json(news);
+    // }
 
     const news = JSON.parse(JSON.stringify(arrayNews));
 
