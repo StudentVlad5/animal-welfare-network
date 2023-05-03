@@ -25,11 +25,11 @@ const news = async (req, res, next) => {
     } else {
       // console.log(JSON.parse(JSON.stringify(body)));
       arrayNews = JSON.parse(JSON.stringify(body));
-      const total = arrayNews.response["docs"].length;
+      // const total = arrayNews.response.["docs"].length;
       console.log(arrayNews.response)
       const constructorData = {
         pagination: isPagination,
-        total,
+        // total,
         perPage,
         // data: news,
         page,
