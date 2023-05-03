@@ -28,7 +28,6 @@ const news = async (req, res, next) => {
     page = 1,
     perPage = isPagination ? 20 : 5000,
   } = req.query;
-  
 
   let arrayNews = {};
   request(
@@ -39,16 +38,16 @@ const news = async (req, res, next) => {
         Accept: "application/json",
       },
     },
-    function (err, res, body) {
+    function async(err, res, body) {
       if (err) {
         console.error(err);
       } else {
         arrayNews = body;
-        console.log("arrayNews:", arrayNews);
         return arrayNews;
       }
     }
   );
+  console.log("arrayNews:", arrayNews);
   try {
     const total = await arrayNews.response.docs.length;
     const constructorData = {
