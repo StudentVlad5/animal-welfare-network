@@ -26,10 +26,10 @@ const news = async (req, res, next) => {
       } else {
         arrayNews.push(body);
         // console.log("in request",arrayNews);
-        const total = arrayNews.response.docs.length;
+        // const total = arrayNews.response.docs.length;
         const constructorData = {
           pagination: isPagination,
-          total,
+          // total,
           perPage,
           // data: news,
           page,
