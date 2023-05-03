@@ -25,7 +25,7 @@ const execute = async() => {
 const news = async (req, res, next) => {
   const { API_KEY } = process.env;
   const isPagination = req.query.page;
-  let arrayNews = [];
+  let arrayNews;
   const {
     search = null,
     page = 1,
