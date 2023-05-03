@@ -30,7 +30,8 @@ const news = async (req, res, next) => {
   } = req.query;
 
   let arrayNews = {};
-  let promise = new Promise((resolve, reject) => {
+
+  try {
     request(
       {
         url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
@@ -44,34 +45,30 @@ const news = async (req, res, next) => {
           console.error(err);
         } else {
           arrayNews = body;
-          return arrayNews;
         }
       }
     );
-    resolve();
-  });
-  console.log("arrayNews:", arrayNews);
-  try {
-    const total = await arrayNews.response.docs.length;
-    const constructorData = {
+    await console.log("arrayNews:", arrayNews);
+    // const total = await arrayNews.response.docs.length;
+    const constructorData = await {
       pagination: isPagination,
-      total,
+      // total,
       perPage,
       // data: news,
       page,
     };
-    if (search) {
-      console.log("search: ", search);
-      const news = JSON.parse(JSON.stringify(arrayNews));
-      if (isPagination) {
-        return res.status(200).json(constructorResponse(constructorData, news));
-      }
-      return res.status(200).json(news);
-    }
+    // if (search) {
+    //   console.log("search: ", search);
+    //   const news = JSON.parse(JSON.stringify(arrayNews));
+    //   if (isPagination) {
+    //     return res.status(200).json(constructorResponse(constructorData, news));
+    //   }
+    //   return res.status(200).json(news);
+    // }
 
-    const news = JSON.parse(JSON.stringify(arrayNews));
+    const news = await JSON.parse(JSON.stringify(arrayNews));
 
-    res.status(200).json(constructorResponse(constructorData, news));
+    await res.status(200).json(constructorResponse(constructorData, news));
   } catch (err) {
     throw new ValidationError(err.message);
   }
