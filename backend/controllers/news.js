@@ -19,7 +19,7 @@ const news = async (req, res, next) => {
     },
   };
 
- await request(options, function (err, res, body) {
+ request(options, function (err, res, body) {
     if (err) {
       console.error(err);
       return
@@ -27,35 +27,36 @@ const news = async (req, res, next) => {
       
       arrayNews.push(body);
       console.log("in request",arrayNews);
+      try {
+        const total = arrayNews.response.docs.length;
+        const constructorData = {
+          pagination: isPagination,
+          total,
+          perPage,
+          // data: news,
+          page,
+        };
+        if (search) {
+          console.log("search: ", search);
+          const news = JSON.parse(JSON.stringify(arrayNews));
+          if (isPagination) {
+            return res.status(200).json(constructorResponse(constructorData, news));
+          }
+          return res.status(200).json(news);
+        }
+    
+        const news = JSON.parse(JSON.stringify(arrayNews));
+    
+        res.status(200).json(constructorResponse(constructorData, news));
+      } catch (err) {
+        throw new ValidationError(err.message);
+      }
       return
     }
   });
 
   console.log("arrayNews: ", arrayNews);
-  try {
-    const total = await arrayNews.response.docs.length;
-    const constructorData = {
-      pagination: isPagination,
-      total,
-      perPage,
-      // data: news,
-      page,
-    };
-    if (search) {
-      console.log("search: ", search);
-      const news = JSON.parse(JSON.stringify(arrayNews));
-      if (isPagination) {
-        return res.status(200).json(constructorResponse(constructorData, news));
-      }
-      return res.status(200).json(news);
-    }
 
-    const news = JSON.parse(JSON.stringify(arrayNews));
-
-    res.status(200).json(constructorResponse(constructorData, news));
-  } catch (err) {
-    throw new ValidationError(err.message);
-  }
 };
 
 module.exports = news;
