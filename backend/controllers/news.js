@@ -65,7 +65,8 @@ const news = async (req, res, next) => {
     //   }
     //   return res.status(200).json(news);
     // }
-    return await res.status(200).json(constructorResponse(constructorData, news));
+    const send = await constructorResponse(constructorData, news);
+    return await res.status(200).json(send);
   } catch (err) {
     throw new ValidationError(err.message);
   }
