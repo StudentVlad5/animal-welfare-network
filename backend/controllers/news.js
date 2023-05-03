@@ -28,8 +28,10 @@ const news = async (req, res, next) => {
     page = 1,
     perPage = isPagination ? 20 : 5000,
   } = req.query;
+  
 
-  const arrayNews = request(
+  const arrayNews = {};
+  request(
     {
       url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
       method: "GET",
@@ -42,7 +44,8 @@ const news = async (req, res, next) => {
         console.error(err);
       } else {
         console.log("body", body);
-        return JSON.stringify(body);
+        arrayNews.concat(body)
+        return;
       }
     }
   );
