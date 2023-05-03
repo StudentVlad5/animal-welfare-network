@@ -62,12 +62,11 @@ const news = async (req, res, next) => {
     // }
 
     const news =  JSON.parse(JSON.stringify(arrayNews));
-
-    return res.status(200).json(constructorResponse(constructorData, news));
+    
         }
       }
     );
-    
+    return await res.status(200).json(constructorResponse(constructorData, news));
   } catch (err) {
     throw new ValidationError(err.message);
   }
