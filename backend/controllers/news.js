@@ -14,7 +14,7 @@ const news = async (req, res, next) => {
   const limit = perPage * 1;
   const skip = perPage * (page - 1);
   try {
-    (function execute() {
+    (function execute(arrayNews) {
       const options = {
         url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&facet_fields=ingredients&page=1&q=pet&sort=newest&api-key=${API_KEY}`,
         method: "GET",
@@ -46,7 +46,7 @@ const news = async (req, res, next) => {
     };
     if (search) {
       console.log("search: ", search);
-      (function execute() {
+      (function execute(arrayNews) {
         const options = {
           url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&facet_fields=ingredients&page=1&q=${search}&sort=newest&api-key=${API_KEY}`,
           method: "GET",
