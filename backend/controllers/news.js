@@ -36,23 +36,25 @@ const news = async (req, res, next) => {
           // data: news,
           page,
         };
-        if (search) {
-          console.log("search: ", search);
-          const news = JSON.parse(JSON.stringify(arrayNews));
-          if (isPagination) {
-            return res.status(200).json(constructorResponse(constructorData, news));
-          }
-          return res.status(200).json(news);
-        }
-        const news = JSON.parse(JSON.stringify(arrayNews));
-        return res.status(200).json(constructorResponse(constructorData, news));
+        // if (search) {
+        //   console.log("search: ", search);
+        //   const news = JSON.parse(JSON.stringify(arrayNews));
+        //   if (isPagination) {
+        //     return res.status(200).json(constructorResponse(constructorData, news));
+        //   }
+        //   return res.status(200).json(news);
+        // }
+    
+        // const news = JSON.parse(JSON.stringify(arrayNews));
+    
+        return res.status(200).json(constructorResponse(constructorData, arrayNews));
       } catch (err) {
-        console.log(err)
-        // throw new ValidationError(err.message);
+        throw new ValidationError(err.message);
       }
       return
     }
   });
+
 };
 
 module.exports = news;
