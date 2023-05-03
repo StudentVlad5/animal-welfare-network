@@ -34,7 +34,7 @@ const news = async (req, res, next) => {
 
 
   
-arrayNews.push(await execute());
+arrayNews= await execute();
 console.log('arrayNews:',arrayNews)
   try {
     const total = await arrayNews.response.docs.length;
