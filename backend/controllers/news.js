@@ -45,6 +45,7 @@ const news = async (req, res, next) => {
           console.error(err);
         } else {
           arrayNews = body;
+          return arrayNews
         }
       }
     );
