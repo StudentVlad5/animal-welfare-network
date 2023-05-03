@@ -30,7 +30,7 @@ const news = async (req, res, next) => {
   } = req.query;
 
   try {
-    await request(
+    request(
       {
         url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
         method: "GET",
@@ -38,12 +38,12 @@ const news = async (req, res, next) => {
           Accept: "application/json",
         },
       },
-      await function (err, res, body) {
+        async function (err, res, body) {
         if (err) {
           console.error(err);
         } else {
-          const arrayNews = body;
-          return arrayNews
+          const arrayNews = await body;
+          return await arrayNews
         }
       }
     );
