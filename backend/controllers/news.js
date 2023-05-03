@@ -3,6 +3,7 @@ const { News } = require("../models");
 const request = require("request");
 
 function execute() {
+  const { API_KEY } = process.env;
   const options = {
     url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&facet_fields=ingredients&page=1&q=pet&sort=newest&api-key=${API_KEY}`,
     method: "GET",
@@ -21,7 +22,6 @@ function execute() {
 }
 
 const news = async (req, res, next) => {
-  const { API_KEY } = process.env;
   const isPagination = req.query.page;
   let arrayNews = execute();
   const {
@@ -48,6 +48,7 @@ const news = async (req, res, next) => {
     if (search) {
       console.log("search: ", search);
       (function execute(arrayNews) {
+        const { API_KEY } = process.env;
         const options = {
           url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&facet_fields=ingredients&page=1&q=${search}&sort=newest&api-key=${API_KEY}`,
           method: "GET",
