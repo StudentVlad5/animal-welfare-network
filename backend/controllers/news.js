@@ -19,15 +19,14 @@ const news = async (req, res, next) => {
     },
   };
 
-
   arrayNews = request(options, function (err, res, body) {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log(JSON.parse(JSON.stringify(body));
-        return JSON.parse(JSON.stringify(body));
-      }
-    });
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(JSON.parse(JSON.stringify(body)));
+      return JSON.parse(JSON.stringify(body));
+    }
+  });
 
   console.log("arrayNews: ", arrayNews);
   try {
