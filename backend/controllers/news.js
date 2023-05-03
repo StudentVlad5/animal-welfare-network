@@ -26,17 +26,16 @@ const news = async (req, res, next) => {
       } else {
         arrayNews.push(body);
         // console.log("in request",arrayNews);
+        const total = arrayNews.response.docs.length;
+        const constructorData = {
+          pagination: isPagination,
+          total,
+          perPage,
+          // data: news,
+          page,
+        };
       }
     });
-    console.log("arrayNews: ", arrayNews);
-    const total = await arrayNews.response.docs.length;
-    const constructorData = {
-      pagination: isPagination,
-      total,
-      perPage,
-      // data: news,
-      page,
-    };
     // if (search) {
     //   console.log("search: ", search);
     //   const news = JSON.parse(JSON.stringify(arrayNews));
@@ -45,12 +44,12 @@ const news = async (req, res, next) => {
     //   }
     //   return res.status(200).json(news);
     // }
-
-    const news = JSON.parse(JSON.stringify(arrayNews));
-
-    res.status(200).json(constructorResponse(constructorData, news));
   } catch (err) {
     throw new ValidationError(err.message);
+  } finally {
+    console.log("arrayNews: ", arrayNews);
+    const news = JSON.parse(JSON.stringify(arrayNews));
+    res.status(200).json(constructorResponse(constructorData, news));
   }
 };
 
