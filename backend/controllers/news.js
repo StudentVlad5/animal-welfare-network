@@ -5,7 +5,7 @@ const request = require("request");
 const news = async (req, res, next) => {
   const { API_KEY } = process.env;
   const isPagination = req.query.page;
-  let arrayNews = {};
+  let arrayNews;
   const {
     search = null,
     page = 1,
@@ -19,12 +19,12 @@ const news = async (req, res, next) => {
     },
   };
 
-  arrayNews = request(options, function (err, res, body) {
+  request(options, function (err, res, body) {
     if (err) {
       console.error(err);
     } else {
       // console.log(JSON.parse(JSON.stringify(body)));
-      return body;
+      arrayNews = JSON.parse(JSON.stringify(body));
     }
   });
 
