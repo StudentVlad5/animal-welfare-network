@@ -23,7 +23,7 @@ const news = async (req, res, next) => {
     if (err) {
       console.error(err);
     } else {
-      return res.status(200).json(body);
+      return json(body);
     }
   });
 
