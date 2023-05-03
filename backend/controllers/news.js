@@ -44,12 +44,11 @@ const news = async (req, res, next) => {
           }
           return res.status(200).json(news);
         }
-    
         const news = JSON.parse(JSON.stringify(arrayNews));
-    
-        res.status(200).json(constructorResponse(constructorData, news));
+        return res.status(200).json(constructorResponse(constructorData, news));
       } catch (err) {
-        throw new ValidationError(err.message);
+        console.log(err)
+        // throw new ValidationError(err.message);
       }
       return
     }
