@@ -30,23 +30,26 @@ const news = async (req, res, next) => {
   } = req.query;
 
   let arrayNews = {};
-  request(
-    {
-      url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
-      method: "GET",
-      headers: {
-        Accept: "application/json",
+  let promise = new Promise((resolve, reject) => {
+    request(
+      {
+        url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
       },
-    },
-    function async(err, res, body) {
-      if (err) {
-        console.error(err);
-      } else {
-        arrayNews = body;
-        return arrayNews;
+      function (err, res, body) {
+        if (err) {
+          console.error(err);
+        } else {
+          arrayNews = body;
+          return arrayNews;
+        }
       }
-    }
-  );
+    );
+    resolve();
+  });
   console.log("arrayNews:", arrayNews);
   try {
     const total = await arrayNews.response.docs.length;
