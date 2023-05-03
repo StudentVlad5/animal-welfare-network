@@ -2,10 +2,28 @@ const { ValidationError, constructorResponse } = require("../helpers");
 const { News } = require("../models");
 const request = require("request");
 
+function execute() {
+  const options = {
+    url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&facet_fields=ingredients&page=1&q=pet&sort=newest&api-key=${API_KEY}`,
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+    },
+  };
+  request(options, function (err, res, body) {
+    if (err) {
+      console.error(err);
+    } else {
+      let arrayNews = JSON.parse(JSON.stringify(body));
+      return arrayNews;
+    }
+  });
+}
+
 const news = async (req, res, next) => {
   const { API_KEY } = process.env;
   const isPagination = req.query.page;
-  let arrayNews = {};
+  let arrayNews = execute();
   const {
     search = null,
     page = 1,
@@ -13,24 +31,6 @@ const news = async (req, res, next) => {
   } = req.query;
   // const limit = perPage * 1;
   // const skip = perPage * (page - 1);
-  (function execute() {
-    const options = {
-      url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&facet_fields=ingredients&page=1&q=pet&sort=newest&api-key=${API_KEY}`,
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    };
-    request(options, function (err, res, body) {
-      if (err) {
-        console.error(err);
-      } else {
-        arrayNews = JSON.parse(JSON.stringify(body));
-        return arrayNews;
-      }
-    });
-    return arrayNews;
-  })();
   console.log("arrayNews: ", arrayNews);
   try {
     // const total = await News.find().count();
