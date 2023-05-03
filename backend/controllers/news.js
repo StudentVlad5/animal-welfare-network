@@ -42,7 +42,8 @@ const news = async (req, res, next) => {
       if (err) {
         console.error(err);
       } else {
-        return JSON.parse(JSON.stringify(body));
+        console.log("body", body)
+        return JSON.stringify(body);
       }
     }
   );
