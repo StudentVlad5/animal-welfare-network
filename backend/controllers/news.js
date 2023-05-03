@@ -31,8 +31,7 @@ const news = async (req, res, next) => {
 
   const arrayNews = request(
     {
-      url:
-        "https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=[YOUR_API_KEY]",
+      url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=[${API_KEY}]`,
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -42,7 +41,7 @@ const news = async (req, res, next) => {
       if (err) {
         console.error(err);
       } else {
-        console.log("body", body)
+        console.log("body", body);
         return JSON.stringify(body);
       }
     }
