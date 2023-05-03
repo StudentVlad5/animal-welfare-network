@@ -30,7 +30,7 @@ const news = async (req, res, next) => {
   } = req.query;
   
 
-  const arrayNews = {};
+  let arrayNews = {};
   request(
     {
       url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
@@ -43,7 +43,7 @@ const news = async (req, res, next) => {
       if (err) {
         console.error(err);
       } else {
-        arrayNews = arrayNews.concat(body)
+        arrayNews = {...body}
         return;
       }
     }
