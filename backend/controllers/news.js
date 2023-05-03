@@ -44,11 +44,11 @@ const news = async (req, res, next) => {
         console.error(err);
       } else {
         arrayNews = {...body}
-        return;
+        console.log("arrayNews:", arrayNews);
+        return arrayNews;
       }
     }
   );
-  console.log("arrayNews:", arrayNews);
   try {
     const total = await arrayNews.response.docs.length;
     const constructorData = {
