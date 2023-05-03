@@ -25,10 +25,11 @@ const news = async (req, res, next) => {
     } else {
       // console.log(JSON.parse(JSON.stringify(body)));
       arrayNews = JSON.parse(JSON.stringify(body));
+      console.log("arrayNews: ", arrayNews);
     }
   });
 
-  console.log("arrayNews: ", arrayNews);
+ 
   try {
     const total = await arrayNews.response.docs.length;
     const constructorData = {
