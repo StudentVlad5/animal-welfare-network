@@ -30,7 +30,7 @@ const news = async (req, res, next) => {
   } = req.query;
 
   try {
-    request(
+     request(
       {
         url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
         method: "GET",
@@ -38,13 +38,18 @@ const news = async (req, res, next) => {
           Accept: "application/json",
         },
       },
-         function (err, res, body) {
+      async function (err, res, body) {
         if (err) {
           console.error(err);
         } else {
           const arrayNews =  body;
 
     // const total = await arrayNews.response.docs.length;
+       const news =  await JSON.parse(JSON.stringify(arrayNews));
+    
+        }
+      }
+    );
     const constructorData =  {
       pagination: isPagination,
       // total,
@@ -60,12 +65,6 @@ const news = async (req, res, next) => {
     //   }
     //   return res.status(200).json(news);
     // }
-
-    const news =  JSON.parse(JSON.stringify(arrayNews));
-    
-        }
-      }
-    );
     return await res.status(200).json(constructorResponse(constructorData, news));
   } catch (err) {
     throw new ValidationError(err.message);
