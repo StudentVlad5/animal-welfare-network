@@ -5,7 +5,7 @@ const request = require("request");
 const news = async (req, res, next) => {
   const { API_KEY } = process.env;
   const isPagination = req.query.page;
-  let arrayNews = {};
+  let arrayNews;
   const {
     search = null,
     page = 1,
@@ -14,7 +14,7 @@ const news = async (req, res, next) => {
   const limit = perPage * 1;
   const skip = perPage * (page - 1);
   try {
-    (function execute(arrayNews) {
+    arrayNews = (function execute() {
       const options = {
         url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&facet_fields=ingredients&page=1&q=pet&sort=newest&api-key=${API_KEY}`,
         method: "GET",
@@ -26,16 +26,15 @@ const news = async (req, res, next) => {
         if (err) {
           console.error(err);
         } else {
-          arrayNews = JSON.parse(JSON.stringify(body));
+          return body;
         }
-        return arrayNews
       });
     })();
     // const total = await News.find().count();
     // const total = search
     //   ? await News.find({ title: { $regex: search, $options: "i" } }).count()
     //   : await News.find().count();
-    console.log("arrayNews", arrayNews)
+    console.log("arrayNews", arrayNews);
     const total = await arrayNews.response.docs.length;
     const constructorData = {
       pagination: isPagination,
@@ -61,7 +60,7 @@ const news = async (req, res, next) => {
             arrayNews = JSON.parse(JSON.stringify(body));
           }
         });
-        return arrayNews
+        return arrayNews;
       })();
       // const news = await News.find({
       //   title: { $regex: search, $options: "i" },
