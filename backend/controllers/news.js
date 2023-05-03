@@ -2,40 +2,51 @@ const { ValidationError, constructorResponse } = require("../helpers");
 const { News } = require("../models");
 const request = require("request");
 
-const execute = async() => {
-    const options = {
-    "url": "https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=[YOUR_API_KEY]",
-    "method": "GET",
-    "headers": {
-      "Accept": "application/json"
-    }
-  };
-  request(options, function (err, res, body) {
-    if (err) {
-      console.error(err);
-    }
-    else {
-     return body;
-    }
-  });
-}
-
-
+// const execute = async() => {
+//     const options = {
+//     "url": "https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=[YOUR_API_KEY]",
+//     "method": "GET",
+//     "headers": {
+//       "Accept": "application/json"
+//     }
+//   };
+//   request(options, function (err, res, body) {
+//     if (err) {
+//       console.error(err);
+//     }
+//     else {
+//      return body;
+//     }
+//   });
+// }
 
 const news = async (req, res, next) => {
   const { API_KEY } = process.env;
   const isPagination = req.query.page;
-  let arrayNews;
   const {
     search = null,
     page = 1,
     perPage = isPagination ? 20 : 5000,
   } = req.query;
 
-
-  
-arrayNews= await execute();
-console.log('arrayNews:',arrayNews)
+  const arrayNews = request(
+    {
+      url:
+        "https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=[YOUR_API_KEY]",
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    },
+    function (err, res, body) {
+      if (err) {
+        console.error(err);
+      } else {
+        return body;
+      }
+    }
+  );
+  console.log("arrayNews:", arrayNews);
   try {
     const total = await arrayNews.response.docs.length;
     const constructorData = {
