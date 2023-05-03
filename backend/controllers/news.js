@@ -43,8 +43,7 @@ const news = async (req, res, next) => {
       if (err) {
         console.error(err);
       } else {
-        console.log("body", body);
-        arrayNews.concat(body)
+        arrayNews = arrayNews.concat(body)
         return;
       }
     }
