@@ -13,7 +13,7 @@ export const Language = () => {
     <div>
       <select onChange={changeLanguage}>
         <option value="en">English</option>
-        <option value="uk">Українська</option>
+        <option value="ua">Українська</option>
       </select>
     </div>
   );

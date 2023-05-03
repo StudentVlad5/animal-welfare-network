@@ -1,6 +1,7 @@
 import React from 'react';
 import { MobileNavList, NavList, NavItem } from './Nav.styled';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const MobileNav = ({ toggleMenu }) => {
   const [searchParams] = useSearchParams();
