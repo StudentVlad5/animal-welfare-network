@@ -19,13 +19,15 @@ const news = async (req, res, next) => {
     },
   };
 
- request(options, function (err, res, body) {
+ await request(options, function (err, res, body) {
     if (err) {
       console.error(err);
+      return
     } else {
       
       arrayNews.push(body);
       console.log("in request",arrayNews);
+      return
     }
   });
 
