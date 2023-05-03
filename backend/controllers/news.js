@@ -28,10 +28,10 @@ const news = async (req, res, next) => {
       arrayNews.push(body);
       console.log("in request",arrayNews);
       try {
-        const total = arrayNews.response.docs.length;
+        // const total = arrayNews.response.docs.length;
         const constructorData = {
           pagination: isPagination,
-          total,
+          // total,
           perPage,
           // data: news,
           page,
@@ -54,9 +54,6 @@ const news = async (req, res, next) => {
       return
     }
   });
-
-  console.log("arrayNews: ", arrayNews);
-
 };
 
 module.exports = news;
