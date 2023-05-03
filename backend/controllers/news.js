@@ -5,7 +5,7 @@ const request = require("request");
 const news = async (req, res, next) => {
   const { API_KEY } = process.env;
   const isPagination = req.query.page;
-  let arrayNews;
+  let arrayNews = [];
   const {
     search = null,
     page = 1,
@@ -19,33 +19,41 @@ const news = async (req, res, next) => {
     },
   };
 
-  request(options, function (err, res, body) {
+ request(options, function (err, res, body) {
     if (err) {
       console.error(err);
     } else {
-      // console.log(JSON.parse(JSON.stringify(body)));
-      arrayNews = JSON.parse(JSON.stringify(body));
-      // const total = arrayNews.response.["docs"].length;
-      console.log(arrayNews.response)
-      const constructorData = {
-        pagination: isPagination,
-        // total,
-        perPage,
-        // data: news,
-        page,
-      };
-      //   if (search) {
-      //   console.log("search: ", search);
-      //   const news = JSON.parse(JSON.stringify(arrayNews));
-      //   if (isPagination) {
-      //     return res.status(200).json(constructorResponse(constructorData, news));
-      //   }
-      //   return res.status(200).json(news);
-      // }
-
-      res.status(200).json(constructorResponse(constructorData, arrayNews));
+      
+      arrayNews.push(body);
+      console.log("in request",arrayNews);
     }
   });
+
+  console.log("arrayNews: ", arrayNews);
+  try {
+    const total = await arrayNews.response.docs.length;
+    const constructorData = {
+      pagination: isPagination,
+      total,
+      perPage,
+      // data: news,
+      page,
+    };
+    if (search) {
+      console.log("search: ", search);
+      const news = JSON.parse(JSON.stringify(arrayNews));
+      if (isPagination) {
+        return res.status(200).json(constructorResponse(constructorData, news));
+      }
+      return res.status(200).json(news);
+    }
+
+    const news = JSON.parse(JSON.stringify(arrayNews));
+
+    res.status(200).json(constructorResponse(constructorData, news));
+  } catch (err) {
+    throw new ValidationError(err.message);
+  }
 };
 
 module.exports = news;
