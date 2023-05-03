@@ -43,13 +43,9 @@ const news = async (req, res, next) => {
           console.error(err);
         } else {
           const arrayNews = await body;
-          return await arrayNews
-        }
-      }
-    );
-    await console.log("arrayNews:", arrayNews);
+          console.log("arrayNews:", arrayNews);
     // const total = await arrayNews.response.docs.length;
-    const constructorData = await {
+    const constructorData =  {
       pagination: isPagination,
       // total,
       perPage,
@@ -67,7 +63,11 @@ const news = async (req, res, next) => {
 
     const news = await JSON.parse(JSON.stringify(arrayNews));
 
-    await res.status(200).json(constructorResponse(constructorData, news));
+    return await res.status(200).json(constructorResponse(constructorData, news));
+        }
+      }
+    );
+    
   } catch (err) {
     throw new ValidationError(err.message);
   }
