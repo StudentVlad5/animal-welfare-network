@@ -24,7 +24,7 @@ const news = async (req, res, next) => {
       console.error(err);
     } else {
       // console.log(JSON.parse(JSON.stringify(body)));
-      return JSON.parse(JSON.stringify(body));
+      return body;
     }
   });
 
