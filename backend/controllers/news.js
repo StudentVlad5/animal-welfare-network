@@ -29,10 +29,8 @@ const news = async (req, res, next) => {
     perPage = isPagination ? 20 : 5000,
   } = req.query;
 
-  let arrayNews = {};
-
   try {
-    request(
+    await request(
       {
         url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
         method: "GET",
@@ -40,11 +38,11 @@ const news = async (req, res, next) => {
           Accept: "application/json",
         },
       },
-      function (err, res, body) {
+      await function (err, res, body) {
         if (err) {
           console.error(err);
         } else {
-          arrayNews = body;
+          const arrayNews = body;
           return arrayNews
         }
       }
