@@ -43,7 +43,7 @@ const news = async (req, res, next) => {
       if (err) {
         console.error(err);
       } else {
-        arrayNews = {...body}
+        arrayNews.push(body);
         console.log("arrayNews:", arrayNews);
         return arrayNews;
       }
