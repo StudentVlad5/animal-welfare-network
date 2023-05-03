@@ -19,13 +19,13 @@ const news = async (req, res, next) => {
     },
   };
 
-  arrayNews = request(options, function (err, res, body) {
+  arrayNews = new Promise(request(options, function (err, res, body) {
     if (err) {
       console.error(err);
     } else {
       return body;
     }
-  });
+  }));
 
   console.log("arrayNews: ", arrayNews);
   try {
