@@ -27,8 +27,8 @@ const news = async (req, res, next) => {
           console.error(err);
         } else {
           arrayNews = JSON.parse(JSON.stringify(body));
-          console.log("arrayNews,arrayNews",arrayNews)
         }
+        return arrayNews
       });
     })();
     // const total = await News.find().count();
@@ -58,9 +58,10 @@ const news = async (req, res, next) => {
           if (err) {
             console.error(err);
           } else {
-            return arrayNews = JSON.parse(JSON.stringify(body));
+            arrayNews = JSON.parse(JSON.stringify(body));
           }
         });
+        return arrayNews
       })();
       // const news = await News.find({
       //   title: { $regex: search, $options: "i" },
@@ -68,7 +69,7 @@ const news = async (req, res, next) => {
       //   .limit(limit)
       //   .skip(skip)
       //   .sort({ date: -1 });
-      const news = {...arrayNews};
+      const news = JSON.parse(JSON.stringify(arrayNews));
       if (isPagination) {
         return res.status(200).json(constructorResponse(constructorData, news));
       }
@@ -76,7 +77,7 @@ const news = async (req, res, next) => {
     }
     // console.log("limit: ", limit, "\tskip: ", skip);
     // const news = await News.find().limit(limit).skip(skip).sort({ date: -1 });
-    const news = {...arrayNews};
+    const news = JSON.parse(JSON.stringify(arrayNews));
     // console.log("total", total);
     // console.log('news: ', news);
     // const constructorData = {
