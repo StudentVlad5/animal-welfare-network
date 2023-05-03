@@ -2,7 +2,7 @@ const { ValidationError, constructorResponse } = require("../helpers");
 const { News } = require("../models");
 const request = require("request");
 
-function execute() {
+const execute = async() => {
   const { API_KEY } = process.env;
   const options = {
     url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&facet_fields=ingredients&page=1&q=pet&sort=newest&api-key=${API_KEY}`,
@@ -11,7 +11,7 @@ function execute() {
       Accept: "application/json",
     },
   };
-  request(options, function (err, res, body) {
+ request(options, function (err, res, body) {
     if (err) {
       console.error(err);
     } else {
@@ -23,7 +23,7 @@ function execute() {
 
 const news = async (req, res, next) => {
   const isPagination = req.query.page;
-  let arrayNews = execute();
+  let arrayNews = await execute();
   const {
     search = null,
     page = 1,
