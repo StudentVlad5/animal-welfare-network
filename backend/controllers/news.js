@@ -56,14 +56,16 @@ const news = async (req, res, next) => {
             page,
           };
 
-          res
-            .status(200)
-            .json(
-              constructorResponse(
-                constructorData,
-                JSON.parse(JSON.stringify(data))
-              )
-            );
+          () => {
+            res
+              .status(200)
+              .json(
+                constructorResponse(
+                  constructorData,
+                  JSON.parse(JSON.stringify(data))
+                )
+              );
+          };
         });
       })
       .on("error", (err) => {
