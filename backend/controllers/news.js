@@ -43,7 +43,7 @@ const news = async (req, res, next) => {
       `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=home+pet&sort=newest&api-key=${API_KEY}`
     );
 
-    listNews.data.response.docs.array.map(key=>arrayNews.push({"abstract":key["abstract"], "web_url":key["web_url"], "snippet":key["snippet"], "lead_paragraph":key["lead_paragraph"]}));
+    listNews.data.response.docs.map(key=>arrayNews.push({"abstract":key["abstract"], "web_url":key["web_url"], "snippet":key["snippet"], "lead_paragraph":key["lead_paragraph"]}));
     console.log("arrayNews",  arrayNews);
     const constructorData = {
       pagination: isPagination,
