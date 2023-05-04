@@ -58,13 +58,7 @@ const news = async (req, res, next) => {
     // const total = await arrayNews.response.docs.length;
     const news = await JSON.parse(JSON.stringify(data));
 
-    const constructorData = {
-      pagination: isPagination,
-      // total,
-      perPage,
-      // data: news,
-      page,
-    };
+
     // if (search) {
     //   console.log("search: ", search);
     //   const news = JSON.parse(JSON.stringify(arrayNews));
@@ -77,6 +71,13 @@ const news = async (req, res, next) => {
   } catch (err) {
     throw new ValidationError(err.message);
   }
+  const constructorData = {
+    pagination: isPagination,
+    // total,
+    perPage,
+    // data: news,
+    page,
+  };
   return await res
   .status(200)
   .json(constructorResponse(constructorData, news));
