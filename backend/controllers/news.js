@@ -28,7 +28,7 @@ const news = async (req, res, next) => {
     page = 1,
     perPage = isPagination ? 20 : 5000,
   } = req.query;
-  let listOfNews = "";
+  let data = "";
   try {
     const options = {
       hostname: `api.nytimes.com`,
@@ -48,7 +48,6 @@ const news = async (req, res, next) => {
         // Ending the response
         res.on("end", () => {
           console.log("Body:", JSON.parse(JSON.stringify(data)));
-          listOfNews = JSON.parse(JSON.stringify(data));
         });
       })
       .on("error", (err) => {
@@ -66,7 +65,7 @@ const news = async (req, res, next) => {
   
     return await res
       .status(200)
-      .json(constructorResponse(constructorData, JSON.parse(JSON.stringify(listOfNews))));
+      .json(constructorResponse(constructorData, JSON.parse(JSON.stringify(data))));
     // const total = await arrayNews.response.docs.length;
 
     // if (search) {
