@@ -1,7 +1,6 @@
 const { ValidationError, constructorResponse } = require("../helpers");
 const { News } = require("../models");
 const axios = require("axios");
-var moment = require("moment");
 
 const news = async (req, res, next) => {
   const { API_KEY } = process.env;
@@ -12,11 +11,11 @@ const news = async (req, res, next) => {
     perPage = isPagination ? 20 : 5000,
   } = req.query;
   const today = new Date();
-  // const date = moment(today).format(YYYY-MM-DD);
-  // const dateforSeart = date.split('-').join('')
-  console.log("today",today);
-  // console.log("dateforSeart", dateforSeart);
-  // console.log("date", date);
+
+  const dateforSeart = today.split("T")[0].split("-").join("");
+  console.log("today", today);
+  console.log("dateforSeart", dateforSeart);
+
   let arrayNews = [];
   try {
     const listNews = await axios.get(
@@ -32,7 +31,6 @@ const news = async (req, res, next) => {
         pub_date: key["pub_date"],
       })
     );
-    console.log("arrayNews", arrayNews);
 
     const constructorData = {
       pagination: isPagination,
