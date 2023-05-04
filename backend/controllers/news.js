@@ -1,6 +1,6 @@
 const { ValidationError, constructorResponse } = require("../helpers");
 const { News } = require("../models");
-const http = require("http");
+const axios = require('axios');
 
 // const execute = async() => {
 //     const options = {
@@ -30,31 +30,18 @@ const news = async (req, res, next) => {
   } = req.query;
   let data = "";
   try {
-    const options = {
-      hostname: `api.nytimes.com`,
-      path: `/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    };
+    // const options = {
+    //   hostname: `api.nytimes.com`,
+    //   path: `/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
+    //   method: "GET",
+    //   headers: {
+    //     Accept: "application/json",
+    //   },
+    // };
     // Sending the request
-    const req = await http
-      .request(options, (res) => {
-        res.on("data", (chunk) => {
-          data += chunk;
-        });
+    const listNews = await axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`);
 
-        // Ending the response
-        res.on("end", () => {
-          console.log("Body:", JSON.parse(JSON.stringify(data)));
-        });
-      })
-      .on("error", (err) => {
-        console.log("Error: ", err);
-      })
-      .end();
-
+    console.log("listNews",listNews);
     const constructorData = {
       pagination: isPagination,
       // total,
@@ -63,10 +50,10 @@ const news = async (req, res, next) => {
       page,
     };
 
-    await res
+    res
       .status(200)
       .json(
-        constructorResponse(constructorData, JSON.parse(JSON.stringify(data)))
+        constructorResponse(constructorData, listNews)
       );
 
     // const total = await arrayNews.response.docs.length;
