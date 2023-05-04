@@ -12,29 +12,29 @@ import {
 } from './NewsListItem.styled';
 
 export const NewsListItem = ({ newsItem }) => {
-  const { _id, title, description, date, url } = newsItem;
+  const { abstract, web_url, lead_paragraph, pub_date } = newsItem;
 
   return (
-    <Item key={_id} id={_id}>
+    <Item key={web_url} id={web_url}>
       <TextWrapper>
         <Ractangle />
         <Title>
-          <EllipsisText text={title} length={38} />
+          <EllipsisText text={abstract} length={38} />
         </Title>
         <Text>
-          <EllipsisText text={description} length={200} />
+          <EllipsisText text={lead_paragraph} length={200} />
         </Text>
-        {date !== null ? (
+        {pub_date !== null ? (
           <DateWrapper>
-            <Dates>{new Date(date).toLocaleDateString()}</Dates>
-            <Link target="_blank" href={url}>
+            <Dates>{new Date(pub_date).toLocaleDateString()}</Dates>
+            <Link target="_blank" href={web_url}>
               Read More
             </Link>
           </DateWrapper>
         ) : (
           <DateWrapper>
             <Dates>----/----/-------</Dates>
-            <Link target="_blank" href={url}>
+            <Link target="_blank" href={web_url}>
               Read More
             </Link>
           </DateWrapper>

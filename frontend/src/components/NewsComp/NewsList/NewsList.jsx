@@ -10,7 +10,7 @@ export const NewsList = ({ news }) => {
   return (
     <List>
       {sortedNewsList.map(newsItem => (
-        <NewsListItem newsItem={newsItem} key={newsItem._id} />
+        <NewsListItem newsItem={newsItem} key={newsItem.web_url} />
       ))}
     </List>
   );
