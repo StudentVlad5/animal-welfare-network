@@ -1,6 +1,6 @@
 const { ValidationError, constructorResponse } = require("../helpers");
 const { News } = require("../models");
-const axios = require('axios');
+const axios = require("axios");
 
 // const execute = async() => {
 //     const options = {
@@ -39,9 +39,11 @@ const news = async (req, res, next) => {
     //   },
     // };
     // Sending the request
-    const listNews = await axios.get(`https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`);
+    const listNews = await axios.get(
+      `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`
+    );
 
-    console.log("listNews",listNews);
+    console.log("listNews", listNews.data);
     const constructorData = {
       pagination: isPagination,
       // total,
@@ -53,7 +55,10 @@ const news = async (req, res, next) => {
     res
       .status(200)
       .json(
-        constructorResponse(constructorData, listNews)
+        constructorResponse(
+          constructorData,
+          JSON.parse(JSON.stringify(listNews.data))
+        )
       );
 
     // const total = await arrayNews.response.docs.length;
