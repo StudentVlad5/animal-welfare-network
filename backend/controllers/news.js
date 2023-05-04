@@ -73,12 +73,13 @@ const news = async (req, res, next) => {
     //   }
     //   return res.status(200).json(news);
     // }
-    return await res
-      .status(200)
-      .json(constructorResponse(constructorData, news));
+   
   } catch (err) {
     throw new ValidationError(err.message);
   }
+  return await res
+  .status(200)
+  .json(constructorResponse(constructorData, news));
 };
 
 module.exports = news;
