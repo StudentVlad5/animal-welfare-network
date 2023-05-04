@@ -20,7 +20,7 @@ const request = require("request");
 //   });
 // }
 
-const news = async (req, res, next) => {
+const news = (req, res, next) => {
   const { API_KEY } = process.env;
   const isPagination = req.query.page;
   const {
@@ -28,8 +28,7 @@ const news = async (req, res, next) => {
     page = 1,
     perPage = isPagination ? 20 : 5000,
   } = req.query;
- const news = ''
-  try {
+ const arrayNews = ''
      request(
       {
         url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
@@ -42,13 +41,8 @@ const news = async (req, res, next) => {
         if (err) {
           console.error(err);
         } else {
-          const arrayNews =  body;
-          return arrayNews
-        }
-      }
-    );
-    // const total = await arrayNews.response.docs.length;
-    const news =  await JSON.parse(JSON.stringify(arrayNews));
+           arrayNews =  body;
+               // const total = await arrayNews.response.docs.length;
     const constructorData =  {
       pagination: isPagination,
       // total,
@@ -64,11 +58,11 @@ const news = async (req, res, next) => {
     //   }
     //   return res.status(200).json(news);
     // }
-    const send = await constructorResponse(constructorData, news);
-    return await res.status(200).json(send);
-  } catch (err) {
-    throw new ValidationError(err.message);
-  }
+    const send =  constructorResponse(constructorData, arrayNews);
+    return  res.status(200).json(send);
+        }
+      }
+    );
 };
 
 module.exports = news;
