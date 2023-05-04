@@ -28,41 +28,41 @@ const news = (req, res, next) => {
     page = 1,
     perPage = isPagination ? 20 : 5000,
   } = req.query;
- const arrayNews = ''
-     request(
-      {
-        url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
+  let arrayNews = "";
+  request(
+    {
+      url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
+      method: "GET",
+      headers: {
+        Accept: "application/json",
       },
-      function (err, res, body) {
-        if (err) {
-          console.error(err);
-        } else {
-           arrayNews =  body;
-               // const total = await arrayNews.response.docs.length;
-    const constructorData =  {
-      pagination: isPagination,
-      // total,
-      perPage,
-      // data: news,
-      page,
-    };
-    // if (search) {
-    //   console.log("search: ", search);
-    //   const news = JSON.parse(JSON.stringify(arrayNews));
-    //   if (isPagination) {
-    //     return res.status(200).json(constructorResponse(constructorData, news));
-    //   }
-    //   return res.status(200).json(news);
-    // }
-    const send =  constructorResponse(constructorData, arrayNews);
-    return  res.status(200).json(send);
-        }
+    },
+    function (err, res, body) {
+      if (err) {
+        console.error(err);
+      } else {
+        arrayNews = body;
+        // const total = await arrayNews.response.docs.length;
+        const constructorData = {
+          pagination: isPagination,
+          // total,
+          perPage,
+          // data: news,
+          page,
+        };
+        // if (search) {
+        //   console.log("search: ", search);
+        //   const news = JSON.parse(JSON.stringify(arrayNews));
+        //   if (isPagination) {
+        //     return res.status(200).json(constructorResponse(constructorData, news));
+        //   }
+        //   return res.status(200).json(news);
+        // }
+        const send = constructorResponse(constructorData, arrayNews);
+        return res.status(200).json(send);
       }
-    );
+    }
+  );
 };
 
 module.exports = news;
