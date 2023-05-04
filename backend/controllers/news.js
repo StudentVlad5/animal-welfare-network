@@ -48,30 +48,25 @@ const news = async (req, res, next) => {
         // Ending the response
         res.on("end", () => {
           console.log("Body:", JSON.parse(JSON.stringify(data)));
-          const constructorData = {
-            pagination: isPagination,
-            // total,
-            perPage,
-            // data: news,
-            page,
-          };
-
-          () => {return res
-              .status(200)
-              .json(
-                constructorResponse(
-                  constructorData,
-                  JSON.parse(JSON.stringify(data))
-                )
-              );
-          };
         });
       })
       .on("error", (err) => {
         console.log("Error: ", err);
       })
       .end();
-
+   
+      const constructorData = {
+      pagination: isPagination,
+      // total,
+      perPage,
+      // data: news,
+      page,
+    };
+  
+    await res
+      .status(200)
+      .json(constructorResponse(constructorData, JSON.parse(JSON.stringify(data))));
+      
     // const total = await arrayNews.response.docs.length;
 
     // if (search) {
