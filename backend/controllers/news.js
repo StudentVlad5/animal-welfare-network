@@ -10,9 +10,9 @@ const news = async (req, res, next) => {
     page = 1,
     perPage = isPagination ? 20 : 5000,
   } = req.query;
-  const today = new Date();
+  const today = new Date().toISOString().split('T')[0];
 
-  const dateforSeart = today.split("T")[0].split("-").join("");
+  const dateforSeart = today.split("-").join("");
   console.log("today", today);
   console.log("dateforSeart", dateforSeart);
 
