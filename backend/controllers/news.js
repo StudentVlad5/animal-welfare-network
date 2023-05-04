@@ -63,9 +63,10 @@ const news = async (req, res, next) => {
       page,
     };
   
-    return await res
+    await res
       .status(200)
       .json(constructorResponse(constructorData, JSON.parse(JSON.stringify(data))));
+      
     // const total = await arrayNews.response.docs.length;
 
     // if (search) {
