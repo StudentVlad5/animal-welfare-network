@@ -31,8 +31,8 @@ const news = async (req, res, next) => {
   let data = "";
   try {
     const options = {
-      hostname: `api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
-      path: "/posts",
+      hostname: `api.nytimes.com`,
+      path: `/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`,
       method: "GET",
       headers: {
         Accept: "application/json",
