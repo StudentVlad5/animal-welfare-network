@@ -30,6 +30,7 @@
     "http-errors": "^2.0.0",
     "joi": "^17.8.4",
     "jsonwebtoken": "^9.0.0",
+    "moment": "^2.29.4",
     "mongoose": "^7.0.3",
     "mongoose-type-email": "^1.1.2",
     "mongoose-type-url": "^2.1.0",

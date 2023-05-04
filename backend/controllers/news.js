@@ -1,24 +1,7 @@
 const { ValidationError, constructorResponse } = require("../helpers");
 const { News } = require("../models");
 const axios = require("axios");
-
-// const execute = async() => {
-//     const options = {
-//     "url": "https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=[YOUR_API_KEY]",
-//     "method": "GET",
-//     "headers": {
-//       "Accept": "application/json"
-//     }
-//   };
-//   request(options, function (err, res, body) {
-//     if (err) {
-//       console.error(err);
-//     }
-//     else {
-//      return body;
-//     }
-//   });
-// }
+var moment = require("moment");
 
 const news = async (req, res, next) => {
   const { API_KEY } = process.env;
@@ -28,10 +11,11 @@ const news = async (req, res, next) => {
     page = 1,
     perPage = isPagination ? 20 : 5000,
   } = req.query;
+  const date = moment(new Date()).format(YYYYMMDD);
   let arrayNews = [];
   try {
     const listNews = await axios.get(
-      `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=home+pet&sort=newest&api-key=${API_KEY}`
+      `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20150101&end_date=${date}&facet=false&q=home+pet&sort=newest&api-key=${API_KEY}`
     );
 
     listNews.data.response.docs.map((key) =>
