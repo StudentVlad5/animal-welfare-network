@@ -59,10 +59,11 @@ const news = (req, res, next) => {
         //   return res.status(200).json(news);
         // }
         const send = constructorResponse(constructorData, arrayNews);
-        return res.status(200).json(send);
+        return send
       }
     }
   );
+  return res.status(200).json(send);
 };
 
 module.exports = news;
