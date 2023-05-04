@@ -47,7 +47,7 @@ const news = async (req, res, next) => {
 
         // Ending the response
         res.on("end", () => {
-          console.log("Body:", JSON.parse(data));
+          console.log("Body:", JSON.parse(JSON.stringify(data)));
         });
       })
       .on("error", (err) => {
@@ -56,7 +56,7 @@ const news = async (req, res, next) => {
       .end();
 
     // const total = await arrayNews.response.docs.length;
-    const news = await JSON.parse(JSON.stringify(arrayNews));
+    const news = await JSON.parse(JSON.stringify(data));
 
     const constructorData = {
       pagination: isPagination,
