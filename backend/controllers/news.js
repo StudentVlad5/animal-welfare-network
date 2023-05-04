@@ -39,7 +39,7 @@ const news = async (req, res, next) => {
     // };
     // Sending the request
     const listNews = await axios.get(
-      `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`
+      `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=home+pet&sort=newest&api-key=${API_KEY}`
     );
 
     console.log("listNews",  JSON.parse(JSON.stringify(listNews.data.response.docs)));
