@@ -12,6 +12,7 @@ const news = async (req, res, next) => {
     perPage = isPagination ? 20 : 5000,
   } = req.query;
   const date = moment(new Date()).format(YYYYMMDD);
+  console.log(date);
   let arrayNews = [];
   try {
     const listNews = await axios.get(
