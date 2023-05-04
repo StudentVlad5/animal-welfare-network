@@ -61,11 +61,11 @@ const news = async (req, res, next) => {
       // data: news,
       page,
     };
+  
     return await res
       .status(200)
-      .json(constructorResponse(constructorData, news));
+      .json(constructorResponse(constructorData, JSON.parse(JSON.stringify(data))));
     // const total = await arrayNews.response.docs.length;
-    const news = await JSON.parse(JSON.stringify(data));
 
     // if (search) {
     //   console.log("search: ", search);
