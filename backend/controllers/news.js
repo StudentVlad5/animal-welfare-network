@@ -39,7 +39,7 @@ const news = async (req, res, next) => {
       },
     };
     // Sending the request
-    const req = async() => { http
+    const req = await http
       .request(options, (res) => {
         res.on("data", (chunk) => {
           data += chunk;
@@ -53,20 +53,22 @@ const news = async (req, res, next) => {
       .on("error", (err) => {
         console.log("Error: ", err);
       })
-      .end();}
-   
-      const constructorData = {
+      .end();
+
+    const constructorData = {
       pagination: isPagination,
       // total,
       perPage,
       // data: news,
       page,
     };
-  const rrr = await req();
+    const rrr = await req();
     await res
       .status(200)
-      .json(constructorResponse(constructorData, JSON.parse(JSON.stringify(data))));
-      
+      .json(
+        constructorResponse(constructorData, JSON.parse(JSON.stringify(data)))
+      );
+
     // const total = await arrayNews.response.docs.length;
 
     // if (search) {
