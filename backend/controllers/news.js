@@ -45,19 +45,15 @@ const news = async (req, res, next) => {
 
     listNews.data.response.docs.map(key=>arrayNews.push({"abstract":key["abstract"], "web_url":key["web_url"], "snippet":key["snippet"], "lead_paragraph":key["lead_paragraph"]}));
     console.log("arrayNews",  arrayNews);
+    
+    
     const constructorData = {
       pagination: isPagination,
-      // total : JSON.parse(JSON.stringify(listNews.data.docs)).length,
+      total : arrayNews.length,
       perPage,
       // data: news,
       page,
     };
-
-    res
-      .status(200)
-      .json(constructorResponse(constructorData, JSON.parse(JSON.stringify(listNews.data.response.docs))));
-
-    // const total = await arrayNews.response.docs.length;
 
     // if (search) {
     //   console.log("search: ", search);
@@ -67,6 +63,10 @@ const news = async (req, res, next) => {
     //   }
     //   return res.status(200).json(news);
     // }
+    res
+      .status(200)
+      .json(constructorResponse(constructorData, arrayNews));
+
   } catch (err) {
     throw new ValidationError(err.message);
   }
