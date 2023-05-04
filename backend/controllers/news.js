@@ -42,7 +42,7 @@ const news = async (req, res, next) => {
       `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=pet&sort=newest&api-key=${API_KEY}`
     );
 
-    console.log("listNews", listNews.data.docs);
+    console.log("listNews", listNews.data.response.docs);
     const constructorData = {
       pagination: isPagination,
       // total : JSON.parse(JSON.stringify(listNews.data.docs)).length,
@@ -53,7 +53,7 @@ const news = async (req, res, next) => {
 
     res
       .status(200)
-      .json(constructorResponse(constructorData, listNews.data.docs));
+      .json(constructorResponse(constructorData, listNews.data.response.docs));
 
     // const total = await arrayNews.response.docs.length;
 
