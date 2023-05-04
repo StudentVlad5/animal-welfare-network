@@ -11,12 +11,14 @@ const news = async (req, res, next) => {
     page = 1,
     perPage = isPagination ? 20 : 5000,
   } = req.query;
-  const date = moment(new Date()).format(YYYYMMDD);
-  console.log(date);
+  const today = new Date();
+  const date = moment(today).format(YYYY-MM-DD);
+  const dateforSeart = date.split('-').join('')
+  console.log("today",today,"date", date,"dateforSeart", dateforSeart);
   let arrayNews = [];
   try {
     const listNews = await axios.get(
-      `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20150101&end_date=${date}&facet=false&q=home+pet&sort=newest&api-key=${API_KEY}`
+      `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20150101&end_date=${dateforSeart}&facet=false&q=home+pet&sort=newest&api-key=${API_KEY}`
     );
 
     listNews.data.response.docs.map((key) =>
