@@ -62,7 +62,7 @@ const news = async (req, res, next) => {
       // data: news,
       page,
     };
-    const rrr = await req();
+
     await res
       .status(200)
       .json(
