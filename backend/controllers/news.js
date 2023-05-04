@@ -56,8 +56,7 @@ const news = async (req, res, next) => {
             page,
           };
 
-          () => {
-            res
+          () => {return res
               .status(200)
               .json(
                 constructorResponse(
