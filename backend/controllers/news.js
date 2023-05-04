@@ -28,6 +28,7 @@ const news = async (req, res, next) => {
     page = 1,
     perPage = isPagination ? 20 : 5000,
   } = req.query;
+  let arrayNews = [];
   try {
     // const options = {
     //   hostname: `api.nytimes.com`,
@@ -42,7 +43,8 @@ const news = async (req, res, next) => {
       `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20230401&end_date=20230502&facet=false&q=home+pet&sort=newest&api-key=${API_KEY}`
     );
 
-    console.log("listNews",  JSON.parse(JSON.stringify(listNews.data.response.docs)));
+    listNews.data.response.docs.array.map(key=>arrayNews.push({"abstract":key["abstract"], "web_url":key["web_url"], "snippet":key["snippet"], "lead_paragraph":key["lead_paragraph"]}));
+    console.log("arrayNews",  arrayNews);
     const constructorData = {
       pagination: isPagination,
       // total : JSON.parse(JSON.stringify(listNews.data.docs)).length,
