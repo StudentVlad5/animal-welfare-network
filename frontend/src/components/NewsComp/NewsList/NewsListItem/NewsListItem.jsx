@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import EllipsisText from 'react-ellipsis-text';
+import moment from 'moment';
 import {
   Item,
   Title,
@@ -26,7 +27,7 @@ export const NewsListItem = ({ newsItem }) => {
         </Text>
         {pub_date !== null ? (
           <DateWrapper>
-            <Dates>{new Date(pub_date).toLocaleDateString()}</Dates>
+            <Dates>{moment(`${pub_date}`).utc().format('YYYY-MM-DD')}</Dates>
             <Link target="_blank" href={web_url}>
               Read More
             </Link>
