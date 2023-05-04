@@ -39,7 +39,7 @@ const news = async (req, res, next) => {
       },
     };
     // Sending the request
-    const req = https
+    const req = http
       .request(options, (res) => {
         res.on("data", (chunk) => {
           data += chunk;
