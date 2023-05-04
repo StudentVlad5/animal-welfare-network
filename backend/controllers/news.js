@@ -54,10 +54,18 @@ const news = async (req, res, next) => {
         console.log("Error: ", err);
       })
       .end();
-
+    const constructorData = {
+      pagination: isPagination,
+      // total,
+      perPage,
+      // data: news,
+      page,
+    };
+    return await res
+      .status(200)
+      .json(constructorResponse(constructorData, news));
     // const total = await arrayNews.response.docs.length;
     const news = await JSON.parse(JSON.stringify(data));
-
 
     // if (search) {
     //   console.log("search: ", search);
@@ -67,20 +75,9 @@ const news = async (req, res, next) => {
     //   }
     //   return res.status(200).json(news);
     // }
-   
   } catch (err) {
     throw new ValidationError(err.message);
   }
-  const constructorData = {
-    pagination: isPagination,
-    // total,
-    perPage,
-    // data: news,
-    page,
-  };
-  return await res
-  .status(200)
-  .json(constructorResponse(constructorData, news));
 };
 
 module.exports = news;
