@@ -124,7 +124,7 @@ export const NoticesCategoriesList = () => {
       </div>
       {isLoading ? onLoading() : onLoaded()}
       {error && onFetchError('Whoops, something went wrong')}
-      <Pagination totalPage={totalPage} changePage={setPage} />
+      <Pagination totalPage={totalPage} changePage={setPage} page={page} />
       <ModalNotices addToFavoriteFunction={handleFavoriteBtnClick} />
       <ModalEditNotice addToFavoriteFunction={handleFavoriteBtnClick} />
       <NoticeCategoryItemSwiper />

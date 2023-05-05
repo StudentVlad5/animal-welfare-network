@@ -87,7 +87,11 @@ const News = () => {
           {news?.length > 0 && !error && (
             <>
               <NewsList news={news} />
-              <Pagination totalPage={totalPage} changePage={setPage} />
+              <Pagination
+                totalPage={totalPage}
+                changePage={setPage}
+                page={page}
+              />
             </>
           )}
         </Container>
