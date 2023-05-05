@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { MdClose, MdEdit } from 'react-icons/md';
 import { openModalWindow } from 'hooks/modalWindow';
 import { addModal } from 'redux/modal/operation';
-import { fetchData, deleteData, updateData } from 'services/APIservice';
+import { addReload } from 'redux/reload/slice';
+import { reloadValue } from 'redux/reload/selectors';
+import { fetchData, deleteData } from 'services/APIservice';
 import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { SEO } from 'utils/SEO';
@@ -18,13 +20,13 @@ import {
   TableData,
   LearnMoreBtn,
 } from 'components/Admin/AdminTable.styled';
-import { EditDataModal } from 'components/Admin/EditDataModal/EditDataModal';
+import { EditNoticeDataModal } from 'components/Admin/EditDataModal/EditNoticeDataModal';
 
 const AdminNoticesPage = () => {
   const [notices, setNotices] = useState([]);
-  const [isUpdating, setIsUpdating] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const reload = useSelector(reloadValue);
 
   useEffect(() => {
     (async function getData() {
@@ -41,30 +43,17 @@ const AdminNoticesPage = () => {
         setIsLoading(false);
       }
     })();
-  }, [isUpdating]);
+  }, [reload]);
 
   async function deleteNotice(id) {
     setIsLoading(true);
     try {
       const { date } = await deleteData(`/notices/${id}`);
-      setIsUpdating(true);
       return date;
     } catch (error) {
       setError(error);
     } finally {
-      setIsLoading(false);
-    }
-  }
-
-  async function editNotice(id, formData) {
-    setIsLoading(true);
-    try {
-      const { date } = await updateData(`/notices/${id}`, formData);
-      setIsUpdating(true);
-      return date;
-    } catch (error) {
-      setError(error);
-    } finally {
+      dispatch(addReload(true));
       setIsLoading(false);
     }
   }
@@ -79,18 +68,19 @@ const AdminNoticesPage = () => {
   const toggleLearnMore = () => setIsLearnMore(state => !state);
 
   // add edit modal
-  const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
-  const toggleModal = e => {
+  const openModal = e => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(
-      addModal({
-        modal: e.currentTarget.dataset.modal,
-      }),
-    );
-    openModalWindow(e, null);
-    setIsOpenModal(true);
+    if (e.currentTarget.dataset.modal === 'admin') {
+      dispatch(
+        addModal({
+          modal: e.currentTarget.dataset.modal,
+          id: e.currentTarget.dataset.id,
+        }),
+      );
+      openModalWindow(e, null);
+    }
   };
 
   const date = date => (date ? new Date(date).toISOString().slice(0, 10) : '');
@@ -195,9 +185,10 @@ const AdminNoticesPage = () => {
                       <IconButton
                         aria-label="Edit notice"
                         onClick={e => {
-                          toggleModal(e);
+                          openModal(e);
                         }}
-                        data-modal="notices/byid"
+                        data-modal="admin"
+                        data-id={notice._id}
                       >
                         <MdEdit size={15} />
                       </IconButton>
@@ -209,13 +200,6 @@ const AdminNoticesPage = () => {
                       >
                         <MdClose size={15} />
                       </IconButton>
-                      {isOpenModal && (
-                        <EditDataModal
-                          onClose={editNotice(notice._id)}
-                          path="notices/byid"
-                          id={notice._id}
-                        />
-                      )}
                     </TableData>
                   </TableRow>
                 ))}
@@ -223,6 +207,7 @@ const AdminNoticesPage = () => {
           </Table>
         </Container>
       </Section>
+      <EditNoticeDataModal path="notices/byid" />
     </>
   );
 };

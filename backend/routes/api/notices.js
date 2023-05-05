@@ -35,6 +35,14 @@ router.post(
   createValidation,
   ctrlWrapper(createNotices)
 );
+
+router.post(
+  '/favorites/:id',
+  validateId,
+  ctrlWrapper(authMiddleware),
+  ctrlWrapper(addFavorite)
+);
+
 router.patch(
   '/own/:id',
   validateId,
@@ -95,12 +103,19 @@ router.patch(
   createValidation,
   ctrlWrapper(editNotices)
 );
-router.post(
-  '/favorites/:id',
-  validateId,
+
+router.patch(
+  '/:id',
   ctrlWrapper(authMiddleware),
-  ctrlWrapper(addFavorite)
+  uploadCloud.fields([
+    { name: 'imageUrl', maxCount: 1 },
+    { name: 'imageUrl_1', maxCount: 1 },
+    { name: 'imageUrl_2', maxCount: 1 },
+  ]),
+  createValidation,
+  ctrlWrapper(editNotices)
 );
+
 router.delete(
   '/favorites/:id',
   validateId,
@@ -108,12 +123,5 @@ router.delete(
   ctrlWrapper(deleteFavorite)
 );
 router.delete('/:id', ctrlWrapper(authMiddleware), ctrlWrapper(deleteNotices));
-
-router.put(
-  '/:id',
-  ctrlWrapper(authMiddleware),
-  createValidation,
-  ctrlWrapper(updateNotices)
-);
 
 module.exports = routerNotices = router;

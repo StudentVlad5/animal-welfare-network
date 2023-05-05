@@ -18,7 +18,7 @@ import {
   TableData,
   LearnMoreBtn,
 } from 'components/Admin/AdminTable.styled';
-import { EditDataModal } from 'components/Admin/EditDataModal/EditDataModal';
+import { EditUserDataModal } from 'components/Admin/EditDataModal/EditUserDataModal';
 
 const AdminUsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -176,7 +176,7 @@ const AdminUsersPage = () => {
           </Table>
         </Container>
       </Section>
-      <EditDataModal path="admin/users" onEdit={editUser} />
+      <EditUserDataModal path="admin/users" onEdit={editUser} />
     </>
   );
 };

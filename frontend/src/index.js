@@ -8,7 +8,8 @@ import { App } from 'components/App/App';
 import { GlobalStyle } from 'components/baseStyles/GlobalStyle';
 import { ThemeStatus } from 'components/ThemeStatus/ThemeProvider';
 
-window.global = { BASE_URL: 'https://animal-welfare-network.onrender.com/api' };
+// window.global = { BASE_URL: 'https://animal-welfare-network.onrender.com/api' };
+window.global = { BASE_URL: 'http://localhost:3030/api' };
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

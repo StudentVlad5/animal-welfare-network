@@ -11,8 +11,8 @@ import { fetchData } from 'services/APIservice';
 import {
   BackDrop,
   Modal,
-  Form,
-  Field,
+  FormStyled,
+  FieldStyled,
   Label,
   Input,
   CloseIconBtn,
@@ -21,9 +21,9 @@ import {
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 
-export const EditDataModal = ({ path, onEdit }) => {
-  const [data, setData] = useState([]);
-  const [dataUpdate, setDataUpdate] = useState(data);
+export const EditUserDataModal = ({ path, onEdit }) => {
+  const [dataUpdate, setDataUpdate] = useState([]);
+  const [formFieldData, setFormFieldData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -43,7 +43,7 @@ export const EditDataModal = ({ path, onEdit }) => {
       setIsLoading(true);
       try {
         const { data } = await fetchData(itemForFetch);
-        setData(data);
+        setDataUpdate(data);
         if (!data) {
           return onFetchError('Whoops, something went wrong');
         }
@@ -76,13 +76,17 @@ export const EditDataModal = ({ path, onEdit }) => {
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
           <Formik
-            initialValues={data}
+            initialValues={dataUpdate}
             onSubmit={(values, { setSubmitting }) => {
               // setTimeout(() => {
               setSubmitting(false);
-              setDataUpdate(values);
+              const editedData = {
+                [values.name]: values.value,
+              };
+              setDataUpdate(prevState => ({ ...prevState, ...editedData }));
+              // setDataUpdate(prevState => ({ ...prevState, ...formFieldData }));
               onEdit(modal.id, dataUpdate);
-              //   }, 400);
+              //   }, 100);
             }}
           >
             {({
@@ -92,24 +96,27 @@ export const EditDataModal = ({ path, onEdit }) => {
               isSubmitting,
               values,
             }) => (
-              <Form onSubmit={handleSubmit}>
-                {Object.entries(data).map((item, idx) => (
-                  <Field key={idx}>
+              <FormStyled
+                onSubmit={handleSubmit}
+                onChange={e => {
+                  handleChange(e);
+                  setFormFieldData(e.target.value);
+                }}
+              >
+                {Object.entries(dataUpdate).map((item, idx) => (
+                  <FieldStyled key={idx}>
                     <Label htmlFor={item[0]}>{item[0]}</Label>
                     <Input
                       id={item[0]}
                       type="text"
                       name={item[0]}
-                      onChange={e => {
-                        handleChange(e);
-                        if (e.target.value === 'none') {
-                          e.target.value = '';
-                        }
-                      }}
+                      defaultValue={item[1]}
+                      placeholder={item[1]?.toString() || ''}
+                      onChange={handleChange}
                       onBlur={handleBlur}
-                      value={item[1] || 'none'}
+                      // value={formFieldData}
                     />
-                  </Field>
+                  </FieldStyled>
                 ))}
                 <DoneIconBtn
                   type="submit"
@@ -119,7 +126,7 @@ export const EditDataModal = ({ path, onEdit }) => {
                 >
                   <MdDone size={15} />
                 </DoneIconBtn>
-              </Form>
+              </FormStyled>
             )}
           </Formik>
         </Modal>
@@ -129,7 +136,7 @@ export const EditDataModal = ({ path, onEdit }) => {
   );
 };
 
-EditDataModal.propTypes = {
+EditUserDataModal.propTypes = {
   path: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func,
+  onEdit: PropTypes.func,
 };
