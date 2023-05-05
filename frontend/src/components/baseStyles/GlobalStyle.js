@@ -260,11 +260,19 @@ margin: 0!important;
   text-align: center;
   font-size: 18px;
   background: #fff;
+  width: 240px;
+  height: 240px;
+
 
   /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (min-width: 768px) {
+    width: 288px;
+    height: 328px;
+    margin-right: 20px;
+  }
 }
 
 .swiper-slide img {
@@ -272,6 +280,13 @@ margin: 0!important;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  width: 240px;
+  height: 240px;
+  @media screen and (min-width: 768px) {
+    width: 288px;
+    height: 328px;
+    margin-right: 20px;
+  }
 }
 
 .swiper-button-next::after {
@@ -284,6 +299,13 @@ margin: 0!important;
 
 .swiper-pagination-bullet-active {
   background-color: ${props => props.theme.orangeLight}!important;
+  width: 240px;
+  height: 240px;
+  @media screen and (min-width: 768px) {
+    width: 288px;
+    height: 328px;
+    margin-right: 20px;
+  }
 }
 
 .swiper-button-prev,

@@ -34,6 +34,7 @@ import {
   NoticeContainerButton,
   LinkStyle,
   NoticeItemTitleError,
+  ImgItem,
 } from './ModalNotice.styled';
 
 export const ModalNotices = ({ addToFavoriteFunction }) => {
@@ -98,21 +99,21 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                   mousewheel={true}
                   keyboard={true}
                   modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-                  className="mySwiper"
+                  // className="mySwiper"
                 >
                   {data.imageUrl && (
                     <SwiperSlide>
-                      <img src={data.imageUrl} alt="Pet first" />
+                      <ImgItem src={data.imageUrl} alt="Pet first" />
                     </SwiperSlide>
                   )}
                   {data.imageUrl_1 && (
                     <SwiperSlide>
-                      <img src={data.imageUrl_1} alt="Pet first" />
+                      <ImgItem src={data.imageUrl_1} alt="Pet first" />
                     </SwiperSlide>
                   )}
                   {data.imageUrl_2 && (
                     <SwiperSlide>
-                      <img src={data.imageUrl_2} alt="Pet first" />
+                      <ImgItem src={data.imageUrl_2} alt="Pet first" />
                     </SwiperSlide>
                   )}
                 </Swiper>
