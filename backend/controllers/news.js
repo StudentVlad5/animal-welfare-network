@@ -28,10 +28,10 @@ const news = async (req, res, next) => {
         pub_date: key["pub_date"],
       })
     );
-console.log(Number(listNews.data.response.meta.offset)/10)
+console.log(Number(listNews.data.response.meta.hits)/10)
     const constructorData = {
       pagination: isPagination,
-      total: Number(listNews.data.response.meta.offset)/10,
+      total: Number(listNews.data.response.meta.hits)/10 <= 100 ? Number(listNews.data.response.meta.hits)/10 : 100,
       perPage,
       page,
     };
