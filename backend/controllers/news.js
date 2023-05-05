@@ -16,7 +16,7 @@ const news = async (req, res, next) => {
   let arrayNews = [];
   try {
     const listNews = await axios.get(
-      `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20150101&end_date=${dateforSeart}&facet=false&page=100&q=${home+pet}&sort=newest&api-key=${API_KEY}`
+      `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20150101&end_date=${dateforSeart}&facet=false&page=100&q=${search}&sort=newest&api-key=${API_KEY}`
     );
 
     listNews.data.response.docs.map((key) =>
