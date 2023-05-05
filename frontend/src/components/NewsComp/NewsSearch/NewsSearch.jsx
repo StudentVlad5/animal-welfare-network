@@ -7,10 +7,10 @@ import {
   IconSearch,
 } from './NewsSearch.styled';
 
-export const NewsSearch = ({ setParams }) => {
+export const NewsSearch = ({ searchText, setParams }) => {
   return (
     <Formik
-      initialValues={{ search: '' }}
+      initialValues={{ search: !searchText ? '' : searchText }}
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(false);
         setParams(values.search);

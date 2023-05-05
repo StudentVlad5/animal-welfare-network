@@ -74,6 +74,7 @@ const ContainerStatus = styled.div`
   text-transform: uppercase;
   margin-top: 10px;
   border: 3px solid ${props => props.theme.orangeLight};
+  z-index: 99;
 `;
 
 const ContainerInfo = styled.div`
@@ -91,9 +92,10 @@ const ContainerInfo = styled.div`
 const ImgItem = styled.img`
   width: 240px;
   height: 240px;
-  border-radius: 0px 0px 40px 40px;
+  padding: 50px;
   outline: unset;
   object-fit: contain;
+  background-color: ${props => props.theme.white};
   @media screen and (min-width: 768px) {
     width: 288px;
     height: 328px;
@@ -111,6 +113,8 @@ const NoticeItemTitle = styled.h2`
   line-height: 33px;
   letter-spacing: -0.01em;
   color: ${props => props.theme.black};
+  min-width: 230px;
+  max-width: 330px;
   @media screen and (min-width: 768px) {
     font-size: 28px;
     line-height: 38px;
