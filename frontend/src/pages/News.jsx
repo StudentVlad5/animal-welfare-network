@@ -23,7 +23,7 @@ const News = () => {
   const [totalPage, setTotalPage] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPages] = useState(1);
-
+  const searchText = searchParams.get('search');
   const setPage = toPage => {
     searchParams.set('page', toPage);
     setPages(toPage);
@@ -81,7 +81,7 @@ const News = () => {
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
 
-          <NewsSearch setParams={setParams} />
+          <NewsSearch setParams={setParams} searchText={searchText} />
           {(!news || news?.length === 0) && !isLoading && (
             <Title as="h3" size="14px">
               Whoops! Can't find anything...
