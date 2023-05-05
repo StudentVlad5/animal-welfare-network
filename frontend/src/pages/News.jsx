@@ -14,7 +14,6 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { Pagination } from 'utils/pagination';
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 
-let page = 1;
 let perPage = 12;
 
 const News = () => {
@@ -23,15 +22,18 @@ const News = () => {
   const [error, setError] = useState(null);
   const [totalPage, setTotalPage] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPages] = useState(1);
 
   const setPage = toPage => {
     searchParams.set('page', toPage);
+    setPages(toPage);
     setSearchParams(searchParams);
   };
 
   const setParams = search => {
     const params = getParams();
     params.page = 1;
+    setPages(1);
     if (!search) {
       !params.search && onInfo('Fill the field!');
       delete params.search;
@@ -50,6 +52,7 @@ const News = () => {
   useEffect(() => {
     if (!page && !perPage) {
       const params = { page: 1, perPage };
+      setPages(1);
       setSearchParams(params);
     }
 
@@ -67,7 +70,7 @@ const News = () => {
         setIsLoading(false);
       }
     })();
-  }, [searchParams, setSearchParams]);
+  }, [page, searchParams, setSearchParams]);
 
   return (
     <>

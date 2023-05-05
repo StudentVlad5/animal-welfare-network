@@ -17,8 +17,8 @@ export function Pagination({ totalPage, changePage, page }) {
       onPageChange={handlePageClick}
       pageRangeDisplayed={5}
       pageCount={totalPage}
-      forcePage={page}
-      initialPage={page - 1}
+      forcePage={page - 1}
+      // initialPage={page - 1}
       previousLabel="<"
       renderOnZeroPageCount={null}
       containerClassName="paginate__container"

@@ -21,10 +21,9 @@ import { addReload } from 'redux/reload/slice';
 import { reloadValue } from 'redux/reload/selectors';
 import { FilterModal } from '../FilterNotices/FilterModal/FilterModal';
 
-let page = 1;
 let perPage = 12;
 
-export const NoticesCategoriesList = () => {
+export const NoticesCategoriesList = ({ page, setPages }) => {
   const dispatch = useDispatch();
   const [listItem, setListItem] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +35,7 @@ export const NoticesCategoriesList = () => {
 
   const setPage = toPage => {
     searchParams.set('page', toPage);
+    setPages(toPage);
     setSearchParams(searchParams);
   };
 
@@ -68,6 +68,7 @@ export const NoticesCategoriesList = () => {
   useEffect(() => {
     if (!page || !perPage) {
       const params = { page: 1, perPage };
+      setPages(1);
       setSearchParams(params);
     }
 
@@ -93,7 +94,7 @@ export const NoticesCategoriesList = () => {
       fetchNoticesList();
       dispatch(addReload(false));
     }
-  }, [dispatch, reload, routeParams.id, searchParams, setSearchParams]);
+  }, [dispatch, page, reload, routeParams.id, searchParams, setSearchParams]);
 
   return (
     <>

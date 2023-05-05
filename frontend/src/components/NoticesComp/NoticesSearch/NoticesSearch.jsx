@@ -10,11 +10,12 @@ import {
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 import { useSearchParams } from 'react-router-dom';
 
-export const NoticesSearch = () => {
+export const NoticesSearch = ({ setPages }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-const setParams = search => {
+  const setParams = search => {
     const params = getParams();
     params.page = 1;
+    setPages(1);
     if (!search) {
       !params.findtext && onInfo('Fill the field!');
       delete params.findtext;
