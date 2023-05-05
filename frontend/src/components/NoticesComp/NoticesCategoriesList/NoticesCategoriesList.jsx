@@ -94,7 +94,15 @@ export const NoticesCategoriesList = ({ page, setPages }) => {
       fetchNoticesList();
       dispatch(addReload(false));
     }
-  }, [dispatch, page, reload, routeParams.id, searchParams, setSearchParams]);
+  }, [
+    dispatch,
+    page,
+    reload,
+    routeParams.id,
+    searchParams,
+    setPages,
+    setSearchParams,
+  ]);
 
   return (
     <>

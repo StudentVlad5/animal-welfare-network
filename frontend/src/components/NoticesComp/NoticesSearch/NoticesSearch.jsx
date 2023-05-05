@@ -12,6 +12,7 @@ import { useSearchParams } from 'react-router-dom';
 
 export const NoticesSearch = ({ setPages }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const setParams = search => {
     const params = getParams();
     params.page = 1;
@@ -32,7 +33,7 @@ export const NoticesSearch = ({ setPages }) => {
   };
   return (
     <Formik
-      initialValues={{ search: '' }}
+      initialValues={{ search: searchParams.get('findtext') }}
       onSubmit={(values, actions) => {
         actions.setSubmitting(false);
         setParams(values.search);
