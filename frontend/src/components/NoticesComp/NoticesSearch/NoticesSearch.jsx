@@ -33,7 +33,11 @@ export const NoticesSearch = ({ setPages }) => {
   };
   return (
     <Formik
-      initialValues={{ search: searchParams.get('findtext') }}
+      initialValues={{
+        search: searchParams.get('findtext')
+          ? searchParams.get('findtext')
+          : '',
+      }}
       onSubmit={(values, actions) => {
         actions.setSubmitting(false);
         setParams(values.search);
