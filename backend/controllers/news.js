@@ -31,7 +31,7 @@ const news = async (req, res, next) => {
 
     const constructorData = {
       pagination: isPagination,
-      total: arrayNews.length,
+      total: listNews.data.response.meta.offset,
       perPage,
       page,
     };
