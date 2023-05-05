@@ -6,7 +6,7 @@ const news = async (req, res, next) => {
   const { API_KEY } = process.env;
   const isPagination = req.query.page;
   const {
-    search = null,
+    search = 'home+pet',
     page = 1,
     perPage = isPagination ? 20 : 5000,
   } = req.query;
@@ -16,7 +16,7 @@ const news = async (req, res, next) => {
   let arrayNews = [];
   try {
     const listNews = await axios.get(
-      `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20150101&end_date=${dateforSeart}&facet=false&page=100&q=home+pet&sort=newest&api-key=${API_KEY}`
+      `https://api.nytimes.com/svc/search/v2/articlesearch.json?begin_date=20150101&end_date=${dateforSeart}&facet=false&page=100&q=${home+pet}&sort=newest&api-key=${API_KEY}`
     );
 
     listNews.data.response.docs.map((key) =>
@@ -36,14 +36,12 @@ const news = async (req, res, next) => {
       page,
     };
 
-    // if (search) {
-    //   console.log("search: ", search);
-    //   const news = JSON.parse(JSON.stringify(arrayNews));
     //   if (isPagination) {
     //     return res.status(200).json(constructorResponse(constructorData, news));
     //   }
     //   return res.status(200).json(news);
     // }
+
     res.status(200).json(constructorResponse(constructorData, arrayNews));
   } catch (err) {
     throw new ValidationError(err.message);
