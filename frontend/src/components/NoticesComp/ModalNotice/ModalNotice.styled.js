@@ -111,6 +111,8 @@ const NoticeItemTitle = styled.h2`
   line-height: 33px;
   letter-spacing: -0.01em;
   color: ${props => props.theme.black};
+  min-width: 230px;
+  max-width: 330px;
   @media screen and (min-width: 768px) {
     font-size: 28px;
     line-height: 38px;
