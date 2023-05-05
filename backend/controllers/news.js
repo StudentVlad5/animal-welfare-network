@@ -6,11 +6,11 @@ const news = async (req, res, next) => {
   const { API_KEY } = process.env;
   const isPagination = req.query.page;
   const {
-    search = 'home+pet',
+    search = "home+pet",
     page = 1,
     perPage = isPagination ? 20 : 5000,
   } = req.query;
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
   const dateforSeart = today.split("-").join("");
 
   let arrayNews = [];
@@ -28,19 +28,16 @@ const news = async (req, res, next) => {
         pub_date: key["pub_date"],
       })
     );
-console.log(Number(listNews.data.response.meta.hits)/10)
+    console.log(Number(listNews.data.response.meta.hits) / 10);
     const constructorData = {
       pagination: isPagination,
-      total: Number(listNews.data.response.meta.hits)/10 <= 100 ? Number(listNews.data.response.meta.hits)/10 : 100,
+      total:
+        Number(listNews.data.response.meta.hits) / 10 <= 100
+          ? Number(listNews.data.response.meta.hits) / 10
+          : 100,
       perPage,
       page,
     };
-
-    //   if (isPagination) {
-    //     return res.status(200).json(constructorResponse(constructorData, news));
-    //   }
-    //   return res.status(200).json(news);
-    // }
 
     res.status(200).json(constructorResponse(constructorData, arrayNews));
   } catch (err) {
