@@ -13,6 +13,7 @@ import { onLoading, onLoaded } from 'components/helpers/Loader/Loader';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { Pagination } from 'utils/pagination';
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
+import { useTranslation } from 'react-i18next';
 
 let perPage = 12;
 
@@ -24,6 +25,8 @@ const News = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPages] = useState(1);
   const searchText = searchParams.get('search');
+  const { t } = useTranslation();
+
   const setPage = toPage => {
     searchParams.set('page', toPage);
     setPages(toPage);
@@ -77,14 +80,14 @@ const News = () => {
       <SEO title="News" description="You can see all news" />
       <Section>
         <Container>
-          <Title as="h1">News</Title>
+          <Title as="h1">{t('News')}</Title>
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
 
           <NewsSearch setParams={setParams} searchText={searchText} />
           {(!news || news?.length === 0) && !isLoading && (
             <Title as="h3" size="14px">
-              Whoops! Can't find anything...
+              {t("Whoops! Can't find anything...")}
             </Title>
           )}
           {news?.length > 0 && !error && (

@@ -11,9 +11,11 @@ import {
   Ractangle,
   Dates,
 } from './NewsListItem.styled';
+import { useTranslation } from 'react-i18next';
 
 export const NewsListItem = ({ newsItem }) => {
   const { abstract, web_url, lead_paragraph, pub_date } = newsItem;
+  const { t } = useTranslation();
 
   return (
     <Item key={web_url} id={web_url}>
@@ -29,14 +31,14 @@ export const NewsListItem = ({ newsItem }) => {
           <DateWrapper>
             <Dates>{moment(`${pub_date}`).utc().format('YYYY-MM-DD')}</Dates>
             <Link target="_blank" href={web_url}>
-              Read More
+              {t('Read More')}
             </Link>
           </DateWrapper>
         ) : (
           <DateWrapper>
             <Dates>----/----/-------</Dates>
             <Link target="_blank" href={web_url}>
-              Read More
+              {t('Read More')}
             </Link>
           </DateWrapper>
         )}
