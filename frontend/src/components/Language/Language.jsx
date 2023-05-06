@@ -2,7 +2,7 @@
 import i18next from 'i18next';
 import React from 'react';
 
-export const Language = () => {
+const Language = () => {
   // const { i18n } = useTranslation();
 
   const changeLanguage = event => {
@@ -19,3 +19,5 @@ export const Language = () => {
     </div>
   );
 };
+
+export default Language;
