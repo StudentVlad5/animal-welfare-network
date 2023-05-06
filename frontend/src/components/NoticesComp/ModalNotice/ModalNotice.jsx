@@ -99,7 +99,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                   mousewheel={true}
                   keyboard={true}
                   modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-                  // className="mySwiper"
+                  className="mySwiper"
                 >
                   {data.imageUrl && (
                     <SwiperSlide>
