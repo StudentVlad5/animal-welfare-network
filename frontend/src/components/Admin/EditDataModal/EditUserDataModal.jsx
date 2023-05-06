@@ -20,8 +20,6 @@ import {
   Label,
   Input,
   FieldItemFile,
-  Option,
-  OptionFirst,
   CloseIconBtn,
   DoneIconBtn,
   Error,
