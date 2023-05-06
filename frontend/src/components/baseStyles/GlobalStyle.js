@@ -282,15 +282,18 @@ margin: 0!important;
   color: ${props => props.theme.orangeLight};
 }
 
-.swiper-pagination-bullet-active {
+.swiper-pagination-bullet-active.swiper-pagination-bullet{
   background-color: ${props => props.theme.orangeLight}!important;
 }
-
+.swiper-pagination-bullet {
+  background-color: ${props => props.theme.black}!important;
+}
 .swiper-button-prev,
 .swiper-button-next,
 .swiper-pagination-bullet {
-  transform: scale(1.7);
+  transform: scale(1.1);
 }
+
 input[type="date"]::-webkit-calendar-picker-indicator {
   color-scheme: ${props => props.theme.colorscheme};
   opacity: 1;
