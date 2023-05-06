@@ -7,7 +7,12 @@ const BackDrop = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  padding-top: 100px;
   overflow: scroll;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 0;
+  }
 `;
 
 const Modal = styled.div`
@@ -38,15 +43,34 @@ const FormStyled = styled(Form)`
   gap: 6px;
 
   margin: 0 auto;
-  padding: 35px 12px 12px;
-  min-width: 280px;
+  padding: 35px 0 12px;
+`;
+
+const FieldList = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+  align-items: stretch;
+  gap: 5px;
+
+  @media screen and (min-width: 768px) {
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-end;
+  }
 `;
 
 const FieldStyled = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   gap: 3px;
+
+  @media screen and (min-width: 768px) {
+    width: 45%;
+  }
 
   & .react-select-container {
     padding: 5px;
@@ -160,10 +184,6 @@ const OptionFirst = styled.option`
   color: rgba(27, 27, 27, 0.6);
 
   background: ${props => props.theme.mainBg};
-
-  @media screen and (min-width: 768px) {
-    font-size: 12px;
-  }
 `;
 
 const Li = styled.li`
@@ -263,10 +283,6 @@ const Error = styled.span`
   letter-spacing: 0.04em;
   text-align: left;
   color: ${props => props.theme.orangeLight};
-
-  @media screen and (min-width: 768px) {
-    font-size: 12px;
-  }
 `;
 
 export {
@@ -274,6 +290,7 @@ export {
   Modal,
   Li,
   FormStyled,
+  FieldList,
   FieldStyled,
   Label,
   Input,
