@@ -27,6 +27,7 @@ import { selectId, getPermission } from 'redux/auth/selectors';
 import { useState } from 'react';
 import { deleteData } from 'services/APIservice';
 import { addReload } from 'redux/reload/slice';
+import { useTranslation } from 'react-i18next';
 
 export const NoticesCategoriesItem = ({
   data,
@@ -41,6 +42,7 @@ export const NoticesCategoriesItem = ({
   let id = '';
   _id == null ? (id = 1) : (id = _id);
 
+  const { t } = useTranslation();
   const permission = useSelector(getPermission);
 
   async function deleteNotice(e, id) {
@@ -58,24 +60,10 @@ export const NoticesCategoriesItem = ({
     }
   }
 
-  const openModalForItemPet = e => {
+  const openModalForItemPet = (e, modal) => {
     e.preventDefault();
     e.stopPropagation();
-    if (e.currentTarget.dataset.modal === 'itemPet') {
-      dispatch(
-        addModal({
-          modal: e.currentTarget.dataset.modal,
-          id: e.currentTarget.dataset.id,
-        }),
-      );
-      setTimeout(() => openModalWindow(e, null), 500);
-    }
-  };
-
-  const openModalForEditItemPet = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.currentTarget.dataset.modal === 'editItemPet') {
+    if (e.currentTarget.dataset.modal === modal) {
       dispatch(
         addModal({
           modal: e.currentTarget.dataset.modal,
@@ -140,15 +128,15 @@ export const NoticesCategoriesItem = ({
           <Table>
             <TBody>
               <tr>
-                <TdTable>Breed:</TdTable>
+                <TdTable>{t('Breed')}:</TdTable>
                 <TdTable2>{data.breed}</TdTable2>
               </tr>
               <tr>
-                <TdTable>Place:</TdTable>
+                <TdTable>{t('Place')}:</TdTable>
                 <TdTable2>{data.location}</TdTable2>
               </tr>
               <tr>
-                <TdTable>Age:</TdTable>
+                <TdTable>{t('Age')}:</TdTable>
                 <TdTable2>
                   {data.birthday
                     ? Math.round(
@@ -164,7 +152,7 @@ export const NoticesCategoriesItem = ({
               </tr>
               {data.price && (
                 <tr>
-                  <TdTable>Price:</TdTable>
+                  <TdTable>{t('Price')}:</TdTable>
                   <TdTable2>
                     {data.price} {data.currency}
                   </TdTable2>
@@ -177,7 +165,7 @@ export const NoticesCategoriesItem = ({
           <BtnLearnMore
             onClick={e =>
               e.currentTarget.innerText === 'Learn more' &&
-              openModalForItemPet(e)
+              openModalForItemPet(e, 'itemPet')
             }
             data-modal="itemPet"
             data-id={data._id}
@@ -189,16 +177,16 @@ export const NoticesCategoriesItem = ({
               <BtnEdit
                 onClick={e =>
                   e.currentTarget.innerText === 'Edit' &&
-                  openModalForEditItemPet(e)
+                  openModalForItemPet(e, 'editItemPet')
                 }
                 data-modal="editItemPet"
                 data-id={data._id}
               >
-                Edit
+                {t('Edit')}
                 <EditIcon />
               </BtnEdit>
               <BtnDelete onClick={e => deleteNotice(e, data._id)}>
-                Delete
+                {t('Delete')}
                 <DeleteIcon />
               </BtnDelete>
             </>

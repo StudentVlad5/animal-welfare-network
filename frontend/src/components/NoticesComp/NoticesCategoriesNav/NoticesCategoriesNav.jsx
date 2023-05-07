@@ -7,12 +7,14 @@ import {
   ContainerCategoryBtn,
   StyledLi,
 } from './NoticesCategoriesNav.styled';
+import { useTranslation } from 'react-i18next';
 
 export const NoticesCategoriesNav = () => {
   const { isLoggedIn } = useAuth();
   const [searchParams] = useSearchParams();
   searchParams.set('perPage', 12);
   searchParams.set('page', 1);
+  const { t } = useTranslation();
 
   const navItemsPublick = [
     {
@@ -46,14 +48,14 @@ export const NoticesCategoriesNav = () => {
       <ContainerCategoryBtn>
         {navItemsPublick.map(({ href, text }) => (
           <StyledLi key={href}>
-            <BtnCategory to={href}>{text}</BtnCategory>
+            <BtnCategory to={href}>{t(text)}</BtnCategory>
           </StyledLi>
         ))}
         {isLoggedIn && (
           <>
             {navItemsPrivate.map(({ href, text }) => (
               <StyledLi key={href}>
-                <BtnCategory to={href}>{text}</BtnCategory>
+                <BtnCategory to={href}>{t(text)}</BtnCategory>
               </StyledLi>
             ))}
           </>

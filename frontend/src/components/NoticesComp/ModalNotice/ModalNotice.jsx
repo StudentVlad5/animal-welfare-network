@@ -36,11 +36,13 @@ import {
   NoticeItemTitleError,
   ImgItem,
 } from './ModalNotice.styled';
+import { useTranslation } from 'react-i18next';
 
 export const ModalNotices = ({ addToFavoriteFunction }) => {
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
   const favorites = useSelector(selectFavorites);
+  const { t } = useTranslation();
   const closeModalForItemPet = e => {
     e.preventDefault();
     dispatch(cleanModal());
@@ -65,7 +67,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
         const { data } = await fetchData(itemForFetch);
         setData(data);
         if (!data) {
-          return onFetchError('Whoops, something went wrong');
+          return onFetchError(t('Whoops, something went wrong'));
         }
       } catch (error) {
         setData(false);
@@ -77,7 +79,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
     if (modal.id !== '') {
       fetchNoticesList();
     }
-  }, [itemForFetch, modal.id]);
+  }, [itemForFetch, modal.id, t]);
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'itemPet' && (
@@ -123,19 +125,19 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                   <Table>
                     <tbody>
                       <tr>
-                        <TdTable>Name:</TdTable>
+                        <TdTable>{t('Name')}:</TdTable>
                         <TdTable2>{data.name}</TdTable2>
                       </tr>
                       {data.price && (
                         <tr>
-                          <TdTable>Price:</TdTable>
+                          <TdTable>{t('Price')}:</TdTable>
                           <TdTable2>
                             {data.price} {data.currency || '₴'}
                           </TdTable2>
                         </tr>
                       )}
                       <tr>
-                        <TdTable>Birthday:</TdTable>
+                        <TdTable>{t('Birthday')}:</TdTable>
                         <TdTable2>
                           {data.birthday
                             ? data.birthday
@@ -156,43 +158,43 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                         </TdTable2>
                       </tr>
                       <tr>
-                        <TdTable>Breed:</TdTable>
+                        <TdTable>{t('Breed')}:</TdTable>
                         <TdTable2>{data.breed}</TdTable2>
                       </tr>
                       <tr>
-                        <TdTable>Size:</TdTable>
+                        <TdTable>{t('Size')}:</TdTable>
                         <TdTable2>{data.size}</TdTable2>
                       </tr>
                       <tr>
-                        <TdTable>Height:</TdTable>
+                        <TdTable>{t('Height')}:</TdTable>
                         <TdTable2>{data.height}</TdTable2>
                       </tr>
                       <tr>
-                        <TdTable>Weight:</TdTable>
+                        <TdTable>{t('Weight')}:</TdTable>
                         <TdTable2>{data.weight}</TdTable2>
                       </tr>
                       <tr>
-                        <TdTable>Passport:</TdTable>
+                        <TdTable>{t('Passport')}:</TdTable>
                         <TdTable2>{data.passport}</TdTable2>
                       </tr>
                       <tr>
-                        <TdTable>Sterilization:</TdTable>
+                        <TdTable>{t('Sterilization')}:</TdTable>
                         <TdTable2>{data.sterilization}</TdTable2>
                       </tr>
                       <tr>
-                        <TdTable>Lives:</TdTable>
+                        <TdTable>{t('Lives')}:</TdTable>
                         <TdTable2>{data.lives}</TdTable2>
                       </tr>
                       <tr>
-                        <TdTable>Location:</TdTable>
+                        <TdTable>{t('Location')}:</TdTable>
                         <TdTable2>{data.location}</TdTable2>
                       </tr>
                       <tr>
-                        <TdTable>The sex:</TdTable>
+                        <TdTable>{t('The sex')}:</TdTable>
                         <TdTable2>{data.sex}</TdTable2>
                       </tr>
                       <tr>
-                        <TdTable>Email:</TdTable>
+                        <TdTable>{t('Email')}:</TdTable>
                         <TdTable2>
                           <LinkStyle href={`mailto: ${data.email}`}>
                             {data.email}
@@ -200,7 +202,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                         </TdTable2>
                       </tr>
                       <tr>
-                        <TdTable>Phone:</TdTable>
+                        <TdTable>{t('Phone')}:</TdTable>
                         <TdTable2>
                           <LinkStyle href={`tel:${data.phone}`}>
                             {data.phone}
@@ -212,7 +214,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                 </div>
               </ContainerInfo>
               <ContainerComments>
-                <MainComments>Comments: </MainComments>
+                <MainComments>{t('Comments')}: </MainComments>
                 <Comments>{data.comments}</Comments>
               </ContainerComments>
               <NoticeContainerButton>
@@ -220,16 +222,16 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                   style={{ textDecoration: 'none' }}
                   to={`tel:${data.phone}`}
                 >
-                  <BtnContact>Contacts</BtnContact>
+                  <BtnContact>{t('Contacts')}</BtnContact>
                 </Link>
                 {isInFavorite ? (
                   <BtnAddFavorites onClick={addToFavoriteFunction(modal.id)}>
-                    Remove from
+                    {t('Remove from')}
                     <AiFillHeart size={22} style={{ marginLeft: '5px' }} />
                   </BtnAddFavorites>
                 ) : (
                   <BtnAddFavorites onClick={addToFavoriteFunction(modal.id)}>
-                    Add to
+                    {t('Add to')}
                     <AiFillHeart size={22} style={{ marginLeft: '5px' }} />
                   </BtnAddFavorites>
                 )}
@@ -237,7 +239,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
             </>
           ) : (
             <NoticeItemTitleError>
-              "Whoops... Don't have information about this pet"
+              {t("Whoops... Don't have information about this pet")}
             </NoticeItemTitleError>
           )}
         </NoticesContainerItem>

@@ -9,9 +9,11 @@ import {
 } from './NoticesSearch.styled';
 import { onInfo } from 'components/helpers/Messages/NotifyMessages';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const NoticesSearch = ({ setPages }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t } = useTranslation();
 
   const setParams = search => {
     const params = getParams();
@@ -50,7 +52,7 @@ export const NoticesSearch = ({ setPages }) => {
               id="search"
               type="search"
               name="search"
-              placeholder="Search"
+              placeholder={t('Search')}
               value={values.search}
               onChange={e => {
                 handleChange(e);

@@ -4,6 +4,7 @@ const {
   ctrlWrapper,
   authMiddleware,
   validation,
+  uploadCloud,
 } = require('../../middleWares');
 const { createValidation } = require('../../middleWares/newNoticesValidation');
 const { userUpdateValidationSchema } = require('../../models');
@@ -40,11 +41,16 @@ router.delete(
   ctrlWrapper(notices.deleteNotices)
 );
 
-router.put(
+router.patch(
   '/notices/:id',
   ctrlWrapper(authMiddleware),
+  uploadCloud.fields([
+    { name: 'imageUrl', maxCount: 1 },
+    { name: 'imageUrl_1', maxCount: 1 },
+    { name: 'imageUrl_2', maxCount: 1 },
+  ]),
   createValidation,
-  ctrlWrapper(notices.updateNotices)
+  ctrlWrapper(notices.editNotices)
 );
 
 module.exports = routerAdmin = router;

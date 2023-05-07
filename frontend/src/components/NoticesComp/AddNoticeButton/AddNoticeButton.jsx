@@ -9,10 +9,12 @@ import { useDispatch } from 'react-redux';
 import { useAuth } from 'hooks/useAuth';
 import { toggleModalAddNotice } from 'utils/toggleModalNotice';
 import { getBreeds } from 'utils/getBreeds';
+import { useTranslation } from 'react-i18next';
 
 export const AddNoticeButton = () => {
   const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   // const toggleModalAddNotice = e => {
   //   e.preventDefault();
@@ -54,7 +56,7 @@ export const AddNoticeButton = () => {
         <div>
           <PlusIcon />
         </div>
-        Add pet
+        {t('Add pet')}
       </ButtonStyled>
       {isLoggedIn && <AddNoticeModal />}
     </div>
