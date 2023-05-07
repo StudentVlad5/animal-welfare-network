@@ -1,16 +1,16 @@
-const { Notices } = require("../../models");
+const { Notices } = require('../../models');
 
 const editNotices = async (req, res, next) => {
   const { id } = req.params;
   const body = req.body;
-  const  files  = req.files;
+  const files = req.files;
   // const { user, body, params, files } = req;
   // console.log("req", req);
   // console.log("user", user);
-  console.log("body", req.body);
-  console.log("params", req.params);
+  console.log('body', req.body);
+  console.log('params', req.params);
   const imagesObject = {};
-  Object.values(files).forEach((e) => {
+  Object.values(files).forEach(e => {
     imagesObject[e[0].fieldname] = e[0].path;
   });
 
@@ -24,15 +24,15 @@ const editNotices = async (req, res, next) => {
     // owner: _id,
     ...imagesObject,
   };
-  console.log("fullData", fullData);
-  console.log("id", id);
-  const notices = await Notices.findByIdAndUpdate({ _id:id }, fullData, {
+  console.log('fullData', fullData);
+  console.log('id', id);
+  const notices = await Notices.findByIdAndUpdate({ _id: id }, fullData, {
     new: true,
   });
   if (notices) {
     return res.status(201).json(notices);
   } else {
-    const error = new Error(`pet whith id = ${id} not found`);
+    const error = new Error(`pet with id = ${id} not found`);
     error.status = 404;
     throw error;
   }

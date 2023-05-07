@@ -2,8 +2,8 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 // const { BASE_URL } = window.global;
-const BASE_URL = 'https://animal-welfare-network.onrender.com/api';
-// const BASE_URL = 'http://localhost:3030/api';
+// const BASE_URL = 'https://animal-welfare-network.onrender.com/api';
+const BASE_URL = 'http://localhost:3030/api';
 
 async function fetchData(pathParams, body) {
   const axiosInstance = axios.create({
@@ -111,7 +111,7 @@ async function deleteData(pathParams) {
 }
 
 async function updateData(pathParams, formData) {
-  return await axios.put(`${BASE_URL}${pathParams}`, formData, {
+  return await axios.patch(`${BASE_URL}${pathParams}`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',

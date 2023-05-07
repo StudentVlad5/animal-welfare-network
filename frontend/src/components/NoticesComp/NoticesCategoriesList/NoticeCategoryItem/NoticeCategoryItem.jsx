@@ -60,24 +60,10 @@ export const NoticesCategoriesItem = ({
     }
   }
 
-  const openModalForItemPet = e => {
+  const openModalForItemPet = (e, modal) => {
     e.preventDefault();
     e.stopPropagation();
-    if (e.currentTarget.dataset.modal === 'itemPet') {
-      dispatch(
-        addModal({
-          modal: e.currentTarget.dataset.modal,
-          id: e.currentTarget.dataset.id,
-        }),
-      );
-      setTimeout(() => openModalWindow(e, null), 500);
-    }
-  };
-
-  const openModalForEditItemPet = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.currentTarget.dataset.modal === 'editItemPet') {
+    if (e.currentTarget.dataset.modal === modal) {
       dispatch(
         addModal({
           modal: e.currentTarget.dataset.modal,
@@ -179,7 +165,7 @@ export const NoticesCategoriesItem = ({
           <BtnLearnMore
             onClick={e =>
               e.currentTarget.innerText === 'Learn more' &&
-              openModalForItemPet(e)
+              openModalForItemPet(e, 'itemPet')
             }
             data-modal="itemPet"
             data-id={data._id}
@@ -191,7 +177,7 @@ export const NoticesCategoriesItem = ({
               <BtnEdit
                 onClick={e =>
                   e.currentTarget.innerText === 'Edit' &&
-                  openModalForEditItemPet(e)
+                  openModalForItemPet(e, 'editItemPet')
                 }
                 data-modal="editItemPet"
                 data-id={data._id}

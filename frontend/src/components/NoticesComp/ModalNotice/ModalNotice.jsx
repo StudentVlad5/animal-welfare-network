@@ -79,7 +79,7 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
     if (modal.id !== '') {
       fetchNoticesList();
     }
-  }, [itemForFetch, modal.id]);
+  }, [itemForFetch, modal.id, t]);
 
   return ReactDOM.createPortal(
     Object.values(modal)[0] === 'itemPet' && (

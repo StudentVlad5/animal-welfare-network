@@ -67,27 +67,23 @@ export const ModalEditNotice = () => {
   searchParams.set('perPage', 12);
   searchParams.set('page', 1);
 
-  const { BASE_URL } = window.global;
-  let itemForFetch = `${BASE_URL}/notices/byid/${modal.id}`;
+  let itemForFetch = `/notices/byid/${modal.id}`;
 
   useEffect(() => {
-    setIsLoading(true);
     async function fetchNoticesList() {
-      await fetch(itemForFetch)
-        .then(res => {
-          setIsLoading(false);
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(new Error(`Can't find anything`));
-        })
-        .then(value => {
-          setDataOfPet(value);
-        })
-        .catch(error => {
-          setDataOfPet(false);
-          setError(error);
-        });
+      setIsLoading(true);
+      try {
+        const { data } = await fetchData(itemForFetch);
+        setDataOfPet(data);
+        if (!data) {
+          return onFetchError(`Can't find anything`);
+        }
+      } catch (error) {
+        setDataOfPet(false);
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
     }
     if (modal.id !== '') {
       fetchNoticesList();
