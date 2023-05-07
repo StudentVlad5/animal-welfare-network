@@ -10,8 +10,8 @@ import { ThemeStatus } from 'components/ThemeStatus/ThemeProvider';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 
-// window.global = { BASE_URL: 'https://animal-welfare-network.onrender.com/api' };
-window.global = { BASE_URL: 'http://localhost:3030/api' };
+window.global = { BASE_URL: 'https://animal-welfare-network.onrender.com/api' };
+// window.global = { BASE_URL: 'http://localhost:3030/api' };
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
