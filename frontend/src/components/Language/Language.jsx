@@ -1,6 +1,7 @@
 // import i18n from 'i18n';
 import i18next from 'i18next';
 import React from 'react';
+import { SelectConteinerLanguage, SelectLanguage } from './language.styled';
 
 const Language = () => {
   // const { i18n } = useTranslation();
@@ -11,12 +12,12 @@ const Language = () => {
   };
 
   return (
-    <div>
-      <select onChange={changeLanguage}>
+    <SelectConteinerLanguage>
+      <SelectLanguage onChange={changeLanguage}>
         <option value="en">En</option>
         <option value="ua">Ua</option>
-      </select>
-    </div>
+      </SelectLanguage>
+    </SelectConteinerLanguage>
   );
 };
 

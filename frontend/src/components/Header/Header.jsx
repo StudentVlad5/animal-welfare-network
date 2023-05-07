@@ -8,9 +8,18 @@ export const Header = () => {
   return (
     <HeaderContainer>
       <Logo />
-      <SwitchTheme />
+      <div
+        style={{
+          display: 'flex',
+          marginLeft: '70px',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <SwitchTheme />
+        <Language />
+      </div>
       <Navigation />
-      <Language />
     </HeaderContainer>
   );
 };
