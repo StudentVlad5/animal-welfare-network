@@ -15,10 +15,12 @@ import {
 } from './UserData.styled';
 import { useAuth } from 'hooks/useAuth';
 import { update } from 'redux/auth/operations';
+import { useTranslation } from 'react-i18next';
 
 export const UserData = () => {
   const [active, setActive] = useState('');
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   let { userIn } = useAuth();
   let profile = false;
@@ -45,7 +47,7 @@ export const UserData = () => {
             <EditCameraWrapper>
               <EditPhotoLabel htmlFor="user_photo">
                 <EditCameraStyle />
-                <span>Edit photo</span>
+                <span>{t("Edit photo")}</span>
               </EditPhotoLabel>
             </EditCameraWrapper>
             <EditPhotoInput

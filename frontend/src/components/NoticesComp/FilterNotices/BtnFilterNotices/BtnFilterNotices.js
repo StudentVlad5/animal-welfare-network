@@ -3,10 +3,12 @@ import { BtnFilter, FilterNoticesWrapper } from './BtnFilterNotices.styled';
 import { addModal } from 'redux/modal/operation';
 import { openModalWindow } from 'hooks/modalWindow';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const BtnFilterNotices = () => {
   const dispatch = useDispatch();
   const [, setSearchParams] = useSearchParams();
+  const { t } = useTranslation();
 
   const openModalFilter = e => {
     e.preventDefault();
@@ -37,7 +39,7 @@ export const BtnFilterNotices = () => {
         onClick={openModalFilter}
         data-modal="filterModal"
       >
-        filter <span style={{ fontSize: '20px' }}>4</span> search
+        {t("filter")} <span style={{ fontSize: '20px' }}>4</span> {t("search")}
       </BtnFilter>
       <BtnFilter
         type="button"
@@ -53,7 +55,7 @@ export const BtnFilterNotices = () => {
             : true
         }
       >
-        clear filter
+        {t("clear filter")}
       </BtnFilter>
     </FilterNoticesWrapper>
   );

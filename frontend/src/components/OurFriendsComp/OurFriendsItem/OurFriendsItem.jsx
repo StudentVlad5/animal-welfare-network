@@ -13,6 +13,7 @@ import {
   Image,
 } from './OurFriendsItem.styled';
 import defaultImg from 'images/defaultPets.webp';
+import { useTranslation } from 'react-i18next';
 
 export const OurFriendsItem = ({ friend }) => {
   const {
@@ -39,6 +40,7 @@ export const OurFriendsItem = ({ friend }) => {
   // gets user time and compare with workDays
   const userDay = [6, 0, 1, 2, 3, 4, 5][new Date().getDay()];
   const userHours = new Date().getHours();
+  const { t } = useTranslation();
 
   useEffect(() => {
     try {
@@ -91,7 +93,7 @@ export const OurFriendsItem = ({ friend }) => {
         )}
         <InfoWrapper>
           <TextWrapper>
-            <Text>Time:</Text>
+            <Text>{t("Time")}:</Text>
             {workDays !== null && !error && workDays?.length !== 0 ? (
               <Link aria-label="work days" onClick={toggleModal}>
                 {workTime}
@@ -108,7 +110,7 @@ export const OurFriendsItem = ({ friend }) => {
             )}
           </TextWrapper>
           <TextWrapper>
-            <Text>Address:</Text>
+            <Text>{t("Address")}:</Text>
             {address ? (
               <Link href={addressUrl} aria-label="address" target="blank">
                 <EllipsisText text={address} length={25} />
@@ -118,7 +120,7 @@ export const OurFriendsItem = ({ friend }) => {
             )}
           </TextWrapper>
           <TextWrapper>
-            <Text>Email:</Text>
+            <Text>{t("Email")}:</Text>
             {email ? (
               <Link href={hrefEmail} aria-label="email">
                 <EllipsisText text={email} length={25} />
@@ -128,7 +130,7 @@ export const OurFriendsItem = ({ friend }) => {
             )}
           </TextWrapper>
           <TextWrapper>
-            <Text>Phone:</Text>
+            <Text>{t("Phone")}:</Text>
             {phone ? (
               <Link href={hrefPhone} aria-label="phone">
                 {phone}
