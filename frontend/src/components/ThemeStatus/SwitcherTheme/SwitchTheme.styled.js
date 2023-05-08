@@ -19,37 +19,17 @@ const SwitcherWrapper = styled.div`
   align-items: center;
 
   position: absolute;
-  left: 135px;
+  left: 110px;
 
   width: 40px;
-  height: 40px;
-  padding: 4px;
+  height: auto;
 
   background-color: transparent;
   cursor: pointer;
-  /* 
-  &::before,
-  &::after {
-    content: '';
-    display: block;
-    height: 25px;
-    width: 25px;
-    position: absolute;
-  }
 
-  &::before {
-    background-image: url(${sun});
-    background-size: 25px 25px;
-    background-repeat: no-repeat;
-    left: 8px;
+  @media screen and (min-width: 768px) {
+    left: 130px;
   }
-
-  &::after {
-    background-image: url(${moon});
-    background-size: 25px 25px;
-    background-repeat: no-repeat;
-    right: 8px;
-  } */
 `;
 
 export { BtnChangeTheme, SwitcherWrapper };
