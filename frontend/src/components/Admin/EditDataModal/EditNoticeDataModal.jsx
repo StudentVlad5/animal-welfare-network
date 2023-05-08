@@ -1,11 +1,9 @@
-import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdClose, MdDone } from 'react-icons/md';
 import CreatableSelect from 'react-select/creatable';
 import usePlacesAutocomplete from 'use-places-autocomplete';
-// import useOnclickOutside from 'react-cool-onclickoutside';
 import { Formik } from 'formik';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
@@ -14,7 +12,7 @@ import { addReload } from 'redux/reload/slice';
 import { addBreeds } from 'redux/breeds/slice';
 import { breedsValue } from 'redux/breeds/selectors';
 import { fetchData, fetchPatchNotice } from 'services/APIservice';
-import { setImage } from 'utils/setimage';
+// import { setImage } from 'utils/setimage';
 import {
   BackDrop,
   Modal,
@@ -24,7 +22,7 @@ import {
   FieldStyled,
   Label,
   Input,
-  FieldItemFile,
+  // FieldItemFile,
   Option,
   OptionFirst,
   CloseIconBtn,
@@ -34,7 +32,7 @@ import {
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 
-export const EditNoticeDataModal = ({ path }) => {
+export const EditNoticeDataModal = () => {
   const [dataUpdate, setDataUpdate] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -42,7 +40,7 @@ export const EditNoticeDataModal = ({ path }) => {
 
   const modal = useSelector(modalComponent);
   const dispatch = useDispatch();
-  const itemForFetch = `/${path}/${modal.id}`;
+  const itemForFetch = `/notices/byid/${modal.id}`;
 
   useEffect(() => {
     async function getData() {
@@ -86,7 +84,7 @@ export const EditNoticeDataModal = ({ path }) => {
     setIsLoading(true);
     try {
       const { date } = await fetchPatchNotice(
-        `/notices/${values.category}/${modal.id}`,
+        `/notices/${modal.id}`,
         values,
         file1,
         file2,
@@ -204,9 +202,9 @@ export const EditNoticeDataModal = ({ path }) => {
             onSubmit={(values, { setSubmitting }) => {
               // setTimeout(() => {
               editNotice(values);
-              closeDataModal();
               dispatch(addReload(false));
               setSubmitting(false);
+              closeDataModal();
               // }, 400);
             }}
             enableReinitialize={true}
@@ -572,7 +570,7 @@ export const EditNoticeDataModal = ({ path }) => {
                             setImage(e);
                           }}
                         />
-                      )} */}
+                      )}
                       {dataUpdate?.imageUrl_1 ? (
                         <FieldItemFile
                           style={{
@@ -630,7 +628,7 @@ export const EditNoticeDataModal = ({ path }) => {
                             setImage(e);
                           }}
                         />
-                      )}
+                      )} */}
                     </div>
                   </FieldStyled>
                   <FieldStyled>
@@ -772,9 +770,4 @@ export const EditNoticeDataModal = ({ path }) => {
     ),
     document.querySelector('#popup-root'),
   );
-};
-
-EditNoticeDataModal.propTypes = {
-  path: PropTypes.string.isRequired,
-  onEdit: PropTypes.func,
 };

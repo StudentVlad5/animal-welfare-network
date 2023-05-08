@@ -79,7 +79,7 @@ const AdminUsersPage = () => {
           id: e.currentTarget.dataset.id,
         }),
       );
-      openModalWindow(e, null);
+      setTimeout(() => openModalWindow(e, null), 500);
     }
   };
 
@@ -165,7 +165,7 @@ const AdminUsersPage = () => {
           </Table>
         </Container>
       </Section>
-      <EditUserDataModal path="admin/users" />
+      <EditUserDataModal />
     </>
   );
 };
