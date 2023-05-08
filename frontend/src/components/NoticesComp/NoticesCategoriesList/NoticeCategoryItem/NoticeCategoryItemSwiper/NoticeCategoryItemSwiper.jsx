@@ -64,7 +64,7 @@ export const NoticeCategoryItemSwiper = () => {
               </Swiper>
             </>
           ) : (
-            <h2>"Whoops... Don't have information about this pet"</h2>
+            <h2>{t("Whoops... Don't have information about this pet")}</h2>
           )}
         </NoticesContainerItem>
       </BackDrop>

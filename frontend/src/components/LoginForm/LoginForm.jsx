@@ -21,12 +21,14 @@ import {
   TitleLogin,
 } from './LoginForm.styled';
 import { logIn } from 'redux/auth/operations';
+import { useTranslation } from 'react-i18next';
 
 export const LoginForm = () => {
   const [isShown, setIsShown] = useState(true); //
   const [showPass, setShowPass] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const hideForm = () => {
     setIsShown(true);
@@ -71,7 +73,7 @@ export const LoginForm = () => {
       <FormContainer>
         <Formik validationSchema={schemas.schemasLogin}>
           <FormLogin onSubmit={formik.handleSubmit} autoComplete="off">
-            <TitleLogin>Login</TitleLogin>
+            <TitleLogin>{t("Login")}</TitleLogin>
             {isShown && (
               <Div>
                 <Input
@@ -83,7 +85,7 @@ export const LoginForm = () => {
                   }}
                   name="email"
                   type="email"
-                  placeholder="Email"
+                  placeholder={t("Email")}
                   validate={schemas.schemasLogin.email}
                   onChange={formik.handleChange}
                   value={formik.values.email}
@@ -111,7 +113,7 @@ export const LoginForm = () => {
                   }}
                   name="password"
                   type={showPass ? 'text' : 'password'}
-                  placeholder="Password"
+                  placeholder={t("Password")}
                   onChange={formik.handleChange}
                   value={formik.values.password}
                   onBlur={formik.handleBlur}
@@ -128,18 +130,18 @@ export const LoginForm = () => {
 
             {isShown && (
               <Button type="submit" disabled={isValid}>
-                Login
+                {t("Login")}
               </Button>
             )}
 
-            {!isShown && <Button type="submit">Login</Button>}
+            {!isShown && <Button type="submit">{t("Login")}</Button>}
             <BoxText>
-              <span>Already have an account?</span>{' '}
-              <StyledLink to="/register">Register</StyledLink>
+              <span>{t("Still don't have an account?")}</span>{' '}
+              <StyledLink to="/register">{t("Register")}</StyledLink>
             </BoxText>
           </FormLogin>
         </Formik>
-        {isLoading && <h1 style={{ textAlign: 'center' }}>Loading...</h1>}
+        {isLoading && <h1 style={{ textAlign: 'center' }}>{t("Loading...")}</h1>}
       </FormContainer>
     </FormSection>
   );
