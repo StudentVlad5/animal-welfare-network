@@ -16,34 +16,6 @@ export const AddNoticeButton = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  // const toggleModalAddNotice = e => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   if (!isLoggedIn) {
-  //     onInfo('You must be loggined!');
-  //   }
-  //   if (isLoggedIn && e.currentTarget.dataset.modal === 'formSell') {
-  //     dispatch(
-  //       addModal({
-  //         modal: e.currentTarget.dataset.modal,
-  //       }),
-  //     );
-  //     openModalWindow(e, null);
-  //   }
-  // };
-
-  // async function getData() {
-  //   try {
-  //     const { data } = await fetchData('/breeds');
-  //     dispatch(addBreeds(data));
-  //     if (!data) {
-  //       return alert('Whoops, something went wrong');
-  //     }
-  //   } catch (error) {
-  //     alert(error.message);
-  //   }
-  // }
-
   return (
     <div style={{ marginLeft: 'auto', position: 'relative' }}>
       <ButtonStyled

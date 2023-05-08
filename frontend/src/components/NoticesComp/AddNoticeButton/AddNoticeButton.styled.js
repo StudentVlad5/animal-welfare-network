@@ -7,16 +7,13 @@ export const ButtonStyled = styled.button`
   top: 100px;
   right: 0px;
   z-index: 44;
-
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
   width: 80px;
   height: 80px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-
   background: ${props => props.theme.orangeLight};
   border-radius: 50%;
 
@@ -33,29 +30,40 @@ export const ButtonStyled = styled.button`
   border-spacing: 0;
   margin: 0;
   padding: 16px 0px 16px 0px;
-
   cursor: pointer;
-
-  color: ${props => props.theme.white};
-  transition: all 500ms ease;
-
-  stroke: ${props => props.theme.white};
-  fill: ${props => props.theme.white};
-  transition: all 0.25s ease-in;
+  color: ${props => props.theme.black};
+  transition: all 0.25s ease;
 
   &:hover {
-    transition: all 500ms ease;
-
+    transition: all 0.25s ease-in;
     color: ${props => props.theme.orangeLight};
     background: ${props => props.theme.mainBg};
     border: 2px solid ${props => props.theme.orangeLight};
-    fill: ${props => props.theme.orangeLight};
-    stroke: ${props => props.theme.orangeLight};
   }
 
   &:focus {
     outline: none;
     box-shadow: none;
+  }
+  &div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    margin-left: 12px;
+    border-radius: 50%;
+
+    background-color: ${props => props.theme.orangeLight};
+    transition: all 0.25s ease;
+    &:hover {
+      color: ${props => props.theme.orangeLight};
+      fill: ${props => props.theme.orangeLight};
+      stroke: ${props => props.theme.orangeLight};
+      background: ${props => props.theme.white};
+      outline: 2px solid ${props => props.theme.orangeLight};
+    }
   }
 
   @media screen and (min-width: 768px) {
@@ -66,44 +74,11 @@ export const ButtonStyled = styled.button`
     height: 44px;
 
     flex-direction: row-reverse;
-
     background: transparent;
     border-radius: 0;
     box-shadow: none;
-
-    color: ${props => props.theme.inpText};
-    transition: all 0.25s ease-in;
-    &:hover {
-      color: ${props => props.theme.inpText};
-      background: transparent;
-      border: none;
-      fill: ${props => props.theme.orangeLight};
-      stroke: ${props => props.theme.orangeLight};
-      & div {
-        background: ${props => props.theme.white};
-        outline: 2px solid ${props => props.theme.orangeLight};
-      }
-    }
-
-    & div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      width: 44px;
-      height: 44px;
-      margin-left: 12px;
-      border-radius: 50%;
-
-      background-color: ${props => props.theme.orangeLight};
-      transition: all 0.25s ease-in;
-      &:hover {
-        fill: ${props => props.theme.orangeLight};
-        stroke: ${props => props.theme.orangeLight};
-        background: ${props => props.theme.white};
-        outline: 2px solid ${props => props.theme.orangeLight};
-      }
-    }
+    color: ${props => props.theme.black};
+    transition: all 0.25s ease;
   }
 `;
 
