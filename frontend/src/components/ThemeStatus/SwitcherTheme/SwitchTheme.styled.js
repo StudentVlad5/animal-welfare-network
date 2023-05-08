@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import sun from 'images/theme/sun.png';
-import moon from 'images/theme/moon.png';
 
 const BtnChangeTheme = styled.button`
   background-color: transparent;
