@@ -104,6 +104,7 @@ export const NoticesCategoriesList = ({ page, setPages }) => {
     searchParams,
     setPages,
     setSearchParams,
+    t,
   ]);
 
   return (
