@@ -12,7 +12,7 @@ export const Header = () => {
         style={{
           position: 'relative',
           display: 'flex',
-          width: '100%',
+          width: '100px',
           justifyContent: 'start',
           alignItems: 'center',
         }}
