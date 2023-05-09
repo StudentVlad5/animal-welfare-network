@@ -7,7 +7,7 @@ import { Formik } from 'formik';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
-import { fetchData, updateData } from 'services/APIservice';
+import { fetchData, updateUserData } from 'services/APIservice';
 import { setImage } from 'utils/setimage';
 import {
   BackDrop,
@@ -27,7 +27,7 @@ import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
 import { addReload } from 'redux/reload/slice';
 
-export const EditUserDataModal = ({ path }) => {
+export const EditUserDataModal = () => {
   const [dataUpdate, setDataUpdate] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -60,7 +60,7 @@ export const EditUserDataModal = ({ path }) => {
     const file = document.querySelector('#avatar')?.files[0];
     setIsLoading(true);
     try {
-      const { date } = await updateData(itemForFetch, formData, file);
+      const { date } = await updateUserData(itemForFetch, formData, file);
       if (date && date !== 201) {
         return onFetchError('Whoops, something went wrong');
       }
@@ -348,7 +348,7 @@ export const EditUserDataModal = ({ path }) => {
                   type="submit"
                   disabled={isSubmitting}
                   // onClick={e => closeDataModal(e)}
-                  // aria-label="Submit"
+                  aria-label="Submit"
                 >
                   <MdDone size={15} />
                 </DoneIconBtn>

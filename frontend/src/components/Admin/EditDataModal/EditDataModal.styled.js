@@ -7,7 +7,6 @@ const BackDrop = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding-top: 100px;
   overflow: scroll;
 
   @media screen and (min-width: 768px) {
@@ -20,6 +19,7 @@ const Modal = styled.div`
   display: block;
 
   max-width: calc(100vw - 40px);
+  margin-top: 150px;
   padding: 10px;
 
   background-color: ${props => props.theme.white};
@@ -29,6 +29,7 @@ const Modal = styled.div`
 
   @media screen and (min-width: 768px) {
     max-width: 600px;
+    margin-top: 0;
     padding: 20px;
   }
 

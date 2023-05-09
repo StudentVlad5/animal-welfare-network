@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
-export const SelectConteinerLanguage = styled.div`
+export const SelectContainerLanguage = styled.div`
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
 
   position: absolute;
-  left: 30px;
-  width: 40px;
+  left: 140px;
   height: auto;
 
   background-color: transparent;
@@ -17,9 +16,7 @@ export const SelectConteinerLanguage = styled.div`
   background: ${props => props.theme.mainBg};
 
   @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1280px) {
+    left: 165px;
   }
 `;
 
