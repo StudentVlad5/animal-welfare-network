@@ -17,8 +17,7 @@ const SwitcherWrapper = styled.div`
   align-items: center;
 
   position: absolute;
-  left: 110px;
-
+  left: 80px;
   width: 40px;
   height: auto;
 
@@ -26,7 +25,6 @@ const SwitcherWrapper = styled.div`
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
-    left: 130px;
   }
 `;
 

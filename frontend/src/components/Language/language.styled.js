@@ -2,17 +2,24 @@ import styled from 'styled-components';
 
 export const SelectConteinerLanguage = styled.div`
   position: absolute;
-  right: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  left: 30px;
+  width: 40px;
   height: auto;
+
+  background-color: transparent;
+
   border-color: ${props => props.theme.logout};
   background: ${props => props.theme.mainBg};
 
   @media screen and (min-width: 768px) {
-    right: 300px;
   }
 
   @media screen and (min-width: 1280px) {
-    right: 225px;
   }
 `;
 
