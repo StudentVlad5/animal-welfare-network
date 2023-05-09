@@ -8,12 +8,14 @@ const BackDrop = styled.div`
   font-style: normal;
   width: 100%;
   height: 100%;
+  overflow: scroll;
 `;
 
 const NoticesContainerItem = styled.div`
   position: relative;
   display: block;
   width: 280px;
+  margin-top: 250px;
   padding: 17px 20px 43px 20px;
   background-color: ${props => props.theme.white};
   border-radius: 20px;
@@ -22,6 +24,7 @@ const NoticesContainerItem = styled.div`
   box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowColor};
 
   @media screen and (min-width: 768px) {
+    margin-top: 0;
     width: 704px;
     padding: 32px 20px 32px 20px;
   }
@@ -30,6 +33,7 @@ const ContainerPositionForCloseModal = styled.div`
   display: flex;
   justify-content: end;
 `;
+
 const ContainerCloseModal = styled.div`
   display: flex;
   justify-content: center;

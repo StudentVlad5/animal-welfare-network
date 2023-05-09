@@ -17,14 +17,14 @@ const SwitcherWrapper = styled.div`
   align-items: center;
 
   position: absolute;
-  left: 80px;
-  width: 40px;
+  left: 110px;
   height: auto;
 
   background-color: transparent;
   cursor: pointer;
 
   @media screen and (min-width: 768px) {
+    left: 135px;
   }
 `;
 

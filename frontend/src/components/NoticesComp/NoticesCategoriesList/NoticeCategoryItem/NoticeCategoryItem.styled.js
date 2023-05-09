@@ -242,10 +242,11 @@ const TdTable = styled.td`
   line-height: 19px;
   overflow: hidden;
   min-width: 115px;
+  max-width: 135px;
   color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 768px) {
-    min-width: 115px;
+    max-width: 155px;
     font-size: 16px;
     line-height: 22px;
   }
@@ -258,19 +259,24 @@ const TdTable2 = styled.td`
   line-height: 19px;
   overflow: hidden;
   min-width: 115px;
+  max-width: 135px;
   color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 768px) {
-    min-width: 115px;
+    max-width: 155px;
     font-size: 16px;
     line-height: 22px;
   }
 `;
 const Table = styled.table`
-  width: 240px;
+  padding: 0 20px;
+  max-width: 300px;
   display: flex;
   overflow: hidden;
-  padding: 0 20px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 336px;
+  }
 `;
 
 export {

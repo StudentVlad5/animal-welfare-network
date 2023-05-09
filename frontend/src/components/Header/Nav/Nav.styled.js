@@ -23,7 +23,7 @@ const NavList = styled(MobileNavList)`
   @media screen and (min-width: 1280px) {
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: center;
     margin: 0px;
     width: 100%;
   }
