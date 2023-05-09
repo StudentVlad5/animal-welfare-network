@@ -144,7 +144,7 @@ export const EditUserDataModal = ({ path }) => {
             }}
             onSubmit={(values, { setSubmitting }) => {
               editUser(values);
-              closeDataModal();
+              // closeDataModal();
               dispatch(addReload(false));
               setSubmitting(false);
             }}

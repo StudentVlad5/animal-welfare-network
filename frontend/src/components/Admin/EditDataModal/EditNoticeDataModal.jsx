@@ -12,7 +12,7 @@ import { addReload } from 'redux/reload/slice';
 import { addBreeds } from 'redux/breeds/slice';
 import { breedsValue } from 'redux/breeds/selectors';
 import { fetchData, fetchPatchNotice } from 'services/APIservice';
-// import { setImage } from 'utils/setimage';
+import { setImage } from 'utils/setimage';
 import {
   BackDrop,
   Modal,
@@ -22,7 +22,7 @@ import {
   FieldStyled,
   Label,
   Input,
-  // FieldItemFile,
+  FieldItemFile,
   Option,
   OptionFirst,
   CloseIconBtn,
@@ -94,8 +94,8 @@ export const EditNoticeDataModal = () => {
     } catch (error) {
       setError(error);
     } finally {
-      dispatch(addReload(true));
       setIsLoading(false);
+      dispatch(addReload(true));
     }
   }
 
@@ -187,9 +187,9 @@ export const EditNoticeDataModal = () => {
               location: dataUpdate?.location ? dataUpdate.location : '',
               price: dataUpdate?.price ? dataUpdate.price : '',
               currency: dataUpdate?.currency ? dataUpdate.currency : '',
-              imageUrl: dataUpdate?.imageUrl ? dataUpdate.imageUrl : '',
-              imageUrl_1: dataUpdate?.imageUrl_1 ? dataUpdate.imageUrl_1 : '',
-              imageUrl_2: dataUpdate?.imageUrl_2 ? dataUpdate.imageUrl_2 : '',
+              imageUrl: '',
+              imageUrl_1: '',
+              imageUrl_2: '',
               passport: dataUpdate?.passport ? dataUpdate.passport : '',
               sterilization: dataUpdate?.sterilization
                 ? dataUpdate.sterilization
@@ -200,12 +200,10 @@ export const EditNoticeDataModal = () => {
               phone: dataUpdate?.phone ? dataUpdate.phone : '',
             }}
             onSubmit={(values, { setSubmitting }) => {
-              // setTimeout(() => {
               editNotice(values);
+              // closeDataModal();
               dispatch(addReload(false));
               setSubmitting(false);
-              closeDataModal();
-              // }, 400);
             }}
             enableReinitialize={true}
           >
@@ -542,11 +540,11 @@ export const EditNoticeDataModal = () => {
                         gap: '4px',
                       }}
                     >
-                      {/* {dataUpdate?.imageUrl ? (
+                      {dataUpdate?.imageUrl ? (
                         <FieldItemFile
                           style={{
                             backgroundImage: `url(${dataUpdate?.imageUrl})`,
-                            backgroundSize: '24px ,24px',
+                            backgroundSize: '50px ,50px',
                           }}
                           className="file"
                           type="file"
@@ -575,7 +573,7 @@ export const EditNoticeDataModal = () => {
                         <FieldItemFile
                           style={{
                             backgroundImage: `url(${dataUpdate?.imageUrl_1})`,
-                            backgroundSize: '24px ,24px',
+                            backgroundSize: '50px ,50px',
                           }}
                           className="file"
                           type="file"
@@ -604,7 +602,7 @@ export const EditNoticeDataModal = () => {
                         <FieldItemFile
                           style={{
                             backgroundImage: `url(${dataUpdate?.imageUrl_2})`,
-                            backgroundSize: '24px ,24px',
+                            backgroundSize: '50px ,50px',
                           }}
                           className="file"
                           type="file"
@@ -628,7 +626,7 @@ export const EditNoticeDataModal = () => {
                             setImage(e);
                           }}
                         />
-                      )} */}
+                      )}
                     </div>
                   </FieldStyled>
                   <FieldStyled>
@@ -756,8 +754,8 @@ export const EditNoticeDataModal = () => {
                   <DoneIconBtn
                     type="submit"
                     disabled={isSubmitting}
-                    onClick={e => closeDataModal(e)}
-                    aria-label="Submit"
+                    // onClick={e => closeDataModal(e)}
+                    // aria-label="Submit"
                   >
                     <MdDone size={15} />
                   </DoneIconBtn>
