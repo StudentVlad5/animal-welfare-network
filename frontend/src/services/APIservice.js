@@ -99,18 +99,7 @@ async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
   });
 }
 
-async function deleteData(pathParams) {
-  const formData = new FormData();
-  return axios.delete(`${BASE_URL}${pathParams}`, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
-    },
-  });
-}
-
-async function updateData(pathParams, body, file) {
+async function updateUserData(pathParams, body, file) {
   const formData = new FormData();
   file && formData.set('avatar', file);
   formData.append('email', body.email);
@@ -130,6 +119,17 @@ async function updateData(pathParams, body, file) {
   });
 }
 
+async function deleteData(pathParams) {
+  const formData = new FormData();
+  return axios.delete(`${BASE_URL}${pathParams}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
+
 fetchData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
@@ -138,16 +138,11 @@ deleteData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
 
-updateData.propTypes = {
-  pathParams: PropTypes.string.isRequired,
-  formData: PropTypes.string.isRequired,
-};
-
 export {
   fetchData,
   fetchNotice,
   fetchPetsUser,
   fetchPatchNotice,
+  updateUserData,
   deleteData,
-  updateData,
 };
