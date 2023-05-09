@@ -114,6 +114,7 @@ async function updateData(pathParams, body, file) {
   const formData = new FormData();
   file && formData.set('avatar', file);
   formData.append('email', body.email);
+  formData.append('birthday', body.birthday);
   formData.append('location', body.location);
   formData.append('password', body.password);
   formData.append('phone', body.phone);

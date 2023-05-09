@@ -240,7 +240,7 @@ export const EditUserDataModal = ({ path }) => {
                         type="text"
                         id="birthday"
                         name="birthday"
-                        min={'2000-01-01'}
+                        min={'1900-01-01'}
                         max={`${new Date().toISOString().split('T')[0]}`}
                         placeholder="Type day of birth"
                         value={values.birthday}
