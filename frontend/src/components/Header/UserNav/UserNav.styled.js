@@ -53,4 +53,19 @@ const IconUser = styled(iconUser)`
     height: 28px;
   }
 `;
-export { MobileAccountButton, AccountButton, IconUser };
+
+const AvatarUser = styled.img`
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  display: block;
+  fill: ${props => props.theme.white};
+  border-radius: 50%;
+
+  @media screen and (min-width: 768px) {
+    width: 28px;
+    height: 28px;
+  }
+`;
+export { MobileAccountButton, AccountButton, IconUser, AvatarUser };
