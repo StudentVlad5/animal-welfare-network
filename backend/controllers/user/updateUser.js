@@ -1,19 +1,22 @@
 const { ValidationError } = require('../../helpers');
 const { Users } = require('../../models');
-// const { userMainField, dataFilter } = require('../../helpers');
+const {
+  userMainField,
+  userFieldReceivedFromFront,
+  dataFilter,
+} = require('../../helpers');
 
 const updateUser = async (req, res, next) => {
+  const { id } = req.params;
   try {
-    const { body, params } = req;
-    const { id } = params;
-    const fullData = { ...body };
-
-    const resUpdate = await Users.findByIdAndUpdate({ _id: id }, fullData, {
+    const newData = dataFilter(req.body, userFieldReceivedFromFront);
+    req.file?.path && (newData.avatar = req.file.path);
+    const resUpdate = await Users.findByIdAndUpdate({ _id: id }, newData, {
       new: true,
     });
-
-    // const newResponse = dataFilter(resUpdate, userMainField);
-    res.status(201).json(resUpdate);
+    const newResponse = dataFilter(resUpdate, userMainField);
+    req.file?.path && (newResponse.avatar = req.file.path);
+    return res.status(201).json(newResponse);
   } catch (err) {
     throw new ValidationError(err.message);
   }

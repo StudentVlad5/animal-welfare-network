@@ -10,6 +10,7 @@ import {
   BtnContiner,
 } from './FilterForm.styled';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const FilterForm = ({ closeModal }) => {
   const [typeofpet, setTypeofpet] = useState(
@@ -33,6 +34,7 @@ export const FilterForm = ({ closeModal }) => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   // const { id } = useParams();
+  const { t } = useTranslation();
 
   const handleClearAll = () => {
     setTypeofpet('');
@@ -151,7 +153,7 @@ export const FilterForm = ({ closeModal }) => {
       <FieldSet>
         <LegendFieldSet>Type of pet</LegendFieldSet>
         <LabelForInput htmlFor="dog">
-          Dog
+          {t('Dog')}
           <InputForm
             type="radio"
             id="dog"
@@ -163,7 +165,7 @@ export const FilterForm = ({ closeModal }) => {
           <Check className="check" />
         </LabelForInput>
         <LabelForInput htmlFor="cat">
-          Cat
+          {t('Cat')}
           <InputForm
             type="radio"
             id="cat"
@@ -178,7 +180,7 @@ export const FilterForm = ({ closeModal }) => {
       <FieldSet>
         <LegendFieldSet>Sex</LegendFieldSet>
         <LabelForInput htmlFor="boy">
-          Boy
+          {t('Boy')}
           <InputForm
             type="radio"
             id="boy"
@@ -190,7 +192,7 @@ export const FilterForm = ({ closeModal }) => {
           <Check className="check" />
         </LabelForInput>
         <LabelForInput htmlFor="girl">
-          Girl
+          {t('Girl')}
           <InputForm
             type="radio"
             id="girl"
@@ -242,9 +244,9 @@ export const FilterForm = ({ closeModal }) => {
         </LabelForInput>
       </FieldSet> */}
       <FieldSet>
-        <LegendFieldSet>Size of the pet </LegendFieldSet>
+        <LegendFieldSet>{t('Size of the pet')} </LegendFieldSet>
         <LabelForInput htmlFor="big">
-          big
+          {t('big')}
           <InputForm
             type="radio"
             id="big"
@@ -256,7 +258,7 @@ export const FilterForm = ({ closeModal }) => {
           <Check className="check" />
         </LabelForInput>
         <LabelForInput htmlFor="average">
-          average
+          {t('average')}
           <InputForm
             type="radio"
             id="average"
@@ -268,7 +270,7 @@ export const FilterForm = ({ closeModal }) => {
           <Check className="check" />
         </LabelForInput>
         <LabelForInput htmlFor="small">
-          small
+          {t('small')}
           <InputForm
             type="radio"
             id="small"
@@ -281,9 +283,9 @@ export const FilterForm = ({ closeModal }) => {
         </LabelForInput>
       </FieldSet>
       <FieldSet>
-        <LegendFieldSet>Sterilization </LegendFieldSet>
+        <LegendFieldSet>{t('Sterilization')} </LegendFieldSet>
         <LabelForInput htmlFor="yes">
-          yes
+          {t('yes')}
           <InputForm
             type="radio"
             id="yes"
@@ -295,7 +297,7 @@ export const FilterForm = ({ closeModal }) => {
           <Check className="check" />
         </LabelForInput>
         <LabelForInput htmlFor="no">
-          no
+          {t('no')}
           <InputForm
             type="radio"
             id="no"
@@ -308,9 +310,9 @@ export const FilterForm = ({ closeModal }) => {
         </LabelForInput>
       </FieldSet>
       <FieldSet>
-        <LegendFieldSet>Lives </LegendFieldSet>
+        <LegendFieldSet>{t('Lives')} </LegendFieldSet>
         <LabelForInput htmlFor="in street">
-          in street
+          {t('in street')}
           <InputForm
             type="radio"
             id="in street"
@@ -322,7 +324,7 @@ export const FilterForm = ({ closeModal }) => {
           <Check className="check" />
         </LabelForInput>
         <LabelForInput htmlFor="shelter">
-          shelter
+          {t('shelter')}
           <InputForm
             type="radio"
             id="shelter"
@@ -334,7 +336,7 @@ export const FilterForm = ({ closeModal }) => {
           <Check className="check" />
         </LabelForInput>
         <LabelForInput htmlFor="at volunteers">
-          at volunteers
+          {t('at volunteers')}
           <InputForm
             type="radio"
             id="at volunteers"
@@ -346,7 +348,7 @@ export const FilterForm = ({ closeModal }) => {
           <Check className="check" />
         </LabelForInput>
         <LabelForInput htmlFor="home">
-          home
+          {t('home')}
           <InputForm
             type="radio"
             id="home"
@@ -366,10 +368,10 @@ export const FilterForm = ({ closeModal }) => {
             closeModal(e);
           }}
         >
-          Submit
+          {t('Submit')}
         </BtnFilter>
         <BtnFilter type="button" onClick={handleClearAll}>
-          Clear all
+          {t('Clear all')}
         </BtnFilter>
       </BtnContiner>
     </Form>

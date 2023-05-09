@@ -20,6 +20,7 @@ import { Pagination } from 'utils/pagination';
 import { addReload } from 'redux/reload/slice';
 import { reloadValue } from 'redux/reload/selectors';
 import { FilterModal } from '../FilterNotices/FilterModal/FilterModal';
+import { useTranslation } from 'react-i18next';
 
 let perPage = 12;
 
@@ -32,6 +33,7 @@ export const NoticesCategoriesList = ({ page, setPages }) => {
   const routeParams = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const reload = useSelector(reloadValue);
+  const { t } = useTranslation();
 
   const setPage = toPage => {
     searchParams.set('page', toPage);
@@ -49,11 +51,11 @@ export const NoticesCategoriesList = ({ page, setPages }) => {
       : (isInFavorite = false);
     if (isInFavorite) {
       dispatch(removeFavorite(id));
-      onSuccess('You remove pet from the favorite!');
+      onSuccess(t('You remove pet from the favorite!'));
       return;
     }
     dispatch(addFavorite(id));
-    onSuccess('You add pet to the favorite!');
+    onSuccess(t('You add pet to the favorite!'));
   };
 
   const handleFavoriteBtnClick = id => e => {
@@ -62,7 +64,7 @@ export const NoticesCategoriesList = ({ page, setPages }) => {
     if (routeParams.id === 'favorite') {
       dispatch(addReload(true));
     }
-    !isLoggedIn ? onInfo('You must be loggined!') : toggleFavorite(id);
+    !isLoggedIn ? onInfo(t('You must be loggined!')) : toggleFavorite(id);
   };
 
   useEffect(() => {
@@ -79,7 +81,7 @@ export const NoticesCategoriesList = ({ page, setPages }) => {
           `/notices/${routeParams.id}?${searchParams}`,
         );
         if (!data) {
-          return onFetchError('Whoops, something went wrong');
+          return onFetchError(t('Whoops, something went wrong'));
         }
         setListItem(data.data);
         setTotalPage(data.totalPage);
@@ -117,7 +119,7 @@ export const NoticesCategoriesList = ({ page, setPages }) => {
         <ContainerStatus>
           {listItem?.length === 0 && !isLoading ? (
             <Title as="h3" size="20px" sizeTablet="20px">
-              Whoops! Can't find anything...
+              {t("Whoops! Can't find anything...")}
             </Title>
           ) : (
             listItem.map(value => (
@@ -132,7 +134,7 @@ export const NoticesCategoriesList = ({ page, setPages }) => {
         </ContainerStatus>
       </div>
       {isLoading ? onLoading() : onLoaded()}
-      {error && onFetchError('Whoops, something went wrong')}
+      {error && onFetchError(t('Whoops, something went wrong'))}
       <Pagination totalPage={totalPage} changePage={setPage} page={page} />
       <ModalNotices addToFavoriteFunction={handleFavoriteBtnClick} />
       <ModalEditNotice addToFavoriteFunction={handleFavoriteBtnClick} />

@@ -15,10 +15,13 @@ import {
   ContainerPositionForCloseModal,
   BackDrop,
 } from './NoticeCategoryItemSwiper.styled';
+import { useTranslation } from 'react-i18next';
 
 export const NoticeCategoryItemSwiper = () => {
   const dispatch = useDispatch();
   const modal = useSelector(modalComponent);
+  const { t } = useTranslation();
+
   const closeModalForItemPet = e => {
     e.preventDefault();
     dispatch(cleanModal());
@@ -64,7 +67,7 @@ export const NoticeCategoryItemSwiper = () => {
               </Swiper>
             </>
           ) : (
-            <h2>"Whoops... Don't have information about this pet"</h2>
+            <h2>{t("Whoops... Don't have information about this pet")}</h2>
           )}
         </NoticesContainerItem>
       </BackDrop>

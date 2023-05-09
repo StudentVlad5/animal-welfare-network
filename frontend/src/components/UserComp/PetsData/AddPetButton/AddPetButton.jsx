@@ -10,9 +10,11 @@ import {
 } from './AddPetButton.styled';
 import { fetchData } from 'services/APIservice';
 import { addBreeds } from 'redux/breeds/slice';
+import { useTranslation } from 'react-i18next';
 
 export const AddPetButton = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const toggleModalAddUserPets = e => {
     e.preventDefault();
@@ -32,7 +34,7 @@ export const AddPetButton = () => {
       const { data } = await fetchData('/breeds');
       dispatch(addBreeds(data));
       if (!data) {
-        return alert('Whoops, something went wrong');
+        return alert(t('Whoops, something went wrong'));
       }
     } catch (error) {
       alert(error.message);
@@ -41,7 +43,7 @@ export const AddPetButton = () => {
 
   return (
     <AddPetWrapper>
-      <AddPetDesc>Add pet</AddPetDesc>
+      <AddPetDesc>{t('Add pet')}</AddPetDesc>
       <AddPetBtn
         type="button"
         onClick={e => {

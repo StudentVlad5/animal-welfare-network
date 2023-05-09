@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,7 +34,7 @@ export const EditUserDataModal = ({ path }) => {
 
   const modal = useSelector(modalComponent);
   const dispatch = useDispatch();
-  const itemForFetch = `/${path}/${modal.id}`;
+  const itemForFetch = `/admin/users/${modal.id}`;
 
   useEffect(() => {
     async function getData() {
@@ -361,8 +360,4 @@ export const EditUserDataModal = ({ path }) => {
     ),
     document.querySelector('#popup-root'),
   );
-};
-
-EditUserDataModal.propTypes = {
-  path: PropTypes.string.isRequired,
 };
