@@ -58,15 +58,19 @@ export const EditUserDataModal = ({ path }) => {
   }, [itemForFetch, modal.id]);
 
   async function editUser(formData) {
+    const file = document.querySelector('#avatar')?.files[0];
     setIsLoading(true);
     try {
-      const { date } = await updateData(`/admin/users/${modal.id}`, formData);
+      const { date } = await updateData(itemForFetch, formData, file);
+      if (date && date !== 201) {
+        return onFetchError('Whoops, something went wrong');
+      }
       return date;
     } catch (error) {
       setError(error);
     } finally {
-      dispatch(addReload(true));
       setIsLoading(false);
+      dispatch(addReload(true));
     }
   }
 
@@ -126,7 +130,6 @@ export const EditUserDataModal = ({ path }) => {
           >
             <MdClose size={15} />
           </CloseIconBtn>
-
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError('Whoops, something went wrong')}
           <Formik
@@ -135,18 +138,16 @@ export const EditUserDataModal = ({ path }) => {
               userName: dataUpdate?.userName ? dataUpdate.userName : '',
               birthday: dataUpdate?.birthday ? dataUpdate.birthday : '',
               location: dataUpdate?.location ? dataUpdate.location : '',
-              avatar: dataUpdate?.avatar ? dataUpdate.avatar : '',
+              avatar: '',
               email: dataUpdate?.email ? dataUpdate.email : '',
               phone: dataUpdate?.phone ? dataUpdate.phone : '',
               role: dataUpdate?.role ? dataUpdate.role : 'user',
             }}
             onSubmit={(values, { setSubmitting }) => {
-              // setTimeout(() => {
               editUser(values);
               closeDataModal();
               dispatch(addReload(false));
               setSubmitting(false);
-              //   }, 100);
             }}
             enableReinitialize={true}
           >
@@ -300,7 +301,7 @@ export const EditUserDataModal = ({ path }) => {
                         <FieldItemFile
                           style={{
                             backgroundImage: `url(${dataUpdate?.avatar})`,
-                            backgroundSize: '140px ,140px',
+                            backgroundSize: '50px,50px',
                           }}
                           className="file"
                           type="file"
@@ -347,8 +348,8 @@ export const EditUserDataModal = ({ path }) => {
                 <DoneIconBtn
                   type="submit"
                   disabled={isSubmitting}
-                  onClick={e => closeDataModal(e)}
-                  aria-label="Submit"
+                  // onClick={e => closeDataModal(e)}
+                  // aria-label="Submit"
                 >
                   <MdDone size={15} />
                 </DoneIconBtn>

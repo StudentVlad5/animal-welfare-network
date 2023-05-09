@@ -128,8 +128,8 @@ const Input = styled(Field)`
 
 const FieldItemFile = styled(Field)`
   all: unset;
-  height: 24px;
-  width: 24px;
+  height: 50px;
+  width: 50px;
 
   margin-bottom: 4px;
   background-color: ${props => props.theme.mainBg};

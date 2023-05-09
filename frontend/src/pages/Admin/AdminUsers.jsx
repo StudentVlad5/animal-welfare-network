@@ -27,9 +27,10 @@ const AdminUsersPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const reload = useSelector(reloadValue);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    (async function getData() {
+    async function getData() {
       setIsLoading(true);
       try {
         const { data } = await fetchData('/admin/users');
@@ -42,8 +43,13 @@ const AdminUsersPage = () => {
       } finally {
         setIsLoading(false);
       }
-    })();
-  }, [reload]);
+    }
+    getData();
+    if (reload) {
+      getData();
+      dispatch(addReload(false));
+    }
+  }, [reload, dispatch]);
 
   async function deleteUser(id) {
     setIsLoading(true);
@@ -68,7 +74,6 @@ const AdminUsersPage = () => {
   const toggleLearnMore = () => setIsLearnMore(state => !state);
 
   // add edit modal
-  const dispatch = useDispatch();
   const openModal = e => {
     e.preventDefault();
     e.stopPropagation();

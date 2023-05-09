@@ -110,7 +110,16 @@ async function deleteData(pathParams) {
   });
 }
 
-async function updateData(pathParams, formData) {
+async function updateData(pathParams, body, file) {
+  const formData = new FormData();
+  file && formData.set('avatar', file);
+  formData.append('email', body.email);
+  formData.append('location', body.location);
+  formData.append('password', body.password);
+  formData.append('phone', body.phone);
+  formData.append('role', body.role);
+  formData.append('userName', body.userName);
+
   return await axios.patch(`${BASE_URL}${pathParams}`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
