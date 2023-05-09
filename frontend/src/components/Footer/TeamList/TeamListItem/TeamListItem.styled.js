@@ -9,7 +9,7 @@ const Item = styled.li`
   justify-content: flex-end;
   align-items: center;
 
-  width: 120px;
+  width: 125px;
   height: auto;
   padding: 10px;
   border-radius: 20px;
@@ -22,7 +22,7 @@ const Item = styled.li`
 
 const ImageMember = styled.img`
   width: 100px;
-  height: auto;
+  height: 150px;
 
   margin-bottom: 10px;
   border-radius: 10px;
