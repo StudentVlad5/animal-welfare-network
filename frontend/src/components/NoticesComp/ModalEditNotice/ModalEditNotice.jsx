@@ -52,6 +52,7 @@ import { addReload } from 'redux/reload/slice';
 import CreatableSelect from 'react-select/creatable';
 import { fetchData } from 'services/APIservice';
 import { addBreeds } from 'redux/breeds/slice';
+import { useTranslation } from 'react-i18next';
 
 export const ModalEditNotice = () => {
   const [dataOfPet, setDataOfPet] = useState([]);
@@ -66,6 +67,7 @@ export const ModalEditNotice = () => {
   const [searchParams] = useSearchParams();
   searchParams.set('perPage', 12);
   searchParams.set('page', 1);
+  const { t } = useTranslation();
 
   let itemForFetch = `/notices/byid/${modal.id}`;
 
@@ -112,7 +114,7 @@ export const ModalEditNotice = () => {
         file3,
       );
       if (code && code !== 201) {
-        return onFetchError('Whoops, something went wrong');
+        return onFetchError(t('Whoops, something went wrong'));
       }
     } catch (error) {
       setError(error);
@@ -178,7 +180,7 @@ export const ModalEditNotice = () => {
         const { data } = await fetchData('/breeds');
         dispatch(addBreeds(data));
         if (!data) {
-          return alert('Whoops, something went wrong');
+          return alert(t('Whoops, something went wrong'));
         }
       } catch (error) {
         alert(error.message);
@@ -205,11 +207,11 @@ export const ModalEditNotice = () => {
       <Overlay onClick={e => onClickBackdrop(e)}>
         <ModalAddNoticeStyled onClick={e => e.stopPropagation()}>
           {isLoading ? onLoading() : onLoaded()}
-          {error && onFetchError('Whoops, something went wrong')}
+          {error && onFetchError(t('Whoops, something went wrong'))}
           <ButtonClose type="button" onClick={e => onClickBackdrop(e)}>
             <IconClose />
           </ButtonClose>
-          <Title>Edit data of pet</Title>
+          <Title>(t{'Edit data of pet'})</Title>
           <div>
             <Formik
               initialValues={{
@@ -305,7 +307,9 @@ export const ModalEditNotice = () => {
                           value="needs-care"
                           checked={values.category === 'needs-care'}
                         />
-                        <LabelRadio htmlFor="radioOne">needs-care</LabelRadio>
+                        <LabelRadio htmlFor="radioOne">
+                          {t('needs-care')}
+                        </LabelRadio>
 
                         <FieldRadio
                           type="radio"
@@ -314,7 +318,9 @@ export const ModalEditNotice = () => {
                           value="for-free"
                           checked={values.category === 'for-free'}
                         />
-                        <LabelRadio htmlFor="radioTwo">for-free</LabelRadio>
+                        <LabelRadio htmlFor="radioTwo">
+                          {t('for-free')}
+                        </LabelRadio>
 
                         <FieldRadio
                           type="radio"
@@ -323,7 +329,9 @@ export const ModalEditNotice = () => {
                           value="sell"
                           checked={values.category === 'sell'}
                         />
-                        <LabelRadio htmlFor="radioThree">sell</LabelRadio>
+                        <LabelRadio htmlFor="radioThree">
+                          {t('sell')}
+                        </LabelRadio>
 
                         <FieldRadio
                           type="radio"
@@ -332,12 +340,14 @@ export const ModalEditNotice = () => {
                           value="none"
                           checked={values.category === 'none'}
                         />
-                        <LabelRadio htmlFor="radioFour">without</LabelRadio>
+                        <LabelRadio htmlFor="radioFour">
+                          {t('without')}
+                        </LabelRadio>
                       </FieldsRadio>
 
                       <FieldsRadioType role="group" id="typeofpet">
                         <p>
-                          Type of pet
+                          {t('Type of pet')}
                           {errors.type && touched.type ? (
                             <Error>{errors.type}</Error>
                           ) : null}
@@ -351,7 +361,7 @@ export const ModalEditNotice = () => {
                         />
                         <LabelRadioType htmlFor="radioOneType">
                           <IconCat />
-                          <span>Cat</span>
+                          <span>{t('Cat')}</span>
                         </LabelRadioType>
 
                         <FieldRadioType
@@ -363,13 +373,13 @@ export const ModalEditNotice = () => {
                         />
                         <LabelRadioType htmlFor="radioTwoType">
                           <IconDog />
-                          <span>Dog</span>
+                          <span>{t('Dog')}</span>
                         </LabelRadioType>
                       </FieldsRadioType>
 
                       <FieldList>
                         <LabelItem htmlFor="title">
-                          <span>Title of ad</span>
+                          <span>{t('Title of ad')}</span>
                           {errors.title && touched.title ? (
                             <Error>{errors.title}</Error>
                           ) : null}
@@ -383,7 +393,7 @@ export const ModalEditNotice = () => {
                           value={values.title}
                         />
                         <LabelItem htmlFor="name">
-                          <span>Name pet</span>
+                          <span>{t('Name pet')}</span>
                           {errors.name && touched.name ? (
                             <Error>{errors.name}</Error>
                           ) : null}
@@ -397,7 +407,7 @@ export const ModalEditNotice = () => {
                           value={values.name}
                         />
                         <LabelItem htmlFor="birthday">
-                          <span>Date of birth</span>
+                          <span>{t('Date of birth')}</span>
                           {errors.birthday && touched.birthday ? (
                             <Error>{errors.birthday}</Error>
                           ) : null}
@@ -420,7 +430,7 @@ export const ModalEditNotice = () => {
                           />
                         </div>
                         <LabelItem htmlFor="breed">
-                          <span>Breed</span>
+                          <span>{t('Breed')}</span>
                           {errors.breed && touched.breed ? (
                             <Error>{errors.breed}</Error>
                           ) : null}
@@ -437,7 +447,7 @@ export const ModalEditNotice = () => {
                           classNamePrefix="react-select"
                           placeholder={
                             values.typeofpet === ''
-                              ? 'Select type of pet firstly...'
+                              ? t('Select type of pet firstly...')
                               : values.breed
                           }
                           onChange={e => setFieldValue('breed', e?.value)}
@@ -455,7 +465,7 @@ export const ModalEditNotice = () => {
                     >
                       <FieldsRadioSex role="group" id="sex">
                         <p>
-                          The sex
+                          {t('The sex')}
                           {errors.sex && touched.sex ? (
                             <Error>{errors.sex}</Error>
                           ) : null}
@@ -469,7 +479,7 @@ export const ModalEditNotice = () => {
                         />
                         <LabelRadioSex htmlFor="radioOneSex">
                           <IconMale />
-                          <span>Boy</span>
+                          <span>{t('Boy')}</span>
                         </LabelRadioSex>
 
                         <FieldRadioSex
@@ -481,12 +491,12 @@ export const ModalEditNotice = () => {
                         />
                         <LabelRadioSex htmlFor="radioTwoSex">
                           <IconFemale />
-                          <span>Girl</span>
+                          <span>{t('Girl')}</span>
                         </LabelRadioSex>
                       </FieldsRadioSex>
                       <FieldList>
                         <LabelItem htmlFor="size">
-                          <span>Size</span>
+                          <span>{t('Size')}</span>
                           {errors.size && touched.size ? (
                             <Error>{errors.size}</Error>
                           ) : null}
@@ -504,7 +514,7 @@ export const ModalEditNotice = () => {
                         >
                           {values.size === '' && (
                             <OptionFirst first value="unselected">
-                              Select size type
+                              {t('Select size type')}
                             </OptionFirst>
                           )}
                           {['Big', 'Average', 'Small'].map(s => (
@@ -515,7 +525,7 @@ export const ModalEditNotice = () => {
                         </FieldItem>
 
                         <LabelItem htmlFor="height">
-                          <span>Height in cm</span>
+                          <span>{t('Height in cm')}</span>
                           {errors.height && touched.height ? (
                             <Error>{errors.height}</Error>
                           ) : null}
@@ -525,12 +535,12 @@ export const ModalEditNotice = () => {
                           type="number"
                           id="height"
                           name="height"
-                          placeholder="Type height in cm"
+                          placeholder={t('Type height in cm')}
                           value={values.height}
                         />
 
                         <LabelItem htmlFor="weight">
-                          <span>Weight in kg</span>
+                          <span>{t('Weight in kg')}</span>
                           {errors.weight && touched.weight ? (
                             <Error>{errors.weight}</Error>
                           ) : null}
@@ -540,12 +550,12 @@ export const ModalEditNotice = () => {
                           type="number"
                           id="weight"
                           name="weight"
-                          placeholder="Type weight in kg"
+                          placeholder={t('Type weight in kg')}
                           value={values.weight}
                         />
 
                         <LabelItem htmlFor="location">
-                          <span>Location</span>
+                          <span>{t('Location')}</span>
                           {errors.location && touched.location ? (
                             <Error>{errors.location}</Error>
                           ) : null}
@@ -555,7 +565,7 @@ export const ModalEditNotice = () => {
                             type="text"
                             id="location"
                             name="location"
-                            placeholder="Type location"
+                            placeholder={t('Type location')}
                             value={values.location}
                             disabled={!ready}
                             onChange={e => {
@@ -579,7 +589,7 @@ export const ModalEditNotice = () => {
                         {values.category === 'sell' && (
                           <div>
                             <LabelItem htmlFor="price">
-                              <span>Price</span>
+                              <span>{t('Price')}</span>
                               {errors.price && touched.price ? (
                                 <Error>{errors.price}</Error>
                               ) : null}
@@ -589,12 +599,12 @@ export const ModalEditNotice = () => {
                               type="number"
                               id="price"
                               name="price"
-                              placeholder="Type price"
+                              placeholder={t('Type price')}
                               value={values.price}
                             />
 
                             <LabelItem htmlFor="currency">
-                              <span>Currency</span>
+                              <span>{t('Currency')}</span>
                               {errors.currency && touched.currency ? (
                                 <Error>{errors.currency}</Error>
                               ) : null}
@@ -607,14 +617,14 @@ export const ModalEditNotice = () => {
                               name="currency"
                               placeholder={
                                 values.currency === ''
-                                  ? 'Select currency'
+                                  ? t('Select currency')
                                   : values.currency
                               }
                               defaultValue={values.currency}
                             >
                               {
                                 <OptionFirst first value="unselected">
-                                  Select currency
+                                  {t('Select currency')}
                                 </OptionFirst>
                               }
                               {['$', '€', '₴'].map(s => (
@@ -637,7 +647,7 @@ export const ModalEditNotice = () => {
                     >
                       <FieldList>
                         <LabelItem htmlFor="imageUrl">
-                          <span>Load the pet’s image</span>
+                          <span>{t('Load the pet’s image')}</span>
                           {errors.imageUrl && touched.imageUrl ? (
                             <Error>{errors.imageUrl}</Error>
                           ) : null}
@@ -739,7 +749,7 @@ export const ModalEditNotice = () => {
                           )}
                         </div>
                         <LabelItem htmlFor="passport">
-                          <span>Passport</span>
+                          <span>{t('Passport')}</span>
                           {errors.passport && touched.passport ? (
                             <Error>{errors.passport}</Error>
                           ) : null}
@@ -749,12 +759,12 @@ export const ModalEditNotice = () => {
                           type="text"
                           id="passport"
                           name="passport"
-                          placeholder="Type passport data"
+                          placeholder={t('Type passport data')}
                           value={values.passport}
                         />
 
                         <LabelItem htmlFor="sterilization">
-                          <span>Sterilization</span>
+                          <span>{t('Sterilization')}</span>
                           {errors.sterilization && touched.sterilization ? (
                             <Error>{errors.sterilization}</Error>
                           ) : null}
@@ -767,17 +777,17 @@ export const ModalEditNotice = () => {
                           name="sterilization"
                           placeholder={
                             values.sterilization === ''
-                              ? 'Is sterilized'
+                              ? t('Is sterilized')
                               : values.sterilization
                           }
                           defaultValue={values.sterilization}
                         >
                           {values.sterilization === '' && (
                             <OptionFirst first value="unselected">
-                              Select option...
+                              {t('Select option...')}
                             </OptionFirst>
                           )}
-                          {['Yes', 'No'].map(s => (
+                          {[t('Yes'), t('No')].map(s => (
                             <Option key={s} value={s.toLowerCase()}>
                               {s}
                             </Option>
@@ -785,7 +795,7 @@ export const ModalEditNotice = () => {
                         </FieldItem>
 
                         <LabelItem htmlFor="lives">
-                          <span>Lives</span>
+                          <span>{t('Lives')}</span>
                           {errors.lives && touched.lives ? (
                             <Error>{errors.lives}</Error>
                           ) : null}
@@ -797,20 +807,22 @@ export const ModalEditNotice = () => {
                           id="lives"
                           name="lives"
                           placeholder={
-                            values.lives === '' ? 'Select place' : values.lives
+                            values.lives === ''
+                              ? t('Select place')
+                              : values.lives
                           }
                           defaultValue={values.lives}
                         >
                           {values.lives === '' && (
                             <OptionFirst first value="unselected">
-                              Select option...
+                              {t('Select option...')}
                             </OptionFirst>
                           )}
                           {[
-                            'In street',
-                            'Shelter',
-                            'At volunteers',
-                            'Home',
+                            t('In street'),
+                            t('Shelter'),
+                            t('At volunteers'),
+                            t('Home'),
                           ].map(s => (
                             <Option key={s} value={s.toLowerCase()}>
                               {s}
@@ -819,7 +831,7 @@ export const ModalEditNotice = () => {
                         </FieldItem>
 
                         <LabelItemTextArea htmlFor="comments">
-                          <span>Comments</span>
+                          <span>{t("Comments")}</span>
                           {errors.comments && touched.comments ? (
                             <Error>{errors.comments}</Error>
                           ) : null}
@@ -833,7 +845,7 @@ export const ModalEditNotice = () => {
                           type="text"
                           id="comments"
                           name="comments"
-                          placeholder="Type comments"
+                          placeholder={t("Type comments")}
                           onChange={e => handleChange(e)}
                           defaultValue={values.comments}
                         />
@@ -841,10 +853,10 @@ export const ModalEditNotice = () => {
                     </div>
                     <div className="btns">
                       <ButtonFirst className="btn__submit" type="submit">
-                        {formQueue !== 'third' ? 'Next' : 'Done'}
+                        {formQueue !== 'third' ? t('Next') : t('Done')}
                       </ButtonFirst>
                       <ButtonSecond type="button" onClick={e => changeBack(e)}>
-                        {formQueue === 'first' ? 'Cancel' : 'Back'}
+                        {formQueue === 'first' ? t('Cancel') : t('Back')}
                       </ButtonSecond>
                     </div>
                   </>

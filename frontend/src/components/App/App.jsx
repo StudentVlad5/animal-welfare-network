@@ -8,6 +8,7 @@ import { ApiDocs } from '../ApiDocs/ApiDocs';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { selectIsRefreshing, getPermission } from 'redux/auth/selectors';
+import { useTranslation } from 'react-i18next';
 
 const HomePage = lazy(() => import('pages/Home'));
 const OurFriendsPage = lazy(() => import('pages/OurFriends'));
@@ -24,6 +25,7 @@ export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   const permission = useSelector(getPermission);
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -33,7 +35,7 @@ export const App = () => {
     <></>
   ) : (
     <HelmetProvider>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>{t("Loading...")}</div>}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />

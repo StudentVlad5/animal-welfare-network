@@ -63,7 +63,8 @@ export const UserData = () => {
         <UserDataList>
           <UserDataItem
             profile={profile}
-            label={'Name:'}
+            // label={'Name:'}
+            label={t("Name")}
             defaultValue={userIn.userName}
             type="text"
             name="userName"
@@ -74,7 +75,8 @@ export const UserData = () => {
 
           <UserDataItem
             profile={profile}
-            label={'Email:'}
+            // label={'Email:'}
+            label={t("Email")}
             defaultValue={userIn.email}
             type="email"
             name="email"
@@ -85,7 +87,8 @@ export const UserData = () => {
 
           <UserDataItem
             profile={profile}
-            label={'Birthday:'}
+            // label={'Birthday:'}
+            label={t("Birthday")}
             defaultValue={birthday || '01.01.1900'}
             type="date"
             name="birthday"
@@ -96,7 +99,8 @@ export const UserData = () => {
 
           <UserDataItem
             profile={profile}
-            label={'Phone:'}
+            // label={'Phone:'}
+            label={t("Phone")}
             defaultValue={userIn.phone}
             type="tel"
             name="phone"
@@ -107,7 +111,8 @@ export const UserData = () => {
 
           <UserDataItem
             profile={profile}
-            label={'City:'}
+            // label={'City:'}
+            label={t("City")}
             defaultValue={userIn.location}
             type="text"
             name="location"
