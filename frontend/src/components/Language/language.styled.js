@@ -1,44 +1,54 @@
 import styled from 'styled-components';
 
 export const SelectConteinerLanguage = styled.div`
-  position: relative;
-  width: 100%;
+  position: absolute;
+  right: 70px;
   height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 20px;
-  border-color: ${props => props.theme.orangeLight};
-  background: ${props => props.theme.white};
+  border-color: ${props => props.theme.logout};
+  background: ${props => props.theme.mainBg};
+
+  @media screen and (min-width: 768px) {
+    right: 300px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    right: 225px;
+  }
 `;
+
 export const SelectLanguage = styled.select`
-  position: relative;
-  width: 80px;
+  width: auto;
   height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 20px;
+  border-radius: 5px;
   color: ${props => props.theme.black};
-  border-color: ${props => props.theme.orangeLight};
-  background: ${props => props.theme.white};
-  padding: 10px;
+  border-color: transparent;
+  background: ${props => props.theme.mainBg};
+  padding: 3px;
   cursor: pointer;
+
   font-family: 'Manrope';
   font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.04em;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.01em;
   text-decoration: none;
   transition: all 0.25s ease-in;
-  :focus,
-  :hover {
-    color: ${props => props.theme.orangeLight};
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    font-size: 16px;
+  }
+
+  &:focus,
+  &:hover,
+  &:focus-visible {
+    border-color: ${props => props.theme.orangeLight};
   }
   &.active {
     color: ${props => props.theme.orangeLight};
     text-decoration: underline;
-  }
-
-  @media screen and (min-width: 768px) {
-    border-radius: 40px;
   }
 `;

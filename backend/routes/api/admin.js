@@ -23,9 +23,10 @@ router.delete(
   ctrlWrapper(user.deleteUsers)
 );
 
-router.put(
+router.patch(
   '/users/:id',
   ctrlWrapper(authMiddleware),
+  uploadCloud.single('avatar'),
   validation(userUpdateValidationSchema),
   ctrlWrapper(user.updateUser)
 );
@@ -49,8 +50,8 @@ router.patch(
     { name: 'imageUrl_1', maxCount: 1 },
     { name: 'imageUrl_2', maxCount: 1 },
   ]),
-  createValidation,
-  ctrlWrapper(notices.editNotices)
+  // createValidation,
+  ctrlWrapper(notices.updateNotices)
 );
 
 module.exports = routerAdmin = router;
