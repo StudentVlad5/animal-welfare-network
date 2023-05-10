@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/animal-welfare-network/static/css/main.20b1a620.css",
-    "main.js": "/animal-welfare-network/static/js/main.68893779.js",
+    "main.js": "/animal-welfare-network/static/js/main.c9a9463d.js",
     "static/js/749.3e47f599.chunk.js": "/animal-welfare-network/static/js/749.3e47f599.chunk.js",
     "static/js/531.c40f3f2d.chunk.js": "/animal-welfare-network/static/js/531.c40f3f2d.chunk.js",
     "static/css/851.7c1ccde0.chunk.css": "/animal-welfare-network/static/css/851.7c1ccde0.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/466.6d566bb3.chunk.js": "/animal-welfare-network/static/js/466.6d566bb3.chunk.js",
     "static/js/636.05654cea.chunk.js": "/animal-welfare-network/static/js/636.05654cea.chunk.js",
     "static/js/661.8a9e84ec.chunk.js": "/animal-welfare-network/static/js/661.8a9e84ec.chunk.js",
-    "static/js/333.b2a67ede.chunk.js": "/animal-welfare-network/static/js/333.b2a67ede.chunk.js",
+    "static/js/333.6ebc46ba.chunk.js": "/animal-welfare-network/static/js/333.6ebc46ba.chunk.js",
     "static/js/347.5688f28c.chunk.js": "/animal-welfare-network/static/js/347.5688f28c.chunk.js",
     "static/js/350.6110eed2.chunk.js": "/animal-welfare-network/static/js/350.6110eed2.chunk.js",
     "static/js/386.ab6966d1.chunk.js": "/animal-welfare-network/static/js/386.ab6966d1.chunk.js",
@@ -55,7 +55,7 @@
     "static/media/icon_close.svg": "/animal-welfare-network/static/media/icon_close.73b1d8773d59eabcd477439289b362e4.svg",
     "static/media/icon_menu.svg": "/animal-welfare-network/static/media/icon_menu.f4c9e32cba2d69a8571c3b612e4985de.svg",
     "main.20b1a620.css.map": "/animal-welfare-network/static/css/main.20b1a620.css.map",
-    "main.68893779.js.map": "/animal-welfare-network/static/js/main.68893779.js.map",
+    "main.c9a9463d.js.map": "/animal-welfare-network/static/js/main.c9a9463d.js.map",
     "749.3e47f599.chunk.js.map": "/animal-welfare-network/static/js/749.3e47f599.chunk.js.map",
     "531.c40f3f2d.chunk.js.map": "/animal-welfare-network/static/js/531.c40f3f2d.chunk.js.map",
     "851.7c1ccde0.chunk.css.map": "/animal-welfare-network/static/css/851.7c1ccde0.chunk.css.map",
@@ -66,7 +66,7 @@
     "466.6d566bb3.chunk.js.map": "/animal-welfare-network/static/js/466.6d566bb3.chunk.js.map",
     "636.05654cea.chunk.js.map": "/animal-welfare-network/static/js/636.05654cea.chunk.js.map",
     "661.8a9e84ec.chunk.js.map": "/animal-welfare-network/static/js/661.8a9e84ec.chunk.js.map",
-    "333.b2a67ede.chunk.js.map": "/animal-welfare-network/static/js/333.b2a67ede.chunk.js.map",
+    "333.6ebc46ba.chunk.js.map": "/animal-welfare-network/static/js/333.6ebc46ba.chunk.js.map",
     "347.5688f28c.chunk.js.map": "/animal-welfare-network/static/js/347.5688f28c.chunk.js.map",
     "350.6110eed2.chunk.js.map": "/animal-welfare-network/static/js/350.6110eed2.chunk.js.map",
     "386.ab6966d1.chunk.js.map": "/animal-welfare-network/static/js/386.ab6966d1.chunk.js.map",
@@ -79,6 +79,6 @@
   },
   "entrypoints": [
     "static/css/main.20b1a620.css",
-    "static/js/main.68893779.js"
+    "static/js/main.c9a9463d.js"
   ]
 }
