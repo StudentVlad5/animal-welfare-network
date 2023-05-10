@@ -26,8 +26,8 @@ import {
   FieldItemTextArea,
   Error,
   Li,
-  Option,
-  OptionFirst,
+  // Option,
+  // OptionFirst,
   IconCat,
   IconDog,
   FieldRadioType,
@@ -64,6 +64,26 @@ export const ModalEditNotice = () => {
   const modal = useSelector(modalComponent);
   const breeds = useSelector(breedsValue);
   const [searchParams] = useSearchParams();
+  const sizeForFormik = [
+    { value: 'big', label: 'big' },
+    { value: 'average', label: 'average' },
+    { value: 'small', label: 'small' },
+  ];
+  const currencyForFormik = [
+    { value: '$', label: 'USA' },
+    { value: '€', label: 'EUR' },
+    { value: '₴', label: 'UAH' },
+  ];
+  const sterelisationForFormik = [
+    { value: 'yes', label: 'yes' },
+    { value: 'no', label: 'no' },
+  ];
+  const livesForFormik = [
+    { value: 'in street', label: 'in street' },
+    { value: 'shelter', label: 'shelter' },
+    { value: 'at volunteers', label: 'at volunteers' },
+    { value: 'home', label: 'home' },
+  ];
   searchParams.set('perPage', 12);
   searchParams.set('page', 1);
 
@@ -491,9 +511,8 @@ export const ModalEditNotice = () => {
                             <Error>{errors.size}</Error>
                           ) : null}
                         </LabelItem>
-
-                        <FieldItem
-                          as="select"
+                        <CreatableSelect
+                          isClearable
                           type="text"
                           id="size"
                           name="size"
@@ -501,18 +520,12 @@ export const ModalEditNotice = () => {
                             values.size === '' ? 'Pet size' : values.size
                           }
                           defaultValue={values.size}
-                        >
-                          {values.size === '' && (
-                            <OptionFirst first value="unselected">
-                              Select size type
-                            </OptionFirst>
-                          )}
-                          {['Big', 'Average', 'Small'].map(s => (
-                            <Option key={s} value={s.toLowerCase()}>
-                              {s}
-                            </Option>
-                          ))}
-                        </FieldItem>
+                          value={values.size}
+                          className="react-select-container"
+                          classNamePrefix="react-select"
+                          onChange={e => setFieldValue('size', e?.value)}
+                          options={sizeForFormik}
+                        ></CreatableSelect>
 
                         <LabelItem htmlFor="height">
                           <span>Height in cm</span>
@@ -600,8 +613,8 @@ export const ModalEditNotice = () => {
                               ) : null}
                             </LabelItem>
 
-                            <FieldItem
-                              as="select"
+                            <CreatableSelect
+                              isClearable
                               type="text"
                               id="currency"
                               name="currency"
@@ -611,18 +624,14 @@ export const ModalEditNotice = () => {
                                   : values.currency
                               }
                               defaultValue={values.currency}
-                            >
-                              {
-                                <OptionFirst first value="unselected">
-                                  Select currency
-                                </OptionFirst>
+                              value={values.currency}
+                              className="react-select-container"
+                              classNamePrefix="react-select"
+                              onChange={e =>
+                                setFieldValue('currency', e?.value)
                               }
-                              {['$', '€', '₴'].map(s => (
-                                <Option key={s} value={s.toLowerCase()}>
-                                  {s}
-                                </Option>
-                              ))}
-                            </FieldItem>
+                              options={currencyForFormik}
+                            ></CreatableSelect>
                           </div>
                         )}
                       </FieldList>
@@ -760,8 +769,8 @@ export const ModalEditNotice = () => {
                           ) : null}
                         </LabelItem>
 
-                        <FieldItem
-                          as="select"
+                        <CreatableSelect
+                          isClearable
                           type="text"
                           id="sterilization"
                           name="sterilization"
@@ -771,19 +780,14 @@ export const ModalEditNotice = () => {
                               : values.sterilization
                           }
                           defaultValue={values.sterilization}
-                        >
-                          {values.sterilization === '' && (
-                            <OptionFirst first value="unselected">
-                              Select option...
-                            </OptionFirst>
-                          )}
-                          {['Yes', 'No'].map(s => (
-                            <Option key={s} value={s.toLowerCase()}>
-                              {s}
-                            </Option>
-                          ))}
-                        </FieldItem>
-
+                          value={values.sterilization}
+                          className="react-select-container"
+                          classNamePrefix="react-select"
+                          onChange={e =>
+                            setFieldValue('sterilization', e?.value)
+                          }
+                          options={sterelisationForFormik}
+                        ></CreatableSelect>
                         <LabelItem htmlFor="lives">
                           <span>Lives</span>
                           {errors.lives && touched.lives ? (
@@ -791,8 +795,8 @@ export const ModalEditNotice = () => {
                           ) : null}
                         </LabelItem>
 
-                        <FieldItem
-                          as="select"
+                        <CreatableSelect
+                          isClearable
                           type="text"
                           id="lives"
                           name="lives"
@@ -800,23 +804,12 @@ export const ModalEditNotice = () => {
                             values.lives === '' ? 'Select place' : values.lives
                           }
                           defaultValue={values.lives}
-                        >
-                          {values.lives === '' && (
-                            <OptionFirst first value="unselected">
-                              Select option...
-                            </OptionFirst>
-                          )}
-                          {[
-                            'In street',
-                            'Shelter',
-                            'At volunteers',
-                            'Home',
-                          ].map(s => (
-                            <Option key={s} value={s.toLowerCase()}>
-                              {s}
-                            </Option>
-                          ))}
-                        </FieldItem>
+                          value={values.lives}
+                          className="react-select-container"
+                          classNamePrefix="react-select"
+                          onChange={e => setFieldValue('lives', e?.value)}
+                          options={livesForFormik}
+                        ></CreatableSelect>
 
                         <LabelItemTextArea htmlFor="comments">
                           <span>Comments</span>
