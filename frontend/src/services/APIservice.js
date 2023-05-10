@@ -95,7 +95,7 @@ async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      // "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
     },
   });
 }

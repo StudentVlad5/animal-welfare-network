@@ -23,8 +23,6 @@ import {
   Label,
   Input,
   FieldItemFile,
-  // Option,
-  // OptionFirst,
   CloseIconBtn,
   DoneIconBtn,
   Error,
@@ -39,7 +37,7 @@ export const EditNoticeDataModal = () => {
   const breeds = useSelector(breedsValue);
   const modal = useSelector(modalComponent);
   const dispatch = useDispatch();
-  const itemForFetch = `/notices/byid/${modal.id}`;
+
   const sizeForFormik = [
     { value: 'big', label: 'big' },
     { value: 'average', label: 'average' },
@@ -50,7 +48,7 @@ export const EditNoticeDataModal = () => {
     { value: '€', label: 'EUR' },
     { value: '₴', label: 'UAH' },
   ];
-  const sterelisationForFormik = [
+  const sterilizationForFormik = [
     { value: 'yes', label: 'yes' },
     { value: 'no', label: 'no' },
   ];
@@ -70,6 +68,8 @@ export const EditNoticeDataModal = () => {
     { value: 'sell', label: 'sell' },
     { value: 'none', label: 'none' },
   ];
+
+  const itemForFetch = `/notices/byid/${modal.id}`;
 
   useEffect(() => {
     async function getData() {
@@ -107,6 +107,7 @@ export const EditNoticeDataModal = () => {
   }, [dispatch]);
 
   async function editNotice(values) {
+    console.log('editNotice ~ values:', values);
     const file1 = document.querySelector('#imageUrl')?.files[0];
     const file2 = document.querySelector('#imageUrl_1')?.files[0];
     const file3 = document.querySelector('#imageUrl_2')?.files[0];
@@ -234,7 +235,6 @@ export const EditNoticeDataModal = () => {
               editNotice(values);
               // closeDataModal();
               dispatch(addReload(false));
-              // dispatch(cleanModal());
             }}
             enableReinitialize={true}
           >
@@ -288,7 +288,6 @@ export const EditNoticeDataModal = () => {
                       classNamePrefix="react-select"
                       onChange={e => {
                         setFieldValue('category', e?.value);
-                        console.log(e?.value);
                       }}
                       options={categoryForFormik}
                     ></CreatableSelect>
@@ -676,7 +675,7 @@ export const EditNoticeDataModal = () => {
                       className="react-select-container"
                       classNamePrefix="react-select"
                       onChange={e => setFieldValue('sterilization', e?.value)}
-                      options={sterelisationForFormik}
+                      options={sterilizationForFormik}
                     ></CreatableSelect>
                   </FieldStyled>
                   <FieldStyled>
@@ -751,7 +750,7 @@ export const EditNoticeDataModal = () => {
                     type="submit"
                     disabled={isSubmitting}
                     // onClick={e => closeDataModal(e)}
-                    // aria-label="Submit"
+                    aria-label="Submit"
                   >
                     <MdDone size={15} />
                   </DoneIconBtn>

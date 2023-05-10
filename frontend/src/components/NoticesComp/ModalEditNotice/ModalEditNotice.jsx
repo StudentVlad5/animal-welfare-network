@@ -65,6 +65,7 @@ export const ModalEditNotice = () => {
   const modal = useSelector(modalComponent);
   const breeds = useSelector(breedsValue);
   const [searchParams] = useSearchParams();
+
   const sizeForFormik = [
     { value: 'big', label: 'big' },
     { value: 'average', label: 'average' },
@@ -75,7 +76,7 @@ export const ModalEditNotice = () => {
     { value: '€', label: 'EUR' },
     { value: '₴', label: 'UAH' },
   ];
-  const sterelisationForFormik = [
+  const sterilizationForFormik = [
     { value: 'yes', label: 'yes' },
     { value: 'no', label: 'no' },
   ];
@@ -85,6 +86,7 @@ export const ModalEditNotice = () => {
     { value: 'at volunteers', label: 'at volunteers' },
     { value: 'home', label: 'home' },
   ];
+
   searchParams.set('perPage', 12);
   searchParams.set('page', 1);
   const { t } = useTranslation();
@@ -121,6 +123,7 @@ export const ModalEditNotice = () => {
   };
 
   async function postNotice(values) {
+    console.log('postNotice ~ values:', values);
     const file1 = document.querySelector('#imageUrl')?.files[0];
     const file2 = document.querySelector('#imageUrl_1')?.files[0];
     const file3 = document.querySelector('#imageUrl_2')?.files[0];
@@ -798,7 +801,7 @@ export const ModalEditNotice = () => {
                           onChange={e =>
                             setFieldValue('sterilization', e?.value)
                           }
-                          options={sterelisationForFormik}
+                          options={sterilizationForFormik}
                         ></CreatableSelect>
 
                         <LabelItem htmlFor="lives">
