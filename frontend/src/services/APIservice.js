@@ -110,7 +110,7 @@ async function deleteData(pathParams) {
   });
 }
 
-async function updateData(pathParams, body, file) {
+async function updateUserData(pathParams, body, file) {
   const formData = new FormData();
   file && formData.set('avatar', file);
   formData.append('email', body.email);
@@ -138,7 +138,7 @@ deleteData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
 
-updateData.propTypes = {
+updateUserData.propTypes = {
   pathParams: PropTypes.string.isRequired,
   formData: PropTypes.string.isRequired,
 };
@@ -149,5 +149,5 @@ export {
   fetchPetsUser,
   fetchPatchNotice,
   deleteData,
-  updateData,
+  updateUserData,
 };
