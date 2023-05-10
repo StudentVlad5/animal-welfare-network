@@ -1,7 +1,7 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-// const  BASE_URL  = window.global;
+// const { BASE_URL } = window.global;
 const BASE_URL = 'https://animal-welfare-network.onrender.com/api';
 // const BASE_URL = 'http://localhost:3030/api';
 
@@ -95,7 +95,7 @@ async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
-      // "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
     },
   });
 }

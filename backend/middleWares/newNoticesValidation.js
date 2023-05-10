@@ -1,5 +1,5 @@
-const Joi = require("joi");
-const { ValidationError } = require("../helpers/errors");
+const Joi = require('joi');
+const { ValidationError } = require('../helpers/errors');
 
 const createValidation = (req, res, next) => {
   const { body, params } = req;
@@ -12,22 +12,24 @@ const createValidation = (req, res, next) => {
     name: Joi.string().min(2).max(16).required(),
     birthday: Joi.string(),
     breed: Joi.string().min(2).max(34).required(),
-    sex: Joi.string().valid("boy", "girl").required(),
-    typeofpet: Joi.string().valid("cat", "dog").required(),
-    // category: Joi.string().valid("sell", "needs-care", "for-free", "none").required(),
-    size: Joi.string().valid("big", "average", "small").required(),
+    sex: Joi.string().valid('boy', 'girl').required(),
+    typeofpet: Joi.string().valid('cat', 'dog').required(),
+    category: Joi.string()
+      .valid('sell', 'needs-care', 'for-free', 'none')
+      .required(),
+    size: Joi.string().valid('big', 'average', 'small').required(),
     height: Joi.number().required(),
     weight: Joi.number().required(),
     passport: Joi.string().required(),
-    sterilization: Joi.string().valid("yes", "no").required(),
+    sterilization: Joi.string().valid('yes', 'no').required(),
     lives: Joi.string()
-      .valid("in street", "shelter", "at volunteers", "home")
+      .valid('in street', 'shelter', 'at volunteers', 'home')
       .required(),
     location: Joi.string().required(),
     comments: Joi.string().min(8).max(120).required(),
     price: Joi.number().min(1).messages({
-      "number.base": "The price must be a number",
-      "number.min": "The price must be greater than 0",
+      'number.base': 'The price must be a number',
+      'number.min': 'The price must be greater than 0',
     }),
     currency: Joi.string(),
   });
@@ -47,7 +49,7 @@ const validateId = (req, res, next) => {
   }).min(1);
   const validationResult = schema.validate({ id: req.params });
   if (validationResult.error) {
-    return next(new ValidationError("Bad request (id incorrect)"));
+    return next(new ValidationError('Bad request (id incorrect)'));
   }
   next();
 };
