@@ -19,18 +19,18 @@ export const NoticesCategoriesNav = () => {
   const navItemsPublick = [
     {
       href: `/notices/needs-care?${searchParams}`,
-      text: 'needs-care',
+      text: t('needs-care'),
     },
     {
       href: `/notices/for-free?${searchParams}`,
-      text: 'for-free',
+      text: t('for-free'),
     },
-    { href: `/notices/sell?${searchParams}`, text: 'sell' },
+    { href: `/notices/sell?${searchParams}`, text: t('sell') },
   ];
   const navItemsPrivate = [
     {
       href: `/notices/favorite?${searchParams}`,
-      text: 'favorite ads',
+      text: t('favorite ads'),
     },
     { href: `/notices/own?${searchParams}`, text: 'my ads' },
   ];

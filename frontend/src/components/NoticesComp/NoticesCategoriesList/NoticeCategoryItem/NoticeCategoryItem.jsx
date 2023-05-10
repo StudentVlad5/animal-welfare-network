@@ -93,7 +93,7 @@ export const NoticesCategoriesItem = ({
   return (
     <ItemContainer
       onClick={e =>
-        e.currentTarget.innerText !== 'Learn more' && openModalSwiper(e)
+        e.currentTarget.innerText !== t('Learn more') && openModalSwiper(e)
       }
       data-modal="swiper"
       data-image1={data?.imageUrl}

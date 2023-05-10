@@ -25,12 +25,15 @@ import {
 } from 'components/NoticesComp/AddNoticeButton/AddNoticeButton.styled';
 import { toggleModalAddNotice } from 'utils/toggleModalNotice';
 import { getBreeds } from 'utils/getBreeds';
+import { useTranslation } from 'react-i18next';
 
 export const UserComp = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
+  const { t } = useTranslation();
+  
   // const [petsList, setPetsList] = useState([]);
 
   // const removePetList = async _id => {
@@ -90,7 +93,7 @@ export const UserComp = () => {
               <div>
                 <PlusIcon />
               </div>
-              Add pet
+              {t("Add pet")}
             </ButtonStyled>
             {/* {isLoggedIn && <AddNoticeModal />} */}
             {/* <AddPetButton /> */}

@@ -6,8 +6,11 @@ import {
   LabelStyled,
   IconSearch,
 } from './NewsSearch.styled';
+import { useTranslation } from 'react-i18next';
 
 export const NewsSearch = ({ searchText, setParams }) => {
+  const { t } = useTranslation();
+
   return (
     <Formik
       initialValues={{ search: !searchText ? '' : searchText }}
@@ -23,7 +26,7 @@ export const NewsSearch = ({ searchText, setParams }) => {
               id="search"
               type="search"
               name="search"
-              placeholder="Search"
+              placeholder={t("Search")}
               value={values.search}
               onChange={e => {
                 handleChange(e);
