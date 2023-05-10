@@ -207,7 +207,7 @@ export const ModalEditNotice = () => {
       }
     }
     getData();
-  }, [dispatch]);
+  }, [dispatch, t]);
 
   function options(typeofpet) {
     const options = [];
@@ -527,7 +527,9 @@ export const ModalEditNotice = () => {
                           id="size"
                           name="size"
                           placeholder={
-                            values.size === '' ?  {t('Select size type')} : values.size
+                            values.size === ''
+                              ? t('Select size type')
+                              : values.size
                           }
                           defaultValue={values.size}
                           value={values.size}
@@ -536,7 +538,6 @@ export const ModalEditNotice = () => {
                           onChange={e => setFieldValue('size', e?.value)}
                           options={sizeForFormik}
                         ></CreatableSelect>
-
 
                         <LabelItem htmlFor="height">
                           <span>{t('Height in cm')}</span>
@@ -826,7 +827,7 @@ export const ModalEditNotice = () => {
                         ></CreatableSelect>
 
                         <LabelItemTextArea htmlFor="comments">
-                          <span>{t("Comments")}</span>
+                          <span>{t('Comments')}</span>
                           {errors.comments && touched.comments ? (
                             <Error>{errors.comments}</Error>
                           ) : null}
@@ -840,7 +841,7 @@ export const ModalEditNotice = () => {
                           type="text"
                           id="comments"
                           name="comments"
-                          placeholder={t("Type comments")}
+                          placeholder={t('Type comments')}
                           onChange={e => handleChange(e)}
                           defaultValue={values.comments}
                         />
