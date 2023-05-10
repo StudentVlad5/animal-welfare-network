@@ -286,7 +286,10 @@ export const EditNoticeDataModal = () => {
                       value={values.category}
                       className="react-select-container"
                       classNamePrefix="react-select"
-                      onChange={e => setFieldValue('category', e?.value)}
+                      onChange={e => {
+                        setFieldValue('category', e?.value);
+                        console.log(e?.value);
+                      }}
                       options={categoryForFormik}
                     ></CreatableSelect>
                   </FieldStyled>
