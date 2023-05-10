@@ -99,17 +99,6 @@ async function fetchPatchNotice(pathParams, body, file1, file2, file3) {
   });
 }
 
-async function deleteData(pathParams) {
-  const formData = new FormData();
-  return axios.delete(`${BASE_URL}${pathParams}`, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
-    },
-  });
-}
-
 async function updateUserData(pathParams, body, file) {
   const formData = new FormData();
   file && formData.set('avatar', file);
@@ -122,6 +111,17 @@ async function updateUserData(pathParams, body, file) {
   formData.append('userName', body.userName);
 
   return await axios.patch(`${BASE_URL}${pathParams}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+    },
+  });
+}
+
+async function deleteData(pathParams) {
+  const formData = new FormData();
+  return axios.delete(`${BASE_URL}${pathParams}`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
       'Access-Control-Allow-Origin': '*',
@@ -148,6 +148,6 @@ export {
   fetchNotice,
   fetchPetsUser,
   fetchPatchNotice,
-  deleteData,
   updateUserData,
+  deleteData,
 };
