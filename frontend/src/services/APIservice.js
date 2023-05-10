@@ -138,6 +138,11 @@ deleteData.propTypes = {
   pathParams: PropTypes.string.isRequired,
 };
 
+updateUserData.propTypes = {
+  pathParams: PropTypes.string.isRequired,
+  formData: PropTypes.string.isRequired,
+};
+
 export {
   fetchData,
   fetchNotice,

@@ -23,8 +23,8 @@ import {
   Label,
   Input,
   FieldItemFile,
-  Option,
-  OptionFirst,
+  // Option,
+  // OptionFirst,
   CloseIconBtn,
   DoneIconBtn,
   Error,
@@ -37,10 +37,39 @@ export const EditNoticeDataModal = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const breeds = useSelector(breedsValue);
-
   const modal = useSelector(modalComponent);
   const dispatch = useDispatch();
   const itemForFetch = `/notices/byid/${modal.id}`;
+  const sizeForFormik = [
+    { value: 'big', label: 'big' },
+    { value: 'average', label: 'average' },
+    { value: 'small', label: 'small' },
+  ];
+  const currencyForFormik = [
+    { value: '$', label: 'USA' },
+    { value: '€', label: 'EUR' },
+    { value: '₴', label: 'UAH' },
+  ];
+  const sterelisationForFormik = [
+    { value: 'yes', label: 'yes' },
+    { value: 'no', label: 'no' },
+  ];
+  const typeofpetForFormik = [
+    { value: 'dog', label: 'dog' },
+    { value: 'cat', label: 'cat' },
+  ];
+  const livesForFormik = [
+    { value: 'in street', label: 'in street' },
+    { value: 'shelter', label: 'shelter' },
+    { value: 'at volunteers', label: 'at volunteers' },
+    { value: 'home', label: 'home' },
+  ];
+  const categoryForFormik = [
+    { value: 'needs-care', label: 'needs-care' },
+    { value: 'for-free', label: 'for-free' },
+    { value: 'sell', label: 'sell' },
+    { value: 'none', label: 'none' },
+  ];
 
   useEffect(() => {
     async function getData() {
@@ -83,14 +112,16 @@ export const EditNoticeDataModal = () => {
     const file3 = document.querySelector('#imageUrl_2')?.files[0];
     setIsLoading(true);
     try {
-      const { date } = await fetchPatchNotice(
+      const { code } = await fetchPatchNotice(
         `/notices/${modal.id}`,
         values,
         file1,
         file2,
         file3,
       );
-      return date;
+      if (code && code !== 201) {
+        return onFetchError('Whoops, something went wrong');
+      }
     } catch (error) {
       setError(error);
     } finally {
@@ -153,7 +184,7 @@ export const EditNoticeDataModal = () => {
     dispatch(cleanModal());
     closeModalWindow(e);
   };
-
+  console.log('dataUpdate', dataUpdate);
   return createPortal(
     Object.values(modal)[0] === 'admin' && (
       <BackDrop
@@ -199,11 +230,11 @@ export const EditNoticeDataModal = () => {
               email: dataUpdate?.email ? dataUpdate.email : '',
               phone: dataUpdate?.phone ? dataUpdate.phone : '',
             }}
-            onSubmit={(values, { setSubmitting }) => {
+            onSubmit={values => {
               editNotice(values);
               // closeDataModal();
               dispatch(addReload(false));
-              setSubmitting(false);
+              // dispatch(cleanModal());
             }}
             enableReinitialize={true}
           >
@@ -241,8 +272,8 @@ export const EditNoticeDataModal = () => {
                         <Error>{errors.category}</Error>
                       ) : null}
                     </Label>
-                    <Input
-                      as="select"
+                    <CreatableSelect
+                      isClearable
                       type="text"
                       id="category"
                       name="category"
@@ -252,23 +283,17 @@ export const EditNoticeDataModal = () => {
                           : values.category
                       }
                       defaultValue={values.category}
-                    >
-                      {values.category === '' && (
-                        <OptionFirst first value="unselected">
-                          Select category type
-                        </OptionFirst>
-                      )}
-                      {['needs-care', 'for-free', 'sell', 'none'].map(s => (
-                        <Option key={s} value={s.toLowerCase()}>
-                          {s}
-                        </Option>
-                      ))}
-                    </Input>
+                      value={values.category}
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                      onChange={e => setFieldValue('category', e?.value)}
+                      options={categoryForFormik}
+                    ></CreatableSelect>
                   </FieldStyled>
                   <FieldStyled>
                     <Label htmlFor="typeofpet">Type of pet</Label>
-                    <Input
-                      as="select"
+                    <CreatableSelect
+                      isClearable
                       type="text"
                       id="typeofpet"
                       name="typeofpet"
@@ -278,18 +303,12 @@ export const EditNoticeDataModal = () => {
                           : values.typeofpet
                       }
                       defaultValue={values.typeofpet}
-                    >
-                      {values.typeofpet === '' && (
-                        <OptionFirst first value="unselected">
-                          Select type of pet
-                        </OptionFirst>
-                      )}
-                      {['cat', 'dog'].map(s => (
-                        <Option key={s} value={s.toLowerCase()}>
-                          {s}
-                        </Option>
-                      ))}
-                    </Input>
+                      value={values.typeofpet}
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                      onChange={e => setFieldValue('typeofpet', e?.value)}
+                      options={typeofpetForFormik}
+                    ></CreatableSelect>
                   </FieldStyled>
                   <FieldStyled>
                     <Label htmlFor="title">
@@ -391,8 +410,8 @@ export const EditNoticeDataModal = () => {
                         <Error>{errors.size}</Error>
                       ) : null}
                     </Label>
-                    <Input
-                      as="select"
+                    <CreatableSelect
+                      isClearable
                       type="text"
                       id="size"
                       name="size"
@@ -400,18 +419,12 @@ export const EditNoticeDataModal = () => {
                         values.size === '' ? 'Pet size' : values.size
                       }
                       defaultValue={values.size}
-                    >
-                      {values.size === '' && (
-                        <OptionFirst first value="unselected">
-                          Select size type
-                        </OptionFirst>
-                      )}
-                      {['Big', 'Average', 'Small'].map(s => (
-                        <Option key={s} value={s.toLowerCase()}>
-                          {s}
-                        </Option>
-                      ))}
-                    </Input>
+                      value={values.size}
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                      onChange={e => setFieldValue('size', e?.value)}
+                      options={sizeForFormik}
+                    ></CreatableSelect>
                   </FieldStyled>
                   <FieldStyled>
                     <Label htmlFor="height">
@@ -501,8 +514,8 @@ export const EditNoticeDataModal = () => {
                         <Error>{errors.currency}</Error>
                       ) : null}
                     </Label>
-                    <Input
-                      as="select"
+                    <CreatableSelect
+                      isClearable
                       type="text"
                       id="currency"
                       name="currency"
@@ -512,18 +525,12 @@ export const EditNoticeDataModal = () => {
                           : values.currency
                       }
                       defaultValue={values.currency}
-                    >
-                      {
-                        <OptionFirst first value="unselected">
-                          Select currency
-                        </OptionFirst>
-                      }
-                      {['$', '€', '₴'].map(s => (
-                        <Option key={s} value={s.toLowerCase()}>
-                          {s}
-                        </Option>
-                      ))}
-                    </Input>
+                      value={values.currency}
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                      onChange={e => setFieldValue('currency', e?.value)}
+                      options={currencyForFormik}
+                    ></CreatableSelect>
                   </FieldStyled>
                   <FieldStyled>
                     <Label htmlFor="imageUrl">
@@ -651,8 +658,8 @@ export const EditNoticeDataModal = () => {
                         <Error>{errors.sterilization}</Error>
                       ) : null}
                     </Label>
-                    <Input
-                      as="select"
+                    <CreatableSelect
+                      isClearable
                       type="text"
                       id="sterilization"
                       name="sterilization"
@@ -662,18 +669,12 @@ export const EditNoticeDataModal = () => {
                           : values.sterilization
                       }
                       defaultValue={values.sterilization}
-                    >
-                      {values.sterilization === '' && (
-                        <OptionFirst first value="unselected">
-                          Select option...
-                        </OptionFirst>
-                      )}
-                      {['Yes', 'No'].map(s => (
-                        <Option key={s} value={s.toLowerCase()}>
-                          {s}
-                        </Option>
-                      ))}
-                    </Input>
+                      value={values.sterilization}
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                      onChange={e => setFieldValue('sterilization', e?.value)}
+                      options={sterelisationForFormik}
+                    ></CreatableSelect>
                   </FieldStyled>
                   <FieldStyled>
                     <Label htmlFor="lives">
@@ -682,8 +683,8 @@ export const EditNoticeDataModal = () => {
                         <Error>{errors.lives}</Error>
                       ) : null}
                     </Label>
-                    <Input
-                      as="select"
+                    <CreatableSelect
+                      isClearable
                       type="text"
                       id="lives"
                       name="lives"
@@ -691,20 +692,12 @@ export const EditNoticeDataModal = () => {
                         values.lives === '' ? 'Select place' : values.lives
                       }
                       defaultValue={values.lives}
-                    >
-                      {values.lives === '' && (
-                        <OptionFirst first value="unselected">
-                          Select option...
-                        </OptionFirst>
-                      )}
-                      {['In street', 'Shelter', 'At volunteers', 'Home'].map(
-                        s => (
-                          <Option key={s} value={s.toLowerCase()}>
-                            {s}
-                          </Option>
-                        ),
-                      )}
-                    </Input>
+                      value={values.lives}
+                      className="react-select-container"
+                      classNamePrefix="react-select"
+                      onChange={e => setFieldValue('lives', e?.value)}
+                      options={livesForFormik}
+                    ></CreatableSelect>
                   </FieldStyled>
                   <FieldStyled>
                     <Label htmlFor="comments">
