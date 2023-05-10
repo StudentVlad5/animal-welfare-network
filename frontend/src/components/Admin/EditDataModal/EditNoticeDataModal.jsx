@@ -113,7 +113,7 @@ export const EditNoticeDataModal = () => {
     setIsLoading(true);
     try {
       const { code } = await fetchPatchNotice(
-        `/notices/${modal.id}`,
+        `/admin/notices/${modal.id}`,
         values,
         file1,
         file2,
@@ -184,7 +184,7 @@ export const EditNoticeDataModal = () => {
     dispatch(cleanModal());
     closeModalWindow(e);
   };
-  console.log('dataUpdate', dataUpdate);
+
   return createPortal(
     Object.values(modal)[0] === 'admin' && (
       <BackDrop

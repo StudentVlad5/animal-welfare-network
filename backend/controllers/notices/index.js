@@ -5,7 +5,6 @@ const getId = require('./getId');
 const getNotices = require('./getAll');
 const deleteFavorite = require('./deleteFavorite');
 const deleteNotices = require('./deleteNotices');
-const updateNotices = require('./update');
 const editNotices = require('./editNotices');
 
 module.exports = {
@@ -16,6 +15,5 @@ module.exports = {
   addFavorite,
   deleteFavorite,
   deleteNotices,
-  updateNotices,
   editNotices,
 };

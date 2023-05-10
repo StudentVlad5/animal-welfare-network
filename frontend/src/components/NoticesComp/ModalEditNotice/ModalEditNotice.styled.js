@@ -48,7 +48,6 @@ export const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  padding-top: 100px;
 
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);

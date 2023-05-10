@@ -22,7 +22,7 @@ export const NewsListItem = ({ newsItem }) => {
       <TextWrapper>
         <Ractangle />
         <Title>
-          <EllipsisText text={abstract} length={38} />
+          <EllipsisText text={abstract} length={50} />
         </Title>
         <Text>
           <EllipsisText text={lead_paragraph} length={200} />
