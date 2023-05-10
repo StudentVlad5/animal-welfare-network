@@ -123,7 +123,6 @@ export const ModalEditNotice = () => {
   };
 
   async function postNotice(values) {
-    console.log('postNotice ~ values:', values);
     const file1 = document.querySelector('#imageUrl')?.files[0];
     const file2 = document.querySelector('#imageUrl_1')?.files[0];
     const file3 = document.querySelector('#imageUrl_2')?.files[0];
