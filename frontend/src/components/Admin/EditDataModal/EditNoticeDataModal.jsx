@@ -184,7 +184,7 @@ export const EditNoticeDataModal = () => {
     dispatch(cleanModal());
     closeModalWindow(e);
   };
-  console.log('dataUpdate', dataUpdate);
+
   return createPortal(
     Object.values(modal)[0] === 'admin' && (
       <BackDrop
@@ -286,7 +286,10 @@ export const EditNoticeDataModal = () => {
                       value={values.category}
                       className="react-select-container"
                       classNamePrefix="react-select"
-                      onChange={e => setFieldValue('category', e?.value)}
+                      onChange={e => {
+                        setFieldValue('category', e?.value);
+                        console.log(e?.value);
+                      }}
                       options={categoryForFormik}
                     ></CreatableSelect>
                   </FieldStyled>
