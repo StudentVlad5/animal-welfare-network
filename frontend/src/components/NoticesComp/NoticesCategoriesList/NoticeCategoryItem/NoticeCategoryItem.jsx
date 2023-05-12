@@ -150,7 +150,7 @@ export const NoticesCategoriesItem = ({
                     : 'no info'}
                 </TdTable2>
               </tr>
-              {data.price && (
+              {data.category === 'sell' && data.price && (
                 <tr>
                   <TdTable>{t('Price')}:</TdTable>
                   <TdTable2>
