@@ -2,7 +2,14 @@ import axios from 'axios';
 
 export const signUp = async credentials => {
   try {
-    const res = await axios.post('/auth/signup', credentials);
+    const res = await axios.post('/auth/signup', credentials, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+        'Access-Control-Allow-Headers': '*',
+      },
+    });
     return res;
   } catch (error) {
     return error.message;
@@ -11,7 +18,14 @@ export const signUp = async credentials => {
 
 export const signIn = async credentials => {
   try {
-    const res = await axios.post('/auth/signin', credentials);
+    const res = await axios.post('/auth/signin', credentials, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,POST,PUT,PATCH,DELETE,OPTIONS',
+        'Access-Control-Allow-Headers': '*',
+      },
+    });
     return res;
   } catch (error) {
     return error.message;
