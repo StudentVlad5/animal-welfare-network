@@ -264,7 +264,7 @@ export const AddNoticeModal = () => {
                           id="radioOne"
                           name="category"
                           value="needs-care"
-                          checked={values.category === 'needs-care'}
+                          checked={values.category === t('needs-care')}
                         />
                         <LabelRadio htmlFor="radioOne">
                           {t('needs-care')}
@@ -275,7 +275,7 @@ export const AddNoticeModal = () => {
                           id="radioTwo"
                           name="category"
                           value="for-free"
-                          checked={values.category === 'for-free'}
+                          checked={values.category === t('for-free')}
                         />
                         <LabelRadio htmlFor="radioTwo">
                           {t('for-free')}
@@ -286,7 +286,7 @@ export const AddNoticeModal = () => {
                           id="radioThree"
                           name="category"
                           value="sell"
-                          checked={values.category === 'sell'}
+                          checked={values.category === t('sell')}
                         />
                         <LabelRadio htmlFor="radioThree">
                           {t('sell')}
@@ -297,7 +297,7 @@ export const AddNoticeModal = () => {
                           id="radioFour"
                           name="category"
                           value="none"
-                          checked={values.category === 'none'}
+                          checked={values.category === t('none')}
                         />
                         <LabelRadio htmlFor="radioFour">
                           {t('without')}
@@ -316,7 +316,7 @@ export const AddNoticeModal = () => {
                           id="radioOneType"
                           name="typeofpet"
                           value="cat"
-                          checked={values.typeofpet === 'cat'}
+                          checked={values.typeofpet === t('cat')}
                         />
                         <LabelRadioType htmlFor="radioOneType">
                           <IconCat />

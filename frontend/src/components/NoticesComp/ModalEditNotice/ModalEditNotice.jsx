@@ -231,7 +231,7 @@ export const ModalEditNotice = () => {
           <ButtonClose type="button" onClick={e => onClickBackdrop(e)}>
             <IconClose />
           </ButtonClose>
-          <Title>(t{'Edit data of pet'})</Title>
+          <Title>{t('Edit data of pet')}</Title>
           <div>
             <Formik
               initialValues={{
@@ -527,7 +527,7 @@ export const ModalEditNotice = () => {
                           id="size"
                           name="size"
                           placeholder={
-                            values.size === '' ?  {t('Select size type')} : values.size
+                            values.size === '' ?  t('Select size type') : values.size
                           }
                           defaultValue={values.size}
                           value={values.size}
