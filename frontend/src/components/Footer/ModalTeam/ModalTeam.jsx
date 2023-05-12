@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
-import { MdClose } from 'react-icons/md';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
 import { modalComponent } from 'redux/modal/selectors';
@@ -9,7 +8,7 @@ import { fetchData } from 'services/APIservice';
 import { TeamList } from '../TeamList/TeamList';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import { onLoaded, onLoading } from 'components/helpers/Loader/Loader';
-import { BackDrop, Modal, CloseIconBtn } from './ModalTeam.styled';
+import { BackDrop, Modal, ButtonClose, IconClose } from './ModalTeam.styled';
 import { Title } from 'components/baseStyles/CommonStyle.styled';
 
 export const ModalTeam = () => {
@@ -52,12 +51,13 @@ export const ModalTeam = () => {
         }}
       >
         <Modal>
-          <CloseIconBtn
+          <ButtonClose
+            type="button"
             onClick={e => closeModalTeam(e)}
             aria-label="Close modal"
           >
-            <MdClose size={15} />
-          </CloseIconBtn>
+            <IconClose />
+          </ButtonClose>
           <Title
             as="h2"
             size="20px"

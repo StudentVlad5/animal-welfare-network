@@ -230,7 +230,11 @@ export const ModalEditNotice = () => {
         <ModalAddNoticeStyled onClick={e => e.stopPropagation()}>
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError(t('Whoops, something went wrong'))}
-          <ButtonClose type="button" onClick={e => onClickBackdrop(e)}>
+          <ButtonClose
+            type="button"
+            onClick={e => onClickBackdrop(e)}
+            aria-label="Close modal"
+          >
             <IconClose />
           </ButtonClose>
           <Title>{t('Edit data of pet')}</Title>
@@ -355,7 +359,7 @@ export const ModalEditNotice = () => {
                           {t('sell')}
                         </LabelRadio>
 
-                        <FieldRadio
+                        {/* <FieldRadio
                           type="radio"
                           id="radioFour"
                           name="category"
@@ -364,7 +368,7 @@ export const ModalEditNotice = () => {
                         />
                         <LabelRadio htmlFor="radioFour">
                           {t('without')}
-                        </LabelRadio>
+                        </LabelRadio> */}
                       </FieldsRadio>
 
                       <FieldsRadioType role="group" id="typeofpet">
