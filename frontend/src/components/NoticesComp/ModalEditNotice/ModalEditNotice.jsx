@@ -233,7 +233,7 @@ export const ModalEditNotice = () => {
           <ButtonClose type="button" onClick={e => onClickBackdrop(e)}>
             <IconClose />
           </ButtonClose>
-          <Title>(t{'Edit data of pet'})</Title>
+          <Title>{t('Edit data of pet')}</Title>
           <div>
             <Formik
               initialValues={{
