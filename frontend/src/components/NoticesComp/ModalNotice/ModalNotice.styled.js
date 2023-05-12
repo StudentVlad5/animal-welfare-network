@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as icon } from 'images/svg/icon_close.svg';
 
 const BackDrop = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const NoticesContainerItem = styled.div`
   display: block;
   width: 280px;
   margin-top: 250px;
-  padding: 17px 20px 43px 20px;
+  padding: 10px 20px 40px 20px;
   background-color: ${props => props.theme.white};
   border-radius: 20px;
   -webkit-box-shadow: 7px 4px 14px 7px ${props => props.theme.shadowColor};
@@ -26,36 +27,63 @@ const NoticesContainerItem = styled.div`
   @media screen and (min-width: 768px) {
     margin-top: 0;
     width: 704px;
-    padding: 32px 20px 32px 20px;
+    padding: 45px 20px 32px 20px;
   }
 `;
-const ContainerPositionForCloseModal = styled.div`
-  display: flex;
-  justify-content: end;
-`;
 
-const ContainerCloseModal = styled.div`
+const ButtonClose = styled.button`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 45;
+
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
+  margin: 0;
+  padding: 0;
   width: 34px;
   height: 34px;
-  margin-bottom: 6px;
 
-  color: ${props => props.theme.black};
-  background-color: ${props => props.theme.white};
-  border: 1px solid ${props => props.theme.black};
+  background-color: ${props => props.theme.mainBg};
   border-radius: 50%;
-  backdrop-filter: blur(2px);
+  border: medium none;
+  border-spacing: 0;
 
-  z-index: 50;
+  transition: all 0.25s ease-in;
   cursor: pointer;
 
+  &:hover,
+  &:focus {
+    outline: 2px solid ${props => props.theme.orangeLight};
+    border: none;
+  }
+
   @media screen and (min-width: 768px) {
-    position: absolute;
-    top: 12px;
-    right: 20px;
+    width: 44px;
+    height: 44px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    top: 24px;
+    right: 24px;
+  }
+`;
+
+const IconClose = styled(icon)`
+  width: 28px;
+  height: 28px;
+  display: block;
+
+  & > path {
+    stroke: ${props => props.theme.black};
+    fill: ${props => props.theme.black};
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 36px;
+    height: 36px;
   }
 `;
 
@@ -68,7 +96,7 @@ const ContainerStatus = styled.div`
   width: 158px;
   height: 28px;
   background: ${props => props.theme.orangeLight};
-  color: ${props => props.theme.blackText};
+  color: ${props => props.theme.inpTextModal};
   border-radius: 0 20px 20px 0;
   backdrop-filter: blur(50px);
   font-weight: 500;
@@ -76,7 +104,7 @@ const ContainerStatus = styled.div`
   line-height: 16px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  margin-top: 10px;
+  margin-bottom: 10px;
   border: 3px solid ${props => props.theme.orangeLight};
   z-index: 99;
 `;
@@ -89,7 +117,7 @@ const ContainerInfo = styled.div`
   border-radius: 20px;
 
   @media screen and (min-width: 768px) {
-    width: 670px;
+    /* width: 670px; */
     display: flex;
   }
 `;
@@ -100,10 +128,10 @@ const ImgItem = styled.img`
   outline: unset;
   object-fit: contain;
   background-color: ${props => props.theme.white};
+
   @media screen and (min-width: 768px) {
     width: 288px;
     height: 328px;
-    margin-right: 20px;
   }
 `;
 const NoticeItemTitle = styled.h2`
@@ -116,7 +144,7 @@ const NoticeItemTitle = styled.h2`
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
-  color: ${props => props.theme.black};
+  color: ${props => props.theme.inpTextModal};
   min-width: 230px;
   max-width: 330px;
   @media screen and (min-width: 768px) {
@@ -152,7 +180,7 @@ const BtnContact = styled.button`
   border-radius: 40px;
   border: 2px solid ${props => props.theme.orangeLight};
   background-color: ${props => props.theme.white};
-  color: ${props => props.theme.blackText};
+  color: ${props => props.theme.inpTextModal};
   margin: 40px 0 12px;
   transition: all 0.25s ease-in;
   &:hover {
@@ -180,7 +208,7 @@ const BtnAddFavorites = styled.button`
   align-items: center;
   border: 2px solid ${props => props.theme.orangeLight};
   background-color: ${props => props.theme.white};
-  color: ${props => props.theme.blackText};
+  color: ${props => props.theme.inpTextModal};
 
   & > svg {
     transition: all 0.3s ease-in;
@@ -218,7 +246,7 @@ const TdTable = styled.td`
   line-height: 19px;
   overflow: hidden;
   min-width: 115px;
-  color: ${props => props.theme.black};
+  color: ${props => props.theme.inpTextModal};
 
   @media screen and (min-width: 768px) {
     min-width: 115px;
@@ -234,7 +262,7 @@ const TdTable2 = styled.td`
   line-height: 19px;
   overflow: hidden;
   min-width: 115px;
-  color: ${props => props.theme.black};
+  color: ${props => props.theme.inpTextModal};
 
   @media screen and (min-width: 768px) {
     min-width: 115px;
@@ -258,7 +286,7 @@ const Table = styled.table`
   display: flex;
   overflow: hidden;
   margin-top: 26px;
-  color: ${props => props.theme.black};
+  color: ${props => props.theme.inpTextModal};
   @media screen and (min-width: 768px) {
     margin-top: 20px;
   }
@@ -267,16 +295,16 @@ const Comments = styled.span`
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
-  color: ${props => props.theme.black};
+  color: ${props => props.theme.inpTextModal};
 `;
 const MainComments = styled.span`
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
-  color: ${props => props.theme.black};
+  color: ${props => props.theme.inpTextModal};
 `;
 const ContainerComments = styled.div`
-  margin-top: 28px;
+  margin-top: 20px;
 `;
 
 const ModalBtn = styled.button`
@@ -307,8 +335,8 @@ export {
   ModalBtn,
   ModalBtn1,
   NoticesContainerItem,
-  ContainerCloseModal,
-  ContainerPositionForCloseModal,
+  ButtonClose,
+  IconClose,
   ContainerInfo,
   ImgItem,
   ContainerStatus,

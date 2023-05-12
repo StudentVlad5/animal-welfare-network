@@ -152,7 +152,6 @@ img {
 
   padding: 10px 15px 10px 15px;
 
-
   font-family: 'Manrope', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -160,7 +159,7 @@ img {
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   &::placeholder {
     color: rgba(27, 27, 27, 0.6);
@@ -188,16 +187,14 @@ img {
     display: none;
   }
 
-
-
   @media screen and (min-width: 768px) {
     font-size: 16px;
     height: 48px;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
 }
 
-.react-select__control, .react-select__control--is-focused, react-select__control--menu-is-open {
+.react-select__control, .react-select__control--is-focused, .react-select__control--menu-is-open {
 width: 100%;
 padding: 0!important;
 margin: 0!important;
@@ -271,6 +268,7 @@ margin: 0!important;
   display: block;
   width: 100%;
   height: 100%;
+  max-height: 500px;
   object-fit: cover;
 }
 

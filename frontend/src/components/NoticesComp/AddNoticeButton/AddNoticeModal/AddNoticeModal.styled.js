@@ -111,18 +111,18 @@ export const ButtonClose = styled.button`
   align-items: center;
   justify-content: center;
 
-  cursor: pointer;
-
-  border: medium none;
-  border-spacing: 0;
   margin: 0;
   padding: 0;
-  border-radius: 50%;
   width: 34px;
   height: 34px;
 
   background-color: ${props => props.theme.mainBg};
+  border-radius: 50%;
+  border: medium none;
+  border-spacing: 0;
+
   transition: all 0.25s ease-in;
+  cursor: pointer;
 
   &:hover,
   &:focus {
@@ -145,6 +145,12 @@ export const IconClose = styled(icon)`
   width: 28px;
   height: 28px;
   display: block;
+
+  & > path {
+    stroke: ${props => props.theme.black};
+    fill: ${props => props.theme.black};
+  }
+
   @media screen and (min-width: 768px) {
     width: 36px;
     height: 36px;
@@ -258,7 +264,7 @@ export const FieldsRadio = styled.div`
   font-size: 14px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   & p {
     position: relative;
@@ -274,7 +280,7 @@ export const FieldsRadio = styled.div`
     letter-spacing: 0.04em;
     text-align: left;
 
-    color: ${props => props.theme.inpText};
+    color: ${props => props.theme.inpTextModal};
   }
 
   @media screen and (min-width: 768px) {
@@ -340,7 +346,7 @@ export const FieldItem = styled(Field)`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   &::placeholder {
     color: rgba(27, 27, 27, 0.6);
@@ -371,7 +377,7 @@ export const FieldItem = styled(Field)`
   @media screen and (min-width: 768px) {
     font-size: 16px;
     height: 48px;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -389,7 +395,7 @@ export const LabelItem = styled.label`
   letter-spacing: 0.04em;
   text-align: left;
 
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   & span {
     display: block;
@@ -467,26 +473,26 @@ export const FieldItemFile = styled(Field)`
 export const IconMale = styled(iconMale)`
   height: 40px;
   width: 40px;
-  margin-top: 16px;
-  margin-bottom: 12px;
+  /* margin-top: 16px; */
+  margin-bottom: 6px;
 
   @media screen and (min-width: 768px) {
     height: 60px;
     width: 60px;
-    margin-top: 28px;
-    margin-bottom: 20px;
+    /* margin-top: 28px;
+    margin-bottom: 20px; */
   }
 `;
 export const IconFemale = styled(iconFemale)`
   height: 40px;
   width: 40px;
-  margin-top: 16px;
-  margin-bottom: 12px;
+  /* margin-top: 16px; */
+  margin-bottom: 6px;
   @media screen and (min-width: 768px) {
     height: 60px;
     width: 60px;
-    margin-top: 28px;
-    margin-bottom: 20px;
+    /* margin-top: 28px;
+    margin-bottom: 20px; */
   }
 `;
 
@@ -533,7 +539,7 @@ export const FieldsRadioSex = styled.div`
   flex-wrap: wrap;
 
   width: 100%;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 
   font-family: 'Manrope', sans-serif;
   font-style: normal;
@@ -541,7 +547,7 @@ export const FieldsRadioSex = styled.div`
   font-size: 14px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   & p {
     position: relative;
@@ -556,11 +562,11 @@ export const FieldsRadioSex = styled.div`
     letter-spacing: 0.04em;
     text-align: left;
 
-    color: ${props => props.theme.inpText};
+    color: ${props => props.theme.inpTextModal};
   }
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 
     font-size: 24px;
 
@@ -584,7 +590,7 @@ export const LabelItemTextArea = styled.label`
   letter-spacing: 0.04em;
   text-align: left;
 
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   & span {
     display: block;
@@ -620,7 +626,7 @@ export const FieldItemTextArea = styled(Field)`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   &::placeholder {
     color: rgba(27, 27, 27, 0.6);
@@ -700,7 +706,7 @@ export const Li = styled.li`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   padding: 10px 15px 10px 15px;
 
@@ -733,7 +739,7 @@ export const Option = styled.option`
   line-height: 1.375;
   letter-spacing: 0.04em;
   text-align: left;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   background: ${props => props.theme.mainBg};
 
@@ -762,26 +768,26 @@ export const OptionFirst = styled.option`
 export const IconCat = styled(iconCat)`
   height: 40px;
   width: 40px;
-  margin-top: 16px;
-  margin-bottom: 12px;
+  /* margin-top: 16px; */
+  margin-bottom: 6px;
 
   @media screen and (min-width: 768px) {
     height: 60px;
     width: 60px;
-    margin-top: 28px;
-    margin-bottom: 20px;
+    /* margin-top: 28px;
+    margin-bottom: 20px; */
   }
 `;
 export const IconDog = styled(iconDog)`
   height: 40px;
   width: 40px;
-  margin-top: 16px;
-  margin-bottom: 12px;
+  /* margin-top: 16px; */
+  margin-bottom: 6px;
   @media screen and (min-width: 768px) {
     height: 60px;
     width: 60px;
-    margin-top: 28px;
-    margin-bottom: 20px;
+    /* margin-top: 28px;
+    margin-bottom: 20px; */
   }
 `;
 
@@ -832,7 +838,7 @@ export const FieldsRadioType = styled.div`
   flex-wrap: wrap;
 
   width: 100%;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
 
   font-family: 'Manrope', sans-serif;
   font-style: normal;
@@ -840,7 +846,7 @@ export const FieldsRadioType = styled.div`
   font-size: 14px;
   line-height: 1.375;
   letter-spacing: 0.04em;
-  color: ${props => props.theme.inpText};
+  color: ${props => props.theme.inpTextModal};
 
   & p {
     position: relative;
@@ -855,11 +861,11 @@ export const FieldsRadioType = styled.div`
     letter-spacing: 0.04em;
     text-align: left;
 
-    color: ${props => props.theme.inpText};
+    color: ${props => props.theme.inpTextModal};
   }
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 
     font-size: 24px;
 
