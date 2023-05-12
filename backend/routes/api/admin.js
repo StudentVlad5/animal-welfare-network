@@ -51,7 +51,7 @@ router.patch(
     { name: 'imageUrl_2', maxCount: 1 },
   ]),
   // createValidation,
-  ctrlWrapper(notices.updateNotices)
+  ctrlWrapper(notices.editNotices)
 );
 
 module.exports = routerAdmin = router;

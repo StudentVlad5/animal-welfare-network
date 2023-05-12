@@ -16,7 +16,7 @@ const OurFriends = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const { t } = useTranslation();
-  
+
   useEffect(() => {
     (async function getData() {
       setIsLoading(true);
@@ -32,17 +32,17 @@ const OurFriends = () => {
         setIsLoading(false);
       }
     })();
-  }, []);
+  }, [t]);
 
   return (
     <>
       <SEO
-        title={t("Our friends")}
+        title={t('Our friends')}
         description="You can see all of our company of friends"
       />
       <Section>
         <Container>
-          <Title as="h1">{t("Our Friends")}</Title>
+          <Title as="h1">{t('Our Friends')}</Title>
           {isLoading ? onLoading() : onLoaded()}
           {error && onFetchError(t('Whoops, something went wrong'))}
           {friends.length > 0 && !error && <OurFriendsList friends={friends} />}

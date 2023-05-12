@@ -65,6 +65,7 @@ export const ModalEditNotice = () => {
   const modal = useSelector(modalComponent);
   const breeds = useSelector(breedsValue);
   const [searchParams] = useSearchParams();
+
   const sizeForFormik = [
     { value: 'big', label: 'big' },
     { value: 'average', label: 'average' },
@@ -75,7 +76,7 @@ export const ModalEditNotice = () => {
     { value: '€', label: 'EUR' },
     { value: '₴', label: 'UAH' },
   ];
-  const sterelisationForFormik = [
+  const sterilizationForFormik = [
     { value: 'yes', label: 'yes' },
     { value: 'no', label: 'no' },
   ];
@@ -85,6 +86,7 @@ export const ModalEditNotice = () => {
     { value: 'at volunteers', label: 'at volunteers' },
     { value: 'home', label: 'home' },
   ];
+
   searchParams.set('perPage', 12);
   searchParams.set('page', 1);
   const { t } = useTranslation();
@@ -207,7 +209,7 @@ export const ModalEditNotice = () => {
       }
     }
     getData();
-  }, [dispatch]);
+  }, [dispatch, t]);
 
   function options(typeofpet) {
     const options = [];
@@ -527,7 +529,9 @@ export const ModalEditNotice = () => {
                           id="size"
                           name="size"
                           placeholder={
-                            values.size === '' ?  t('Select size type') : values.size
+                            values.size === ''
+                              ? t('Select size type')
+                              : values.size
                           }
                           defaultValue={values.size}
                           value={values.size}
@@ -536,7 +540,6 @@ export const ModalEditNotice = () => {
                           onChange={e => setFieldValue('size', e?.value)}
                           options={sizeForFormik}
                         ></CreatableSelect>
-
 
                         <LabelItem htmlFor="height">
                           <span>{t('Height in cm')}</span>
@@ -797,7 +800,7 @@ export const ModalEditNotice = () => {
                           onChange={e =>
                             setFieldValue('sterilization', e?.value)
                           }
-                          options={sterelisationForFormik}
+                          options={sterilizationForFormik}
                         ></CreatableSelect>
 
                         <LabelItem htmlFor="lives">
@@ -826,7 +829,7 @@ export const ModalEditNotice = () => {
                         ></CreatableSelect>
 
                         <LabelItemTextArea htmlFor="comments">
-                          <span>{t("Comments")}</span>
+                          <span>{t('Comments')}</span>
                           {errors.comments && touched.comments ? (
                             <Error>{errors.comments}</Error>
                           ) : null}
@@ -840,7 +843,7 @@ export const ModalEditNotice = () => {
                           type="text"
                           id="comments"
                           name="comments"
-                          placeholder={t("Type comments")}
+                          placeholder={t('Type comments')}
                           onChange={e => handleChange(e)}
                           defaultValue={values.comments}
                         />

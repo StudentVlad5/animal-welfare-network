@@ -246,7 +246,6 @@ const TdTable = styled.td`
   color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 768px) {
-    max-width: 155px;
     font-size: 16px;
     line-height: 22px;
   }
@@ -263,7 +262,7 @@ const TdTable2 = styled.td`
   color: ${props => props.theme.blackText};
 
   @media screen and (min-width: 768px) {
-    max-width: 155px;
+    max-width: 145px;
     font-size: 16px;
     line-height: 22px;
   }

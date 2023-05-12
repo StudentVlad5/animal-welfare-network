@@ -23,8 +23,6 @@ import {
   Label,
   Input,
   FieldItemFile,
-  // Option,
-  // OptionFirst,
   CloseIconBtn,
   DoneIconBtn,
   Error,
@@ -39,7 +37,7 @@ export const EditNoticeDataModal = () => {
   const breeds = useSelector(breedsValue);
   const modal = useSelector(modalComponent);
   const dispatch = useDispatch();
-  const itemForFetch = `/notices/byid/${modal.id}`;
+
   const sizeForFormik = [
     { value: 'big', label: 'big' },
     { value: 'average', label: 'average' },
@@ -50,7 +48,7 @@ export const EditNoticeDataModal = () => {
     { value: '€', label: 'EUR' },
     { value: '₴', label: 'UAH' },
   ];
-  const sterelisationForFormik = [
+  const sterilizationForFormik = [
     { value: 'yes', label: 'yes' },
     { value: 'no', label: 'no' },
   ];
@@ -70,6 +68,8 @@ export const EditNoticeDataModal = () => {
     { value: 'sell', label: 'sell' },
     { value: 'none', label: 'none' },
   ];
+
+  const itemForFetch = `/notices/byid/${modal.id}`;
 
   useEffect(() => {
     async function getData() {
@@ -113,7 +113,7 @@ export const EditNoticeDataModal = () => {
     setIsLoading(true);
     try {
       const { code } = await fetchPatchNotice(
-        `/notices/${modal.id}`,
+        `/admin/notices/${modal.id}`,
         values,
         file1,
         file2,
@@ -184,7 +184,7 @@ export const EditNoticeDataModal = () => {
     dispatch(cleanModal());
     closeModalWindow(e);
   };
-  console.log('dataUpdate', dataUpdate);
+
   return createPortal(
     Object.values(modal)[0] === 'admin' && (
       <BackDrop
@@ -234,7 +234,6 @@ export const EditNoticeDataModal = () => {
               editNotice(values);
               // closeDataModal();
               dispatch(addReload(false));
-              // dispatch(cleanModal());
             }}
             enableReinitialize={true}
           >
@@ -286,7 +285,9 @@ export const EditNoticeDataModal = () => {
                       value={values.category}
                       className="react-select-container"
                       classNamePrefix="react-select"
-                      onChange={e => setFieldValue('category', e?.value)}
+                      onChange={e => {
+                        setFieldValue('category', e?.value);
+                      }}
                       options={categoryForFormik}
                     ></CreatableSelect>
                   </FieldStyled>
@@ -673,7 +674,7 @@ export const EditNoticeDataModal = () => {
                       className="react-select-container"
                       classNamePrefix="react-select"
                       onChange={e => setFieldValue('sterilization', e?.value)}
-                      options={sterelisationForFormik}
+                      options={sterilizationForFormik}
                     ></CreatableSelect>
                   </FieldStyled>
                   <FieldStyled>
@@ -748,7 +749,7 @@ export const EditNoticeDataModal = () => {
                     type="submit"
                     disabled={isSubmitting}
                     // onClick={e => closeDataModal(e)}
-                    // aria-label="Submit"
+                    aria-label="Submit"
                   >
                     <MdDone size={15} />
                   </DoneIconBtn>
