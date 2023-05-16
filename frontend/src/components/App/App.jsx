@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom'; //Navigate
 import { RestrictedRoute } from 'routes/RestrictedRoute';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { SharedLayout } from '../SharedLayout/SharedLayout';
-import { ApiDocs } from '../ApiDocs/ApiDocs';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { selectIsRefreshing, getPermission } from 'redux/auth/selectors';
@@ -35,7 +34,7 @@ export const App = () => {
     <></>
   ) : (
     <HelmetProvider>
-      <Suspense fallback={<div>{t("Loading...")}</div>}>
+      <Suspense fallback={<div>{t('Loading...')}</div>}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
@@ -126,16 +125,6 @@ export const App = () => {
                 <PrivateRoute
                   redirectTo="/admin"
                   component={<AdminNoticesPage />}
-                />
-              }
-            />
-
-            <Route
-              path="api-docs"
-              element={
-                <RestrictedRoute
-                  redirectTo="/api-docs"
-                  component={<ApiDocs />}
                 />
               }
             />
