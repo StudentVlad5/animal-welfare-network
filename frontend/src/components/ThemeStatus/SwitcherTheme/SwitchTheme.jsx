@@ -1,6 +1,6 @@
 import React from 'react';
-import sun from 'images/theme/sun.png';
-import moon from 'images/theme/moon.png';
+import sun from 'images/theme/sun.webp';
+import moon from 'images/theme/moon.webp';
 import { BtnChangeTheme, SwitcherWrapper } from './SwitchTheme.styled';
 import { ThemeContext } from 'components/ThemeStatus/ThemeProvider';
 

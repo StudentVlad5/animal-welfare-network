@@ -37,6 +37,7 @@ export const Footer = () => {
           <Team>
             <Description>Developed by</Description>
             <TeamModalBtn
+              aria-label="Our team"
               onClick={e => {
                 toggleModal(e);
               }}

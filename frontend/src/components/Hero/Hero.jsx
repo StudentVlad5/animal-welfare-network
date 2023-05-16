@@ -17,8 +17,8 @@ export const Hero = () => {
     <HeroSection>
       <HeroContainer>
         <HeroTitle>{t('Take good care of your small pets')}</HeroTitle>
-        <Heart src={heart} width={91} height={89} />
-        <Ball src={ball} width={64} height={64} />
+        <Heart src={heart} width={91} height={89} alt="heart" />
+        <Ball src={ball} width={64} height={64} alt="ball" />
       </HeroContainer>
     </HeroSection>
   );
