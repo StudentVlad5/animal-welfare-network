@@ -16,7 +16,7 @@ const NoticesContainerItem = styled.div`
   position: relative;
   display: block;
   width: 280px;
-  margin-top: 250px;
+  margin-top: 50px;
   padding: 10px 20px 40px 20px;
   background-color: ${props => props.theme.white};
   border-radius: 20px;
