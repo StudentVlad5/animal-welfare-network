@@ -7,7 +7,6 @@ import 'swiper/css';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { MdClose } from 'react-icons/md';
 import { AiFillHeart } from 'react-icons/ai';
 import { closeModalWindow } from 'hooks/modalWindow';
 import { cleanModal } from 'redux/modal/operation';
@@ -17,8 +16,8 @@ import { fetchData } from 'services/APIservice';
 import { onFetchError } from 'components/helpers/Messages/NotifyMessages';
 import {
   NoticesContainerItem,
-  ContainerCloseModal,
-  ContainerPositionForCloseModal,
+  ButtonClose,
+  IconClose,
   ContainerInfo,
   ContainerStatus,
   NoticeItemTitle,
@@ -85,11 +84,13 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
     Object.values(modal)[0] === 'itemPet' && (
       <BackDrop onClick={closeModalForItemPet}>
         <NoticesContainerItem onClick={e => e.stopPropagation()}>
-          <ContainerPositionForCloseModal>
-            <ContainerCloseModal onClick={closeModalForItemPet}>
-              <MdClose style={{ width: '15.5px', height: '15.5px' }} />
-            </ContainerCloseModal>
-          </ContainerPositionForCloseModal>
+          <ButtonClose
+            type="button"
+            onClick={closeModalForItemPet}
+            aria-label="Close modal"
+          >
+            <IconClose />
+          </ButtonClose>
           {data ? (
             <>
               <ContainerInfo>
@@ -110,12 +111,12 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                   )}
                   {data.imageUrl_1 && (
                     <SwiperSlide>
-                      <ImgItem src={data.imageUrl_1} alt="Pet first" />
+                      <ImgItem src={data.imageUrl_1} alt="Pet second" />
                     </SwiperSlide>
                   )}
                   {data.imageUrl_2 && (
                     <SwiperSlide>
-                      <ImgItem src={data.imageUrl_2} alt="Pet first" />
+                      <ImgItem src={data.imageUrl_2} alt="Pet third" />
                     </SwiperSlide>
                   )}
                 </Swiper>
@@ -128,14 +129,10 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                         <TdTable>{t('Name')}:</TdTable>
                         <TdTable2>{data.name}</TdTable2>
                       </tr>
-                      {data.price && (
-                        <tr>
-                          <TdTable>{t('Price')}:</TdTable>
-                          <TdTable2>
-                            {data.price} {data.currency || '₴'}
-                          </TdTable2>
-                        </tr>
-                      )}
+                      <tr>
+                        <TdTable>{t('The sex')}:</TdTable>
+                        <TdTable2>{data.sex}</TdTable2>
+                      </tr>
                       <tr>
                         <TdTable>{t('Birthday')}:</TdTable>
                         <TdTable2>
@@ -189,10 +186,14 @@ export const ModalNotices = ({ addToFavoriteFunction }) => {
                         <TdTable>{t('Location')}:</TdTable>
                         <TdTable2>{data.location}</TdTable2>
                       </tr>
-                      <tr>
-                        <TdTable>{t('The sex')}:</TdTable>
-                        <TdTable2>{data.sex}</TdTable2>
-                      </tr>
+                      {data.category === 'sell' && data.price && (
+                        <tr>
+                          <TdTable>{t('Price')}:</TdTable>
+                          <TdTable2>
+                            {data.price} {data.currency || '₴'}
+                          </TdTable2>
+                        </tr>
+                      )}
                       <tr>
                         <TdTable>{t('Email')}:</TdTable>
                         <TdTable2>

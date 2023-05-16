@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as icon } from 'images/svg/icon_close.svg';
 
 const BackDrop = styled.div`
   display: flex;
@@ -31,33 +32,60 @@ const Modal = styled.div`
   }
 `;
 
-const CloseIconBtn = styled.button`
+const ButtonClose = styled.button`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
+  z-index: 45;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
-  width: 30px;
-  height: 30px;
+  margin: 0;
+  padding: 0;
+  width: 34px;
+  height: 34px;
 
-  color: ${props => props.theme.black};
-  background-color: ${props => props.theme.white};
-  border-color: ${props => props.theme.black};
+  background-color: ${props => props.theme.mainBg};
   border-radius: 50%;
-  backdrop-filter: blur(2px);
-  z-index: 50;
+  border: medium none;
+  border-spacing: 0;
 
+  transition: all 0.25s ease-in;
   cursor: pointer;
 
+  &:hover,
+  &:focus {
+    outline: 2px solid ${props => props.theme.orangeLight};
+    border: none;
+  }
+
   @media screen and (min-width: 768px) {
-    top: 20px;
-    right: 20px;
-    width: 34px;
-    height: 34px;
+    width: 44px;
+    height: 44px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    top: 24px;
+    right: 24px;
   }
 `;
 
-export { BackDrop, Modal, CloseIconBtn };
+const IconClose = styled(icon)`
+  width: 28px;
+  height: 28px;
+  display: block;
+
+  & > path {
+    stroke: ${props => props.theme.black};
+    fill: ${props => props.theme.black};
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 36px;
+    height: 36px;
+  }
+`;
+
+export { BackDrop, Modal, ButtonClose, IconClose };

@@ -142,12 +142,12 @@ export const NoticesCategoriesItem = ({
                     ? Math.round(
                         (Date.now() - Date.parse(data.birthday)) / 31536000000,
                       ) < 1
-                      ? '<1 year'
+                      ? t('<1 year')
                       : Math.round(
                           (Date.now() - Date.parse(data.birthday)) /
                             31536000000,
-                        ) + ' years'
-                    : 'no info'}
+                        ) + t(' years')
+                    : t('no info')}
                 </TdTable2>
               </tr>
               {data.category === 'sell' && data.price && (
@@ -164,19 +164,19 @@ export const NoticesCategoriesItem = ({
         <NoticeContainerButton>
           <BtnLearnMore
             onClick={e =>
-              e.currentTarget.innerText === 'Learn more' &&
+              e.currentTarget.innerText === t('Learn more') &&
               openModalForItemPet(e, 'itemPet')
             }
             data-modal="itemPet"
             data-id={data._id}
           >
-            Learn more
+           {t("Learn more")}
           </BtnLearnMore>
           {(data.owner === id || permission === 'admin') && (
             <>
               <BtnEdit
                 onClick={e =>
-                  e.currentTarget.innerText === 'Edit' &&
+                  e.currentTarget.innerText === t('Edit') &&
                   openModalForItemPet(e, 'editItemPet')
                 }
                 data-modal="editItemPet"
